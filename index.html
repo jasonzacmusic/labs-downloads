@@ -7,22 +7,25 @@
 <style>
   :root{--ink:#0B0C10;--card:#14161C;--card2:#1B1E26;--line:#262A33;--tx:#F4F3EE;--mut:#A0A4AE;--faint:#6A6E78;--amber:#F4A62A;--green:#57D98A}
   *{box-sizing:border-box;margin:0}
-  body{background:var(--ink);color:var(--tx);font-family:'IBM Plex Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;padding:48px 22px 80px}
-  .wrap{max-width:920px;margin:0 auto}
+  body{background:var(--ink);color:var(--tx);font-family:'IBM Plex Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;padding:46px 22px 80px}
+  .wrap{max-width:940px;margin:0 auto}
   .brand{font-family:'Bricolage Grotesque',sans-serif;font-size:30px;letter-spacing:-.5px}
   .amber{color:var(--amber)}
   .tag{color:var(--mut);margin-top:6px;font-size:15px}
-  .meta{color:var(--faint);font-family:'IBM Plex Mono',monospace;font-size:12px;margin-top:14px}
-  h2{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;letter-spacing:2px;color:var(--faint);text-transform:uppercase;margin:44px 0 14px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
-  .card{display:flex;flex-direction:column;gap:9px;background:var(--card);border:.5px solid var(--line);border-radius:14px;padding:18px 18px 16px;text-decoration:none;color:inherit;transition:transform .12s ease,border-color .12s ease,background .12s ease}
-  .card:hover{transform:translateY(-2px);border-color:var(--amber);background:var(--card2)}
+  .meta{color:var(--faint);font-family:'IBM Plex Mono',monospace;font-size:12px;margin-top:12px;line-height:1.6}
+  h2{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;letter-spacing:2px;color:var(--faint);text-transform:uppercase;margin:42px 0 14px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(266px,1fr));gap:14px}
+  .card{display:flex;flex-direction:column;gap:8px;background:var(--card);border:.5px solid var(--line);border-radius:14px;padding:18px;text-decoration:none;color:inherit;transition:transform .12s,border-color .12s,background .12s}
+  a.card:hover{transform:translateY(-2px);border-color:var(--amber);background:var(--card2)}
+  .card.dim{opacity:.6}
   .row{display:flex;align-items:center;justify-content:space-between;gap:8px}
   .name{font-weight:600;font-size:17px}
   .badge{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.5px;padding:3px 8px;border-radius:999px;text-transform:uppercase}
   .badge.live{color:var(--green);background:rgba(87,217,138,.12)}
   .badge.beta{color:var(--amber);background:rgba(244,166,42,.12)}
+  .badge.soon{color:var(--faint);background:rgba(160,164,174,.1)}
   .blurb{color:var(--mut);font-size:13.5px;line-height:1.5;flex:1}
+  .commit{color:var(--faint);font-family:'IBM Plex Mono',monospace;font-size:10.5px;line-height:1.4}
   .foot{display:flex;align-items:center;justify-content:space-between;margin-top:4px}
   .sub{color:var(--faint);font-family:'IBM Plex Mono',monospace;font-size:11px}
   .cta{color:var(--amber);font-weight:600;font-size:14px}
@@ -30,119 +33,91 @@
 </style></head><body><div class="wrap">
   <div class="brand"><span class="amber">Nathaniel</span> Labs</div>
   <div class="tag">Internal downloads — always the latest build.</div>
-  <div class="meta">Updated July 6, 2026 at 2:33 PM</div>
+  <div class="meta">Updated July 6, 2026 at 3:01 PM &nbsp;·&nbsp; published from &ldquo;Jason’s MacBook Pro&rdquo;</div>
 
-  <h2>Mac apps</h2>
+  <h2>Apps</h2>
   <div class="grid">
-      <a class="card" href="https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/Sangam.dmg">
-        <div class="row">
-          <span class="name">Sangam</span>
-          <span class="badge beta">Beta</span>
-        </div>
+      <a class="card" href="https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/Sangam-mac.dmg">
+        <div class="row"><span class="name">Sangam</span><span class="badge beta">Beta</span></div>
         <p class="blurb">Visual audio and MIDI routing engine.</p>
-        <div class="foot">
-          <span class="sub">macOS · Apple Silicon · 2.8MB</span>
-          <span class="cta">Download &rarr;</span>
-        </div>
+        <p class="commit">1a5814d · 2026-07-06 · fix: Shruti installs itself on first launch (no more</p>
+        <div class="foot"><span class="sub">macOS · notarized</span><span class="cta">Download &rarr;</span></div>
       </a>
-      <a class="card" href="https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/Chorale.dmg">
-        <div class="row">
-          <span class="name">Chorale</span>
-          <span class="badge beta">Beta</span>
-        </div>
+      <a class="card" href="https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/Chorale-mac.dmg">
+        <div class="row"><span class="name">Chorale</span><span class="badge beta">Beta</span></div>
         <p class="blurb">Real-time vocal and instrument harmonizer.</p>
-        <div class="foot">
-          <span class="sub">macOS · Apple Silicon ·  14MB</span>
-          <span class="cta">Download &rarr;</span>
-        </div>
+        <p class="commit">34cccbb · 2026-07-06 · Signing infra: Dev-ID hardened-runtime signing, enti</p>
+        <div class="foot"><span class="sub">macOS · notarized</span><span class="cta">Download &rarr;</span></div>
       </a>
-      <a class="card" href="https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/GrabIt.dmg">
-        <div class="row">
-          <span class="name">GrabIt</span>
-          <span class="badge beta">Beta</span>
-        </div>
+      <a class="card" href="https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/GrabIt-mac.dmg">
+        <div class="row"><span class="name">GrabIt</span><span class="badge beta">Beta</span></div>
         <p class="blurb">Fast native media downloader.</p>
-        <div class="foot">
-          <span class="sub">macOS · Apple Silicon ·  97MB</span>
-          <span class="cta">Download &rarr;</span>
-        </div>
+        <div class="foot"><span class="sub">macOS · notarized</span><span class="cta">Download &rarr;</span></div>
       </a>
+      <a class="card" href="https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/MIDI-Piano-Visualizer-mac.dmg">
+        <div class="row"><span class="name">MIDI Piano Visualizer</span><span class="badge live">Live</span></div>
+        <p class="blurb">Live MIDI piano visuals (also on Windows and Linux).</p>
+        <p class="commit">f393e35 · 2026-07-06 · Phone Camera-2 trust pass: frame watchdog, wake-lock</p>
+        <div class="foot"><span class="sub">macOS · notarized</span><span class="cta">Download &rarr;</span></div>
+      </a>
+      <a class="card" href="https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/MIDI-Piano-Visualizer-win.exe">
+        <div class="row"><span class="name">MIDI Piano Visualizer</span><span class="badge live">Live</span></div>
+        <p class="blurb">Live MIDI piano visuals for Windows.</p>
+        <p class="commit">f393e35 · 2026-07-06 · Phone Camera-2 trust pass: frame watchdog, wake-lock</p>
+        <div class="foot"><span class="sub">Windows</span><span class="cta">Download &rarr;</span></div>
+      </a>
+      <div class="card dim">
+        <div class="row"><span class="name">Nathaniel Music Hub</span><span class="badge soon">Building</span></div>
+        <p class="blurb">All the NSM web apps in one native iPad app.</p>
+        <p class="commit">f523639 · 2026-07-04 · Fix typecheck errors blocking builds: globalThis for</p>
+        <div class="foot"><span class="sub">iPadOS · coming to TestFlight</span></div>
+      </div>
   </div>
 
   <h2>Web apps</h2>
   <div class="grid">
       <a class="card" href="https://melakarta.nathanielschool.com" target="_blank" rel="noopener">
-        <div class="row">
-          <span class="name">Melakarta Sphere</span>
-          <span class="badge live">Live</span>
-        </div>
+        <div class="row"><span class="name">Melakarta Sphere</span><span class="badge live">Live</span></div>
         <p class="blurb">Explore all 72 ragas in an interactive 3D sphere.</p>
-        <div class="foot">
-          <span class="sub">Web app</span>
-          <span class="cta">Open &rarr;</span>
-        </div>
+        <p class="commit">55a6324 · 2026-07-06 · Easy playback control, key on every raga, a tanpura </p>
+        <div class="foot"><span class="sub">Web app</span><span class="cta">Open &rarr;</span></div>
       </a>
       <a class="card" href="https://melody-weaver.nathanielschool.com" target="_blank" rel="noopener">
-        <div class="row">
-          <span class="name">Melody Weaver</span>
-          <span class="badge live">Live</span>
-        </div>
+        <div class="row"><span class="name">Melody Weaver</span><span class="badge live">Live</span></div>
         <p class="blurb">See the shape of any melody.</p>
-        <div class="foot">
-          <span class="sub">Web app</span>
-          <span class="cta">Open &rarr;</span>
-        </div>
+        <p class="commit">19917e3 · 2026-07-04 · Real MIDI export, session log, build artifacts confi</p>
+        <div class="foot"><span class="sub">Web app</span><span class="cta">Open &rarr;</span></div>
       </a>
       <a class="card" href="https://aria.nathanielschool.com" target="_blank" rel="noopener">
-        <div class="row">
-          <span class="name">Aria</span>
-          <span class="badge live">Live</span>
-        </div>
+        <div class="row"><span class="name">Aria</span><span class="badge live">Live</span></div>
         <p class="blurb">AI music mentor.</p>
-        <div class="foot">
-          <span class="sub">Web app</span>
-          <span class="cta">Open &rarr;</span>
-        </div>
+        <p class="commit">3a4534a · 2026-07-05 · Add the theory calculator: exact scales, ragas, chor</p>
+        <div class="foot"><span class="sub">Web app</span><span class="cta">Open &rarr;</span></div>
       </a>
       <a class="card" href="https://ossia-lyart.vercel.app" target="_blank" rel="noopener">
-        <div class="row">
-          <span class="name">Ossia</span>
-          <span class="badge beta">Beta</span>
-        </div>
-        <p class="blurb">Music-aware annotation studio.</p>
-        <div class="foot">
-          <span class="sub">Web app</span>
-          <span class="cta">Open &rarr;</span>
-        </div>
+        <div class="row"><span class="name">Ossia</span><span class="badge beta">Beta</span></div>
+        <p class="blurb">Music-aware annotation studio (iPad build in progress).</p>
+        <p class="commit">fe680d6 · 2026-07-06 · Login: graceful message when the auth backend is unr</p>
+        <div class="foot"><span class="sub">Web app</span><span class="cta">Open &rarr;</span></div>
       </a>
       <a class="card" href="https://music-pdf-studio.vercel.app" target="_blank" rel="noopener">
-        <div class="row">
-          <span class="name">Music PDF Studio</span>
-          <span class="badge live">Live</span>
-        </div>
+        <div class="row"><span class="name">Music PDF Studio</span><span class="badge live">Live</span></div>
         <p class="blurb">Sheet-music toolkit in the browser.</p>
-        <div class="foot">
-          <span class="sub">Web app</span>
-          <span class="cta">Open &rarr;</span>
-        </div>
+        <p class="commit">cc617ad · 2026-07-06 · Document that Vercel deploys are CLI-driven, not git</p>
+        <div class="foot"><span class="sub">Web app</span><span class="cta">Open &rarr;</span></div>
       </a>
       <a class="card" href="https://photos.nathanielschool.com" target="_blank" rel="noopener">
-        <div class="row">
-          <span class="name">Nathaniel Photo Hub</span>
-          <span class="badge live">Live</span>
-        </div>
+        <div class="row"><span class="name">Nathaniel Photo Hub</span><span class="badge live">Live</span></div>
         <p class="blurb">Private photo sharing.</p>
-        <div class="foot">
-          <span class="sub">Web app</span>
-          <span class="cta">Open &rarr;</span>
-        </div>
+        <p class="commit">b12f24e · 2026-07-05 · fix(buckets): studio must exclude photos with real f</p>
+        <div class="foot"><span class="sub">Web app</span><span class="cta">Open &rarr;</span></div>
       </a>
   </div>
 
   <p class="note">
-    Mac apps are signed and notarized by Apple, so they open with no security warnings.
-    Just download, open the .dmg, and double-click the app — it sets itself up.
-    Requires an Apple Silicon Mac (M1 or newer) on a recent macOS.
-    &nbsp;·&nbsp; This page is for the Nathaniel team only; please do not share the link.
+    macOS apps are Apple-notarized, so they open with no warnings — download, open the .dmg,
+    double-click, and the app sets itself up. Requires an Apple Silicon Mac (M1 or newer).
+    Each card shows that app's latest code change (commit, date). iPad/iOS apps arrive via
+    TestFlight when ready. &nbsp;·&nbsp; Team only; please don't share the link.
   </p>
 </div></body></html>
