@@ -12,112 +12,163 @@
   .brand{font-family:'Bricolage Grotesque',sans-serif;font-size:30px;letter-spacing:-.5px}
   .amber{color:var(--amber)}
   .tag{color:var(--mut);margin-top:6px;font-size:15px}
-  .meta{color:var(--faint);font-family:'IBM Plex Mono',monospace;font-size:12px;margin-top:12px;line-height:1.6}
-  h2{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;letter-spacing:2px;color:var(--faint);text-transform:uppercase;margin:42px 0 14px}
-  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(266px,1fr));gap:14px}
-  .card{display:flex;flex-direction:column;gap:8px;background:var(--card);border:.5px solid var(--line);border-radius:14px;padding:18px;text-decoration:none;color:inherit;transition:transform .12s,border-color .12s,background .12s}
-  a.card:hover{transform:translateY(-2px);border-color:var(--amber);background:var(--card2)}
-  .card.dim{opacity:.6}
-  .row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .meta{color:var(--faint);font-family:'IBM Plex Mono',monospace;font-size:12px;margin-top:12px}
+  h2{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;letter-spacing:2px;color:var(--faint);text-transform:uppercase;margin:36px 0 14px}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
+  .card{display:flex;flex-direction:column;gap:7px;background:var(--card);border:.5px solid var(--line);border-radius:14px;padding:16px 18px}
+  .row{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
   .name{font-weight:600;font-size:17px}
-  .badge{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.5px;padding:3px 8px;border-radius:999px;text-transform:uppercase}
-  .badge.live{color:var(--green);background:rgba(87,217,138,.12)}
-  .badge.beta{color:var(--amber);background:rgba(244,166,42,.12)}
-  .badge.soon{color:var(--faint);background:rgba(160,164,174,.1)}
-  .blurb{color:var(--mut);font-size:13.5px;line-height:1.5;flex:1}
+  .upd{color:var(--green);font-family:'IBM Plex Mono',monospace;font-size:10.5px;white-space:nowrap}
+  .sub{color:var(--mut);font-size:12.5px}
   .commit{color:var(--faint);font-family:'IBM Plex Mono',monospace;font-size:10.5px;line-height:1.4}
-  .foot{display:flex;align-items:center;justify-content:space-between;margin-top:4px}
-  .sub{color:var(--faint);font-family:'IBM Plex Mono',monospace;font-size:11px}
-  .cta{color:var(--amber);font-weight:600;font-size:14px}
+  .acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+  .btn{font-size:13px;font-weight:500;text-decoration:none;color:var(--ink);background:var(--amber);padding:6px 12px;border-radius:8px}
+  .btn.ghost{color:var(--amber);background:transparent;border:.5px solid var(--line)}
+  .btn.dim{color:var(--faint);background:transparent;border:.5px solid var(--line);font-weight:400}
+  a.btn:hover{opacity:.9}
   .note{margin-top:40px;color:var(--faint);font-size:12.5px;line-height:1.7;border-top:.5px solid var(--line);padding-top:18px}
 </style></head><body><div class="wrap">
   <div class="brand"><span class="amber">Nathaniel</span> Labs</div>
-  <div class="tag">Internal downloads — always the latest build.</div>
-  <div class="meta">Updated July 6, 2026 at 3:01 PM &nbsp;·&nbsp; published from &ldquo;Jason’s MacBook Pro&rdquo;</div>
-
-  <h2>Apps</h2>
+  <div class="tag">Internal builds — ordered by whatever changed most recently.</div>
+  <div class="meta">Refreshed July 6, 2026 at 3:32 PM · from Jason’s MacBook Pro</div>
+  <h2>All apps · newest first</h2>
   <div class="grid">
-      <a class="card" href="https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/Sangam-mac.dmg">
-        <div class="row"><span class="name">Sangam</span><span class="badge beta">Beta</span></div>
-        <p class="blurb">Visual audio and MIDI routing engine.</p>
-        <p class="commit">1a5814d · 2026-07-06 · fix: Shruti installs itself on first launch (no more</p>
-        <div class="foot"><span class="sub">macOS · notarized</span><span class="cta">Download &rarr;</span></div>
-      </a>
-      <a class="card" href="https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/Chorale-mac.dmg">
-        <div class="row"><span class="name">Chorale</span><span class="badge beta">Beta</span></div>
-        <p class="blurb">Real-time vocal and instrument harmonizer.</p>
-        <p class="commit">34cccbb · 2026-07-06 · Signing infra: Dev-ID hardened-runtime signing, enti</p>
-        <div class="foot"><span class="sub">macOS · notarized</span><span class="cta">Download &rarr;</span></div>
-      </a>
-      <a class="card" href="https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/GrabIt-mac.dmg">
-        <div class="row"><span class="name">GrabIt</span><span class="badge beta">Beta</span></div>
-        <p class="blurb">Fast native media downloader.</p>
-        <div class="foot"><span class="sub">macOS · notarized</span><span class="cta">Download &rarr;</span></div>
-      </a>
-      <a class="card" href="https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/MIDI-Piano-Visualizer-mac.dmg">
-        <div class="row"><span class="name">MIDI Piano Visualizer</span><span class="badge live">Live</span></div>
-        <p class="blurb">Live MIDI piano visuals (also on Windows and Linux).</p>
-        <p class="commit">f393e35 · 2026-07-06 · Phone Camera-2 trust pass: frame watchdog, wake-lock</p>
-        <div class="foot"><span class="sub">macOS · notarized</span><span class="cta">Download &rarr;</span></div>
-      </a>
-      <a class="card" href="https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/MIDI-Piano-Visualizer-win.exe">
-        <div class="row"><span class="name">MIDI Piano Visualizer</span><span class="badge live">Live</span></div>
-        <p class="blurb">Live MIDI piano visuals for Windows.</p>
-        <p class="commit">f393e35 · 2026-07-06 · Phone Camera-2 trust pass: frame watchdog, wake-lock</p>
-        <div class="foot"><span class="sub">Windows</span><span class="cta">Download &rarr;</span></div>
-      </a>
-      <div class="card dim">
-        <div class="row"><span class="name">Nathaniel Music Hub</span><span class="badge soon">Building</span></div>
-        <p class="blurb">All the NSM web apps in one native iPad app.</p>
-        <p class="commit">f523639 · 2026-07-04 · Fix typecheck errors blocking builds: globalThis for</p>
-        <div class="foot"><span class="sub">iPadOS · coming to TestFlight</span></div>
+      <div class="card">
+        <div class="row"><span class="name">Shruti</span><span class="upd" title="2026-07-06 09:59">updated 2m ago</span></div>
+        <p class="sub">Audio</p>
+        <p class="commit">fix: Shruti installs itself on first launch (no more &#x27;servic</p>
+        <div class="acts"></div>
+      </div>
+      <div class="card">
+        <div class="row"><span class="name">Sangam</span><span class="upd" title="2026-07-06 09:59">updated 2m ago</span></div>
+        <p class="sub">Audio · macOS · notarized</p>
+        <p class="commit">fix: Shruti installs itself on first launch (no more &#x27;servic</p>
+        <div class="acts"><a class="btn" href="https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/Sangam-mac.dmg">macOS &darr;</a></div>
+      </div>
+      <div class="card">
+        <div class="row"><span class="name">Melakarta Sphere</span><span class="upd" title="2026-07-06 09:59">updated 2m ago</span></div>
+        <p class="sub">Practice · Web</p>
+        <p class="commit">The gamaka voice is a real bansuri now</p>
+        <div class="acts"><a class="btn ghost" href="https://melakarta.nathanielschool.com" target="_blank" rel="noopener">Open &rarr;</a></div>
+      </div>
+      <div class="card">
+        <div class="row"><span class="name">Chorale</span><span class="upd" title="2026-07-06 07:10">updated 2h ago</span></div>
+        <p class="sub">Audio · macOS · notarized</p>
+        <p class="commit">Signing infra: Dev-ID hardened-runtime signing, entitlements</p>
+        <div class="acts"><a class="btn" href="https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/Chorale-mac.dmg">macOS &darr;</a></div>
+      </div>
+      <div class="card">
+        <div class="row"><span class="name">MIDI Piano Visualizer</span><span class="upd" title="2026-07-06 06:58">updated 3h ago</span></div>
+        <p class="sub">Music · macOS · Windows · Web · notarized</p>
+        <p class="commit">Phone Camera-2 trust pass: frame watchdog, wake-lock status,</p>
+        <div class="acts"><a class="btn" href="https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/MIDI-Piano-Visualizer-mac.dmg">macOS &darr;</a><a class="btn" href="https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/MIDI-Piano-Visualizer-win.exe">Windows &darr;</a><a class="btn ghost" href="https://midi-visualizer.nathanielschool.com" target="_blank" rel="noopener">Open &rarr;</a></div>
+      </div>
+      <div class="card">
+        <div class="row"><span class="name">Ossia</span><span class="upd" title="2026-07-06 04:49">updated 5h ago</span></div>
+        <p class="sub">Productivity · Web</p>
+        <p class="commit">Login: graceful message when the auth backend is unreachable</p>
+        <div class="acts"><a class="btn ghost" href="https://ossia-lyart.vercel.app" target="_blank" rel="noopener">Open &rarr;</a></div>
+      </div>
+      <div class="card">
+        <div class="row"><span class="name">Music PDF Studio</span><span class="upd" title="2026-07-06 01:07">updated 8h ago</span></div>
+        <p class="sub">Productivity · Web</p>
+        <p class="commit">Document that Vercel deploys are CLI-driven, not git-trigger</p>
+        <div class="acts"><a class="btn ghost" href="https://music-pdf-studio.vercel.app" target="_blank" rel="noopener">Open &rarr;</a></div>
+      </div>
+      <div class="card">
+        <div class="row"><span class="name">Fifth Harmony</span><span class="upd" title="2026-07-05 13:49">updated 20h ago</span></div>
+        <p class="sub">Practice · Web</p>
+        <p class="commit">Fix obvious misses found in all-modes audit</p>
+        <div class="acts"><a class="btn ghost" href="https://circle-of-fifths.nathanielschool.com" target="_blank" rel="noopener">Open &rarr;</a></div>
+      </div>
+      <div class="card">
+        <div class="row"><span class="name">Nathaniel Photo Hub</span><span class="upd" title="2026-07-05 11:50">updated 22h ago</span></div>
+        <p class="sub">Team · Web</p>
+        <p class="commit">fix(buckets): studio must exclude photos with real face rows</p>
+        <div class="acts"><a class="btn ghost" href="https://photos.nathanielschool.com" target="_blank" rel="noopener">Open &rarr;</a></div>
+      </div>
+      <div class="card">
+        <div class="row"><span class="name">Aria</span><span class="upd" title="2026-07-05 01:37">updated 1d ago</span></div>
+        <p class="sub">Productivity · Web</p>
+        <p class="commit">Add the theory calculator: exact scales, ragas, chords, inve</p>
+        <div class="acts"><a class="btn ghost" href="https://aria.nathanielschool.com" target="_blank" rel="noopener">Open &rarr;</a></div>
+      </div>
+      <div class="card">
+        <div class="row"><span class="name">Nathaniel Music Hub</span><span class="upd" title="2026-07-04 15:21">updated 1d ago</span></div>
+        <p class="sub">Team · iPadOS</p>
+        <p class="commit">Fix typecheck errors blocking builds: globalThis for Buffer/</p>
+        <div class="acts"><span class="btn dim">iPad app coming to TestFlight</span></div>
+      </div>
+      <div class="card">
+        <div class="row"><span class="name">Melody Weaver</span><span class="upd" title="2026-07-04 15:16">updated 1d ago</span></div>
+        <p class="sub">Practice · Web</p>
+        <p class="commit">Real MIDI export, session log, build artifacts config</p>
+        <div class="acts"><a class="btn ghost" href="https://melody-weaver.nathanielschool.com" target="_blank" rel="noopener">Open &rarr;</a></div>
+      </div>
+      <div class="card">
+        <div class="row"><span class="name">Woodshed</span><span class="upd" title="2026-07-04 14:48">updated 1d ago</span></div>
+        <p class="sub">Productivity · Web</p>
+        <p class="commit">Fix double slash in invitation email links</p>
+        <div class="acts"><a class="btn ghost" href="https://woodshed.nathanielschool.com" target="_blank" rel="noopener">Open &rarr;</a></div>
+      </div>
+      <div class="card">
+        <div class="row"><span class="name">Riff Database</span><span class="upd" title="2026-07-04 06:33">updated 2d ago</span></div>
+        <p class="sub">Portal · Web</p>
+        <p class="commit">Return null for unauthenticated me</p>
+        <div class="acts"><a class="btn ghost" href="https://riffs.jasonzacmusic.com" target="_blank" rel="noopener">Open &rarr;</a></div>
+      </div>
+      <div class="card">
+        <div class="row"><span class="name">Reaper DAW Mentor</span><span class="upd" title="2026-06-13 12:16">updated 22d ago</span></div>
+        <p class="sub">Productivity · Web</p>
+        <p class="commit">fix touch model: relative faders (no jump), reliable tap-to-</p>
+        <div class="acts"><a class="btn ghost" href="https://daw.nathanielschool.com" target="_blank" rel="noopener">Open &rarr;</a></div>
+      </div>
+      <div class="card">
+        <div class="row"><span class="name">Mehfil</span><span class="upd" title="2026-06-12 01:59">updated 24d ago</span></div>
+        <p class="sub">Productivity · Web</p>
+        <p class="commit">Add &#x27;what to listen for&#x27; study notes on tracks</p>
+        <div class="acts"><a class="btn ghost" href="https://mehfil.nathanielschool.com" target="_blank" rel="noopener">Open &rarr;</a></div>
+      </div>
+      <div class="card">
+        <div class="row"><span class="name">Rhythm Master</span><span class="upd" title="2026-06-09 12:17">updated 26d ago</span></div>
+        <p class="sub">Practice · Web</p>
+        <p class="commit">Add static SEO fallback heading</p>
+        <div class="acts"><a class="btn ghost" href="https://rhythm-master.nathanielschool.com" target="_blank" rel="noopener">Open &rarr;</a></div>
+      </div>
+      <div class="card">
+        <div class="row"><span class="name">Chord Trees</span><span class="upd" title="2026-06-09 06:54">updated 27d ago</span></div>
+        <p class="sub">Practice · Web</p>
+        <p class="commit">Fix playback regression: same-context, scheduled offline fal</p>
+        <div class="acts"><a class="btn ghost" href="https://chord-trees.nathanielschool.com" target="_blank" rel="noopener">Open &rarr;</a></div>
+      </div>
+      <div class="card">
+        <div class="row"><span class="name">Handwritten Music Composer</span><span class="upd" title="2026-06-07 13:05">updated 28d ago</span></div>
+        <p class="sub">Productivity · Web</p>
+        <p class="commit">Add Chord Analyzer SEO fallback heading</p>
+        <div class="acts"><a class="btn ghost" href="https://chords.nathanielschool.com" target="_blank" rel="noopener">Open &rarr;</a></div>
+      </div>
+      <div class="card">
+        <div class="row"><span class="name">Note Forge</span><span class="upd" title="2026-06-07 12:41">updated 28d ago</span></div>
+        <p class="sub">Practice · Web</p>
+        <p class="commit">Add static SEO fallback heading</p>
+        <div class="acts"><a class="btn ghost" href="https://note-forge.nathanielschool.com" target="_blank" rel="noopener">Open &rarr;</a></div>
+      </div>
+      <div class="card">
+        <div class="row"><span class="name">Chord Randomizer</span><span class="upd" title="2026-06-01 03:30">updated Jun 1, 2026</span></div>
+        <p class="sub">Practice · Web</p>
+        <p class="commit">SEO/AEO: add JSON-LD / llms.txt / IndexNow key\n\nCo-Authore</p>
+        <div class="acts"><a class="btn ghost" href="https://chord-randomizer.nathanielschool.com" target="_blank" rel="noopener">Open &rarr;</a></div>
+      </div>
+      <div class="card">
+        <div class="row"><span class="name">GrabIt</span></div>
+        <p class="sub">Utility · macOS · notarized</p>
+        
+        <div class="acts"><a class="btn" href="https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/GrabIt-mac.dmg">macOS &darr;</a></div>
       </div>
   </div>
-
-  <h2>Web apps</h2>
-  <div class="grid">
-      <a class="card" href="https://melakarta.nathanielschool.com" target="_blank" rel="noopener">
-        <div class="row"><span class="name">Melakarta Sphere</span><span class="badge live">Live</span></div>
-        <p class="blurb">Explore all 72 ragas in an interactive 3D sphere.</p>
-        <p class="commit">55a6324 · 2026-07-06 · Easy playback control, key on every raga, a tanpura </p>
-        <div class="foot"><span class="sub">Web app</span><span class="cta">Open &rarr;</span></div>
-      </a>
-      <a class="card" href="https://melody-weaver.nathanielschool.com" target="_blank" rel="noopener">
-        <div class="row"><span class="name">Melody Weaver</span><span class="badge live">Live</span></div>
-        <p class="blurb">See the shape of any melody.</p>
-        <p class="commit">19917e3 · 2026-07-04 · Real MIDI export, session log, build artifacts confi</p>
-        <div class="foot"><span class="sub">Web app</span><span class="cta">Open &rarr;</span></div>
-      </a>
-      <a class="card" href="https://aria.nathanielschool.com" target="_blank" rel="noopener">
-        <div class="row"><span class="name">Aria</span><span class="badge live">Live</span></div>
-        <p class="blurb">AI music mentor.</p>
-        <p class="commit">3a4534a · 2026-07-05 · Add the theory calculator: exact scales, ragas, chor</p>
-        <div class="foot"><span class="sub">Web app</span><span class="cta">Open &rarr;</span></div>
-      </a>
-      <a class="card" href="https://ossia-lyart.vercel.app" target="_blank" rel="noopener">
-        <div class="row"><span class="name">Ossia</span><span class="badge beta">Beta</span></div>
-        <p class="blurb">Music-aware annotation studio (iPad build in progress).</p>
-        <p class="commit">fe680d6 · 2026-07-06 · Login: graceful message when the auth backend is unr</p>
-        <div class="foot"><span class="sub">Web app</span><span class="cta">Open &rarr;</span></div>
-      </a>
-      <a class="card" href="https://music-pdf-studio.vercel.app" target="_blank" rel="noopener">
-        <div class="row"><span class="name">Music PDF Studio</span><span class="badge live">Live</span></div>
-        <p class="blurb">Sheet-music toolkit in the browser.</p>
-        <p class="commit">cc617ad · 2026-07-06 · Document that Vercel deploys are CLI-driven, not git</p>
-        <div class="foot"><span class="sub">Web app</span><span class="cta">Open &rarr;</span></div>
-      </a>
-      <a class="card" href="https://photos.nathanielschool.com" target="_blank" rel="noopener">
-        <div class="row"><span class="name">Nathaniel Photo Hub</span><span class="badge live">Live</span></div>
-        <p class="blurb">Private photo sharing.</p>
-        <p class="commit">b12f24e · 2026-07-05 · fix(buckets): studio must exclude photos with real f</p>
-        <div class="foot"><span class="sub">Web app</span><span class="cta">Open &rarr;</span></div>
-      </a>
-  </div>
-
   <p class="note">
-    macOS apps are Apple-notarized, so they open with no warnings — download, open the .dmg,
-    double-click, and the app sets itself up. Requires an Apple Silicon Mac (M1 or newer).
-    Each card shows that app's latest code change (commit, date). iPad/iOS apps arrive via
-    TestFlight when ready. &nbsp;·&nbsp; Team only; please don't share the link.
+    Each app shows when its code last changed on GitHub and its latest commit, so the freshest
+    work is always on top. macOS apps are Apple-notarized and self-installing. iPad/iOS apps
+    arrive via TestFlight. &nbsp;·&nbsp; Team only; please don't share the link.
   </p>
 </div></body></html>

@@ -1,0 +1,35 @@
+name: Refresh hub
+# Keeps the hub current with zero human action: every 30 minutes it re-reads each app's
+# latest GitHub activity and rebuilds the page, so a push to ANY app repo (from ANY machine)
+# floats that app to the top automatically. Also runnable on demand.
+on:
+  schedule:
+    - cron: "*/30 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: refresh-hub
+  cancel-in-progress: true
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Generate page
+        env:
+          # HUB_PAT (a read-only org token) lets it see PRIVATE repos' dates. Without it,
+          # it still refreshes public repos and native download links.
+          GITHUB_TOKEN: ${{ secrets.HUB_PAT || secrets.GITHUB_TOKEN }}
+          HUB_HOST: "the cloud"
+        run: python3 gen.py
+      - name: Commit if changed
+        run: |
+          git config user.name "nathaniel-labs-bot"
+          git config user.email "music@nathanielschool.com"
+          git add index.html
+          git diff --cached --quiet || git commit -m "auto: refresh hub ($(date -u +%FT%TZ))"
+          git push

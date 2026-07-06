@@ -1,0 +1,28 @@
+{
+  "_comment": "Nathaniel Labs hub catalog. Native apps carry a hub asset name (uploaded by publish.sh to the labs-downloads 'downloads' release). Web apps carry a url. 'repo' drives the 'last updated' date + latest commit, read live from GitHub, so any push anywhere refreshes this app's position. Synced from the 'NSM Tech Development' sheet (Tasks tab) plus the new native apps.",
+  "apps": [
+    { "name": "Shruti", "category": "Audio", "repo": "jasonzacmusic/sangam", "native": [{ "platform": "mac", "asset": "Shruti-mac.dmg" }] },
+    { "name": "Sangam", "category": "Audio", "repo": "jasonzacmusic/sangam", "native": [{ "platform": "mac", "asset": "Sangam-mac.dmg" }] },
+    { "name": "Chorale", "category": "Audio", "repo": "jasonzacmusic/chorale", "native": [{ "platform": "mac", "asset": "Chorale-mac.dmg" }] },
+    { "name": "GrabIt", "category": "Utility", "repo": null, "native": [{ "platform": "mac", "asset": "GrabIt-mac.dmg" }] },
+    { "name": "MIDI Piano Visualizer", "category": "Music", "repo": "jasonzacmusic/MidiVisualizer", "web": "https://midi-visualizer.nathanielschool.com", "native": [{ "platform": "mac", "asset": "MIDI-Piano-Visualizer-mac.dmg" }, { "platform": "win", "asset": "MIDI-Piano-Visualizer-win.exe" }] },
+
+    { "name": "Chord Trees", "category": "Practice", "repo": "jasonzacmusic/MusicMentor", "web": "https://chord-trees.nathanielschool.com" },
+    { "name": "Rhythm Master", "category": "Practice", "repo": "jasonzacmusic/RhythmMaster", "web": "https://rhythm-master.nathanielschool.com" },
+    { "name": "Note Forge", "category": "Practice", "repo": "jasonzacmusic/Note-Forge", "web": "https://note-forge.nathanielschool.com" },
+    { "name": "Chord Randomizer", "category": "Practice", "repo": "jasonzacmusic/Chord-Randomiser", "web": "https://chord-randomizer.nathanielschool.com" },
+    { "name": "Melody Weaver", "category": "Practice", "repo": "jasonzacmusic/Melody-Weaver", "web": "https://melody-weaver.nathanielschool.com" },
+    { "name": "Fifth Harmony", "category": "Practice", "repo": "jasonzacmusic/Fifth-Harmony", "web": "https://circle-of-fifths.nathanielschool.com" },
+    { "name": "Melakarta Sphere", "category": "Practice", "repo": "jasonzacmusic/melakarta-sphere", "web": "https://melakarta.nathanielschool.com" },
+    { "name": "Handwritten Music Composer", "category": "Productivity", "repo": "jasonzacmusic/Handwritten-Music-Composer", "web": "https://chords.nathanielschool.com" },
+    { "name": "Reaper DAW Mentor", "category": "Productivity", "repo": "jasonzacmusic/Reaper-Companion-JZ", "web": "https://daw.nathanielschool.com" },
+    { "name": "Woodshed", "category": "Productivity", "repo": "jasonzacmusic/woodshed", "web": "https://woodshed.nathanielschool.com" },
+    { "name": "Mehfil", "category": "Productivity", "repo": "jasonzacmusic/Mehfil-Independent-Music", "web": "https://mehfil.nathanielschool.com" },
+    { "name": "Aria", "category": "Productivity", "repo": "jasonzacmusic/aria-website", "web": "https://aria.nathanielschool.com" },
+    { "name": "Ossia", "category": "Productivity", "repo": "jasonzacmusic/ossia", "web": "https://ossia-lyart.vercel.app" },
+    { "name": "Music PDF Studio", "category": "Productivity", "repo": "jasonzacmusic/Musical-Document-Utility", "web": "https://music-pdf-studio.vercel.app" },
+    { "name": "Riff Database", "category": "Portal", "repo": "jasonzacmusic/Riff-Database", "web": "https://riffs.jasonzacmusic.com" },
+    { "name": "Nathaniel Photo Hub", "category": "Team", "repo": "jasonzacmusic/nathaniel-photo-hub", "web": "https://photos.nathanielschool.com" },
+    { "name": "Nathaniel Music Hub", "category": "Team", "repo": "jasonzacmusic/nathaniel-music-hub", "soon": "iPad app coming to TestFlight" }
+  ]
+}
