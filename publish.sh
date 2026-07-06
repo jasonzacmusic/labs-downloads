@@ -22,13 +22,16 @@ while IFS=$'\t' read -r kind name blurb src status; do
   [ "$kind" = "mac" ] || continue
   srcpath="${src/#\~/$HOME}"
   slug="$(echo "$name" | tr -d ' ')"
-  if [ -f "$srcpath" ]; then
-    cp "$srcpath" "$STAGE/$slug.dmg"
-    ASSETS+=("$STAGE/$slug.dmg")
-    echo "staged $slug.dmg  ($(du -h "$srcpath" | cut -f1))"
-  else
-    echo "WARN: missing $srcpath for $name (skipping its download)"
+  if [ ! -f "$srcpath" ]; then
+    echo "WARN: missing $srcpath for $name (skipping)"; continue
   fi
+  # Only ever publish Apple-notarized builds, so the team never hits a Gatekeeper wall.
+  if ! xcrun stapler validate "$srcpath" >/dev/null 2>&1; then
+    echo "SKIP: $name is not notarized yet (will appear once it is)"; continue
+  fi
+  cp "$srcpath" "$STAGE/$slug.dmg"
+  ASSETS+=("$STAGE/$slug.dmg")
+  echo "staged $slug.dmg  ($(du -h "$srcpath" | cut -f1))"
 done < "$MANIFEST"
 
 # 2. Ensure the release exists, then upload/replace assets in place.
@@ -48,10 +51,10 @@ build_cards() {
     slug="$(echo "$name" | tr -d ' ')"
     if [ "$status" = "Live" ]; then badge="live"; else badge="beta"; fi
     if [ "$kind" = "mac" ]; then
+      # Only show a Mac app once it has a notarized asset uploaded (no dead links).
+      [ -f "$STAGE/$slug.dmg" ] || continue
       href="https://github.com/$REPO/releases/latest/download/$slug.dmg"
-      label="Download"; sub="macOS · Apple Silicon"
-      if [ -f "$STAGE/$slug.dmg" ]; then size=" · $(du -h "$STAGE/$slug.dmg" | cut -f1)B"; else size=""; fi
-      sub="$sub$size"
+      label="Download"; sub="macOS · Apple Silicon · $(du -h "$STAGE/$slug.dmg" | cut -f1)B"
     else
       href="$src"; label="Open"; sub="Web app"
     fi
