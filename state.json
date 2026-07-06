@@ -1,0 +1,82 @@
+{
+"jasonzacmusic/Chord-Randomiser": {
+"commit": "SEO/AEO: add JSON-LD / llms.txt / IndexNow key\\n\\nCo-Authore",
+"pushed": "2026-06-01T03:30:40Z"
+},
+"jasonzacmusic/Fifth-Harmony": {
+"commit": "Fix obvious misses found in all-modes audit",
+"pushed": "2026-07-05T13:49:46Z"
+},
+"jasonzacmusic/Handwritten-Music-Composer": {
+"commit": "Add Chord Analyzer SEO fallback heading",
+"pushed": "2026-06-07T13:05:57Z"
+},
+"jasonzacmusic/Mehfil-Independent-Music": {
+"commit": "Add 'what to listen for' study notes on tracks",
+"pushed": "2026-06-12T01:59:02Z"
+},
+"jasonzacmusic/Melody-Weaver": {
+"commit": "Real MIDI export, session log, build artifacts config",
+"pushed": "2026-07-04T15:16:36Z"
+},
+"jasonzacmusic/MidiVisualizer": {
+"commit": "Phone Camera-2 trust pass: frame watchdog, wake-lock status,",
+"pushed": "2026-07-06T06:58:25Z"
+},
+"jasonzacmusic/MusicMentor": {
+"commit": "Fix playback regression: same-context, scheduled offline fal",
+"pushed": "2026-06-09T06:54:52Z"
+},
+"jasonzacmusic/Musical-Document-Utility": {
+"commit": "Document that Vercel deploys are CLI-driven, not git-trigger",
+"pushed": "2026-07-06T01:07:14Z"
+},
+"jasonzacmusic/Note-Forge": {
+"commit": "Add static SEO fallback heading",
+"pushed": "2026-06-07T12:41:18Z"
+},
+"jasonzacmusic/Reaper-Companion-JZ": {
+"commit": "fix touch model: relative faders (no jump), reliable tap-to-",
+"pushed": "2026-06-13T12:16:07Z"
+},
+"jasonzacmusic/RhythmMaster": {
+"commit": "Add static SEO fallback heading",
+"pushed": "2026-06-09T12:17:02Z"
+},
+"jasonzacmusic/Riff-Database": {
+"commit": "Return null for unauthenticated me",
+"pushed": "2026-07-04T06:33:57Z"
+},
+"jasonzacmusic/aria-website": {
+"commit": "Add the theory calculator: exact scales, ragas, chords, inve",
+"pushed": "2026-07-05T01:37:02Z"
+},
+"jasonzacmusic/chorale": {
+"commit": "Signing infra: Dev-ID hardened-runtime signing, entitlements",
+"pushed": "2026-07-06T07:10:53Z"
+},
+"jasonzacmusic/melakarta-sphere": {
+"commit": "The gamaka voice is a real bansuri now",
+"pushed": "2026-07-06T09:59:08Z"
+},
+"jasonzacmusic/nathaniel-music-hub": {
+"commit": "Fix typecheck errors blocking builds: globalThis for Buffer/",
+"pushed": "2026-07-04T15:21:19Z"
+},
+"jasonzacmusic/nathaniel-photo-hub": {
+"commit": "fix(buckets): studio must exclude photos with real face rows",
+"pushed": "2026-07-05T11:50:25Z"
+},
+"jasonzacmusic/ossia": {
+"commit": "Login: graceful message when the auth backend is unreachable",
+"pushed": "2026-07-06T04:49:09Z"
+},
+"jasonzacmusic/sangam": {
+"commit": "fix: Shruti installs itself on first launch (no more 'servic",
+"pushed": "2026-07-06T09:59:45Z"
+},
+"jasonzacmusic/woodshed": {
+"commit": "Fix double slash in invitation email links",
+"pushed": "2026-07-04T14:48:42Z"
+}
+}

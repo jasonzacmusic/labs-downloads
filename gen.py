@@ -67,6 +67,13 @@ def rel_time(iso):
 PLAT = {"mac": "macOS", "win": "Windows", "linux": "Linux", "ipad": "iPadOS", "ios": "iOS", "web": "Web"}
 
 
+CACHE_PATH = os.path.join(os.path.dirname(__file__), "state.json")
+try:
+    CACHE = json.load(open(CACHE_PATH))
+except Exception:
+    CACHE = {}
+
+
 def enrich(app, assets):
     repo = app.get("repo")
     pushed = None
@@ -81,6 +88,18 @@ def enrich(app, assets):
                 commit = c["commit"]["message"].splitlines()[0][:60]
             except Exception:
                 pass
+        # Graceful degrade: a runner that can't see this repo (e.g. the cloud with no
+        # private-repo token) keeps the last known date/commit instead of blanking it.
+        cached = CACHE.get(repo, {})
+        if pushed:
+            cached["pushed"] = pushed
+        else:
+            pushed = cached.get("pushed")
+        if commit:
+            cached["commit"] = commit
+        elif not commit:
+            commit = cached.get("commit", "")
+        CACHE[repo] = cached
     # resolve downloads
     downloads = []
     for n in app.get("native", []):
@@ -144,6 +163,7 @@ def main():
     page = TEMPLATE.replace("{{CARDS}}", cards).replace("{{UPDATED}}", updated).replace("{{HOST}}", html.escape(host))
     with open(os.path.join(os.path.dirname(__file__), "index.html"), "w") as f:
         f.write(page)
+    json.dump(CACHE, open(CACHE_PATH, "w"), indent=0, sort_keys=True)
     print(f"generated index.html — {len(apps)} apps, ordered by latest GitHub activity")
 
 
