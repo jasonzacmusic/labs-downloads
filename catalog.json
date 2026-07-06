@@ -1,5 +1,5 @@
 {
-  "_comment": "Nathaniel Labs hub catalog. Native apps carry a hub asset name (uploaded by publish.sh to the labs-downloads 'downloads' release). Web apps carry a url. 'repo' drives the 'last updated' date + latest commit, read live from GitHub, so any push anywhere refreshes this app's position. Synced from the 'NSM Tech Development' sheet (Tasks tab) plus the new native apps.",
+  "_comment": "Nathaniel Labs hub catalog. Fields per app: repo (drives last-updated date), native[] (hub asset per platform), web (public app url, always clickable), ios ('soon'|'live'), ios_url (TestFlight/App Store when live), site (sales/landing page when one exists). Downloadable apps are shown first; iOS apps are labeled + colored distinctly.",
   "apps": [
     { "name": "Shruti", "category": "Audio", "repo": "jasonzacmusic/sangam", "native": [{ "platform": "mac", "asset": "Shruti-mac.dmg" }] },
     { "name": "Sangam", "category": "Audio", "repo": "jasonzacmusic/sangam", "native": [{ "platform": "mac", "asset": "Sangam-mac.dmg" }] },
@@ -19,10 +19,10 @@
     { "name": "Woodshed", "category": "Productivity", "repo": "jasonzacmusic/woodshed", "web": "https://woodshed.nathanielschool.com" },
     { "name": "Mehfil", "category": "Productivity", "repo": "jasonzacmusic/Mehfil-Independent-Music", "web": "https://mehfil.nathanielschool.com" },
     { "name": "Aria", "category": "Productivity", "repo": "jasonzacmusic/aria-website", "web": "https://aria.nathanielschool.com" },
-    { "name": "Ossia", "category": "Productivity", "repo": "jasonzacmusic/ossia", "web": "https://ossia-lyart.vercel.app" },
+    { "name": "Ossia", "category": "Productivity", "repo": "jasonzacmusic/ossia", "web": "https://ossia-lyart.vercel.app", "ios": "soon" },
     { "name": "Music PDF Studio", "category": "Productivity", "repo": "jasonzacmusic/Musical-Document-Utility", "web": "https://music-pdf-studio.vercel.app" },
     { "name": "Riff Database", "category": "Portal", "repo": "jasonzacmusic/Riff-Database", "web": "https://riffs.jasonzacmusic.com" },
     { "name": "Nathaniel Photo Hub", "category": "Team", "repo": "jasonzacmusic/nathaniel-photo-hub", "web": "https://photos.nathanielschool.com" },
-    { "name": "Nathaniel Music Hub", "category": "Team", "repo": "jasonzacmusic/nathaniel-music-hub", "soon": "iPad app coming to TestFlight" }
+    { "name": "Nathaniel Music Hub", "category": "Team", "repo": "jasonzacmusic/nathaniel-music-hub", "ios": "soon" }
   ]
 }
