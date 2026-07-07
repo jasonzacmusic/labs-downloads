@@ -8,7 +8,7 @@
 "jasonzacmusic/Chord-Randomiser": {
 "commit": "SEO/AEO: add JSON-LD / llms.txt / IndexNow key\\n\\nCo-Aut",
 "ios": false,
-"pushed": "2026-06-01T03:30:40Z"
+"pushed": "2026-07-07T11:51:17Z"
 },
 "jasonzacmusic/Christmas": {
 "ios": false
@@ -32,9 +32,9 @@
 "ios": false
 },
 "jasonzacmusic/Fifth-Harmony": {
-"commit": "Fix obvious misses found in all-modes audit",
+"commit": "Overhaul playback: proper octave voicing across the syst",
 "ios": true,
-"pushed": "2026-07-05T13:49:46Z"
+"pushed": "2026-07-07T11:53:03Z"
 },
 "jasonzacmusic/Fifth-Harmony-Mobile": {
 "ios": false
@@ -73,9 +73,9 @@
 "pushed": "2026-07-04T15:16:36Z"
 },
 "jasonzacmusic/MidiVisualizer": {
-"commit": "Fix frozen Default/Fun/MIDI cast: hidden program window'",
+"commit": "Brief bookkeeping: mark camera-quality mandate EXECUTED;",
 "ios": false,
-"pushed": "2026-07-06T15:39:48Z"
+"pushed": "2026-07-07T11:31:30Z"
 },
 "jasonzacmusic/MidiVisualizer-Releases": {
 "ios": false
@@ -90,9 +90,9 @@
 "ios": false
 },
 "jasonzacmusic/MusicMentor": {
-"commit": "Fix playback regression: same-context, scheduled offline",
+"commit": "Add melody \u2192 chords harmonizer (the core vision)",
 "ios": true,
-"pushed": "2026-06-09T06:54:52Z"
+"pushed": "2026-07-07T04:21:35Z"
 },
 "jasonzacmusic/Musical-Document-Utility": {
 "commit": "Document that Vercel deploys are CLI-driven, not git-tri",
@@ -114,7 +114,7 @@
 "jasonzacmusic/Note-Forge": {
 "commit": "Add static SEO fallback heading",
 "ios": false,
-"pushed": "2026-06-07T12:41:18Z"
+"pushed": "2026-07-07T11:52:53Z"
 },
 "jasonzacmusic/Piano-Course-Creative": {
 "ios": false
@@ -151,7 +151,7 @@
 "jasonzacmusic/RhythmMaster": {
 "commit": "Add static SEO fallback heading",
 "ios": false,
-"pushed": "2026-06-09T12:17:02Z"
+"pushed": "2026-07-07T11:57:14Z"
 },
 "jasonzacmusic/Riff-Database": {
 "commit": "Return null for unauthenticated me",
@@ -185,17 +185,17 @@
 "ios": false
 },
 "jasonzacmusic/bass-alchemy": {
-"commit": "Music-theory accuracy: surface dropped \u266d9s + key-aware e",
+"commit": "Fix all 12 evaluation findings: audio, timing, UX, conte",
 "ios": true,
-"pushed": "2026-06-09T14:17:59Z"
+"pushed": "2026-07-07T05:30:53Z"
 },
 "jasonzacmusic/bug-raga": {
 "ios": false
 },
 "jasonzacmusic/cantus": {
-"commit": "fix: musical accuracy corrections from theory audit",
+"commit": "fix: 9 critical fixes from Fable expert review",
 "ios": true,
-"pushed": "2026-06-09T12:29:32Z"
+"pushed": "2026-07-07T05:34:29Z"
 },
 "jasonzacmusic/chorale": {
 "commit": "Signing infra: Dev-ID hardened-runtime signing, entitlem",
@@ -226,9 +226,9 @@
 "ios": false
 },
 "jasonzacmusic/melakarta-sphere": {
-"commit": "The gamaka voice is a real bansuri now",
+"commit": "Piano for melakartas, the real instrument only for janya",
 "ios": false,
-"pushed": "2026-07-06T09:59:08Z"
+"pushed": "2026-07-07T11:56:59Z"
 },
 "jasonzacmusic/money-os": {
 "ios": false
@@ -267,6 +267,9 @@
 "jasonzacmusic/nsm-lesson-engine": {
 "ios": false
 },
+"jasonzacmusic/nsm-logic-mainstage-bridge": {
+"ios": false
+},
 "jasonzacmusic/nsm-melody-rhythm-playground": {
 "commit": "Add internal team guide + QA playbook (docs/team-guide.h",
 "ios": true,
@@ -299,9 +302,9 @@
 "pushed": "2026-07-06T04:49:09Z"
 },
 "jasonzacmusic/pendulum": {
-"commit": "fix: absolute chord-quality presets + key-aware enharmon",
+"commit": "feat: count-in + gap-click practice modes, and a clean l",
 "ios": true,
-"pushed": "2026-06-09T14:14:13Z"
+"pushed": "2026-07-07T10:13:47Z"
 },
 "jasonzacmusic/richmond-park": {
 "ios": false
