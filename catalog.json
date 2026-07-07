@@ -23,6 +23,12 @@
     { "name": "Music PDF Studio", "category": "Productivity", "repo": "jasonzacmusic/Musical-Document-Utility", "web": "https://music-pdf-studio.vercel.app" },
     { "name": "Riff Database", "category": "Portal", "repo": "jasonzacmusic/Riff-Database", "web": "https://riffs.jasonzacmusic.com" },
     { "name": "Nathaniel Photo Hub", "category": "Team", "repo": "jasonzacmusic/nathaniel-photo-hub", "web": "https://photos.nathanielschool.com" },
-    { "name": "Nathaniel Music Hub", "category": "Team", "repo": "jasonzacmusic/nathaniel-music-hub", "ios": "soon" }
+    { "name": "Nathaniel Music Hub", "category": "Team", "repo": "jasonzacmusic/nathaniel-music-hub", "ios": "soon" },
+
+    { "name": "Cantus", "category": "Practice", "repo": "jasonzacmusic/cantus", "web": "https://cantus-lyart.vercel.app" },
+    { "name": "Pendulum", "category": "Practice", "repo": "jasonzacmusic/pendulum", "web": "https://pendulum-kohl.vercel.app" },
+    { "name": "Bass Alchemy", "category": "Practice", "repo": "jasonzacmusic/bass-alchemy", "web": "https://bass-alchemy.vercel.app" },
+    { "name": "Groove Metronome", "category": "Practice", "repo": "jasonzacmusic/groove-metronome", "web": "https://groove-metronome.vercel.app" },
+    { "name": "Melody & Rhythm Playground", "category": "Practice", "repo": "jasonzacmusic/nsm-melody-rhythm-playground", "web": "https://gemini-nsm.vercel.app" }
   ]
 }

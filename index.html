@@ -2,30 +2,31 @@
 <html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>Nathaniel Labs — Internal Downloads</title>
+<title>Nathaniel Labs — Internal Apps</title>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root{--ink:#0B0C10;--card:#14161C;--card2:#1B1E26;--line:#262A33;--tx:#F4F3EE;--mut:#A0A4AE;--faint:#6A6E78;--amber:#F4A62A;--green:#57D98A}
+  :root{--ink:#0B0C10;--card:#14161C;--card2:#1B1E26;--line:#262A33;--tx:#F4F3EE;--mut:#A0A4AE;--faint:#6A6E78;--amber:#F4A62A;--green:#57D98A;--violet:#8F82FF;--blue:#4E9BF0}
   *{box-sizing:border-box;margin:0}
   body{background:var(--ink);color:var(--tx);font-family:'IBM Plex Sans',system-ui,sans-serif;-webkit-font-smoothing:antialiased;padding:46px 22px 80px}
-  .wrap{max-width:940px;margin:0 auto}
-  .brand{font-family:'Bricolage Grotesque',sans-serif;font-size:30px;letter-spacing:-.5px}
+  .wrap{max-width:960px;margin:0 auto}
+  .brand{font-family:'Bricolage Grotesque',sans-serif;font-size:32px;letter-spacing:-.5px}
   .amber{color:var(--amber)}
   .tag{color:var(--mut);margin-top:6px;font-size:15px}
   .meta{color:var(--faint);font-family:'IBM Plex Mono',monospace;font-size:12px;margin-top:12px}
-  h2{font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;letter-spacing:2px;color:var(--faint);text-transform:uppercase;margin:36px 0 14px}
-  --violet:#8F82FF;
+  h2{display:flex;align-items:center;gap:9px;font-family:'IBM Plex Sans',sans-serif;font-size:15px;font-weight:600;color:var(--tx);margin:40px 0 14px}
+  h2 .n{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--faint);font-weight:400}
+  h2 .ln{flex:1;height:.5px;background:var(--line)}
   .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
   .card{display:flex;flex-direction:column;gap:7px;background:var(--card);border:.5px solid var(--line);border-radius:14px;padding:16px 18px}
-  .card.isios{border-color:rgba(143,130,255,.45)}
+  .card.isios{border-color:rgba(143,130,255,.42)}
   .row{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
-  .name{font-weight:600;font-size:17px}
+  .name{font-weight:600;font-size:16.5px}
   .upd{color:var(--green);font-family:'IBM Plex Mono',monospace;font-size:10.5px;white-space:nowrap}
   .sub{color:var(--mut);font-size:12.5px}
   .chips{display:flex;flex-wrap:wrap;gap:6px}
   .chip{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.3px;padding:2px 8px;border-radius:999px}
   .chip.mac{color:var(--amber);background:rgba(244,166,42,.13)}
-  .chip.win{color:#89B9EE;background:rgba(55,138,221,.14)}
+  .chip.win{color:var(--blue);background:rgba(78,155,240,.14)}
   .chip.ios{color:var(--violet);background:rgba(143,130,255,.16)}
   .chip.web{color:var(--green);background:rgba(87,217,138,.13)}
   .commit{color:var(--faint);font-family:'IBM Plex Mono',monospace;font-size:10.5px;line-height:1.4}
@@ -35,175 +36,211 @@
   .btn.ios{color:#fff;background:var(--violet)}
   .btn.softios{color:var(--violet);background:rgba(143,130,255,.14);font-weight:400}
   a.btn:hover{opacity:.9}
-  .note{margin-top:40px;color:var(--faint);font-size:12.5px;line-height:1.7;border-top:.5px solid var(--line);padding-top:18px}
+  .empty{color:var(--faint);font-size:13px}
+  .note{margin-top:44px;color:var(--faint);font-size:12.5px;line-height:1.7;border-top:.5px solid var(--line);padding-top:18px}
 </style></head><body><div class="wrap">
   <div class="brand"><span class="amber">Nathaniel</span> Labs</div>
-  <div class="tag">Internal builds — downloadable apps first, then everything on the web.</div>
-  <div class="meta">Refreshed July 7, 2026 at 12:14 AM · from the cloud</div>
-  <h2>Download &amp; install · newest first</h2>
+  <div class="tag">Every app we build — updated automatically from GitHub.</div>
+  <div class="meta">Refreshed July 7, 2026 at 8:16 AM · from Jason’s MacBook Pro</div>
+
+  <h2>🖥️ Mac apps <span class="n">4</span><span class="ln"></span></h2>
   <div class="grid">
       <div class="card">
-        <div class="row"><span class="name">Shruti</span><span class="upd" title="2026-07-06 15:31">updated 8h ago</span></div>
-        <p class="sub">Audio · notarized</p>
-        <div class="chips"><span class="chip mac">macOS</span></div>
-        <p class="commit">fix: Shruti installs itself on first launch (no more &#x27;servic</p>
-        <div class="acts"><a class="btn" href="https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/Shruti-mac.dmg">Download macOS &darr;</a></div>
-      </div>
-      <div class="card">
-        <div class="row"><span class="name">Sangam</span><span class="upd" title="2026-07-06 15:31">updated 8h ago</span></div>
-        <p class="sub">Audio · notarized</p>
-        <div class="chips"><span class="chip mac">macOS</span></div>
-        <p class="commit">fix: Shruti installs itself on first launch (no more &#x27;servic</p>
-        <div class="acts"><a class="btn" href="https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/Sangam-mac.dmg">Download macOS &darr;</a></div>
-      </div>
-      <div class="card">
-        <div class="row"><span class="name">MIDI Piano Visualizer</span><span class="upd" title="2026-07-06 11:15">updated 12h ago</span></div>
-        <p class="sub">Music · notarized</p>
+        <div class="row"><span class="name">🎵 MIDI Piano Visualizer</span><span class="upd" title="2026-07-06 15:39">updated 11h ago</span></div>
+        <p class="sub">Music</p>
         <div class="chips"><span class="chip mac">macOS</span><span class="chip win">Windows</span><span class="chip web">Web</span></div>
-        <p class="commit">Top angle sharpness: negotiate up to 4K for Camera 2 / Instr</p>
+        <p class="commit">Fix frozen Default/Fun/MIDI cast: hidden program window&#x27;</p>
         <div class="acts"><a class="btn" href="https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/MIDI-Piano-Visualizer-mac.dmg">Download macOS &darr;</a><a class="btn" href="https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/MIDI-Piano-Visualizer-win.exe">Download Windows &darr;</a><a class="btn ghost" href="https://midi-visualizer.nathanielschool.com" target="_blank" rel="noopener">Open &rarr;</a></div>
       </div>
       <div class="card">
-        <div class="row"><span class="name">Chorale</span><span class="upd" title="2026-07-06 07:10">updated 17h ago</span></div>
-        <p class="sub">Audio · notarized</p>
+        <div class="row"><span class="name">🔊 Shruti</span><span class="upd" title="2026-07-06 15:31">updated 11h ago</span></div>
+        <p class="sub">Audio</p>
         <div class="chips"><span class="chip mac">macOS</span></div>
-        <p class="commit">Signing infra: Dev-ID hardened-runtime signing, entitlements</p>
+        <p class="commit">fix: Shruti installs itself on first launch (no more &#x27;se</p>
+        <div class="acts"><a class="btn" href="https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/Shruti-mac.dmg">Download macOS &darr;</a><a class="btn" href="https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/Sangam-mac.dmg">Download macOS &darr;</a></div>
+      </div>
+      <div class="card">
+        <div class="row"><span class="name">🔊 Chorale</span><span class="upd" title="2026-07-06 07:10">updated 19h ago</span></div>
+        <p class="sub">Audio</p>
+        <div class="chips"><span class="chip mac">macOS</span></div>
+        <p class="commit">Signing infra: Dev-ID hardened-runtime signing, entitlem</p>
         <div class="acts"><a class="btn" href="https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/Chorale-mac.dmg">Download macOS &darr;</a></div>
       </div>
       <div class="card">
-        <div class="row"><span class="name">GrabIt</span></div>
-        <p class="sub">Utility · notarized</p>
+        <div class="row"><span class="name">⚡ GrabIt</span></div>
+        <p class="sub">Utility</p>
         <div class="chips"><span class="chip mac">macOS</span></div>
         
         <div class="acts"><a class="btn" href="https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/GrabIt-mac.dmg">Download macOS &darr;</a></div>
       </div>
+  </div>
+
+  <h2>📱 iOS &amp; iPad apps <span class="n">10</span><span class="ln"></span></h2>
+  <div class="grid">
       <div class="card isios">
-        <div class="row"><span class="name">Nathaniel Music Hub</span><span class="upd" title="2026-07-04 15:21">updated 2d ago</span></div>
+        <div class="row"><span class="name">🛠️ Ossia</span><span class="upd" title="2026-07-06 04:49">updated 21h ago</span></div>
+        <p class="sub">Productivity</p>
+        <div class="chips"><span class="chip ios">iOS</span><span class="chip web">Web</span></div>
+        <p class="commit">Login: graceful message when the auth backend is unreach</p>
+        <div class="acts"><span class="btn softios">iOS · TestFlight soon</span><a class="btn ghost" href="https://ossia-lyart.vercel.app" target="_blank" rel="noopener">Open &rarr;</a></div>
+      </div>
+      <div class="card isios">
+        <div class="row"><span class="name">🎹 Fifth Harmony</span><span class="upd" title="2026-07-05 13:49">updated 1d ago</span></div>
+        <p class="sub">Practice</p>
+        <div class="chips"><span class="chip ios">iOS</span><span class="chip web">Web</span></div>
+        <p class="commit">Fix obvious misses found in all-modes audit</p>
+        <div class="acts"><span class="btn softios">iOS · TestFlight soon</span><a class="btn ghost" href="https://circle-of-fifths.nathanielschool.com" target="_blank" rel="noopener">Open &rarr;</a></div>
+      </div>
+      <div class="card isios">
+        <div class="row"><span class="name">🧩 Nathaniel Music Hub</span><span class="upd" title="2026-07-04 15:21">updated 2d ago</span></div>
         <p class="sub">Team</p>
-        <div class="chips"><span class="chip ios">iPadOS</span></div>
-        <p class="commit">Fix typecheck errors blocking builds: globalThis for Buffer/</p>
-        <div class="acts"><span class="btn softios">iPad · TestFlight soon</span></div>
+        <div class="chips"><span class="chip ios">iOS</span></div>
+        <p class="commit">Fix typecheck errors blocking builds: globalThis for Buf</p>
+        <div class="acts"><span class="btn softios">iOS · TestFlight soon</span></div>
+      </div>
+      <div class="card isios">
+        <div class="row"><span class="name">🛠️ Woodshed</span><span class="upd" title="2026-07-04 14:48">updated 2d ago</span></div>
+        <p class="sub">Productivity</p>
+        <div class="chips"><span class="chip ios">iOS</span><span class="chip web">Web</span></div>
+        <p class="commit">Fix double slash in invitation email links</p>
+        <div class="acts"><span class="btn softios">iOS · TestFlight soon</span><a class="btn ghost" href="https://woodshed.nathanielschool.com" target="_blank" rel="noopener">Open &rarr;</a></div>
+      </div>
+      <div class="card isios">
+        <div class="row"><span class="name">🎹 Melody &amp; Rhythm Playground</span><span class="upd" title="2026-07-03 09:40">updated 3d ago</span></div>
+        <p class="sub">Practice</p>
+        <div class="chips"><span class="chip ios">iOS</span><span class="chip web">Web</span></div>
+        <p class="commit">Add internal team guide + QA playbook (docs/team-guide.h</p>
+        <div class="acts"><span class="btn softios">iOS · TestFlight soon</span><a class="btn ghost" href="https://gemini-nsm.vercel.app" target="_blank" rel="noopener">Open &rarr;</a></div>
+      </div>
+      <div class="card isios">
+        <div class="row"><span class="name">🎹 Groove Metronome</span><span class="upd" title="2026-07-03 00:13">updated 4d ago</span></div>
+        <p class="sub">Practice</p>
+        <div class="chips"><span class="chip ios">iOS</span><span class="chip web">Web</span></div>
+        <p class="commit">Release 1.0.6: concert hardening; runbook for store re-p</p>
+        <div class="acts"><span class="btn softios">iOS · TestFlight soon</span><a class="btn ghost" href="https://groove-metronome.vercel.app" target="_blank" rel="noopener">Open &rarr;</a></div>
+      </div>
+      <div class="card isios">
+        <div class="row"><span class="name">🎹 Bass Alchemy</span><span class="upd" title="2026-06-09 14:17">updated 27d ago</span></div>
+        <p class="sub">Practice</p>
+        <div class="chips"><span class="chip ios">iOS</span><span class="chip web">Web</span></div>
+        <p class="commit">Music-theory accuracy: surface dropped ♭9s + key-aware e</p>
+        <div class="acts"><span class="btn softios">iOS · TestFlight soon</span><a class="btn ghost" href="https://bass-alchemy.vercel.app" target="_blank" rel="noopener">Open &rarr;</a></div>
+      </div>
+      <div class="card isios">
+        <div class="row"><span class="name">🎹 Pendulum</span><span class="upd" title="2026-06-09 14:14">updated 27d ago</span></div>
+        <p class="sub">Practice</p>
+        <div class="chips"><span class="chip ios">iOS</span><span class="chip web">Web</span></div>
+        <p class="commit">fix: absolute chord-quality presets + key-aware enharmon</p>
+        <div class="acts"><span class="btn softios">iOS · TestFlight soon</span><a class="btn ghost" href="https://pendulum-kohl.vercel.app" target="_blank" rel="noopener">Open &rarr;</a></div>
+      </div>
+      <div class="card isios">
+        <div class="row"><span class="name">🎹 Cantus</span><span class="upd" title="2026-06-09 12:29">updated 27d ago</span></div>
+        <p class="sub">Practice</p>
+        <div class="chips"><span class="chip ios">iOS</span><span class="chip web">Web</span></div>
+        <p class="commit">fix: musical accuracy corrections from theory audit</p>
+        <div class="acts"><span class="btn softios">iOS · TestFlight soon</span><a class="btn ghost" href="https://cantus-lyart.vercel.app" target="_blank" rel="noopener">Open &rarr;</a></div>
+      </div>
+      <div class="card isios">
+        <div class="row"><span class="name">🎹 Chord Trees</span><span class="upd" title="2026-06-09 06:54">updated 27d ago</span></div>
+        <p class="sub">Practice</p>
+        <div class="chips"><span class="chip ios">iOS</span><span class="chip web">Web</span></div>
+        <p class="commit">Fix playback regression: same-context, scheduled offline</p>
+        <div class="acts"><span class="btn softios">iOS · TestFlight soon</span><a class="btn ghost" href="https://chord-trees.nathanielschool.com" target="_blank" rel="noopener">Open &rarr;</a></div>
       </div>
   </div>
-  <h2>Web apps · newest first</h2>
+
+  <h2>🌐 Web apps <span class="n">12</span><span class="ln"></span></h2>
   <div class="grid">
       <div class="card">
-        <div class="row"><span class="name">Melakarta Sphere</span><span class="upd" title="2026-07-06 09:59">updated 14h ago</span></div>
+        <div class="row"><span class="name">🎹 Melakarta Sphere</span><span class="upd" title="2026-07-06 09:59">updated 16h ago</span></div>
         <p class="sub">Practice</p>
         <div class="chips"><span class="chip web">Web</span></div>
         <p class="commit">The gamaka voice is a real bansuri now</p>
         <div class="acts"><a class="btn ghost" href="https://melakarta.nathanielschool.com" target="_blank" rel="noopener">Open &rarr;</a></div>
       </div>
-      <div class="card isios">
-        <div class="row"><span class="name">Ossia</span><span class="upd" title="2026-07-06 04:49">updated 19h ago</span></div>
-        <p class="sub">Productivity</p>
-        <div class="chips"><span class="chip ios">iPadOS</span><span class="chip web">Web</span></div>
-        <p class="commit">Login: graceful message when the auth backend is unreachable</p>
-        <div class="acts"><span class="btn softios">iPad · TestFlight soon</span><a class="btn ghost" href="https://ossia-lyart.vercel.app" target="_blank" rel="noopener">Open &rarr;</a></div>
-      </div>
       <div class="card">
-        <div class="row"><span class="name">Music PDF Studio</span><span class="upd" title="2026-07-06 01:07">updated 23h ago</span></div>
+        <div class="row"><span class="name">🛠️ Music PDF Studio</span><span class="upd" title="2026-07-06 01:07">updated 1d ago</span></div>
         <p class="sub">Productivity</p>
         <div class="chips"><span class="chip web">Web</span></div>
-        <p class="commit">Document that Vercel deploys are CLI-driven, not git-trigger</p>
+        <p class="commit">Document that Vercel deploys are CLI-driven, not git-tri</p>
         <div class="acts"><a class="btn ghost" href="https://music-pdf-studio.vercel.app" target="_blank" rel="noopener">Open &rarr;</a></div>
       </div>
       <div class="card">
-        <div class="row"><span class="name">Fifth Harmony</span><span class="upd" title="2026-07-05 13:49">updated 1d ago</span></div>
-        <p class="sub">Practice</p>
-        <div class="chips"><span class="chip web">Web</span></div>
-        <p class="commit">Fix obvious misses found in all-modes audit</p>
-        <div class="acts"><a class="btn ghost" href="https://circle-of-fifths.nathanielschool.com" target="_blank" rel="noopener">Open &rarr;</a></div>
-      </div>
-      <div class="card">
-        <div class="row"><span class="name">Nathaniel Photo Hub</span><span class="upd" title="2026-07-05 11:50">updated 1d ago</span></div>
+        <div class="row"><span class="name">🧩 Nathaniel Photo Hub</span><span class="upd" title="2026-07-05 11:50">updated 1d ago</span></div>
         <p class="sub">Team</p>
         <div class="chips"><span class="chip web">Web</span></div>
-        <p class="commit">fix(buckets): studio must exclude photos with real face rows</p>
+        <p class="commit">fix(buckets): studio must exclude photos with real face </p>
         <div class="acts"><a class="btn ghost" href="https://photos.nathanielschool.com" target="_blank" rel="noopener">Open &rarr;</a></div>
       </div>
       <div class="card">
-        <div class="row"><span class="name">Aria</span><span class="upd" title="2026-07-05 01:37">updated 1d ago</span></div>
+        <div class="row"><span class="name">🛠️ Aria</span><span class="upd" title="2026-07-05 01:37">updated 2d ago</span></div>
         <p class="sub">Productivity</p>
         <div class="chips"><span class="chip web">Web</span></div>
-        <p class="commit">Add the theory calculator: exact scales, ragas, chords, inve</p>
+        <p class="commit">Add the theory calculator: exact scales, ragas, chords, </p>
         <div class="acts"><a class="btn ghost" href="https://aria.nathanielschool.com" target="_blank" rel="noopener">Open &rarr;</a></div>
       </div>
       <div class="card">
-        <div class="row"><span class="name">Melody Weaver</span><span class="upd" title="2026-07-04 15:16">updated 2d ago</span></div>
+        <div class="row"><span class="name">🎹 Melody Weaver</span><span class="upd" title="2026-07-04 15:16">updated 2d ago</span></div>
         <p class="sub">Practice</p>
         <div class="chips"><span class="chip web">Web</span></div>
         <p class="commit">Real MIDI export, session log, build artifacts config</p>
         <div class="acts"><a class="btn ghost" href="https://melody-weaver.nathanielschool.com" target="_blank" rel="noopener">Open &rarr;</a></div>
       </div>
       <div class="card">
-        <div class="row"><span class="name">Woodshed</span><span class="upd" title="2026-07-04 14:48">updated 2d ago</span></div>
-        <p class="sub">Productivity</p>
-        <div class="chips"><span class="chip web">Web</span></div>
-        <p class="commit">Fix double slash in invitation email links</p>
-        <div class="acts"><a class="btn ghost" href="https://woodshed.nathanielschool.com" target="_blank" rel="noopener">Open &rarr;</a></div>
-      </div>
-      <div class="card">
-        <div class="row"><span class="name">Riff Database</span><span class="upd" title="2026-07-04 06:33">updated 2d ago</span></div>
+        <div class="row"><span class="name">🎓 Riff Database</span><span class="upd" title="2026-07-04 06:33">updated 2d ago</span></div>
         <p class="sub">Portal</p>
         <div class="chips"><span class="chip web">Web</span></div>
         <p class="commit">Return null for unauthenticated me</p>
         <div class="acts"><a class="btn ghost" href="https://riffs.jasonzacmusic.com" target="_blank" rel="noopener">Open &rarr;</a></div>
       </div>
       <div class="card">
-        <div class="row"><span class="name">Reaper DAW Mentor</span><span class="upd" title="2026-06-13 12:16">updated 23d ago</span></div>
+        <div class="row"><span class="name">🛠️ Reaper DAW Mentor</span><span class="upd" title="2026-06-13 12:16">updated 23d ago</span></div>
         <p class="sub">Productivity</p>
         <div class="chips"><span class="chip web">Web</span></div>
-        <p class="commit">fix touch model: relative faders (no jump), reliable tap-to-</p>
+        <p class="commit">fix touch model: relative faders (no jump), reliable tap</p>
         <div class="acts"><a class="btn ghost" href="https://daw.nathanielschool.com" target="_blank" rel="noopener">Open &rarr;</a></div>
       </div>
       <div class="card">
-        <div class="row"><span class="name">Mehfil</span><span class="upd" title="2026-06-12 01:59">updated 24d ago</span></div>
+        <div class="row"><span class="name">🛠️ Mehfil</span><span class="upd" title="2026-06-12 01:59">updated 25d ago</span></div>
         <p class="sub">Productivity</p>
         <div class="chips"><span class="chip web">Web</span></div>
         <p class="commit">Add &#x27;what to listen for&#x27; study notes on tracks</p>
         <div class="acts"><a class="btn ghost" href="https://mehfil.nathanielschool.com" target="_blank" rel="noopener">Open &rarr;</a></div>
       </div>
       <div class="card">
-        <div class="row"><span class="name">Rhythm Master</span><span class="upd" title="2026-06-09 12:17">updated 27d ago</span></div>
+        <div class="row"><span class="name">🎹 Rhythm Master</span><span class="upd" title="2026-06-09 12:17">updated 27d ago</span></div>
         <p class="sub">Practice</p>
         <div class="chips"><span class="chip web">Web</span></div>
         <p class="commit">Add static SEO fallback heading</p>
         <div class="acts"><a class="btn ghost" href="https://rhythm-master.nathanielschool.com" target="_blank" rel="noopener">Open &rarr;</a></div>
       </div>
       <div class="card">
-        <div class="row"><span class="name">Chord Trees</span><span class="upd" title="2026-06-09 06:54">updated 27d ago</span></div>
-        <p class="sub">Practice</p>
-        <div class="chips"><span class="chip web">Web</span></div>
-        <p class="commit">Fix playback regression: same-context, scheduled offline fal</p>
-        <div class="acts"><a class="btn ghost" href="https://chord-trees.nathanielschool.com" target="_blank" rel="noopener">Open &rarr;</a></div>
-      </div>
-      <div class="card">
-        <div class="row"><span class="name">Handwritten Music Composer</span><span class="upd" title="2026-06-07 13:05">updated 29d ago</span></div>
+        <div class="row"><span class="name">🛠️ Handwritten Music Composer</span><span class="upd" title="2026-06-07 13:05">updated 29d ago</span></div>
         <p class="sub">Productivity</p>
         <div class="chips"><span class="chip web">Web</span></div>
         <p class="commit">Add Chord Analyzer SEO fallback heading</p>
         <div class="acts"><a class="btn ghost" href="https://chords.nathanielschool.com" target="_blank" rel="noopener">Open &rarr;</a></div>
       </div>
       <div class="card">
-        <div class="row"><span class="name">Note Forge</span><span class="upd" title="2026-06-07 12:41">updated 29d ago</span></div>
+        <div class="row"><span class="name">🎹 Note Forge</span><span class="upd" title="2026-06-07 12:41">updated 29d ago</span></div>
         <p class="sub">Practice</p>
         <div class="chips"><span class="chip web">Web</span></div>
         <p class="commit">Add static SEO fallback heading</p>
         <div class="acts"><a class="btn ghost" href="https://note-forge.nathanielschool.com" target="_blank" rel="noopener">Open &rarr;</a></div>
       </div>
       <div class="card">
-        <div class="row"><span class="name">Chord Randomizer</span><span class="upd" title="2026-06-01 03:30">updated Jun 1, 2026</span></div>
+        <div class="row"><span class="name">🎹 Chord Randomizer</span><span class="upd" title="2026-06-01 03:30">updated Jun 1, 2026</span></div>
         <p class="sub">Practice</p>
         <div class="chips"><span class="chip web">Web</span></div>
-        <p class="commit">SEO/AEO: add JSON-LD / llms.txt / IndexNow key\n\nCo-Authore</p>
+        <p class="commit">SEO/AEO: add JSON-LD / llms.txt / IndexNow key\n\nCo-Aut</p>
         <div class="acts"><a class="btn ghost" href="https://chord-randomizer.nathanielschool.com" target="_blank" rel="noopener">Open &rarr;</a></div>
       </div>
   </div>
+
   <p class="note">
-    Downloadable apps are on top. macOS apps are Apple-notarized and self-installing;
-    iPad/iOS apps (violet) arrive via TestFlight. Every web app link is live — tap to open.
-    Each card shows when its code last changed on GitHub. &nbsp;·&nbsp; Team only; please
-    don't share the link.
+    Platform is detected from each repo automatically, and any new native or iOS app in the
+    org shows up here on its own. macOS apps are Apple-notarized and self-installing; iOS apps
+    open in the App Store (or TestFlight while in beta); every web app link is live — tap to
+    open. Ordered by whatever changed most recently. &nbsp;·&nbsp; Team only; don't share.
   </p>
 </div></body></html>

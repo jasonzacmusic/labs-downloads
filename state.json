@@ -1,82 +1,334 @@
 {
+"jasonzacmusic/12StepBridge": {
+"ios": false
+},
+"jasonzacmusic/AppLandingPage": {
+"ios": false
+},
 "jasonzacmusic/Chord-Randomiser": {
-"commit": "SEO/AEO: add JSON-LD / llms.txt / IndexNow key\\n\\nCo-Authore",
+"commit": "SEO/AEO: add JSON-LD / llms.txt / IndexNow key\\n\\nCo-Aut",
+"ios": false,
 "pushed": "2026-06-01T03:30:40Z"
+},
+"jasonzacmusic/Christmas": {
+"ios": false
+},
+"jasonzacmusic/ChristmasPiano": {
+"ios": false
+},
+"jasonzacmusic/Circle-of-Fifths": {
+"ios": false
+},
+"jasonzacmusic/Creative-Hub": {
+"ios": false
+},
+"jasonzacmusic/EFLPortal": {
+"ios": false
+},
+"jasonzacmusic/Emergent-Circle-of-Fifths": {
+"ios": false
+},
+"jasonzacmusic/Emergent-Piano-Course": {
+"ios": false
 },
 "jasonzacmusic/Fifth-Harmony": {
 "commit": "Fix obvious misses found in all-modes audit",
+"ios": true,
 "pushed": "2026-07-05T13:49:46Z"
+},
+"jasonzacmusic/Fifth-Harmony-Mobile": {
+"ios": false
+},
+"jasonzacmusic/FreeTutorialsApp": {
+"ios": false
+},
+"jasonzacmusic/FreeTutorialsSite": {
+"ios": false
+},
+"jasonzacmusic/Groove-Lab": {
+"ios": false
+},
+"jasonzacmusic/Guitar-Music-Method": {
+"ios": false
+},
+"jasonzacmusic/HalloweenCinematic": {
+"ios": false
 },
 "jasonzacmusic/Handwritten-Music-Composer": {
 "commit": "Add Chord Analyzer SEO fallback heading",
+"ios": false,
 "pushed": "2026-06-07T13:05:57Z"
+},
+"jasonzacmusic/Intermediate-Planner": {
+"ios": false
 },
 "jasonzacmusic/Mehfil-Independent-Music": {
 "commit": "Add 'what to listen for' study notes on tracks",
+"ios": false,
 "pushed": "2026-06-12T01:59:02Z"
 },
 "jasonzacmusic/Melody-Weaver": {
 "commit": "Real MIDI export, session log, build artifacts config",
+"ios": false,
 "pushed": "2026-07-04T15:16:36Z"
 },
 "jasonzacmusic/MidiVisualizer": {
-"commit": "Top angle sharpness: negotiate up to 4K for Camera 2 / Instr",
-"pushed": "2026-07-06T11:15:52Z"
+"commit": "Fix frozen Default/Fun/MIDI cast: hidden program window'",
+"ios": false,
+"pushed": "2026-07-06T15:39:48Z"
+},
+"jasonzacmusic/MidiVisualizer-Releases": {
+"ios": false
+},
+"jasonzacmusic/Mr-Bob-Naveen-Ujre-Workshop": {
+"ios": false
+},
+"jasonzacmusic/Music-Admin-Portal": {
+"ios": false
+},
+"jasonzacmusic/Music-Theory-Masterclass": {
+"ios": false
 },
 "jasonzacmusic/MusicMentor": {
-"commit": "Fix playback regression: same-context, scheduled offline fal",
+"commit": "Fix playback regression: same-context, scheduled offline",
+"ios": true,
 "pushed": "2026-06-09T06:54:52Z"
 },
 "jasonzacmusic/Musical-Document-Utility": {
-"commit": "Document that Vercel deploys are CLI-driven, not git-trigger",
+"commit": "Document that Vercel deploys are CLI-driven, not git-tri",
+"ios": false,
 "pushed": "2026-07-06T01:07:14Z"
+},
+"jasonzacmusic/NSM-App-Hub": {
+"ios": false
+},
+"jasonzacmusic/NSMPortal": {
+"ios": false
+},
+"jasonzacmusic/NathaniLMS": {
+"ios": false
+},
+"jasonzacmusic/NathanielMusicSite": {
+"ios": false
 },
 "jasonzacmusic/Note-Forge": {
 "commit": "Add static SEO fallback heading",
+"ios": false,
 "pushed": "2026-06-07T12:41:18Z"
 },
+"jasonzacmusic/Piano-Course-Creative": {
+"ios": false
+},
+"jasonzacmusic/Piano-Foundation": {
+"ios": false
+},
+"jasonzacmusic/Piano-Foundation-Book": {
+"ios": false
+},
+"jasonzacmusic/Piano-Intermediate": {
+"ios": false
+},
+"jasonzacmusic/Piano-Intermediate-Music-Method": {
+"ios": false
+},
+"jasonzacmusic/PianoPrograms": {
+"ios": false
+},
+"jasonzacmusic/Pro-Sketchpad": {
+"ios": false
+},
+"jasonzacmusic/Reaper-Companion": {
+"ios": false
+},
 "jasonzacmusic/Reaper-Companion-JZ": {
-"commit": "fix touch model: relative faders (no jump), reliable tap-to-",
+"commit": "fix touch model: relative faders (no jump), reliable tap",
+"ios": false,
 "pushed": "2026-06-13T12:16:07Z"
+},
+"jasonzacmusic/Reel-Mastermind": {
+"ios": false
 },
 "jasonzacmusic/RhythmMaster": {
 "commit": "Add static SEO fallback heading",
+"ios": false,
 "pushed": "2026-06-09T12:17:02Z"
 },
 "jasonzacmusic/Riff-Database": {
 "commit": "Return null for unauthenticated me",
+"ios": false,
 "pushed": "2026-07-04T06:33:57Z"
 },
+"jasonzacmusic/Sales-Nathaniel": {
+"ios": false
+},
+"jasonzacmusic/Team-Dashboard": {
+"ios": false
+},
+"jasonzacmusic/VideoCoursesLMS": {
+"ios": false
+},
+"jasonzacmusic/Vocal-Method-Media": {
+"ios": false
+},
+"jasonzacmusic/Vocal-Music-Method": {
+"ios": false
+},
+"jasonzacmusic/Vocal-MusicMethod": {
+"ios": false
+},
 "jasonzacmusic/aria-website": {
-"commit": "Add the theory calculator: exact scales, ragas, chords, inve",
+"commit": "Add the theory calculator: exact scales, ragas, chords, ",
+"ios": false,
 "pushed": "2026-07-05T01:37:02Z"
 },
+"jasonzacmusic/atlas": {
+"ios": false
+},
+"jasonzacmusic/bass-alchemy": {
+"commit": "Music-theory accuracy: surface dropped \u266d9s + key-aware e",
+"ios": true,
+"pushed": "2026-06-09T14:17:59Z"
+},
+"jasonzacmusic/bug-raga": {
+"ios": false
+},
+"jasonzacmusic/cantus": {
+"commit": "fix: musical accuracy corrections from theory audit",
+"ios": true,
+"pushed": "2026-06-09T12:29:32Z"
+},
 "jasonzacmusic/chorale": {
-"commit": "Signing infra: Dev-ID hardened-runtime signing, entitlements",
+"commit": "Signing infra: Dev-ID hardened-runtime signing, entitlem",
+"ios": false,
 "pushed": "2026-07-06T07:10:53Z"
+},
+"jasonzacmusic/efl-video-courses": {
+"ios": false
+},
+"jasonzacmusic/groove-metronome": {
+"commit": "Release 1.0.6: concert hardening; runbook for store re-p",
+"ios": true,
+"pushed": "2026-07-03T00:13:50Z"
+},
+"jasonzacmusic/jasonzacmusic": {
+"ios": false
+},
+"jasonzacmusic/jz-comment-studio": {
+"ios": false
+},
+"jasonzacmusic/labs-downloads": {
+"ios": false
+},
+"jasonzacmusic/leads-status-app": {
+"ios": false
+},
+"jasonzacmusic/lean-plate": {
+"ios": false
 },
 "jasonzacmusic/melakarta-sphere": {
 "commit": "The gamaka voice is a real bansuri now",
+"ios": false,
 "pushed": "2026-07-06T09:59:08Z"
 },
+"jasonzacmusic/money-os": {
+"ios": false
+},
+"jasonzacmusic/music-factory": {
+"ios": false
+},
 "jasonzacmusic/nathaniel-music-hub": {
-"commit": "Fix typecheck errors blocking builds: globalThis for Buffer/",
+"commit": "Fix typecheck errors blocking builds: globalThis for Buf",
+"ios": false,
 "pushed": "2026-07-04T15:21:19Z"
 },
+"jasonzacmusic/nathaniel-music-quiz": {
+"ios": false
+},
+"jasonzacmusic/nathaniel-outreach": {
+"ios": false
+},
 "jasonzacmusic/nathaniel-photo-hub": {
-"commit": "fix(buckets): studio must exclude photos with real face rows",
+"commit": "fix(buckets): studio must exclude photos with real face ",
+"ios": false,
 "pushed": "2026-07-05T11:50:25Z"
 },
+"jasonzacmusic/nathaniel-production-house": {
+"ios": false
+},
+"jasonzacmusic/net-sense": {
+"ios": false
+},
+"jasonzacmusic/nsm-aria": {
+"ios": false
+},
+"jasonzacmusic/nsm-brochures": {
+"ios": false
+},
+"jasonzacmusic/nsm-lesson-engine": {
+"ios": false
+},
+"jasonzacmusic/nsm-melody-rhythm-playground": {
+"commit": "Add internal team guide + QA playbook (docs/team-guide.h",
+"ios": true,
+"pushed": "2026-07-03T09:40:22Z"
+},
+"jasonzacmusic/nsm-staff-hub-web": {
+"ios": false
+},
+"jasonzacmusic/nsm-tools": {
+"ios": false
+},
+"jasonzacmusic/nsm-tour-hq": {
+"ios": false
+},
+"jasonzacmusic/nsm-uploader": {
+"ios": false
+},
+"jasonzacmusic/nsm-workshop": {
+"ios": false
+},
+"jasonzacmusic/nsm-workshop-funnel": {
+"ios": false
+},
+"jasonzacmusic/nsm-xr18-studio": {
+"ios": false
+},
 "jasonzacmusic/ossia": {
-"commit": "Login: graceful message when the auth backend is unreachable",
+"commit": "Login: graceful message when the auth backend is unreach",
+"ios": true,
 "pushed": "2026-07-06T04:49:09Z"
 },
+"jasonzacmusic/pendulum": {
+"commit": "fix: absolute chord-quality presets + key-aware enharmon",
+"ios": true,
+"pushed": "2026-06-09T14:14:13Z"
+},
+"jasonzacmusic/richmond-park": {
+"ios": false
+},
+"jasonzacmusic/runway": {
+"ios": false
+},
 "jasonzacmusic/sangam": {
-"commit": "fix: Shruti installs itself on first launch (no more 'servic",
+"commit": "fix: Shruti installs itself on first launch (no more 'se",
+"ios": false,
 "pushed": "2026-07-06T15:31:12Z"
+},
+"jasonzacmusic/sightread": {
+"ios": false
+},
+"jasonzacmusic/studio-command": {
+"ios": false
+},
+"jasonzacmusic/tarang": {
+"ios": false
+},
+"jasonzacmusic/test-christmas": {
+"ios": false
 },
 "jasonzacmusic/woodshed": {
 "commit": "Fix double slash in invitation email links",
+"ios": true,
 "pushed": "2026-07-04T14:48:42Z"
 }
 }
