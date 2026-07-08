@@ -192,6 +192,9 @@
 "jasonzacmusic/bug-raga": {
 "ios": false
 },
+"jasonzacmusic/cadence-library": {
+"ios": false
+},
 "jasonzacmusic/cantus": {
 "commit": "fix: 9 critical fixes from Fable expert review",
 "ios": true,
