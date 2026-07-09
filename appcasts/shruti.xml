@@ -5,7 +5,7 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
         <title>Shruti</title>
         <item>
             <title>1.1.0</title>
-            <pubDate>Fri, 10 Jul 2026 00:27:55 +0530</pubDate>
+            <pubDate>Fri, 10 Jul 2026 00:47:33 +0530</pubDate>
             <sparkle:version>4</sparkle:version>
             <sparkle:shortVersionString>1.1.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.2</sparkle:minimumSystemVersion>
@@ -26,10 +26,10 @@ Shruti 1.1 makes the per-app mixer dependable as a product, not just a local bui
 - Hardens output groups, app attribution, device changes, service bootstrapping, and the
   bit-transparent direct path while keeping Stage Mode available within one buffer.
 ]]></description>
-            <enclosure url="https://github.com/jasonzacmusic/sangam/releases/download/shruti-v1.1.0/Shruti-1.1.0.dmg" length="8264333" type="application/octet-stream" sparkle:edSignature="jQQ8AdhlXw5V7VGyaRDo1RkFUjqlknbBlI8G9dx3SkVgD2PId3yaapV2+WpyeI19jiyDpKzIzXBKb3e+VYAADg=="></enclosure>
+            <enclosure url="https://github.com/jasonzacmusic/sangam/releases/download/shruti-v1.1.0/Shruti-1.1.0.dmg" length="8273173" type="application/octet-stream" sparkle:edSignature="euUHSC0sbrTHCeYqAPI+rqjUb3Yk2Jbh4pJwC+oIaEEylM0rAEDFbYkvQPrnaWOJnRFLtoIGr3tldIeUEJFzBQ=="></enclosure>
         </item>
     </channel>
 </rss><!-- sparkle-signatures:
-edSignature: LpPRV4TFTuFbRdVOpK8ddvh4Iqysdtcak4qR3l2EErtvTrN9qlBy9C+1kq0dBPpp9KsxS+4H6RAUqSwIkpyuAg==
+edSignature: IA3F4mPA8aDpZ7wbLyeQyGTrCRDqfQ8HxXs4QXaR26r92cKu6+kQEnyKpYhDQMBKL5BmK4U1xKU0S+68UI4IAQ==
 length: 2217
 -->
