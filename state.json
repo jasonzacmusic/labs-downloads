@@ -73,9 +73,9 @@
 "pushed": "2026-07-04T15:16:36Z"
 },
 "jasonzacmusic/MidiVisualizer": {
-"commit": "Brief bookkeeping: mark camera-quality mandate EXECUTED;",
+"commit": "Fun Mode: dock the recording studio controls INTO the he",
 "ios": false,
-"pushed": "2026-07-07T11:31:30Z"
+"pushed": "2026-07-08T08:00:37Z"
 },
 "jasonzacmusic/MidiVisualizer-Releases": {
 "ios": false
@@ -90,9 +90,9 @@
 "ios": false
 },
 "jasonzacmusic/MusicMentor": {
-"commit": "Add melody \u2192 chords harmonizer (the core vision)",
+"commit": "Add Melody Composer \u2014 true melody input (step-entry + rh",
 "ios": true,
-"pushed": "2026-07-07T04:21:35Z"
+"pushed": "2026-07-07T13:31:00Z"
 },
 "jasonzacmusic/Musical-Document-Utility": {
 "commit": "Document that Vercel deploys are CLI-driven, not git-tri",
@@ -151,7 +151,7 @@
 "jasonzacmusic/RhythmMaster": {
 "commit": "Add static SEO fallback heading",
 "ios": false,
-"pushed": "2026-07-07T11:57:14Z"
+"pushed": "2026-07-07T13:28:06Z"
 },
 "jasonzacmusic/Riff-Database": {
 "commit": "Return null for unauthenticated me",
@@ -185,9 +185,9 @@
 "ios": false
 },
 "jasonzacmusic/bass-alchemy": {
-"commit": "Fix all 12 evaluation findings: audio, timing, UX, conte",
+"commit": "1.1: Alchemist's Ear (reverse ear-training) + sound-desi",
 "ios": true,
-"pushed": "2026-07-07T05:30:53Z"
+"pushed": "2026-07-07T13:29:35Z"
 },
 "jasonzacmusic/bug-raga": {
 "ios": false
@@ -196,16 +196,19 @@
 "ios": false
 },
 "jasonzacmusic/cantus": {
-"commit": "fix: 9 critical fixes from Fable expert review",
+"commit": "feat: per-pin voicing + MIDI export (Fable review \"do-fi",
 "ios": true,
-"pushed": "2026-07-07T05:34:29Z"
+"pushed": "2026-07-07T12:04:52Z"
 },
 "jasonzacmusic/chorale": {
-"commit": "Signing infra: Dev-ID hardened-runtime signing, entitlem",
+"commit": "notarize script: pass --team-id R3UNCZH45H to notarytool",
 "ios": false,
-"pushed": "2026-07-06T07:10:53Z"
+"pushed": "2026-07-08T05:34:14Z"
 },
 "jasonzacmusic/efl-video-courses": {
+"ios": false
+},
+"jasonzacmusic/grabit": {
 "ios": false
 },
 "jasonzacmusic/groove-metronome": {
@@ -229,14 +232,17 @@
 "ios": false
 },
 "jasonzacmusic/melakarta-sphere": {
-"commit": "Piano for melakartas, the real instrument only for janya",
+"commit": "Immediate Stop for all playback; pull broken live gamaka",
 "ios": false,
-"pushed": "2026-07-07T11:56:59Z"
+"pushed": "2026-07-09T14:24:22Z"
 },
 "jasonzacmusic/money-os": {
 "ios": false
 },
 "jasonzacmusic/music-factory": {
+"ios": false
+},
+"jasonzacmusic/nathaniel-labs-site": {
 "ios": false
 },
 "jasonzacmusic/nathaniel-music-hub": {
@@ -268,6 +274,9 @@
 "ios": false
 },
 "jasonzacmusic/nsm-lesson-engine": {
+"ios": false
+},
+"jasonzacmusic/nsm-life-os": {
 "ios": false
 },
 "jasonzacmusic/nsm-logic-mainstage-bridge": {
@@ -309,6 +318,9 @@
 "ios": true,
 "pushed": "2026-07-07T10:13:47Z"
 },
+"jasonzacmusic/product-registry": {
+"ios": false
+},
 "jasonzacmusic/richmond-park": {
 "ios": false
 },
@@ -318,7 +330,7 @@
 "jasonzacmusic/sangam": {
 "commit": "fix: Shruti installs itself on first launch (no more 'se",
 "ios": false,
-"pushed": "2026-07-09T17:59:23Z"
+"pushed": "2026-07-09T18:18:35Z"
 },
 "jasonzacmusic/sightread": {
 "ios": false
