@@ -1,0 +1,35 @@
+<?xml version="1.0" standalone="yes"?><!-- sparkle-sign-warning:
+IMPORTANT: This file was signed by Sparkle. Any modifications to this file requires re-signing this file with generate_appcast or sign_update! The signed signature will be embedded at the end of this file.
+--><rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>Shruti</title>
+        <item>
+            <title>1.1.0</title>
+            <pubDate>Fri, 10 Jul 2026 00:27:55 +0530</pubDate>
+            <sparkle:version>4</sparkle:version>
+            <sparkle:shortVersionString>1.1.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>14.2</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[# Shruti 1.1.0
+
+Shruti 1.1 makes the per-app mixer dependable as a product, not just a local build.
+
+- Adds secure Sparkle updates with a signed feed and signed archives.
+- Ships universal Apple Silicon and Intel binaries with a macOS 14.2 minimum.
+- Adds an account-free licensing client, 14-day trial enforcement, three-Mac activation,
+  offline grace, and safe direct-path behavior when entitlement ends. The merchant endpoint
+  remains disabled until Nathaniel's production checkout and signing key are provisioned.
+- Adds first-run permission and service setup, local-only crash markers, redacted support
+  bundles, searchable help, an in-app uninstaller, VoiceOver improvements, and Hindi setup,
+  support, update, and licensing strings.
+- Persists MIDI mappings, fixes multi-app duck timing, reports real output-leg latency,
+  enforces Auto Direct, and reverts failed optimistic UI changes with a visible error.
+- Hardens output groups, app attribution, device changes, service bootstrapping, and the
+  bit-transparent direct path while keeping Stage Mode available within one buffer.
+]]></description>
+            <enclosure url="https://github.com/jasonzacmusic/sangam/releases/download/shruti-v1.1.0/Shruti-1.1.0.dmg" length="8264333" type="application/octet-stream" sparkle:edSignature="jQQ8AdhlXw5V7VGyaRDo1RkFUjqlknbBlI8G9dx3SkVgD2PId3yaapV2+WpyeI19jiyDpKzIzXBKb3e+VYAADg=="></enclosure>
+        </item>
+    </channel>
+</rss><!-- sparkle-signatures:
+edSignature: LpPRV4TFTuFbRdVOpK8ddvh4Iqysdtcak4qR3l2EErtvTrN9qlBy9C+1kq0dBPpp9KsxS+4H6RAUqSwIkpyuAg==
+length: 2217
+-->

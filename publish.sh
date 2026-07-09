@@ -40,6 +40,34 @@ for row in "${LOCALS[@]}"; do
 done
 [ ${#ASSETS[@]} -gt 0 ] && gh release upload "$TAG" "${ASSETS[@]}" --repo "$REPO" --clobber
 
+# Keep exactly one Shruti installer on the hub release. Older publishers used versioned
+# names and a release-hosted appcast; the current stable installer is Shruti-mac.dmg and
+# the signed feed lives on GitHub Pages.
+while IFS= read -r stale; do
+  [ -n "$stale" ] || continue
+  case "$stale" in
+    Shruti-mac.dmg) ;;
+    Shruti*.dmg|Shruti-appcast.xml)
+      gh release delete-asset "$TAG" "$stale" --repo "$REPO" --yes
+      echo "removed stale $stale"
+      ;;
+  esac
+done < <(gh release view "$TAG" --repo "$REPO" --json assets --jq '.assets[].name')
+
+# Sparkle reads this stable GitHub Pages URL rather than a mutable release asset. Never
+# publish the old unsigned scaffold: Shruti opts into signed-feed verification, so both
+# the archive signature and the whole-feed signature must be present.
+SHRUTI_APPCAST="$HOME/Documents/Claude/sangam/appcasts/shruti.xml"
+if [ -f "$SHRUTI_APPCAST" ] \
+    && grep -q 'sparkle:edSignature=' "$SHRUTI_APPCAST" \
+    && grep -q 'sparkle-signatures:' "$SHRUTI_APPCAST"; then
+  mkdir -p appcasts
+  cp "$SHRUTI_APPCAST" appcasts/shruti.xml
+  echo "local appcasts/shruti.xml (Ed25519 signed)"
+else
+  echo "WARN  signed Shruti appcast not ready; run sangam/scripts/generate-shruti-appcast.sh"
+fi
+
 python3 gen.py
 git add -A
 git commit -q -m "publish: native installers + refresh ($(date '+%Y-%m-%d %H:%M'))" || echo "(nothing changed)"

@@ -201,9 +201,9 @@
 "pushed": "2026-07-07T12:04:52Z"
 },
 "jasonzacmusic/chorale": {
-"commit": "notarize script: pass --team-id R3UNCZH45H to notarytool",
+"commit": "Chorale 0.4.1 hardening and adversarial coverage",
 "ios": false,
-"pushed": "2026-07-08T05:34:14Z"
+"pushed": "2026-07-09T18:52:31Z"
 },
 "jasonzacmusic/efl-video-courses": {
 "ios": false
@@ -330,7 +330,7 @@
 "jasonzacmusic/sangam": {
 "commit": "fix: Shruti installs itself on first launch (no more 'se",
 "ios": false,
-"pushed": "2026-07-09T18:18:35Z"
+"pushed": "2026-07-09T18:59:12Z"
 },
 "jasonzacmusic/sightread": {
 "ios": false
