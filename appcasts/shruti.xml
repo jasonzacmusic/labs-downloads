@@ -4,32 +4,26 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>Shruti</title>
         <item>
-            <title>1.1.0</title>
-            <pubDate>Fri, 10 Jul 2026 00:47:33 +0530</pubDate>
-            <sparkle:version>4</sparkle:version>
-            <sparkle:shortVersionString>1.1.0</sparkle:shortVersionString>
+            <title>1.1.1</title>
+            <pubDate>Fri, 10 Jul 2026 01:59:47 +0530</pubDate>
+            <sparkle:version>5</sparkle:version>
+            <sparkle:shortVersionString>1.1.1</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.2</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Shruti 1.1.0
+            <description sparkle:format="markdown"><![CDATA[# Shruti 1.1.1
 
-Shruti 1.1 makes the per-app mixer dependable as a product, not just a local build.
+This emergency audio-safety update fixes an echo/feedback loop discovered with Rogue
+Amoeba audio routing and browser helper processes.
 
-- Adds secure Sparkle updates with a signed feed and signed archives.
-- Ships universal Apple Silicon and Intel binaries with a macOS 14.2 minimum.
-- Adds an account-free licensing client, 14-day trial enforcement, three-Mac activation,
-  offline grace, and safe direct-path behavior when entitlement ends. The merchant endpoint
-  remains disabled until Nathaniel's production checkout and signing key are provisioned.
-- Adds first-run permission and service setup, local-only crash markers, redacted support
-  bundles, searchable help, an in-app uninstaller, VoiceOver improvements, and Hindi setup,
-  support, update, and licensing strings.
-- Persists MIDI mappings, fixes multi-app duck timing, reports real output-leg latency,
-  enforces Auto Direct, and reverts failed optimistic UI changes with a visible error.
-- Hardens output groups, app attribution, device changes, service bootstrapping, and the
-  bit-transparent direct path while keeping Stage Mode available within one buffer.
+- Never captures `arkaudiod` or Nathaniel routing infrastructure as an app source.
+- Removes blocked routing processes from older saved Shruti configurations.
+- Fixes Safari/WebKit helper attribution in the watchdog so a live browser tap is not
+  destroyed and rebuilt every two seconds.
+- Keeps the direct path untouched after the incident reset.
 ]]></description>
-            <enclosure url="https://github.com/jasonzacmusic/sangam/releases/download/shruti-v1.1.0/Shruti-1.1.0.dmg" length="8273173" type="application/octet-stream" sparkle:edSignature="euUHSC0sbrTHCeYqAPI+rqjUb3Yk2Jbh4pJwC+oIaEEylM0rAEDFbYkvQPrnaWOJnRFLtoIGr3tldIeUEJFzBQ=="></enclosure>
+            <enclosure url="https://github.com/jasonzacmusic/sangam/releases/download/shruti-v1.1.1/Shruti-1.1.1.dmg" length="8280309" type="application/octet-stream" sparkle:edSignature="jb1Pi5em04680xHXYmDsryWFFCUZWUUFT0xKrjimd3hxLw+yNy/H2T6RPlZHcIh6olSHr7MPgMFPQeoYbWtJBw=="></enclosure>
         </item>
     </channel>
 </rss><!-- sparkle-signatures:
-edSignature: IA3F4mPA8aDpZ7wbLyeQyGTrCRDqfQ8HxXs4QXaR26r92cKu6+kQEnyKpYhDQMBKL5BmK4U1xKU0S+68UI4IAQ==
-length: 2217
+edSignature: 6OdCsMdBnk1aIqPWmPb2sBCy8EWMvAuMQTItVT9Xb0mNPMINu2tOVnxY/ovvwcUdikJy0Ut1tqFtHqz+rKpGAQ==
+length: 1626
 -->

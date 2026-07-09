@@ -75,7 +75,7 @@
 "jasonzacmusic/MidiVisualizer": {
 "commit": "Fun Mode: dock the recording studio controls INTO the he",
 "ios": false,
-"pushed": "2026-07-08T08:00:37Z"
+"pushed": "2026-07-09T19:23:14Z"
 },
 "jasonzacmusic/MidiVisualizer-Releases": {
 "ios": false
@@ -201,9 +201,9 @@
 "pushed": "2026-07-07T12:04:52Z"
 },
 "jasonzacmusic/chorale": {
-"commit": "Cover scale-locked autotune across vocal range",
+"commit": "Make quality changes host-reprepare only",
 "ios": false,
-"pushed": "2026-07-09T19:08:38Z"
+"pushed": "2026-07-09T19:47:06Z"
 },
 "jasonzacmusic/efl-video-courses": {
 "ios": false
@@ -330,7 +330,7 @@
 "jasonzacmusic/sangam": {
 "commit": "fix: Shruti installs itself on first launch (no more 'se",
 "ios": false,
-"pushed": "2026-07-09T19:18:38Z"
+"pushed": "2026-07-09T20:30:36Z"
 },
 "jasonzacmusic/sightread": {
 "ios": false
