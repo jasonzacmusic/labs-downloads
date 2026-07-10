@@ -20,8 +20,12 @@ git pull --rebase --autostash origin main
 # Format: "SOURCE_PATH|ASSET_NAME". ghrel:owner/repo:asset pulls from another repo's
 # LATEST release; ghrel:owner/repo@tag:asset pins an explicit release tag (required on
 # shared repos like sangam, where "latest" can belong to a different product).
+# SHRUTI_DMG lets the caller (release-shruti.sh, possibly running from a git worktree)
+# point at the exact notarized DMG it just built, instead of the canonical checkout's
+# dist/ — which may be stale or belong to a different release. Falls back to canonical.
+SHRUTI_DMG_SRC="${SHRUTI_DMG:-$HOME/Documents/Claude/sangam/dist/Shruti-signed.dmg}"
 LOCALS=(
-  "file:~/Documents/Claude/sangam/dist/Shruti-signed.dmg|Shruti-mac.dmg"
+  "file:${SHRUTI_DMG_SRC}|Shruti-mac.dmg"
   "ghrel:jasonzacmusic/sangam@v1.0.0:Sangam-1.0.0.dmg|Sangam-mac.dmg"
   "file:~/Desktop/Chorale-0.4.0.dmg|Chorale-mac.dmg"
   "file:~/Documents/Claude/grabit/site/downloads/GrabIt-1.8.dmg|GrabIt-mac.dmg"
@@ -77,7 +81,7 @@ done < <(gh release view "$TAG" --repo "$REPO" --json assets --jq '.assets[].nam
 
 # This is Shruti's backup feed; the primary GrabIt-style feed lives on Shruti's dedicated
 # site. Never publish an unsigned scaffold: Shruti requires both archive and feed signing.
-SHRUTI_APPCAST="$HOME/Documents/Claude/sangam/appcasts/shruti.xml"
+SHRUTI_APPCAST="${SHRUTI_APPCAST_SRC:-$HOME/Documents/Claude/sangam/appcasts/shruti.xml}"
 if [ -f "$SHRUTI_APPCAST" ] \
     && grep -q 'sparkle:edSignature=' "$SHRUTI_APPCAST" \
     && grep -q 'sparkle-signatures:' "$SHRUTI_APPCAST"; then
