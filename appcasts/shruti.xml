@@ -4,23 +4,27 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>Shruti</title>
         <item>
-            <title>1.1.3</title>
-            <pubDate>Fri, 10 Jul 2026 10:37:14 +0530</pubDate>
-            <sparkle:version>7</sparkle:version>
-            <sparkle:shortVersionString>1.1.3</sparkle:shortVersionString>
+            <title>1.1.4</title>
+            <pubDate>Fri, 10 Jul 2026 11:56:22 +0530</pubDate>
+            <sparkle:version>8</sparkle:version>
+            <sparkle:shortVersionString>1.1.4</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.2</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Shruti 1.1.3
+            <description sparkle:format="markdown"><![CDATA[# Shruti 1.1.4
 
-- Moves Shruti to the same dependable public release system as GrabIt: a dedicated website, versioned installer, and signed in-app update feed published together.
-- Checks for updates quietly on launch and every six hours, then shows the standard in-app update notification when a newer tested build is available.
-- Adds permanent core-level guards so MainStage, ARK audio routing, and Shruti's own processes can never be captured into a feedback loop.
-- Repairs older saved MainStage protection entries automatically and blocks smart features from force-engaging protected audio hosts.
-- Keeps the wider, cleaner mixer and settings layout introduced in 1.1.2.
+Safety hardening and interface polish.
+
+- Closes the last gap in protected-host safety: Auto Duck can no longer engage a locked app or a protected live host under any circumstance, and every saved or imported configuration is repaired on load so stale entries can never request a tap.
+- Blocks the entire Rogue Amoeba routing family (ARK, Loopback, Audio Hijack engines) from capture, not just the current daemon.
+- Engaged apps no longer have their effect chains rebuilt in the background — active EQ and dynamics now run without periodic resets.
+- Hearing protection stays on: per-device volume ceilings keep guarding your ears even if the trial clock runs out.
+- The instant ducker's global shortcut moved to ⌃⌥⌘D so it never collides with Mail's Send shortcut (⌘⇧D).
+- Clearer mixer: the keyboard-selected app is now visibly highlighted, bypassed effects show a one-click Restore button, and destructive deletes ask first.
+- Dozens of small wording, accessibility, and consistency fixes across the mixer, settings, and scenes.
 ]]></description>
-            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.1.3.dmg" length="8324000" type="application/octet-stream" sparkle:edSignature="cDTYK56altpcsP8jR8B1j0ksjokKMSfDWW2Sp9jcchjlh+0CIc8eW5Yu7Zk80atf66g8ji6KhLfFMuUwrk3jDg=="></enclosure>
+            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.1.4.dmg" length="8386353" type="application/octet-stream" sparkle:edSignature="6KacSA0XHulxSQcTV0wrT6r2RumJq1on731sgOu+nGs+Xlpb5ZV/c+Rv9uZ5KI7YVkBWUqjKlYnRXYGhVA55Ag=="></enclosure>
         </item>
     </channel>
 </rss><!-- sparkle-signatures:
-edSignature: F5Ld/lhSux/isjgXmtFg4EBThnXUcCQ5IIGSrtMGj9zp6JetgzPyn3F/FRuviSTvvYU/LBHYPjUR5agpjSEMAg==
-length: 1775
+edSignature: vtlp+6sGDTuwpl0eQ8cZUZl0tP7bl33iqichDu0beTFp/g+1dsaMipC47tobQZZjnrQ20+/Y7Zl7nkaCB+ebBQ==
+length: 2157
 -->
