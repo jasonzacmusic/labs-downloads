@@ -4,23 +4,24 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>Shruti</title>
         <item>
-            <title>1.1.5</title>
-            <pubDate>Fri, 10 Jul 2026 12:35:59 +0530</pubDate>
-            <sparkle:version>9</sparkle:version>
-            <sparkle:shortVersionString>1.1.5</sparkle:shortVersionString>
+            <title>1.1.6</title>
+            <pubDate>Fri, 10 Jul 2026 15:14:20 +0530</pubDate>
+            <sparkle:version>10</sparkle:version>
+            <sparkle:shortVersionString>1.1.6</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.2</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Shruti 1.1.5
+            <description sparkle:format="markdown"><![CDATA[# Shruti 1.1.6
 
-Follow Me actually follows you.
+Accessibility and setup accuracy.
 
-- Fixes Follow Me's app tracking: the background service could freeze on whichever app was frontmost when it started, so the hero never changed. Shruti now reads the live window order, which is always current.
-- Makes the quiet launch-time update check reliable; scheduled six-hour checks and manual checks are unchanged.
-- Includes everything from 1.1.4: the duck-path safety guard, stable live effect chains, hearing-safe trial expiry, and the interface polish pass.
+- First-run setup now checks the exact System Audio Recording permission Shruti uses, instead of standing in for it with Screen Recording. If you already allowed audio-only recording, Shruti correctly shows it as granted and stops asking.
+- The Allow button now prompts for System Audio Recording specifically and opens the right settings list.
+- VoiceOver now reads every control in the mixer: mute, favorite, effects, output, boost, and the panel buttons all announce what they do and their current state.
+- Support, Privacy, and Terms links now point to labs.nathanielschool.com instead of a raw hosting URL.
 ]]></description>
-            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.1.5.dmg" length="8388299" type="application/octet-stream" sparkle:edSignature="x4cMM8B+VYhLcEKKdrTz+41Ok6tlOHNHMABq2P7gBfS/DMlSxTbhiBQAhJVQatB4gqOInmHMVxDm0Fxii6hjBw=="></enclosure>
+            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.1.6.dmg" length="8405106" type="application/octet-stream" sparkle:edSignature="gh925Ncpwo1xmnwW3ZUsxblaTc7peA2Pak51ZRgfqlbxHONyTkeRTwRO6sffTd59t5rNb7Z/54fnhuGBXA/HDA=="></enclosure>
         </item>
     </channel>
 </rss><!-- sparkle-signatures:
-edSignature: PzSp7AIvkWBDDAknMN5D2DRpErWLMmwfxL/hmjKN1ThWvSytDf+HKhQ/GfXABsupe3QENBQiyFl8hweN1CRfBw==
-length: 1616
+edSignature: 5/PJRGk9u4uI+UUYBadBVJpx2gB1R7Sp883Su4HhJayf+jBElwKd+8llx0+f45rRcG2NFawk6O40T6aStuz6CA==
+length: 1762
 -->
