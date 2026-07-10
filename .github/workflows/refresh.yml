@@ -9,8 +9,8 @@ on:
 permissions:
   contents: write
 concurrency:
-  group: refresh-hub
-  cancel-in-progress: true
+  group: publish-hub
+  cancel-in-progress: false
 jobs:
   refresh:
     runs-on: ubuntu-latest
@@ -32,4 +32,7 @@ jobs:
           git config user.email "music@nathanielschool.com"
           git add index.html state.json
           git diff --cached --quiet || git commit -m "auto: refresh hub ($(date -u +%FT%TZ))"
-          git push
+          if ! git push; then
+            git pull --rebase origin main
+            git push
+          fi

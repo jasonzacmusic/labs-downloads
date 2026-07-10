@@ -5,10 +5,15 @@
 # "last updated" dates automatically. This just uploads Mac/Windows installers and refreshes.
 #
 #   ./publish.sh
-set -uo pipefail
+set -euo pipefail
 cd "$(dirname "$0")"
-REPO="jasonzacmusic/labs-downloads"; TAG="downloads"; STAGE="assets"
-rm -rf "$STAGE"; mkdir -p "$STAGE"
+REPO="jasonzacmusic/labs-downloads"; TAG="downloads"
+STAGE="$(mktemp -d "${TMPDIR:-/tmp}/labs-downloads.XXXXXX")"
+trap 'rm -rf "$STAGE"' EXIT
+
+# Start from the current branch state so a scheduled refresh cannot make a successful
+# asset upload look like a failed site release later in this script.
+git pull --rebase --autostash origin main
 
 # Local notarized installers to host, keyed to the asset names catalog.json expects.
 # Format: "SOURCE_PATH|ASSET_NAME". ghrel:owner/repo:asset pulls from another repo's release.
@@ -54,9 +59,8 @@ while IFS= read -r stale; do
   esac
 done < <(gh release view "$TAG" --repo "$REPO" --json assets --jq '.assets[].name')
 
-# Sparkle reads this stable GitHub Pages URL rather than a mutable release asset. Never
-# publish the old unsigned scaffold: Shruti opts into signed-feed verification, so both
-# the archive signature and the whole-feed signature must be present.
+# This is Shruti's backup feed; the primary GrabIt-style feed lives on Shruti's dedicated
+# site. Never publish an unsigned scaffold: Shruti requires both archive and feed signing.
 SHRUTI_APPCAST="$HOME/Documents/Claude/sangam/appcasts/shruti.xml"
 if [ -f "$SHRUTI_APPCAST" ] \
     && grep -q 'sparkle:edSignature=' "$SHRUTI_APPCAST" \
@@ -65,12 +69,32 @@ if [ -f "$SHRUTI_APPCAST" ] \
   cp "$SHRUTI_APPCAST" appcasts/shruti.xml
   echo "local appcasts/shruti.xml (Ed25519 signed)"
 else
-  echo "WARN  signed Shruti appcast not ready; run sangam/scripts/generate-shruti-appcast.sh"
+  echo "ERROR signed Shruti appcast not ready; run sangam/scripts/generate-shruti-appcast.sh" >&2
+  exit 1
 fi
 
 python3 gen.py
 git add -A
 git commit -q -m "publish: native installers + refresh ($(date '+%Y-%m-%d %H:%M'))" || echo "(nothing changed)"
-git push -q origin main
+published=false
+for attempt in 1 2 3; do
+  if git push -q origin main; then
+    published=true
+    break
+  fi
+  echo "push raced another refresh; rebasing (attempt $attempt/3)…"
+  git pull --rebase origin main
+done
+[ "$published" = true ] || { echo "ERROR hub publish did not reach origin/main" >&2; exit 1; }
+
+curl -fsSIL --retry 4 \
+  "https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/Shruti-mac.dmg" >/dev/null
+curl -fsSIL --retry 4 \
+  "https://raw.githubusercontent.com/jasonzacmusic/labs-downloads/main/appcasts/shruti.xml" >/dev/null
+
+# The catalog resolves current version/download metadata from the release and appcast.
+# Refresh it immediately rather than waiting for the six-hour safety schedule.
+gh api repos/jasonzacmusic/nathaniel-labs-site/dispatches --method POST \
+  -H "Accept: application/vnd.github+json" -f event_type=release-published
 echo ""
 echo "Live at: https://jasonzacmusic.github.io/labs-downloads/"
