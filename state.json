@@ -206,9 +206,9 @@
 "pushed": "2026-07-09T19:47:06Z"
 },
 "jasonzacmusic/chord-tree-canopy-ultimate": {
-"commit": "Realism pass: photoreal Amazon wildlife cutouts + enviro",
+"commit": "Chord audio + action-linked animations",
 "ios": true,
-"pushed": "2026-07-10T05:36:45Z"
+"pushed": "2026-07-10T06:50:40Z"
 },
 "jasonzacmusic/efl-video-courses": {
 "ios": false
@@ -335,7 +335,7 @@
 "jasonzacmusic/sangam": {
 "commit": "fix: Shruti installs itself on first launch (no more 'se",
 "ios": false,
-"pushed": "2026-07-10T06:21:06Z"
+"pushed": "2026-07-10T07:06:59Z"
 },
 "jasonzacmusic/sightread": {
 "ios": false
