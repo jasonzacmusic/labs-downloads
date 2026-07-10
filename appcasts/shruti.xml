@@ -4,26 +4,27 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>Shruti</title>
         <item>
-            <title>1.1.1</title>
-            <pubDate>Fri, 10 Jul 2026 01:59:47 +0530</pubDate>
-            <sparkle:version>5</sparkle:version>
-            <sparkle:shortVersionString>1.1.1</sparkle:shortVersionString>
+            <title>1.1.2</title>
+            <pubDate>Fri, 10 Jul 2026 07:11:37 +0530</pubDate>
+            <sparkle:version>6</sparkle:version>
+            <sparkle:shortVersionString>1.1.2</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.2</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Shruti 1.1.1
+            <description sparkle:format="markdown"><![CDATA[# Shruti 1.1.2
 
-This emergency audio-safety update fixes an echo/feedback loop discovered with Rogue
-Amoeba audio routing and browser helper processes.
+Shruti 1.1.2 combines the 1.1.1 audio-safety correction with a clearer, roomier mixer.
 
-- Never captures `arkaudiod` or Nathaniel routing infrastructure as an app source.
-- Removes blocked routing processes from older saved Shruti configurations.
-- Fixes Safari/WebKit helper attribution in the watchdog so a live browser tap is not
-  destroyed and rebuilt every two seconds.
-- Keeps the direct path untouched after the incident reset.
+- Widens the mixer so app names, levels, gain, output devices, and FX controls remain readable.
+- Moves latency and meter details onto a quiet secondary line instead of crowding app names.
+- Replaces long column labels with compact `LEVEL`, `GAIN`, and `OUTPUT` headings.
+- Makes Setup Assistant wider and shorter, with concise one-line explanations and inline status.
+- Gives Settings more horizontal room and clearly labels full internal testing access.
+- Preserves the permanent `arkaudiod` capture block and Safari/WebKit watchdog fix from 1.1.1.
+- Verified with 221 Shruti checks, 88 Sangam checks, and the ten-chain performance harness.
 ]]></description>
-            <enclosure url="https://github.com/jasonzacmusic/sangam/releases/download/shruti-v1.1.1/Shruti-1.1.1.dmg" length="8280309" type="application/octet-stream" sparkle:edSignature="jb1Pi5em04680xHXYmDsryWFFCUZWUUFT0xKrjimd3hxLw+yNy/H2T6RPlZHcIh6olSHr7MPgMFPQeoYbWtJBw=="></enclosure>
+            <enclosure url="https://github.com/jasonzacmusic/sangam/releases/download/shruti-v1.1.2/Shruti-1.1.2.dmg" length="8291563" type="application/octet-stream" sparkle:edSignature="O2ERRSbBEcW2eLJ5K4AxrpEYqAwLjBzHmZUy30i/krR48Brkp7hsIjtbvpay7A2IhIawEObQ36aSrO6lgX6nBw=="></enclosure>
         </item>
     </channel>
 </rss><!-- sparkle-signatures:
-edSignature: 6OdCsMdBnk1aIqPWmPb2sBCy8EWMvAuMQTItVT9Xb0mNPMINu2tOVnxY/ovvwcUdikJy0Ut1tqFtHqz+rKpGAQ==
-length: 1626
+edSignature: LL2su/8JT9+F4ga5zx8XROg5RSsnm59x8AUMtZHY5rNjPWz8YS1ioSt/QOPEFexqUCUb4VkMeYcIqapkvfW0Cw==
+length: 1872
 -->
