@@ -212,9 +212,9 @@
 "ios": false
 },
 "jasonzacmusic/groove-metronome": {
-"commit": "Release 1.0.6: concert hardening; runbook for store re-p",
+"commit": "Ship stage-grade Groove Metronome 1.1.0",
 "ios": true,
-"pushed": "2026-07-03T00:13:50Z"
+"pushed": "2026-07-10T02:51:05Z"
 },
 "jasonzacmusic/jasonzacmusic": {
 "ios": false
@@ -330,7 +330,7 @@
 "jasonzacmusic/sangam": {
 "commit": "fix: Shruti installs itself on first launch (no more 'se",
 "ios": false,
-"pushed": "2026-07-09T20:30:36Z"
+"pushed": "2026-07-10T01:43:43Z"
 },
 "jasonzacmusic/sightread": {
 "ios": false
