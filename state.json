@@ -75,7 +75,7 @@
 "jasonzacmusic/MidiVisualizer": {
 "commit": "Fun Mode: dock the recording studio controls INTO the he",
 "ios": false,
-"pushed": "2026-07-09T19:23:14Z"
+"pushed": "2026-07-10T06:20:43Z"
 },
 "jasonzacmusic/MidiVisualizer-Releases": {
 "ios": false
@@ -205,6 +205,11 @@
 "ios": false,
 "pushed": "2026-07-09T19:47:06Z"
 },
+"jasonzacmusic/chord-tree-canopy-ultimate": {
+"commit": "Realism pass: photoreal Amazon wildlife cutouts + enviro",
+"ios": true,
+"pushed": "2026-07-10T05:36:45Z"
+},
 "jasonzacmusic/efl-video-courses": {
 "ios": false
 },
@@ -232,9 +237,9 @@
 "ios": false
 },
 "jasonzacmusic/melakarta-sphere": {
-"commit": "Immediate Stop for all playback; pull broken live gamaka",
+"commit": "Restore working playback: simple local tanpura loop, dry",
 "ios": false,
-"pushed": "2026-07-09T14:24:22Z"
+"pushed": "2026-07-10T06:00:05Z"
 },
 "jasonzacmusic/money-os": {
 "ios": false
@@ -330,7 +335,7 @@
 "jasonzacmusic/sangam": {
 "commit": "fix: Shruti installs itself on first launch (no more 'se",
 "ios": false,
-"pushed": "2026-07-10T01:43:43Z"
+"pushed": "2026-07-10T06:21:06Z"
 },
 "jasonzacmusic/sightread": {
 "ios": false

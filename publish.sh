@@ -7,6 +7,7 @@
 #   ./publish.sh
 set -euo pipefail
 cd "$(dirname "$0")"
+export GIT_TERMINAL_PROMPT=0   # never hang on an interactive credential ask
 REPO="jasonzacmusic/labs-downloads"; TAG="downloads"
 STAGE="$(mktemp -d "${TMPDIR:-/tmp}/labs-downloads.XXXXXX")"
 trap 'rm -rf "$STAGE"' EXIT
@@ -16,10 +17,12 @@ trap 'rm -rf "$STAGE"' EXIT
 git pull --rebase --autostash origin main
 
 # Local notarized installers to host, keyed to the asset names catalog.json expects.
-# Format: "SOURCE_PATH|ASSET_NAME". ghrel:owner/repo:asset pulls from another repo's release.
+# Format: "SOURCE_PATH|ASSET_NAME". ghrel:owner/repo:asset pulls from another repo's
+# LATEST release; ghrel:owner/repo@tag:asset pins an explicit release tag (required on
+# shared repos like sangam, where "latest" can belong to a different product).
 LOCALS=(
   "file:~/Documents/Claude/sangam/dist/Shruti-signed.dmg|Shruti-mac.dmg"
-  "ghrel:jasonzacmusic/sangam:Sangam-1.0.0.dmg|Sangam-mac.dmg"
+  "ghrel:jasonzacmusic/sangam@v1.0.0:Sangam-1.0.0.dmg|Sangam-mac.dmg"
   "file:~/Desktop/Chorale-0.4.0.dmg|Chorale-mac.dmg"
   "file:~/Documents/Claude/grabit/site/downloads/GrabIt-1.8.dmg|GrabIt-mac.dmg"
   "ghrel:jasonzacmusic/MidiVisualizer-Releases:MIDI-Piano-Visualizer.dmg|MIDI-Piano-Visualizer-mac.dmg"
@@ -41,12 +44,22 @@ for row in "${LOCALS[@]}"; do
       xcrun stapler validate "$p" >/dev/null 2>&1 || { echo "SKIP  $name not notarized yet"; continue; }
       cp "$p" "$STAGE/$name"; ASSETS+=("$STAGE/$name"); echo "local $name ($(du -h "$p"|cut -f1))" ;;
     ghrel:*) spec="${src#ghrel:}"; orepo="${spec%%:*}"; asset="${spec##*:}"
-      if gh release download --repo "$orepo" --pattern "$asset" -O "$STAGE/$name" --clobber 2>/dev/null; then
-        ASSETS+=("$STAGE/$name"); echo "ghrel $name <- $orepo"
-      else echo "WARN  could not fetch $asset from $orepo"; fi ;;
+      rtag=""
+      case "$orepo" in *@*) rtag="${orepo##*@}"; orepo="${orepo%%@*}" ;; esac
+      if gh release download ${rtag:+"$rtag"} --repo "$orepo" --pattern "$asset" -O "$STAGE/$name" --clobber 2>/dev/null; then
+        ASSETS+=("$STAGE/$name"); echo "ghrel $name <- $orepo${rtag:+@$rtag}"
+      else echo "WARN  could not fetch $asset from $orepo${rtag:+@$rtag}"; fi ;;
   esac
 done
-[ ${#ASSETS[@]} -gt 0 ] && gh release upload "$TAG" "${ASSETS[@]}" --repo "$REPO" --clobber
+if [ "${SHRUTI_ONLY:-0}" = "1" ] && [ ${#ASSETS[@]} -eq 0 ]; then
+  # A Shruti release run that could not stage the Shruti installer must fail loudly:
+  # otherwise the appcast advances while the hub keeps serving the previous DMG.
+  echo "ERROR Shruti installer missing or not notarized; nothing uploaded" >&2
+  exit 1
+fi
+if [ ${#ASSETS[@]} -gt 0 ]; then
+  gh release upload "$TAG" "${ASSETS[@]}" --repo "$REPO" --clobber
+fi
 
 # Keep exactly one Shruti installer on the hub release. Older publishers used versioned
 # names and a release-hosted appcast; the current stable installer is Shruti-mac.dmg and

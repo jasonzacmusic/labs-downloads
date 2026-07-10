@@ -147,7 +147,7 @@ def build():
     def add(key, name, category, repo=None):
         apps.setdefault(key, {"name": name, "category": category, "repo": repo,
                               "downloads": [], "web": None, "ios": False,
-                              "ios_url": None, "site": None})
+                              "ios_url": None, "site": None, "blurb": None})
         return apps[key]
 
     # 1. Curated catalog apps (pretty names, public URLs, App Store / sales links).
@@ -157,6 +157,7 @@ def build():
         rec["web"] = a.get("web") or rec["web"]
         rec["ios_url"] = a.get("ios_url") or rec["ios_url"]
         rec["site"] = a.get("site") or rec["site"]
+        rec["blurb"] = a.get("blurb") or rec.get("blurb")
         if a.get("ios") == "live" or a.get("ios") == "soon":
             rec["ios"] = True
         for n in a.get("native", []):
@@ -210,7 +211,8 @@ def card(rec):
     emoji = CAT_EMOJI.get(rec["category"], "✨")
     rel, ab = rec["rel"], rec["abs"]
     updated = f'<span class="upd" title="{ab}">updated {rel}</span>' if rel else ""
-    commit = f'<p class="commit">{html.escape(rec["commit"])}</p>' if rec["commit"] else ""
+    line = rec.get("blurb") or rec["commit"]
+    commit = f'<p class="commit">{html.escape(line)}</p>' if line else ""
 
     chips = [(PLAT[p], p) for p, _ in rec["downloads"]]
     if rec["ios"]:
