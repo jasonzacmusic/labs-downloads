@@ -4,27 +4,23 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>Shruti</title>
         <item>
-            <title>1.1.4</title>
-            <pubDate>Fri, 10 Jul 2026 11:56:22 +0530</pubDate>
-            <sparkle:version>8</sparkle:version>
-            <sparkle:shortVersionString>1.1.4</sparkle:shortVersionString>
+            <title>1.1.5</title>
+            <pubDate>Fri, 10 Jul 2026 12:35:59 +0530</pubDate>
+            <sparkle:version>9</sparkle:version>
+            <sparkle:shortVersionString>1.1.5</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.2</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Shruti 1.1.4
+            <description sparkle:format="markdown"><![CDATA[# Shruti 1.1.5
 
-Safety hardening and interface polish.
+Follow Me actually follows you.
 
-- Closes the last gap in protected-host safety: Auto Duck can no longer engage a locked app or a protected live host under any circumstance, and every saved or imported configuration is repaired on load so stale entries can never request a tap.
-- Blocks the entire Rogue Amoeba routing family (ARK, Loopback, Audio Hijack engines) from capture, not just the current daemon.
-- Engaged apps no longer have their effect chains rebuilt in the background — active EQ and dynamics now run without periodic resets.
-- Hearing protection stays on: per-device volume ceilings keep guarding your ears even if the trial clock runs out.
-- The instant ducker's global shortcut moved to ⌃⌥⌘D so it never collides with Mail's Send shortcut (⌘⇧D).
-- Clearer mixer: the keyboard-selected app is now visibly highlighted, bypassed effects show a one-click Restore button, and destructive deletes ask first.
-- Dozens of small wording, accessibility, and consistency fixes across the mixer, settings, and scenes.
+- Fixes Follow Me's app tracking: the background service could freeze on whichever app was frontmost when it started, so the hero never changed. Shruti now reads the live window order, which is always current.
+- Makes the quiet launch-time update check reliable; scheduled six-hour checks and manual checks are unchanged.
+- Includes everything from 1.1.4: the duck-path safety guard, stable live effect chains, hearing-safe trial expiry, and the interface polish pass.
 ]]></description>
-            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.1.4.dmg" length="8386353" type="application/octet-stream" sparkle:edSignature="6KacSA0XHulxSQcTV0wrT6r2RumJq1on731sgOu+nGs+Xlpb5ZV/c+Rv9uZ5KI7YVkBWUqjKlYnRXYGhVA55Ag=="></enclosure>
+            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.1.5.dmg" length="8388299" type="application/octet-stream" sparkle:edSignature="x4cMM8B+VYhLcEKKdrTz+41Ok6tlOHNHMABq2P7gBfS/DMlSxTbhiBQAhJVQatB4gqOInmHMVxDm0Fxii6hjBw=="></enclosure>
         </item>
     </channel>
 </rss><!-- sparkle-signatures:
-edSignature: vtlp+6sGDTuwpl0eQ8cZUZl0tP7bl33iqichDu0beTFp/g+1dsaMipC47tobQZZjnrQ20+/Y7Zl7nkaCB+ebBQ==
-length: 2157
+edSignature: PzSp7AIvkWBDDAknMN5D2DRpErWLMmwfxL/hmjKN1ThWvSytDf+HKhQ/GfXABsupe3QENBQiyFl8hweN1CRfBw==
+length: 1616
 -->
