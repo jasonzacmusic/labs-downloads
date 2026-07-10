@@ -21,10 +21,19 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 CAT_EMOJI = {"Audio": "🔊", "Music": "🎵", "Practice": "🎹", "Productivity": "🛠️",
              "Portal": "🎓", "Team": "🧩", "Utility": "⚡", "Landing": "🌐", "App": "✨"}
 PLAT = {"mac": "macOS", "win": "Windows", "ios": "iOS", "web": "Web"}
+GH_TIMEOUT_SECONDS = int(os.environ.get("HUB_GH_TIMEOUT_SECONDS", "12"))
 
 
 def gh_json(args):
-    r = subprocess.run(["gh"] + args, capture_output=True, text=True)
+    try:
+        r = subprocess.run(
+            ["gh"] + args,
+            capture_output=True,
+            text=True,
+            timeout=GH_TIMEOUT_SECONDS,
+        )
+    except subprocess.TimeoutExpired:
+        return None
     if r.returncode != 0:
         return None
     try:

@@ -25,6 +25,9 @@ LOCALS=(
   "ghrel:jasonzacmusic/MidiVisualizer-Releases:MIDI-Piano-Visualizer.dmg|MIDI-Piano-Visualizer-mac.dmg"
   "ghrel:jasonzacmusic/MidiVisualizer-Releases:MIDI-Piano-Visualizer-Setup.exe|MIDI-Piano-Visualizer-win.exe"
 )
+if [ "${SHRUTI_ONLY:-0}" = "1" ]; then
+  LOCALS=("${LOCALS[0]}")
+fi
 
 gh release view "$TAG" --repo "$REPO" >/dev/null 2>&1 \
   || gh release create "$TAG" --repo "$REPO" --title "Latest builds" --notes "Latest internal builds." --latest
@@ -73,8 +76,12 @@ else
   exit 1
 fi
 
-python3 gen.py
-git add -A
+if [ "${SHRUTI_ONLY:-0}" = "1" ]; then
+  git add appcasts/shruti.xml
+else
+  python3 gen.py
+  git add -A
+fi
 git commit -q -m "publish: native installers + refresh ($(date '+%Y-%m-%d %H:%M'))" || echo "(nothing changed)"
 published=false
 for attempt in 1 2 3; do

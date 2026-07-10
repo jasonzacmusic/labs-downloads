@@ -4,27 +4,23 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>Shruti</title>
         <item>
-            <title>1.1.2</title>
-            <pubDate>Fri, 10 Jul 2026 07:11:37 +0530</pubDate>
-            <sparkle:version>6</sparkle:version>
-            <sparkle:shortVersionString>1.1.2</sparkle:shortVersionString>
+            <title>1.1.3</title>
+            <pubDate>Fri, 10 Jul 2026 10:37:14 +0530</pubDate>
+            <sparkle:version>7</sparkle:version>
+            <sparkle:shortVersionString>1.1.3</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.2</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Shruti 1.1.2
+            <description sparkle:format="markdown"><![CDATA[# Shruti 1.1.3
 
-Shruti 1.1.2 combines the 1.1.1 audio-safety correction with a clearer, roomier mixer.
-
-- Widens the mixer so app names, levels, gain, output devices, and FX controls remain readable.
-- Moves latency and meter details onto a quiet secondary line instead of crowding app names.
-- Replaces long column labels with compact `LEVEL`, `GAIN`, and `OUTPUT` headings.
-- Makes Setup Assistant wider and shorter, with concise one-line explanations and inline status.
-- Gives Settings more horizontal room and clearly labels full internal testing access.
-- Preserves the permanent `arkaudiod` capture block and Safari/WebKit watchdog fix from 1.1.1.
-- Verified with 221 Shruti checks, 88 Sangam checks, and the ten-chain performance harness.
+- Moves Shruti to the same dependable public release system as GrabIt: a dedicated website, versioned installer, and signed in-app update feed published together.
+- Checks for updates quietly on launch and every six hours, then shows the standard in-app update notification when a newer tested build is available.
+- Adds permanent core-level guards so MainStage, ARK audio routing, and Shruti's own processes can never be captured into a feedback loop.
+- Repairs older saved MainStage protection entries automatically and blocks smart features from force-engaging protected audio hosts.
+- Keeps the wider, cleaner mixer and settings layout introduced in 1.1.2.
 ]]></description>
-            <enclosure url="https://github.com/jasonzacmusic/sangam/releases/download/shruti-v1.1.2/Shruti-1.1.2.dmg" length="8291563" type="application/octet-stream" sparkle:edSignature="O2ERRSbBEcW2eLJ5K4AxrpEYqAwLjBzHmZUy30i/krR48Brkp7hsIjtbvpay7A2IhIawEObQ36aSrO6lgX6nBw=="></enclosure>
+            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.1.3.dmg" length="8324000" type="application/octet-stream" sparkle:edSignature="cDTYK56altpcsP8jR8B1j0ksjokKMSfDWW2Sp9jcchjlh+0CIc8eW5Yu7Zk80atf66g8ji6KhLfFMuUwrk3jDg=="></enclosure>
         </item>
     </channel>
 </rss><!-- sparkle-signatures:
-edSignature: LL2su/8JT9+F4ga5zx8XROg5RSsnm59x8AUMtZHY5rNjPWz8YS1ioSt/QOPEFexqUCUb4VkMeYcIqapkvfW0Cw==
-length: 1872
+edSignature: F5Ld/lhSux/isjgXmtFg4EBThnXUcCQ5IIGSrtMGj9zp6JetgzPyn3F/FRuviSTvvYU/LBHYPjUR5agpjSEMAg==
+length: 1775
 -->
