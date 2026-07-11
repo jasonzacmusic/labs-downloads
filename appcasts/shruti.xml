@@ -4,24 +4,25 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>Shruti</title>
         <item>
-            <title>1.1.6</title>
-            <pubDate>Fri, 10 Jul 2026 15:14:20 +0530</pubDate>
-            <sparkle:version>10</sparkle:version>
-            <sparkle:shortVersionString>1.1.6</sparkle:shortVersionString>
+            <title>1.1.7</title>
+            <pubDate>Sat, 11 Jul 2026 16:33:00 +0530</pubDate>
+            <sparkle:version>11</sparkle:version>
+            <sparkle:shortVersionString>1.1.7</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.2</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Shruti 1.1.6
+            <description sparkle:format="markdown"><![CDATA[# Shruti 1.1.7
 
-Accessibility and setup accuracy.
+Smarter Follow-Me and a real Loudness Guard.
 
-- First-run setup now checks the exact System Audio Recording permission Shruti uses, instead of standing in for it with Screen Recording. If you already allowed audio-only recording, Shruti correctly shows it as granted and stops asking.
-- The Allow button now prompts for System Audio Recording specifically and opens the right settings list.
-- VoiceOver now reads every control in the mixer: mute, favorite, effects, output, boost, and the panel buttons all announce what they do and their current state.
-- Support, Privacy, and Terms links now point to labs.nathanielschool.com instead of a raw hosting URL.
+- Follow-Me Audio now follows the app you are actually **hearing**, not just the one in front. The focused, playing app (a YouTube video in Chrome, a Spotify track) becomes the hero and everything else drops away. Switch to the app that's playing and the focus moves with you.
+- By default Follow-Me now **silences** the other apps entirely while you focus. A new Background slider lets you keep them playing quietly underneath instead (0% = muted, up to 100% = untouched).
+- A short hold keeps the focus through brief silences (a pause between tracks) so the background doesn't flicker.
+- Loudness Guard is now a genuine peak limiter measured in dBFS: it shaves only the spikes above your chosen ceiling and leaves everything below it untouched, on headphone and AirPods output. It stays off until you switch it on.
+- Mic Auto-Follow and Auto-Duck are unchanged.
 ]]></description>
-            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.1.6.dmg" length="8405106" type="application/octet-stream" sparkle:edSignature="gh925Ncpwo1xmnwW3ZUsxblaTc7peA2Pak51ZRgfqlbxHONyTkeRTwRO6sffTd59t5rNb7Z/54fnhuGBXA/HDA=="></enclosure>
+            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.1.7.dmg" length="8428903" type="application/octet-stream" sparkle:edSignature="gh7I8/q3ZHzj4YV5sSuwH4ep5E2ER9VX62WxgoJ2xMd+bPQ5f4JUlsEZTmaDBEKWhTZQwQ8FkqkCtOoDTLTzDA=="></enclosure>
         </item>
     </channel>
 </rss><!-- sparkle-signatures:
-edSignature: 5/PJRGk9u4uI+UUYBadBVJpx2gB1R7Sp883Su4HhJayf+jBElwKd+8llx0+f45rRcG2NFawk6O40T6aStuz6CA==
-length: 1762
+edSignature: m5PWZKxVwPFkoE3tYEVlfFLpjzF5HjmWMX6HteH5u2jX36vovHaiQU9NslbSi3YaBSQ7uhRTE7BtnT8fG2s4CA==
+length: 2025
 -->
