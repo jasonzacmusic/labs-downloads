@@ -111,14 +111,22 @@ for attempt in 1 2 3; do
 done
 [ "$published" = true ] || { echo "ERROR hub publish did not reach origin/main" >&2; exit 1; }
 
-curl -fsSIL --retry 4 \
-  "https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/Shruti-mac.dmg" >/dev/null
-curl -fsSIL --retry 4 \
-  "https://raw.githubusercontent.com/jasonzacmusic/labs-downloads/main/appcasts/shruti.xml" >/dev/null
-
 # The catalog resolves current version/download metadata from the release and appcast.
-# Refresh it immediately rather than waiting for the six-hour safety schedule.
+# Refresh it immediately rather than waiting for the six-hour safety schedule. This runs
+# BEFORE the edge-availability checks below: the asset upload and git push already
+# succeeded (both verified above), so the catalog must refresh even if GitHub's download
+# CDN is briefly lagging.
 gh api repos/jasonzacmusic/nathaniel-labs-site/dispatches --method POST \
-  -H "Accept: application/vnd.github+json" -f event_type=release-published
+  -H "Accept: application/vnd.github+json" -f event_type=release-published || \
+  echo "WARN catalog dispatch failed; the 6-hour scheduled refresh will catch up"
+
+# Best-effort edge check: GitHub's release-download CDN can lag 10-30 s after a --clobber,
+# so give it real time but never fail the publish over propagation (the bytes are up).
+curl -fsSIL --retry 8 --retry-all-errors --retry-delay 5 \
+  "https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/Shruti-mac.dmg" >/dev/null \
+  || echo "WARN Shruti-mac.dmg not yet visible on the download CDN (propagation lag)"
+curl -fsSIL --retry 8 --retry-all-errors --retry-delay 5 \
+  "https://raw.githubusercontent.com/jasonzacmusic/labs-downloads/main/appcasts/shruti.xml" >/dev/null \
+  || echo "WARN appcast raw URL not yet visible (propagation lag)"
 echo ""
 echo "Live at: https://jasonzacmusic.github.io/labs-downloads/"
