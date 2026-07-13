@@ -4,25 +4,22 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>Shruti</title>
         <item>
-            <title>1.1.7</title>
-            <pubDate>Sat, 11 Jul 2026 16:33:00 +0530</pubDate>
-            <sparkle:version>11</sparkle:version>
-            <sparkle:shortVersionString>1.1.7</sparkle:shortVersionString>
+            <title>1.1.8</title>
+            <pubDate>Mon, 13 Jul 2026 18:01:12 +0530</pubDate>
+            <sparkle:version>12</sparkle:version>
+            <sparkle:shortVersionString>1.1.8</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.2</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Shruti 1.1.7
+            <description sparkle:format="markdown"><![CDATA[# Shruti 1.1.8
 
-Smarter Follow-Me and a real Loudness Guard.
+Follow-Me now follows your clicks, even with a screen full of windows.
 
-- Follow-Me Audio now follows the app you are actually **hearing**, not just the one in front. The focused, playing app (a YouTube video in Chrome, a Spotify track) becomes the hero and everything else drops away. Switch to the app that's playing and the focus moves with you.
-- By default Follow-Me now **silences** the other apps entirely while you focus. A new Background slider lets you keep them playing quietly underneath instead (0% = muted, up to 100% = untouched).
-- A short hold keeps the focus through brief silences (a pause between tracks) so the background doesn't flicker.
-- Loudness Guard is now a genuine peak limiter measured in dBFS: it shaves only the spikes above your chosen ceiling and leaves everything below it untouched, on headphone and AirPods output. It stays off until you switch it on.
-- Mic Auto-Follow and Auto-Duck are unchanged.
+- Fixes the case where Follow-Me only switched focus after you minimized other windows. Shruti now listens for the app you actually click into and moves the focus there instantly, no matter how many windows are stacked on top of each other.
+- Under the hood: the focused app is tracked from the system's app-activation events instead of by guessing from the window stack, so an overlapping or always-on-top window can no longer steal the focus.
 ]]></description>
-            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.1.7.dmg" length="8428903" type="application/octet-stream" sparkle:edSignature="gh7I8/q3ZHzj4YV5sSuwH4ep5E2ER9VX62WxgoJ2xMd+bPQ5f4JUlsEZTmaDBEKWhTZQwQ8FkqkCtOoDTLTzDA=="></enclosure>
+            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.1.8.dmg" length="8433803" type="application/octet-stream" sparkle:edSignature="KG9+1+WijBUtaDOix2E7pRiF+fYZiHfHWNTEWlxMDMQsU0ao+6qTKSY96f8yXIWRjud5dICyib6vytckrvRwAQ=="></enclosure>
         </item>
     </channel>
 </rss><!-- sparkle-signatures:
-edSignature: m5PWZKxVwPFkoE3tYEVlfFLpjzF5HjmWMX6HteH5u2jX36vovHaiQU9NslbSi3YaBSQ7uhRTE7BtnT8fG2s4CA==
-length: 2025
+edSignature: piiGKtGQnQsG8hA1U5msu+vqHzhLs7ahLn0Oi6dGzHL0aTjmw4Wgze5GO3JvsXuGd2ODjPF688F8Fnttp0uLDA==
+length: 1632
 -->
