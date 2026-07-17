@@ -31,6 +31,10 @@ LOCALS=(
   "file:~/Documents/Claude/grabit/site/downloads/GrabIt-1.14.dmg|GrabIt-mac.dmg"
   "ghrel:jasonzacmusic/MidiVisualizer-Releases:MIDI-Piano-Visualizer.dmg|MIDI-Piano-Visualizer-mac.dmg"
   "ghrel:jasonzacmusic/MidiVisualizer-Releases:MIDI-Piano-Visualizer-Setup.exe|MIDI-Piano-Visualizer-win.exe"
+  # NSM Photos (internal team app). Build with:
+  #   ~/nathaniel-photo-hub/macapp/build_dmg_labs.sh <VERSION>
+  # No secrets baked in — safe on the public downloads release.
+  "file:$HOME/nathaniel-photo-hub/macapp/build/NSMPhotos-mac.dmg|NSMPhotos-mac.dmg"
 )
 if [ "${SHRUTI_ONLY:-0}" = "1" ]; then
   LOCALS=("${LOCALS[0]}")

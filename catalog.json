@@ -158,7 +158,14 @@
       "name": "Nathaniel Photo Hub",
       "category": "Team",
       "repo": "jasonzacmusic/nathaniel-photo-hub",
-      "web": "https://photos.nathanielschool.com"
+      "web": "https://photos.nathanielschool.com",
+      "native": [
+        {
+          "platform": "mac",
+          "asset": "NSMPhotos-mac.dmg"
+        }
+      ],
+      "blurb": "NSM Photos — the team photo library + Design Studio as a Mac app. Signed & notarized; opens the hub signed-in after a one-time login."
     },
     {
       "name": "Nathaniel Music Hub",
