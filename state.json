@@ -6,9 +6,9 @@
 "ios": false
 },
 "jasonzacmusic/Chord-Randomiser": {
-"commit": "SEO/AEO: add JSON-LD / llms.txt / IndexNow key\\n\\nCo-Aut",
+"commit": "Ground-up visual redesign + musical upgrades",
 "ios": false,
-"pushed": "2026-07-07T11:51:17Z"
+"pushed": "2026-07-12T08:29:56Z"
 },
 "jasonzacmusic/Christmas": {
 "ios": false
@@ -75,7 +75,7 @@
 "jasonzacmusic/MidiVisualizer": {
 "commit": "Fun Mode: dock the recording studio controls INTO the he",
 "ios": false,
-"pushed": "2026-07-10T06:20:43Z"
+"pushed": "2026-07-12T14:20:33Z"
 },
 "jasonzacmusic/MidiVisualizer-Releases": {
 "ios": false
@@ -95,9 +95,9 @@
 "pushed": "2026-07-07T13:31:00Z"
 },
 "jasonzacmusic/Musical-Document-Utility": {
-"commit": "Document that Vercel deploys are CLI-driven, not git-tri",
+"commit": "Finalize capped chat streams cleanly",
 "ios": false,
-"pushed": "2026-07-06T01:07:14Z"
+"pushed": "2026-07-12T14:02:05Z"
 },
 "jasonzacmusic/NSM-App-Hub": {
 "ios": false
@@ -141,9 +141,9 @@
 "ios": false
 },
 "jasonzacmusic/Reaper-Companion-JZ": {
-"commit": "fix touch model: relative faders (no jump), reliable tap",
+"commit": "fix: stop Reaper Companion burning Vercel when idle",
 "ios": false,
-"pushed": "2026-06-13T12:16:07Z"
+"pushed": "2026-07-11T13:18:05Z"
 },
 "jasonzacmusic/Reel-Mastermind": {
 "ios": false
@@ -154,9 +154,9 @@
 "pushed": "2026-07-07T13:28:06Z"
 },
 "jasonzacmusic/Riff-Database": {
-"commit": "Return null for unauthenticated me",
+"commit": "Practice-along live sessions: students visible + hand-ra",
 "ios": false,
-"pushed": "2026-07-04T06:33:57Z"
+"pushed": "2026-07-17T02:30:43Z"
 },
 "jasonzacmusic/Sales-Nathaniel": {
 "ios": false
@@ -177,9 +177,9 @@
 "ios": false
 },
 "jasonzacmusic/aria-website": {
-"commit": "Add the theory calculator: exact scales, ragas, chords, ",
+"commit": "Merge ship-readiness: theory router hardening",
 "ios": false,
-"pushed": "2026-07-05T01:37:02Z"
+"pushed": "2026-07-12T15:44:10Z"
 },
 "jasonzacmusic/atlas": {
 "ios": false
@@ -201,14 +201,17 @@
 "pushed": "2026-07-07T12:04:52Z"
 },
 "jasonzacmusic/chorale": {
-"commit": "Make quality changes host-reprepare only",
+"commit": "Living Choir UI (2/2): native port of the Claude Design ",
 "ios": false,
-"pushed": "2026-07-09T19:47:06Z"
+"pushed": "2026-07-13T02:46:25Z"
+},
+"jasonzacmusic/chord-tree-canopy": {
+"ios": false
 },
 "jasonzacmusic/chord-tree-canopy-ultimate": {
-"commit": "Chord audio + action-linked animations",
+"commit": "v1.1: realism + real platformer game feel",
 "ios": true,
-"pushed": "2026-07-10T06:50:40Z"
+"pushed": "2026-07-17T03:02:55Z"
 },
 "jasonzacmusic/efl-video-courses": {
 "ios": false
@@ -217,9 +220,9 @@
 "ios": false
 },
 "jasonzacmusic/groove-metronome": {
-"commit": "Ship stage-grade Groove Metronome 1.1.0",
+"commit": "Docs + native 1.2.0: marketing plan, Codex store brief f",
 "ios": true,
-"pushed": "2026-07-10T02:51:05Z"
+"pushed": "2026-07-19T10:52:51Z"
 },
 "jasonzacmusic/jasonzacmusic": {
 "ios": false
@@ -236,15 +239,27 @@
 "jasonzacmusic/lean-plate": {
 "ios": false
 },
+"jasonzacmusic/maatu": {
+"ios": false
+},
+"jasonzacmusic/master-key": {
+"ios": false
+},
 "jasonzacmusic/melakarta-sphere": {
-"commit": "Restore working playback: simple local tanpura loop, dry",
+"commit": "thumb-stills: chrome-free 4K hero stills of any mela for",
 "ios": false,
-"pushed": "2026-07-10T06:00:05Z"
+"pushed": "2026-07-16T12:53:39Z"
 },
 "jasonzacmusic/money-os": {
 "ios": false
 },
 "jasonzacmusic/music-factory": {
+"ios": false
+},
+"jasonzacmusic/nakshatra": {
+"ios": false
+},
+"jasonzacmusic/namma-circle": {
 "ios": false
 },
 "jasonzacmusic/nathaniel-labs-site": {
@@ -262,9 +277,9 @@
 "ios": false
 },
 "jasonzacmusic/nathaniel-photo-hub": {
-"commit": "fix(buckets): studio must exclude photos with real face ",
+"commit": "fix(design): silence unsupported GIF style warning",
 "ios": false,
-"pushed": "2026-07-05T11:50:25Z"
+"pushed": "2026-07-17T13:11:11Z"
 },
 "jasonzacmusic/nathaniel-production-house": {
 "ios": false
@@ -295,6 +310,9 @@
 "ios": true,
 "pushed": "2026-07-03T09:40:22Z"
 },
+"jasonzacmusic/nsm-social-command-centre": {
+"ios": false
+},
 "jasonzacmusic/nsm-staff-hub-web": {
 "ios": false
 },
@@ -317,9 +335,9 @@
 "ios": false
 },
 "jasonzacmusic/ossia": {
-"commit": "Login: graceful message when the auth backend is unreach",
+"commit": "Design rethink: Paper Pro gap analysis + Claude Design b",
 "ios": true,
-"pushed": "2026-07-06T04:49:09Z"
+"pushed": "2026-07-14T06:26:45Z"
 },
 "jasonzacmusic/pendulum": {
 "commit": "feat: count-in + gap-click practice modes, and a clean l",
@@ -329,16 +347,25 @@
 "jasonzacmusic/product-registry": {
 "ios": false
 },
+"jasonzacmusic/rhythm-arithmetic": {
+"ios": false
+},
 "jasonzacmusic/richmond-park": {
+"ios": false
+},
+"jasonzacmusic/riff-studio": {
 "ios": false
 },
 "jasonzacmusic/runway": {
 "ios": false
 },
 "jasonzacmusic/sangam": {
-"commit": "fix: Shruti installs itself on first launch (no more 'se",
+"commit": "merge: bring 1.1.9 assets + git-deploy pipeline into mai",
 "ios": false,
-"pushed": "2026-07-10T14:59:19Z"
+"pushed": "2026-07-16T10:09:26Z"
+},
+"jasonzacmusic/shruti": {
+"ios": false
 },
 "jasonzacmusic/sightread": {
 "ios": false
@@ -358,6 +385,6 @@
 "jasonzacmusic/woodshed": {
 "commit": "Fix double slash in invitation email links",
 "ios": true,
-"pushed": "2026-07-04T14:48:42Z"
+"pushed": "2026-07-12T09:40:34Z"
 }
 }
