@@ -154,9 +154,9 @@
 "pushed": "2026-07-07T13:28:06Z"
 },
 "jasonzacmusic/Riff-Database": {
-"commit": "Practice-along live sessions: students visible + hand-ra",
+"commit": "Podcast studio: full-participation guest rooms + broadca",
 "ios": false,
-"pushed": "2026-07-17T02:30:43Z"
+"pushed": "2026-07-19T14:01:24Z"
 },
 "jasonzacmusic/Sales-Nathaniel": {
 "ios": false
@@ -177,11 +177,14 @@
 "ios": false
 },
 "jasonzacmusic/aria-website": {
-"commit": "Merge ship-readiness: theory router hardening",
+"commit": "Move lesson search server-side: the corpus never reaches",
 "ios": false,
-"pushed": "2026-07-12T15:44:10Z"
+"pushed": "2026-07-19T15:59:58Z"
 },
 "jasonzacmusic/atlas": {
+"ios": false
+},
+"jasonzacmusic/baithak": {
 "ios": false
 },
 "jasonzacmusic/bass-alchemy": {
@@ -201,9 +204,9 @@
 "pushed": "2026-07-07T12:04:52Z"
 },
 "jasonzacmusic/chorale": {
-"commit": "Living Choir UI (2/2): native port of the Claude Design ",
+"commit": "v0.5.0: Living Choir release \u2014 audit polish + version bu",
 "ios": false,
-"pushed": "2026-07-13T02:46:25Z"
+"pushed": "2026-07-19T16:01:09Z"
 },
 "jasonzacmusic/chord-tree-canopy": {
 "ios": false
@@ -213,6 +216,9 @@
 "ios": true,
 "pushed": "2026-07-17T03:02:55Z"
 },
+"jasonzacmusic/dominant-7th-lesson": {
+"ios": false
+},
 "jasonzacmusic/efl-video-courses": {
 "ios": false
 },
@@ -220,9 +226,9 @@
 "ios": false
 },
 "jasonzacmusic/groove-metronome": {
-"commit": "Docs + native 1.2.0: marketing plan, Codex store brief f",
+"commit": "Implement Claude Design landing page at /landing",
 "ios": true,
-"pushed": "2026-07-19T10:52:51Z"
+"pushed": "2026-07-19T11:28:08Z"
 },
 "jasonzacmusic/jasonzacmusic": {
 "ios": false
@@ -246,9 +252,9 @@
 "ios": false
 },
 "jasonzacmusic/melakarta-sphere": {
-"commit": "thumb-stills: chrome-free 4K hero stills of any mela for",
+"commit": "Registers on stage: tanpura octave selector, kriti melod",
 "ios": false,
-"pushed": "2026-07-16T12:53:39Z"
+"pushed": "2026-07-19T20:37:09Z"
 },
 "jasonzacmusic/money-os": {
 "ios": false
@@ -277,9 +283,9 @@
 "ios": false
 },
 "jasonzacmusic/nathaniel-photo-hub": {
-"commit": "fix(design): silence unsupported GIF style warning",
+"commit": "chore(designs): reconcile with quick-templates studio \u2014 ",
 "ios": false,
-"pushed": "2026-07-17T13:11:11Z"
+"pushed": "2026-07-19T11:53:40Z"
 },
 "jasonzacmusic/nathaniel-production-house": {
 "ios": false
@@ -360,9 +366,12 @@
 "ios": false
 },
 "jasonzacmusic/sangam": {
-"commit": "merge: bring 1.1.9 assets + git-deploy pipeline into mai",
+"commit": "Public-sale audit: fix crash races, settings loss, and l",
 "ios": false,
-"pushed": "2026-07-16T10:09:26Z"
+"pushed": "2026-07-19T11:51:45Z"
+},
+"jasonzacmusic/shaanbelchada": {
+"ios": false
 },
 "jasonzacmusic/shruti": {
 "ios": false
@@ -383,8 +392,8 @@
 "ios": false
 },
 "jasonzacmusic/woodshed": {
-"commit": "Fix double slash in invitation email links",
+"commit": "Add GO_LIVE checklist (Brevo email + Blob = live)",
 "ios": true,
-"pushed": "2026-07-12T09:40:34Z"
+"pushed": "2026-07-19T16:04:20Z"
 }
 }

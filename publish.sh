@@ -24,10 +24,13 @@ git pull --rebase --autostash origin main
 # point at the exact notarized DMG it just built, instead of the canonical checkout's
 # dist/ — which may be stale or belong to a different release. Falls back to canonical.
 SHRUTI_DMG_SRC="${SHRUTI_DMG:-$HOME/Documents/Claude/sangam/dist/Shruti-signed.dmg}"
+# Chorale: always ship the NEWEST notarized DMG on the Desktop (the notarize
+# script writes ~/Desktop/Chorale-<version>.dmg on every release).
+CHORALE_DMG_SRC="$(ls -t "$HOME"/Desktop/Chorale-*.dmg 2>/dev/null | head -1 || true)"
 LOCALS=(
   "file:${SHRUTI_DMG_SRC}|Shruti-mac.dmg"
   "ghrel:jasonzacmusic/sangam@v1.1.0-rc.5:Sangam-1.1.0-rc.5.dmg|Sangam-mac.dmg"
-  "file:~/Desktop/Chorale-0.4.0.dmg|Chorale-mac.dmg"
+  "file:${CHORALE_DMG_SRC}|Chorale-mac.dmg"
   "file:~/Documents/Claude/grabit/site/downloads/GrabIt-1.16.dmg|GrabIt-mac.dmg"
   "ghrel:jasonzacmusic/MidiVisualizer-Releases:MIDI-Piano-Visualizer.dmg|MIDI-Piano-Visualizer-mac.dmg"
   "ghrel:jasonzacmusic/MidiVisualizer-Releases:MIDI-Piano-Visualizer-Setup.exe|MIDI-Piano-Visualizer-win.exe"
