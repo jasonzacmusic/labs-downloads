@@ -26,7 +26,7 @@ git pull --rebase --autostash origin main
 SHRUTI_DMG_SRC="${SHRUTI_DMG:-$HOME/Documents/Claude/sangam/dist/Shruti-signed.dmg}"
 LOCALS=(
   "file:${SHRUTI_DMG_SRC}|Shruti-mac.dmg"
-  "ghrel:jasonzacmusic/sangam@v1.1.0-rc.4:Sangam-1.1.0-rc.4.dmg|Sangam-mac.dmg"
+  "ghrel:jasonzacmusic/sangam@v1.1.0-rc.5:Sangam-1.1.0-rc.5.dmg|Sangam-mac.dmg"
   "file:~/Desktop/Chorale-0.4.0.dmg|Chorale-mac.dmg"
   "file:~/Documents/Claude/grabit/site/downloads/GrabIt-1.16.dmg|GrabIt-mac.dmg"
   "ghrel:jasonzacmusic/MidiVisualizer-Releases:MIDI-Piano-Visualizer.dmg|MIDI-Piano-Visualizer-mac.dmg"
