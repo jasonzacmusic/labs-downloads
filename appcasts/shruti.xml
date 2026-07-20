@@ -4,26 +4,24 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>Shruti</title>
         <item>
-            <title>1.1.9</title>
-            <pubDate>Thu, 16 Jul 2026 13:55:51 +0530</pubDate>
-            <sparkle:version>13</sparkle:version>
-            <sparkle:shortVersionString>1.1.9</sparkle:shortVersionString>
+            <title>1.2.0</title>
+            <pubDate>Mon, 20 Jul 2026 10:02:25 +0530</pubDate>
+            <sparkle:version>14</sparkle:version>
+            <sparkle:shortVersionString>1.2.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.2</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Shruti 1.1.9
+            <description sparkle:format="markdown"><![CDATA[# Shruti 1.2.0
 
-Follow-Me, made instant — plus important stability fixes.
+Ads can't blast you anymore.
 
-- **Follow-Me now reacts the moment you click.** It used to wait up to a second before muting the other apps; now it responds to the app switch itself, so the focus moves as fast as you do.
-- **Switching is smooth and silent.** Shruti no longer tears down and rebuilds audio taps every time you change apps, so there is no lag or pop when the focus moves — just a clean, instant cross-fade.
-- **It follows what you're hearing, and stays there.** When you click a playing app it becomes the focus; when you click a non-playing app (an editor, Finder) Shruti keeps the thing you were listening to instead of letting everything blast back.
-- **Recognizes every app.** Arc, Apple TV, and any other app that is actually making sound are now managed by Follow-Me, not just a fixed list — so nothing keeps playing when it should be muted.
-- **Stability:** fixed two rare conditions that could interrupt audio — one when an app's audio device changed while playing, and one when adjusting an app's EQ or effects live. Both are now handled safely.
-- **Magic Boost** now guarantees it can never push loud moments into distortion.
+- **New: Steady Volume, per app.** Turn it on for your browser or any streaming app and Shruti learns the loudness you're actually listening at — then, when an ad break or a channel jump comes in louder, it rides the volume back down to your level within a fraction of a second, and eases back up when the program returns. Loud ads on a stream, screaming commentators, jarring volume jumps between videos: all held to the level you chose.
+- Downward only: quiet scenes are never pumped up, normal dialogue and music dynamics pass untouched, and it adds zero latency.
+- Right-click any app in the mixer → "Steady Volume — tame loud ads". Off by default; per app.
+- Everything from 1.1.9 (instant Follow-Me, stability fixes) is included.
 ]]></description>
-            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.1.9.dmg" length="8442172" type="application/octet-stream" sparkle:edSignature="It7mBINGaVWljoOKXWOTOffrxJb+qzFkmKcpnynzv+1cqTrrr8bmiecGaZ+rPl1GkU3ccExaJDnrtZwPUxeFCA=="></enclosure>
+            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.2.0.dmg" length="8491289" type="application/octet-stream" sparkle:edSignature="MzZvUMS+/mxI4C4N6SFKNkxmOYTf8eJkmzYPUmJEH4AuMUoyJ/smCd9Flq5lmJbQQvzCmMVO4BZcmlKtSfxZBA=="></enclosure>
         </item>
     </channel>
 </rss><!-- sparkle-signatures:
-edSignature: uwl8GKkRtp6L9qT4NJalpsD+6ZmJvJXq8M3sN030vllAxvjASGapQem914sO/SVNp0xMUqFMp9AE6aBtGe5YBQ==
-length: 2302
+edSignature: UEpat22iNkG3MVF9bAfv09pSZP1XcRPbTD6ra/EVzKvN06ro/kkGgzhppBBIFL7OdhFA8bQCmKagECf8iZfyBQ==
+length: 1887
 -->
