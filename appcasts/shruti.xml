@@ -4,24 +4,23 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>Shruti</title>
         <item>
-            <title>1.2.0</title>
-            <pubDate>Mon, 20 Jul 2026 10:02:25 +0530</pubDate>
-            <sparkle:version>14</sparkle:version>
-            <sparkle:shortVersionString>1.2.0</sparkle:shortVersionString>
+            <title>1.2.1</title>
+            <pubDate>Mon, 20 Jul 2026 10:09:29 +0530</pubDate>
+            <sparkle:version>15</sparkle:version>
+            <sparkle:shortVersionString>1.2.1</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.2</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Shruti 1.2.0
+            <description sparkle:format="markdown"><![CDATA[# Shruti 1.2.1
 
-Ads can't blast you anymore.
+Everything from today's launch, hardened.
 
-- **New: Steady Volume, per app.** Turn it on for your browser or any streaming app and Shruti learns the loudness you're actually listening at — then, when an ad break or a channel jump comes in louder, it rides the volume back down to your level within a fraction of a second, and eases back up when the program returns. Loud ads on a stream, screaming commentators, jarring volume jumps between videos: all held to the level you chose.
-- Downward only: quiet scenes are never pumped up, normal dialogue and music dynamics pass untouched, and it adds zero latency.
-- Right-click any app in the mixer → "Steady Volume — tame loud ads". Off by default; per app.
-- Everything from 1.1.9 (instant Follow-Me, stability fixes) is included.
+- **Steady Volume** (new in 1.2.0): per-app ad-blast protection — Shruti learns the loudness you listen at and rides louder ad breaks back down to it. Right-click an app row → "Steady Volume — tame loud ads."
+- Quitting an app no longer forgets its settings: volume, EQ, output and device memories now survive quit, relaunch, and reboot exactly as you left them.
+- Additional stability hardening across the audio engine and device handling, and licensing readiness fixes, ahead of public sale.
 ]]></description>
-            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.2.0.dmg" length="8491289" type="application/octet-stream" sparkle:edSignature="MzZvUMS+/mxI4C4N6SFKNkxmOYTf8eJkmzYPUmJEH4AuMUoyJ/smCd9Flq5lmJbQQvzCmMVO4BZcmlKtSfxZBA=="></enclosure>
+            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.2.1.dmg" length="8527623" type="application/octet-stream" sparkle:edSignature="mKFd5QdSGxTtT5f9ZGEXu8/PPokF8ZUa3Z9cnG3Et2Y6T8kbwW+AqufCGM+/PAY+G+ocUDCtaysDNGv32LIMDw=="></enclosure>
         </item>
     </channel>
 </rss><!-- sparkle-signatures:
-edSignature: UEpat22iNkG3MVF9bAfv09pSZP1XcRPbTD6ra/EVzKvN06ro/kkGgzhppBBIFL7OdhFA8bQCmKagECf8iZfyBQ==
-length: 1887
+edSignature: aaXyLVyH7zTbhG1sKP053ouz5xn/J9QIlQQ4bxK4EJtwXnRBX+6FpppQkmTKcYKUOsNkGYY3Wd5bmGcK8zmMAg==
+length: 1658
 -->
