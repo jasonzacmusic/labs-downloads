@@ -1,16 +1,17 @@
 name: Refresh hub
-# Keeps the hub current with zero human action: every 30 minutes it re-reads each app's
-# latest GitHub activity and rebuilds the page, so a push to ANY app repo (from ANY machine)
-# floats that app to the top automatically. Also runnable on demand.
+# Re-read app activity every four hours as a safety refresh. Releases can request an
+# immediate refresh through repository_dispatch, and humans can still run it on demand.
 on:
   schedule:
-    - cron: "*/30 * * * *"
+    - cron: "17 */4 * * *"
   workflow_dispatch:
+  repository_dispatch:
+    types: [refresh-hub, registry-updated, release-published]
 permissions:
   contents: write
 concurrency:
   group: publish-hub
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   refresh:
     runs-on: ubuntu-latest
