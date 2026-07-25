@@ -100,6 +100,37 @@ jobs:
           if-no-files-found: error
           retention-days: 30
 
+  mac-intel-rosetta:
+    name: Intel Mac under Rosetta
+    needs: mac
+    runs-on: macos-26
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: nsm-flow-x86_64-apple-darwin
+          path: release
+
+      - name: Mount and launch the Intel app under Rosetta
+        shell: bash
+        run: |
+          set -euo pipefail
+          DMG="release/NSM-Flow-mac-Intel.dmg"
+          hdiutil verify "$DMG"
+          MOUNT="$(mktemp -d)"
+          DEVICE="$(hdiutil attach "$DMG" -nobrowse -readonly -mountpoint "$MOUNT" | awk 'END {print $1}')"
+          trap 'hdiutil detach "$DEVICE" >/dev/null 2>&1 || true; rmdir "$MOUNT" >/dev/null 2>&1 || true' EXIT
+          APP="$(find "$MOUNT" -maxdepth 1 -type d -name '*.app' -print -quit)"
+          test -n "$APP"
+          codesign --verify --deep --strict --verbose=2 "$APP"
+          BIN="$(find "$APP/Contents/MacOS" -maxdepth 1 -type f -perm -111 -print -quit)"
+          test -n "$BIN"
+          file "$BIN" | grep -q x86_64
+          arch -x86_64 "$BIN" --help
+          arch -x86_64 "$BIN" --list-devices
+          hdiutil detach "$DEVICE"
+          rmdir "$MOUNT"
+          trap - EXIT
+
   windows:
     name: Windows x64
     runs-on: windows-latest
