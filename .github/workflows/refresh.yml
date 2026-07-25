@@ -1,9 +1,9 @@
 name: Refresh hub
-# Re-read app activity every four hours as a safety refresh. Releases can request an
+# Re-read app activity once daily as a safety refresh. Releases can request an
 # immediate refresh through repository_dispatch, and humans can still run it on demand.
 on:
   schedule:
-    - cron: "17 */4 * * *"
+    - cron: "17 2 * * *"
   workflow_dispatch:
   repository_dispatch:
     types: [refresh-hub, registry-updated, release-published]
