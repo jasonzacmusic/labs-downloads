@@ -77,6 +77,18 @@ jobs:
           test -n "$DMG"
           test -s "$DMG"
           hdiutil verify "$DMG"
+          MOUNT="$(mktemp -d)"
+          DEVICE="$(hdiutil attach "$DMG" -nobrowse -readonly -mountpoint "$MOUNT" | awk 'END {print $1}')"
+          trap 'hdiutil detach "$DEVICE" >/dev/null 2>&1 || true; rmdir "$MOUNT" >/dev/null 2>&1 || true' EXIT
+          APP="$(find "$MOUNT" -maxdepth 1 -type d -name '*.app' -print -quit)"
+          test -n "$APP"
+          codesign --verify --deep --strict --verbose=2 "$APP"
+          BIN="$(find "$APP/Contents/MacOS" -maxdepth 1 -type f -perm -111 -print -quit)"
+          test -n "$BIN"
+          "$BIN" --help
+          hdiutil detach "$DEVICE"
+          rmdir "$MOUNT"
+          trap - EXIT
           mkdir -p release
           cp "$DMG" "release/${{ matrix.stable_name }}"
           shasum -a 256 "release/${{ matrix.stable_name }}"
@@ -181,6 +193,33 @@ jobs:
           Copy-Item $exe.FullName "release/NSM-Flow-windows-x64-setup.exe"
           Copy-Item $msi.FullName "release/NSM-Flow-windows-x64.msi"
           Get-FileHash release/* -Algorithm SHA256
+
+      - name: Silent-install and launch CLI smoke test
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $installer = (Resolve-Path "release/NSM-Flow-windows-x64-setup.exe").Path
+          $install = Start-Process -FilePath $installer -ArgumentList "/S" -Wait -PassThru
+          if ($install.ExitCode -ne 0) {
+            throw "NSIS silent install failed with exit code $($install.ExitCode)"
+          }
+          $roots = @(
+            "$env:LOCALAPPDATA\Programs",
+            "$env:LOCALAPPDATA",
+            "$env:ProgramFiles"
+          ) | Where-Object { Test-Path $_ }
+          $app = $roots |
+            ForEach-Object {
+              Get-ChildItem $_ -Recurse -Filter "nsm-flow.exe" -File -ErrorAction SilentlyContinue
+            } |
+            Where-Object { $_.FullName -notlike "*\target\*" } |
+            Select-Object -First 1
+          if (-not $app) { throw "Installed nsm-flow.exe was not found" }
+          Write-Host "Installed executable: $($app.FullName)"
+          $smoke = Start-Process -FilePath $app.FullName -ArgumentList "--help" -Wait -PassThru
+          if ($smoke.ExitCode -ne 0) {
+            throw "Installed NSM Flow CLI smoke test failed with exit code $($smoke.ExitCode)"
+          }
 
       - uses: actions/upload-artifact@v7
         with:

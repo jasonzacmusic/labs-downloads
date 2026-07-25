@@ -2,6 +2,23 @@
   "_comment": "Nathaniel Labs hub catalog. Fields per app: repo (drives last-updated date), native[] (hub asset per platform), web (public app url, always clickable), ios ('soon'|'live'), ios_url (TestFlight/App Store when live), site (sales/landing page when one exists). Downloadable apps are shown first; iOS apps are labeled + colored distinctly.",
   "apps": [
     {
+      "name": "NSM Flow",
+      "category": "Productivity",
+      "repo": "jasonzacmusic/nsm-flow",
+      "native": [
+        {
+          "platform": "mac",
+          "asset": "NSM-Flow-mac-Apple-Silicon.dmg"
+        },
+        {
+          "platform": "win",
+          "asset": "NSM-Flow-windows-x64-setup.exe"
+        }
+      ],
+      "site": "https://nathaniellabs.com/products/nsm-flow",
+      "blurb": "Free local voice typing for email, WhatsApp, prompts, Indian names and musician-grade chord symbols. Public alpha for Mac and Windows."
+    },
+    {
       "name": "Shruti",
       "category": "Audio",
       "repo": "jasonzacmusic/sangam",
