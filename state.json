@@ -8,7 +8,7 @@
 "jasonzacmusic/Chord-Randomiser": {
 "commit": "Ground-up visual redesign + musical upgrades",
 "ios": false,
-"pushed": "2026-07-12T08:29:56Z"
+"pushed": "2026-07-20T10:30:21Z"
 },
 "jasonzacmusic/Christmas": {
 "ios": false
@@ -34,7 +34,7 @@
 "jasonzacmusic/Fifth-Harmony": {
 "commit": "Overhaul playback: proper octave voicing across the syst",
 "ios": true,
-"pushed": "2026-07-07T11:53:03Z"
+"pushed": "2026-07-20T10:13:49Z"
 },
 "jasonzacmusic/Fifth-Harmony-Mobile": {
 "ios": false
@@ -55,27 +55,30 @@
 "ios": false
 },
 "jasonzacmusic/Handwritten-Music-Composer": {
-"commit": "Add Chord Analyzer SEO fallback heading",
+"commit": "Add revival audit report (20 Jul 2026)",
 "ios": false,
-"pushed": "2026-06-07T13:05:57Z"
+"pushed": "2026-07-20T10:23:58Z"
 },
 "jasonzacmusic/Intermediate-Planner": {
+"ios": false
+},
+"jasonzacmusic/JasonCommandCenter": {
 "ios": false
 },
 "jasonzacmusic/Mehfil-Independent-Music": {
 "commit": "Add 'what to listen for' study notes on tracks",
 "ios": false,
-"pushed": "2026-06-12T01:59:02Z"
+"pushed": "2026-07-20T10:30:35Z"
 },
 "jasonzacmusic/Melody-Weaver": {
 "commit": "Real MIDI export, session log, build artifacts config",
 "ios": false,
-"pushed": "2026-07-04T15:16:36Z"
+"pushed": "2026-07-20T10:24:31Z"
 },
 "jasonzacmusic/MidiVisualizer": {
 "commit": "Fun Mode: dock the recording studio controls INTO the he",
 "ios": false,
-"pushed": "2026-07-12T14:20:33Z"
+"pushed": "2026-07-20T10:28:49Z"
 },
 "jasonzacmusic/MidiVisualizer-Releases": {
 "ios": false
@@ -92,14 +95,17 @@
 "jasonzacmusic/MusicMentor": {
 "commit": "Add Melody Composer \u2014 true melody input (step-entry + rh",
 "ios": true,
-"pushed": "2026-07-07T13:31:00Z"
+"pushed": "2026-07-20T10:14:06Z"
 },
 "jasonzacmusic/Musical-Document-Utility": {
 "commit": "Finalize capped chat streams cleanly",
 "ios": false,
-"pushed": "2026-07-12T14:02:05Z"
+"pushed": "2026-07-20T10:28:55Z"
 },
 "jasonzacmusic/NSM-App-Hub": {
+"ios": false
+},
+"jasonzacmusic/NSM-Instrument-Sample-Atlas": {
 "ios": false
 },
 "jasonzacmusic/NSMPortal": {
@@ -114,7 +120,7 @@
 "jasonzacmusic/Note-Forge": {
 "commit": "Add static SEO fallback heading",
 "ios": false,
-"pushed": "2026-07-07T11:52:53Z"
+"pushed": "2026-07-20T10:29:15Z"
 },
 "jasonzacmusic/Piano-Course-Creative": {
 "ios": false
@@ -143,7 +149,7 @@
 "jasonzacmusic/Reaper-Companion-JZ": {
 "commit": "fix: stop Reaper Companion burning Vercel when idle",
 "ios": false,
-"pushed": "2026-07-11T13:18:05Z"
+"pushed": "2026-07-20T10:29:40Z"
 },
 "jasonzacmusic/Reel-Mastermind": {
 "ios": false
@@ -151,12 +157,12 @@
 "jasonzacmusic/RhythmMaster": {
 "commit": "Add static SEO fallback heading",
 "ios": false,
-"pushed": "2026-07-07T13:28:06Z"
+"pushed": "2026-07-20T10:15:05Z"
 },
 "jasonzacmusic/Riff-Database": {
-"commit": "Podcast studio: full-participation guest rooms + broadca",
+"commit": "Riff Sets: /sets and /sets/:slug \u2014 batches of riffs rele",
 "ios": false,
-"pushed": "2026-07-19T14:01:24Z"
+"pushed": "2026-07-23T07:32:37Z"
 },
 "jasonzacmusic/Sales-Nathaniel": {
 "ios": false
@@ -179,7 +185,7 @@
 "jasonzacmusic/aria-website": {
 "commit": "Move lesson search server-side: the corpus never reaches",
 "ios": false,
-"pushed": "2026-07-19T15:59:58Z"
+"pushed": "2026-07-20T10:31:39Z"
 },
 "jasonzacmusic/atlas": {
 "ios": false
@@ -188,9 +194,9 @@
 "ios": false
 },
 "jasonzacmusic/bass-alchemy": {
-"commit": "1.1: Alchemist's Ear (reverse ear-training) + sound-desi",
+"commit": "Add release automation: ASC API client + no-login releas",
 "ios": true,
-"pushed": "2026-07-07T13:29:35Z"
+"pushed": "2026-07-25T12:44:46Z"
 },
 "jasonzacmusic/bug-raga": {
 "ios": false
@@ -199,14 +205,14 @@
 "ios": false
 },
 "jasonzacmusic/cantus": {
-"commit": "feat: per-pin voicing + MIDI export (Fable review \"do-fi",
+"commit": "feat: the 8-feature batch \u2014 shelf, sound-on-touch, roman",
 "ios": true,
-"pushed": "2026-07-07T12:04:52Z"
+"pushed": "2026-07-25T12:48:00Z"
 },
 "jasonzacmusic/chorale": {
 "commit": "v0.5.0: Living Choir release \u2014 audit polish + version bu",
 "ios": false,
-"pushed": "2026-07-19T16:01:09Z"
+"pushed": "2026-07-20T10:29:54Z"
 },
 "jasonzacmusic/chord-tree-canopy": {
 "ios": false
@@ -214,7 +220,10 @@
 "jasonzacmusic/chord-tree-canopy-ultimate": {
 "commit": "v1.1: realism + real platformer game feel",
 "ios": true,
-"pushed": "2026-07-17T03:02:55Z"
+"pushed": "2026-07-20T10:17:45Z"
+},
+"jasonzacmusic/cwa-community": {
+"ios": false
 },
 "jasonzacmusic/dominant-7th-lesson": {
 "ios": false
@@ -225,10 +234,13 @@
 "jasonzacmusic/grabit": {
 "ios": false
 },
+"jasonzacmusic/gradus": {
+"ios": false
+},
 "jasonzacmusic/groove-metronome": {
-"commit": "Implement Claude Design landing page at /landing",
+"commit": "Fix native stage controls and mobile UX",
 "ios": true,
-"pushed": "2026-07-19T11:28:08Z"
+"pushed": "2026-07-22T07:37:18Z"
 },
 "jasonzacmusic/hexatonic": {
 "ios": false
@@ -255,11 +267,14 @@
 "ios": false
 },
 "jasonzacmusic/melakarta-sphere": {
-"commit": "Registers on stage: tanpura octave selector, kriti melod",
+"commit": "fix: point Meta Pixel to live ID 2447874322094181 (was d",
 "ios": false,
-"pushed": "2026-07-19T20:37:09Z"
+"pushed": "2026-07-23T09:18:19Z"
 },
 "jasonzacmusic/money-os": {
+"ios": false
+},
+"jasonzacmusic/motion-graphics-engine": {
 "ios": false
 },
 "jasonzacmusic/music-factory": {
@@ -271,6 +286,9 @@
 "jasonzacmusic/namma-circle": {
 "ios": false
 },
+"jasonzacmusic/namma-kitchen": {
+"ios": false
+},
 "jasonzacmusic/nathaniel-gear-archive": {
 "ios": false
 },
@@ -280,7 +298,7 @@
 "jasonzacmusic/nathaniel-music-hub": {
 "commit": "Fix typecheck errors blocking builds: globalThis for Buf",
 "ios": false,
-"pushed": "2026-07-04T15:21:19Z"
+"pushed": "2026-07-20T10:29:48Z"
 },
 "jasonzacmusic/nathaniel-music-quiz": {
 "ios": false
@@ -289,9 +307,9 @@
 "ios": false
 },
 "jasonzacmusic/nathaniel-photo-hub": {
-"commit": "chore(designs): reconcile with quick-templates studio \u2014 ",
+"commit": "feat(design): filters + adjustments on every surface tha",
 "ios": false,
-"pushed": "2026-07-19T11:53:40Z"
+"pushed": "2026-07-24T03:32:18Z"
 },
 "jasonzacmusic/nathaniel-production-house": {
 "ios": false
@@ -308,6 +326,11 @@
 "jasonzacmusic/nsm-email-assets": {
 "ios": false
 },
+"jasonzacmusic/nsm-flow": {
+"commit": "Merge pull request #3 from jasonzacmusic/agent/musical-t",
+"ios": false,
+"pushed": "2026-07-25T14:33:45Z"
+},
 "jasonzacmusic/nsm-lesson-engine": {
 "ios": false
 },
@@ -320,7 +343,7 @@
 "jasonzacmusic/nsm-melody-rhythm-playground": {
 "commit": "Add internal team guide + QA playbook (docs/team-guide.h",
 "ios": true,
-"pushed": "2026-07-03T09:40:22Z"
+"pushed": "2026-07-20T10:30:23Z"
 },
 "jasonzacmusic/nsm-social-command-centre": {
 "ios": false
@@ -349,14 +372,23 @@
 "jasonzacmusic/ossia": {
 "commit": "Design rethink: Paper Pro gap analysis + Claude Design b",
 "ios": true,
-"pushed": "2026-07-14T06:26:45Z"
+"pushed": "2026-07-20T10:30:07Z"
 },
 "jasonzacmusic/pendulum": {
 "commit": "feat: count-in + gap-click practice modes, and a clean l",
 "ios": true,
-"pushed": "2026-07-07T10:13:47Z"
+"pushed": "2026-07-20T10:25:19Z"
+},
+"jasonzacmusic/pocket-piano-broll-studio": {
+"ios": false
+},
+"jasonzacmusic/poop-patrol": {
+"ios": false
 },
 "jasonzacmusic/product-registry": {
+"ios": false
+},
+"jasonzacmusic/repo-autobackup": {
 "ios": false
 },
 "jasonzacmusic/rhythm-arithmetic": {
@@ -372,14 +404,17 @@
 "ios": false
 },
 "jasonzacmusic/sangam": {
-"commit": "Public-sale audit: fix crash races, settings loss, and l",
+"commit": "ci: reduce redundant macOS Actions usage",
 "ios": false,
-"pushed": "2026-07-19T11:51:45Z"
+"pushed": "2026-07-25T11:34:13Z"
 },
 "jasonzacmusic/shaanbelchada": {
 "ios": false
 },
 "jasonzacmusic/shruti": {
+"ios": false
+},
+"jasonzacmusic/sight-singing-studio": {
 "ios": false
 },
 "jasonzacmusic/sightread": {
@@ -400,6 +435,9 @@
 "jasonzacmusic/woodshed": {
 "commit": "Add GO_LIVE checklist (Brevo email + Blob = live)",
 "ios": true,
-"pushed": "2026-07-19T16:04:20Z"
+"pushed": "2026-07-20T10:25:49Z"
+},
+"jasonzacmusic/zen-studio-app": {
+"ios": false
 }
 }
