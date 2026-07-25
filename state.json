@@ -230,6 +230,9 @@
 "ios": true,
 "pushed": "2026-07-19T11:28:08Z"
 },
+"jasonzacmusic/hexatonic": {
+"ios": false
+},
 "jasonzacmusic/jasonzacmusic": {
 "ios": false
 },
@@ -266,6 +269,9 @@
 "ios": false
 },
 "jasonzacmusic/namma-circle": {
+"ios": false
+},
+"jasonzacmusic/nathaniel-gear-archive": {
 "ios": false
 },
 "jasonzacmusic/nathaniel-labs-site": {
