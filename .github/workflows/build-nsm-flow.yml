@@ -1,0 +1,190 @@
+name: Build NSM Flow installers
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_ref:
+        description: NSM Flow branch, tag, or commit
+        required: true
+        default: main
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: nsm-flow-installers-${{ inputs.source_ref }}
+  cancel-in-progress: false
+
+jobs:
+  mac:
+    name: ${{ matrix.label }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - label: macOS Apple silicon
+            runner: macos-26
+            target: aarch64-apple-darwin
+            stable_name: NSM-Flow-mac-Apple-Silicon.dmg
+          - label: macOS Intel
+            runner: macos-latest
+            target: x86_64-apple-darwin
+            stable_name: NSM-Flow-mac-Intel.dmg
+    runs-on: ${{ matrix.runner }}
+    steps:
+      - name: Check out private NSM Flow source
+        uses: actions/checkout@v5
+        with:
+          repository: jasonzacmusic/nsm-flow
+          ref: ${{ inputs.source_ref }}
+          ssh-key: ${{ secrets.NSM_FLOW_DEPLOY_KEY }}
+          persist-credentials: false
+
+      - uses: oven-sh/setup-bun@v2
+
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-apple-darwin,x86_64-apple-darwin
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Install ONNX Runtime for Intel build
+        if: matrix.target == 'x86_64-apple-darwin'
+        shell: bash
+        run: |
+          set -euo pipefail
+          ORT_VERSION="1.24.2"
+          curl -fL -o ort.tgz "https://blob.handy.computer/onnxruntime-osx-x86_64-${ORT_VERSION}.tgz"
+          tar xzf ort.tgz
+          ORT_DIR="$(pwd)/onnxruntime-osx-x86_64-${ORT_VERSION}"
+          echo "ORT_LIB_LOCATION=$ORT_DIR/lib" >> "$GITHUB_ENV"
+          echo "ORT_PREFER_DYNAMIC_LINK=1" >> "$GITHUB_ENV"
+          jq --arg lib "$ORT_DIR/lib/libonnxruntime.${ORT_VERSION}.dylib" \
+            '.bundle.macOS.frameworks = [$lib]' \
+            src-tauri/tauri.conf.json > tmp.json
+          mv tmp.json src-tauri/tauri.conf.json
+
+      - name: Build unsigned installer
+        run: bun run tauri build --target "${{ matrix.target }}"
+
+      - name: Validate and stage DMG
+        shell: bash
+        run: |
+          set -euo pipefail
+          DMG="$(find "src-tauri/target/${{ matrix.target }}/release/bundle/dmg" -type f -name '*.dmg' -print -quit)"
+          test -n "$DMG"
+          test -s "$DMG"
+          hdiutil verify "$DMG"
+          mkdir -p release
+          cp "$DMG" "release/${{ matrix.stable_name }}"
+          shasum -a 256 "release/${{ matrix.stable_name }}"
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: nsm-flow-${{ matrix.target }}
+          path: release/*
+          if-no-files-found: error
+          retention-days: 30
+
+  windows:
+    name: Windows x64
+    runs-on: windows-latest
+    steps:
+      - name: Enable long paths
+        shell: pwsh
+        run: |
+          New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem" `
+            -Name "LongPathsEnabled" -Value 1 -PropertyType DWORD -Force
+          git config --system core.longpaths true
+
+      - name: Check out private NSM Flow source
+        uses: actions/checkout@v5
+        with:
+          repository: jasonzacmusic/nsm-flow
+          ref: ${{ inputs.source_ref }}
+          ssh-key: ${{ secrets.NSM_FLOW_DEPLOY_KEY }}
+          persist-credentials: false
+
+      - uses: oven-sh/setup-bun@v2
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - name: Install Vulkan SDK
+        uses: humbletim/install-vulkan-sdk@v1.2
+        with:
+          version: 1.4.309.0
+          cache: true
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Locate VC++ runtime for app-local bundling
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+          $vsRoot = & $vswhere -latest -products * -property installationPath
+          if (-not $vsRoot) { throw "vswhere found no Visual Studio installation" }
+          $versionFile = Join-Path $vsRoot "VC\Auxiliary\Build\Microsoft.VCRedistVersion.default.txt"
+          $redistVersion = (Get-Content $versionFile).Trim()
+          $archDir = Join-Path $vsRoot "VC\Redist\MSVC\$redistVersion\x64"
+          $crt = Get-ChildItem $archDir -Directory -Filter "Microsoft.VC*.CRT" |
+            Sort-Object Name | Select-Object -Last 1
+          $omp = Get-ChildItem $archDir -Directory -Filter "Microsoft.VC*.OpenMP" |
+            Sort-Object Name | Select-Object -Last 1
+          if (-not $crt -or -not (Test-Path (Join-Path $crt.FullName "msvcp140.dll"))) {
+            throw "VC++ CRT runtime not found"
+          }
+          if (-not $omp -or -not (Test-Path (Join-Path $omp.FullName "vcomp140.dll"))) {
+            throw "VC++ OpenMP runtime not found"
+          }
+          Add-Content -Path $env:GITHUB_ENV -Value "HANDY_VC_REDIST_DIRS=$($crt.FullName);$($omp.FullName)"
+
+      - name: Install ONNX Runtime
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $version = "1.24.2"
+          Invoke-WebRequest `
+            -Uri "https://github.com/microsoft/onnxruntime/releases/download/v$version/onnxruntime-win-x64-$version.zip" `
+            -OutFile ort.zip
+          Expand-Archive -Path ort.zip -DestinationPath ort-dist -Force
+          $ortLib = (Resolve-Path "ort-dist/onnxruntime-win-x64-$version/lib").Path
+          Add-Content -Path $env:GITHUB_ENV -Value "ORT_LIB_LOCATION=$ortLib"
+          Add-Content -Path $env:GITHUB_ENV -Value "ORT_PREFER_DYNAMIC_LINK=1"
+
+      - name: Install SPIR-V headers
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          vcpkg install spirv-headers:x64-windows
+          if ($LASTEXITCODE -ne 0) { throw "vcpkg install spirv-headers failed" }
+          $prefix = "$env:VCPKG_INSTALLATION_ROOT/installed/x64-windows" -replace '\\','/'
+          Add-Content -Path $env:GITHUB_ENV -Value "CMAKE_PREFIX_PATH=$prefix"
+
+      - name: Build unsigned installers
+        run: bun run tauri build
+
+      - name: Validate and stage EXE and MSI
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $exe = Get-ChildItem "src-tauri/target/release/bundle/nsis" -Filter "*.exe" |
+            Select-Object -First 1
+          $msi = Get-ChildItem "src-tauri/target/release/bundle/msi" -Filter "*.msi" |
+            Select-Object -First 1
+          if (-not $exe -or $exe.Length -le 0) { throw "NSIS installer missing or empty" }
+          if (-not $msi -or $msi.Length -le 0) { throw "MSI installer missing or empty" }
+          New-Item -ItemType Directory -Force release | Out-Null
+          Copy-Item $exe.FullName "release/NSM-Flow-windows-x64-setup.exe"
+          Copy-Item $msi.FullName "release/NSM-Flow-windows-x64.msi"
+          Get-FileHash release/* -Algorithm SHA256
+
+      - uses: actions/upload-artifact@v7
+        with:
+          name: nsm-flow-x86_64-pc-windows-msvc
+          path: release/*
+          if-no-files-found: error
+          retention-days: 30
