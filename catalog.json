@@ -2,6 +2,19 @@
   "_comment": "Nathaniel Labs hub catalog. Fields per app: repo (drives last-updated date), native[] (hub asset per platform), web (public app url, always clickable), ios ('soon'|'live'), ios_url (TestFlight/App Store when live), site (sales/landing page when one exists). Downloadable apps are shown first; iOS apps are labeled + colored distinctly.",
   "apps": [
     {
+      "name": "Net Sense",
+      "category": "Utilities",
+      "repo": "jasonzacmusic/net-sense",
+      "native": [
+        {
+          "platform": "mac",
+          "asset": "Net-Sense-mac.dmg"
+        }
+      ],
+      "web": "https://net-sense-tau.vercel.app",
+      "blurb": "Watches every internet line and access point in the studio, proves which provider is at fault, and reads the Wi-Fi around you. Native Mac app."
+    },
+    {
       "name": "NSM Flow",
       "category": "Productivity",
       "repo": "jasonzacmusic/nsm-flow",
@@ -182,7 +195,7 @@
           "asset": "NSMPhotos-mac.dmg"
         }
       ],
-      "blurb": "NSM Photos — the team photo library + Design Studio as a Mac app. Signed & notarized; opens the hub signed-in after a one-time login."
+      "blurb": "NSM Photos \u2014 the team photo library + Design Studio as a Mac app. Signed & notarized; opens the hub signed-in after a one-time login."
     },
     {
       "name": "Nathaniel Music Hub",

@@ -1,0 +1,31 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>Net Sense</title>
+        <link>https://jasonzacmusic.github.io/labs-downloads/appcasts/net-sense.xml</link>
+        <description>Studio network monitoring for Mac, by Nathaniel Labs.</description>
+        <language>en</language>
+        <item>
+            <title>1.0.0</title>
+            <pubDate>Sat, 26 Jul 2026 17:05:00 +0530</pubDate>
+            <sparkle:version>1</sparkle:version>
+            <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[# Net Sense 1.0.0
+
+The first native release. A real Mac app — no Chrome, no Chromium, nothing to install alongside it.
+
+- **Verdict** — grades each internet line and proves which provider is at fault, with a timestamped record you can send straight to ACT or Jio support.
+- **Airspace** — reads the Wi-Fi around you: who is on which channel, how crowded the air is, and where to move.
+- **Devices, Speed, Coverage, Power and Log** — every client, every line, the whole power path.
+- Finds your router by itself; asks for the controller login once and keeps it in the Mac's Keychain.
+- Opens on any phone or tablet on the same network for viewing.
+]]></description>
+            <enclosure
+                url="https://jasonzacmusic.github.io/labs-downloads/assets/Net-Sense-mac.dmg"
+                sparkle:version="1"
+                sparkle:shortVersionString="1.0.0"
+                type="application/octet-stream" />
+        </item>
+    </channel>
+</rss>
