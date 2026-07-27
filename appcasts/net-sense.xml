@@ -26,7 +26,7 @@ The corrected first native release. A real Mac app — no Chrome, no Chromium, n
 ]]></description>
             <enclosure
                 url="https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/Net-Sense-mac.dmg"
-                sparkle:version="1"
+                sparkle:version="202607271650"
                 sparkle:shortVersionString="1.0.0"
                 type="application/octet-stream" />
         </item>
