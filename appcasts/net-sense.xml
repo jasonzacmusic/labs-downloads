@@ -22,7 +22,7 @@ The first native release. A real Mac app — no Chrome, no Chromium, nothing to 
 - Opens on any phone or tablet on the same network for viewing.
 ]]></description>
             <enclosure
-                url="https://jasonzacmusic.github.io/labs-downloads/assets/Net-Sense-mac.dmg"
+                url="https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/Net-Sense-mac.dmg"
                 sparkle:version="1"
                 sparkle:shortVersionString="1.0.0"
                 type="application/octet-stream" />

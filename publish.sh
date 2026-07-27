@@ -24,11 +24,15 @@ git pull --rebase --autostash origin main
 # point at the exact notarized DMG it just built, instead of the canonical checkout's
 # dist/ — which may be stale or belong to a different release. Falls back to canonical.
 SHRUTI_DMG_SRC="${SHRUTI_DMG:-$HOME/Documents/Claude/sangam/dist/Shruti-signed.dmg}"
+NET_SENSE_DMG_SRC="${NET_SENSE_DMG:-$HOME/Documents/Claude Code/net-sense/mac/build/Net-Sense-mac.dmg}"
 # Chorale: always ship the NEWEST notarized DMG on the Desktop (the notarize
 # script writes ~/Desktop/Chorale-<version>.dmg on every release).
 CHORALE_DMG_SRC="$(ls -t "$HOME"/Desktop/Chorale-*.dmg 2>/dev/null | head -1 || true)"
+NET_SENSE_ROW="file:${NET_SENSE_DMG_SRC}|Net-Sense-mac.dmg"
+SHRUTI_ROW="file:${SHRUTI_DMG_SRC}|Shruti-mac.dmg"
 LOCALS=(
-  "file:${SHRUTI_DMG_SRC}|Shruti-mac.dmg"
+  "$NET_SENSE_ROW"
+  "$SHRUTI_ROW"
   "ghrel:jasonzacmusic/sangam@v1.1.0-rc.5:Sangam-1.1.0-rc.5.dmg|Sangam-mac.dmg"
   "file:${CHORALE_DMG_SRC}|Chorale-mac.dmg"
   "file:~/Documents/Claude/grabit/site/downloads/GrabIt-1.16.dmg|GrabIt-mac.dmg"
@@ -39,8 +43,10 @@ LOCALS=(
   # No secrets baked in — safe on the public downloads release.
   "file:$HOME/nathaniel-photo-hub/macapp/build/NSMPhotos-mac.dmg|NSMPhotos-mac.dmg"
 )
-if [ "${SHRUTI_ONLY:-0}" = "1" ]; then
-  LOCALS=("${LOCALS[0]}")
+if [ "${NET_SENSE_ONLY:-0}" = "1" ]; then
+  LOCALS=("$NET_SENSE_ROW")
+elif [ "${SHRUTI_ONLY:-0}" = "1" ]; then
+  LOCALS=("$SHRUTI_ROW")
 fi
 
 gh release view "$TAG" --repo "$REPO" >/dev/null 2>&1 \
@@ -62,10 +68,11 @@ for row in "${LOCALS[@]}"; do
       else echo "WARN  could not fetch $asset from $orepo${rtag:+@$rtag}"; fi ;;
   esac
 done
-if [ "${SHRUTI_ONLY:-0}" = "1" ] && [ ${#ASSETS[@]} -eq 0 ]; then
-  # A Shruti release run that could not stage the Shruti installer must fail loudly:
+if { [ "${NET_SENSE_ONLY:-0}" = "1" ] || [ "${SHRUTI_ONLY:-0}" = "1" ]; } \
+    && [ ${#ASSETS[@]} -eq 0 ]; then
+  # A product-specific release that could not stage its installer must fail loudly:
   # otherwise the appcast advances while the hub keeps serving the previous DMG.
-  echo "ERROR Shruti installer missing or not notarized; nothing uploaded" >&2
+  echo "ERROR requested installer missing or not notarized; nothing uploaded" >&2
   exit 1
 fi
 if [ ${#ASSETS[@]} -gt 0 ]; then
@@ -88,16 +95,18 @@ done < <(gh release view "$TAG" --repo "$REPO" --json assets --jq '.assets[].nam
 
 # This is Shruti's backup feed; the primary GrabIt-style feed lives on Shruti's dedicated
 # site. Never publish an unsigned scaffold: Shruti requires both archive and feed signing.
-SHRUTI_APPCAST="${SHRUTI_APPCAST_SRC:-$HOME/Documents/Claude/sangam/appcasts/shruti.xml}"
-if [ -f "$SHRUTI_APPCAST" ] \
-    && grep -q 'sparkle:edSignature=' "$SHRUTI_APPCAST" \
-    && grep -q 'sparkle-signatures:' "$SHRUTI_APPCAST"; then
-  mkdir -p appcasts
-  cp "$SHRUTI_APPCAST" appcasts/shruti.xml
-  echo "local appcasts/shruti.xml (Ed25519 signed)"
-else
-  echo "ERROR signed Shruti appcast not ready; run sangam/scripts/generate-shruti-appcast.sh" >&2
-  exit 1
+if [ "${NET_SENSE_ONLY:-0}" != "1" ]; then
+  SHRUTI_APPCAST="${SHRUTI_APPCAST_SRC:-$HOME/Documents/Claude/sangam/appcasts/shruti.xml}"
+  if [ -f "$SHRUTI_APPCAST" ] \
+      && grep -q 'sparkle:edSignature=' "$SHRUTI_APPCAST" \
+      && grep -q 'sparkle-signatures:' "$SHRUTI_APPCAST"; then
+    mkdir -p appcasts
+    cp "$SHRUTI_APPCAST" appcasts/shruti.xml
+    echo "local appcasts/shruti.xml (Ed25519 signed)"
+  else
+    echo "ERROR signed Shruti appcast not ready; run sangam/scripts/generate-shruti-appcast.sh" >&2
+    exit 1
+  fi
 fi
 
 if [ "${SHRUTI_ONLY:-0}" = "1" ]; then
@@ -135,5 +144,10 @@ curl -fsSIL --retry 8 --retry-all-errors --retry-delay 5 \
 curl -fsSIL --retry 8 --retry-all-errors --retry-delay 5 \
   "https://raw.githubusercontent.com/jasonzacmusic/labs-downloads/main/appcasts/shruti.xml" >/dev/null \
   || echo "WARN appcast raw URL not yet visible (propagation lag)"
+if [ "${NET_SENSE_ONLY:-0}" = "1" ]; then
+  curl -fsSIL --retry 8 --retry-all-errors --retry-delay 5 \
+    "https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/Net-Sense-mac.dmg" >/dev/null \
+    || echo "WARN Net-Sense-mac.dmg not yet visible on the download CDN (propagation lag)"
+fi
 echo ""
 echo "Live at: https://jasonzacmusic.github.io/labs-downloads/"
