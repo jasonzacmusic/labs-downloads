@@ -33,7 +33,7 @@ SHRUTI_ROW="file:${SHRUTI_DMG_SRC}|Shruti-mac.dmg"
 LOCALS=(
   "$NET_SENSE_ROW"
   "$SHRUTI_ROW"
-  "ghrel:jasonzacmusic/sangam@v1.1.0-rc.5:Sangam-1.1.0-rc.5.dmg|Sangam-mac.dmg"
+  "ghrel:jasonzacmusic/sangam@v1.1.0-rc.7:Sangam-1.1.0-rc.7.dmg|Sangam-mac.dmg"
   "file:${CHORALE_DMG_SRC}|Chorale-mac.dmg"
   "file:~/Documents/Claude/grabit/site/downloads/GrabIt-1.16.dmg|GrabIt-mac.dmg"
   "ghrel:jasonzacmusic/MidiVisualizer-Releases:MIDI-Piano-Visualizer.dmg|MIDI-Piano-Visualizer-mac.dmg"
