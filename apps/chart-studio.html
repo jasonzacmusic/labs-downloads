@@ -221,6 +221,26 @@ body.editing .durchips{display:flex}
 #pop button:hover{background:var(--brass);color:#17130a;border-color:var(--brass)}
 #pop .hint{font-size:10.5px;color:var(--ink-3);flex-basis:100%;line-height:1.4}
 
+/* ---------- bar arithmetic ---------- */
+.barmath{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin-top:6px;
+  font-family:Archivo;font-size:11px}
+.bm-label{font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:#8a7f6d;
+  font-weight:700;margin-right:3px}
+.bm-bar{min-width:26px;text-align:center;border-radius:5px;padding:2px 6px;font-weight:700;
+  border:1px solid transparent}
+.bm-bar.good{background:#dfe8d6;border-color:#8fb080;color:#3a5a2a}
+.bm-bar.short{background:#f6e6cf;border-color:#d0a763;color:#7a5320}
+.bm-bar.long{background:#f3d9d5;border-color:#c08a82;color:#7a3028}
+.bm-ok{font-size:10.5px;color:#5a7a4a}
+.bm-unbarred{font-size:10.5px;color:#8a7f6d;font-style:italic}
+.bm-fit{font-family:Archivo;font-size:10.5px;font-weight:700;background:#efe3d4;
+  border:1px solid #b9a37a;color:#6a4a1a;border-radius:6px;padding:2px 9px;cursor:pointer}
+.bm-fit:hover{background:#e3d2b8}
+/* selected notes, on the staff and in the letter row */
+[data-noteedit].sel{filter:drop-shadow(0 0 0 #c49a50)}
+[data-noteedit].sel *{fill:#b8791f!important;stroke:#b8791f!important}
+.lick-letters .tok.sel{background:var(--brass);color:#17130a;border-radius:5px}
+
 /* ---------- symbol palette ---------- */
 #palette{position:absolute;z-index:300;display:none;background:var(--surface-2);
   border:1px solid var(--line);border-radius:var(--r-md);padding:12px 14px 14px;
@@ -1249,6 +1269,7 @@ function lickBlockHTML(sec){
     +`<span class="durchip" data-addnote="${sec.id}">＋♪ note</span><span class="durchip rest" data-addrest="${sec.id}">＋𝄾 rest</span></div>`;
   if(sec.bracket)h+=`</div>`;
   h+=`<div class="vexbox" id="lickvex-${sec.id}"></div>`;
+  h+=barMathHTML(sec);
   if(sectionLetterHits(sec,"E","G").length>=2)
     h+=`<div class="durchips"><span class="swapbtn" data-swapsec="${sec.id}">⇄ swap E↔G in this line</span></div>`;
   if(sec.lick.approx&&!isVerified("rhythm:"+sec.id))
@@ -1890,6 +1911,7 @@ function wire(){
     };
     g.oncontextmenu=open;g.ondblclick=open;
   });
+  document.querySelectorAll("[data-fit]").forEach(b=>{b.onclick=()=>fitBars(b.dataset.fit);});
   document.querySelectorAll("[data-noteedit]").forEach(g=>{
     g.onclick=ev=>{
       ev.stopPropagation();
@@ -1898,7 +1920,7 @@ function wire(){
       const tok=lickTokens(sec)[i];
       if(!tok)return;
       ensureAudio().then(()=>playMidi(tok.midi,0,0.5));
-      openNoteEditor(g,sec,i);
+      selSet(secId,i,ev.shiftKey);
     };
   });
   document.querySelectorAll("[data-swapsec]").forEach(el=>{
@@ -3437,6 +3459,236 @@ function openChordPalette(anchor,curSym,apply){
     b.onclick=()=>{el.style.display="none";apply(b.dataset.pc);};
   });
 }
+
+
+// ============================================================================
+// EDITOR — bar arithmetic + MuseScore-style keyboard editing.
+//
+// Two things a notation view must do that a chord grid need not: the bars have
+// to ADD UP, and the reader has to be able to fix them without reaching for a
+// mouse. A lick whose bars do not sum to the meter is not a rhythm, it is a
+// guess, so the count is shown openly per bar rather than quietly engraved.
+// ============================================================================
+
+/** Beats per bar for the current meter (4/4 until charts carry a time signature). */
+const METER=4;
+
+/** Walk a lick and return its bars with their beat totals. */
+function lickBars(sec){
+  const evs=lickEvents(sec);
+  const bars=[];let cur={beats:0,n:0};
+  for(const e of evs){
+    if(e.type==="bar"){ if(cur.n)bars.push(cur); cur={beats:0,n:0}; continue; }
+    if(e.type==="chord")continue;
+    cur.beats+=DUR_BEATS[e.d]??0.5; cur.n++;
+  }
+  if(cur.n)bars.push(cur);
+  return bars;
+}
+const nearly=(a,b)=>Math.abs(a-b)<0.01;
+function prettyBeats(b){
+  const whole=Math.floor(b), frac=b-whole;
+  const F={0:"",0.25:"¼",0.5:"½",0.75:"¾"};
+  const f=F[+frac.toFixed(2)];
+  return f===undefined?(+b.toFixed(2)+""):((whole||!f?whole:"")+f);
+}
+/** The strip under a lick: what each bar actually counts, and a one-tap fix. */
+function barMathHTML(sec){
+  const bars=lickBars(sec);
+  if(!bars.length)return "";
+  // A single run with no barlines is not a bad bar — it is an unbarred phrase,
+  // and pretending to check it against the meter would be noise.
+  if(bars.length===1&&bars[0].beats>METER+0.01)
+    return `<div class="barmath ok"><span class="bm-label">${METER}/4</span>
+      <span class="bm-unbarred">unbarred run · ${prettyBeats(bars[0].beats)} beats — add barlines to check the maths</span></div>`;
+  const off=bars.filter(b=>!nearly(b.beats,METER)).length;
+  return `<div class="barmath ${off?"off":"ok"}">
+    <span class="bm-label">${METER}/4</span>
+    ${bars.map((b,i)=>`<span class="bm-bar ${nearly(b.beats,METER)?"good":(b.beats<METER?"short":"long")}"
+        title="bar ${i+1}: ${prettyBeats(b.beats)} of ${METER} beats">${prettyBeats(b.beats)}</span>`).join("")}
+    ${off?`<button class="bm-fit" data-fit="${sec.id}">fit bars to ${METER}/4</button>`:`<span class="bm-ok">bars add up</span>`}
+  </div>`;
+}
+/**
+ * Make every bar total the meter by lengthening or trimming its LAST value —
+ * a conservative fix that keeps the musician's note order and only touches the
+ * duration that is easiest to have misread.
+ */
+function fitBars(secId){
+  const sec=SONG.sections.find(s=>s.id===secId);
+  if(!sec||!sec.isLick)return;
+  voiceSnapshot&&voiceSnapshot();
+  const VAL={"w":4,"2d":3,"2":2,"4d":1.5,"4":1,"8d":.75,"8":.5,"16":.25};
+  const ORDER=["w","2d","2","4d","4","8d","8","16"];
+  const durs=sec.lick.durs;
+  const isNote=t=>/^[A-G]/.test(t);
+
+  // group duration slots by the bar they fall in
+  const byBar=[];let bar=0,di=0;
+  const put=i=>{(byBar[bar]=byBar[bar]||[]).push(i);};
+  for(const raw of sec.lick.notes){
+    if(raw==="|"||raw==="‖"){
+      while(di<durs.length&&durs[di].endsWith("r")){put(di);di++;}
+      if(byBar[bar])bar++;
+      continue;
+    }
+    if(!isNote(raw))continue;
+    while(di<durs.length&&durs[di].endsWith("r")){put(di);di++;}
+    if(di<durs.length){put(di);di++;}
+  }
+  while(di<durs.length){put(di);di++;}
+
+  // work back to front so inserting rests never shifts an earlier bar
+  let changed=0;
+  for(let b=byBar.length-1;b>=0;b--){
+    const idxs=byBar[b];
+    if(!idxs||!idxs.length)continue;
+    const total=idxs.reduce((t,i)=>t+(DUR_BEATS[durs[i]]??0.5),0);
+    if(nearly(total,METER))continue;
+    if(total>METER){
+      // too long: shrink the last value by what is needed, floor at a 16th
+      const last=idxs[idxs.length-1];
+      const others=total-(DUR_BEATS[durs[last]]??0.5);
+      const want=METER-others;
+      const rest=durs[last].endsWith("r");
+      if(want>=0.25){
+        const pick=ORDER.find(n=>nearly(VAL[n],want))||ORDER.filter(n=>VAL[n]<=want).shift();
+        if(pick){durs[last]=pick+(rest?"r":"");changed++;}
+      }
+    } else {
+      // too short: complete the bar with rests, largest first — a missing beat
+      // is silence the reader can see, not a note stretched to hide the gap
+      let deficit=+(METER-total).toFixed(3);
+      const add=[];
+      for(const n of ORDER){
+        while(deficit>=VAL[n]-0.001){add.push(n+"r");deficit=+(deficit-VAL[n]).toFixed(3);}
+      }
+      if(add.length){durs.splice(idxs[idxs.length-1]+1,0,...add);changed++;}
+    }
+  }
+  if(changed){
+    logEdit("rhythm",secName(secId),"bars off",`${changed} bar${changed>1?"s":""} completed to ${METER}/4`);
+    saveState();render();
+  }
+}
+
+// ============================================================================
+// Selection + MuseScore keyboard editing
+// ============================================================================
+let SEL=null;    // {secId, from, to}  indices into the lick's sounding notes
+
+function selClear(){SEL=null;paintSel();}
+function selSet(secId,i,extend){
+  if(extend&&SEL&&SEL.secId===secId){SEL.to=i;}
+  else SEL={secId,from:i,to:i};
+  paintSel();
+}
+function selRange(){
+  if(!SEL)return null;
+  return {secId:SEL.secId,lo:Math.min(SEL.from,SEL.to),hi:Math.max(SEL.from,SEL.to)};
+}
+function paintSel(){
+  document.querySelectorAll("[data-noteedit].sel,[data-lick].sel").forEach(e=>e.classList.remove("sel"));
+  const r=selRange();if(!r)return;
+  for(let i=r.lo;i<=r.hi;i++){
+    document.querySelectorAll(`[data-noteedit="${r.secId}:${i}"],[data-lick="${r.secId}:${i}"]`)
+      .forEach(e=>e.classList.add("sel"));
+  }
+  const first=document.querySelector(`[data-noteedit="${r.secId}:${r.lo}"]`);
+  if(first&&first.scrollIntoView)first.scrollIntoView({block:"nearest",behavior:"smooth"});
+}
+/** MuseScore's number row: 3=16th 4=eighth 5=quarter 6=half 7=whole. */
+const KEY_DUR={"3":"16","4":"8","5":"4","6":"2","7":"w"};
+
+function editSelection(fn){
+  const r=selRange();if(!r)return;
+  const sec=SONG.sections.find(s=>s.id===r.secId);
+  if(!sec||!sec.isLick)return;
+  voiceSnapshot&&voiceSnapshot();
+  for(let i=r.hi;i>=r.lo;i--)fn(sec,i);
+  saveState();render();paintSel();
+  const toks=lickTokens(sec);
+  const t=toks[r.lo];
+  if(t)ensureAudio().then(()=>playMidi(t.midi,0,0.4,0.7));
+}
+function selMovePitch(semis){
+  editSelection((sec,i)=>{
+    const raw=noteIndexToRaw(sec,i);if(raw<0)return;
+    const tk=parseLickToken(sec.lick.notes[raw]);
+    const cur=lickTokens(sec)[i];if(!cur)return;
+    const nm=cur.midi+semis;
+    const spelled=EAR.spellInKey(((nm%12)+12)%12,trPitch(SONG.concertRoot));
+    // keep the octave marks consistent with how far we moved
+    const octShift=Math.floor((nm-cur.midi+ (cur.midi%12) )/12)-Math.floor((cur.midi%12)/12);
+    const hi=Math.max(0,tk.hi+(semis>=12?1:semis<=-12?-1:0));
+    sec.lick.notes[raw]=transposePitch(spelled,-TR.semis,-TR.steps)
+      +"'".repeat(hi)+(tk.orn?"~":"")+(tk.ul?"_":"");
+  });
+}
+function selSetDur(d){
+  editSelection((sec,i)=>{
+    const di=durIndexForNote(sec,i);
+    if(di>=0)sec.lick.durs[di]=d;
+  });
+}
+function selToggleDot(){
+  editSelection((sec,i)=>{
+    const di=durIndexForNote(sec,i);if(di<0)return;
+    const c=sec.lick.durs[di];
+    sec.lick.durs[di]=c.includes("d")?c.replace("d",""):c.replace(/^(16|8|4|2)/,"$1d");
+  });
+}
+function selDelete(){
+  editSelection((sec,i)=>{
+    const raw=noteIndexToRaw(sec,i);const di=durIndexForNote(sec,i);
+    if(raw>=0)sec.lick.notes.splice(raw,1);
+    if(di>=0)sec.lick.durs.splice(di,1);
+  });
+  const r=selRange();
+  if(r)SEL={secId:r.secId,from:Math.max(0,r.lo-1),to:Math.max(0,r.lo-1)};
+  paintSel();
+}
+/** Move the selected note earlier or later in the line. */
+function selShift(dir){
+  const r=selRange();if(!r||r.lo!==r.hi)return;
+  const sec=SONG.sections.find(s=>s.id===r.secId);if(!sec)return;
+  const a=noteIndexToRaw(sec,r.lo), b=noteIndexToRaw(sec,r.lo+dir);
+  if(a<0||b<0)return;
+  voiceSnapshot&&voiceSnapshot();
+  const n=sec.lick.notes;[n[a],n[b]]=[n[b],n[a]];
+  const da=durIndexForNote(sec,r.lo), db=durIndexForNote(sec,r.lo+dir);
+  if(da>=0&&db>=0){const d=sec.lick.durs;[d[da],d[db]]=[d[db],d[da]];}
+  logEdit("order",secName(sec.id),"note "+(r.lo+1),"position "+(r.lo+1+dir));
+  SEL={secId:r.secId,from:r.lo+dir,to:r.lo+dir};
+  saveState();render();paintSel();
+}
+
+document.addEventListener("keydown",e=>{
+  if(/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName))return;
+  if(!SEL)return;
+  const r=selRange(), sec=SONG.sections.find(s=>s.id===r.secId);
+  if(!sec)return;
+  const n=lickTokens(sec).length;
+  const mod=e.metaKey||e.ctrlKey;
+  const k=e.key;
+  if(k==="ArrowUp"||k==="ArrowDown"){
+    e.preventDefault();
+    const dir=k==="ArrowUp"?1:-1;
+    selMovePitch(mod?12*dir:dir);            // ⌘↑ = octave, ↑ = semitone
+  }
+  else if(k==="ArrowRight"||k==="ArrowLeft"){
+    e.preventDefault();
+    const dir=k==="ArrowRight"?1:-1;
+    if(e.altKey){selShift(dir);return;}       // ⌥→ moves the note itself
+    const next=Math.max(0,Math.min(n-1,(e.shiftKey?SEL.to:SEL.from)+dir));
+    if(e.shiftKey)selSet(r.secId,next,true);
+    else selSet(r.secId,next,false);
+  }
+  else if(KEY_DUR[k]){e.preventDefault();selSetDur(KEY_DUR[k]);}
+  else if(k==="."){e.preventDefault();selToggleDot();}
+  else if(k==="Delete"||k==="Backspace"){e.preventDefault();selDelete();}
+  else if(k==="Escape"){selClear();}
+},true);
 
 
 if(window.matchMedia("(pointer:coarse)").matches)document.getElementById("inkbtn").style.display="";
