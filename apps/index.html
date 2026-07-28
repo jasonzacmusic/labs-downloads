@@ -1,0 +1,52 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Nathaniel Labs — Music Apps</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<style>
+  :root{--bg:#0e1013;--surface:#16191d;--line:#272c33;--ink:#e9ebee;--ink-2:#9aa2ab;
+        --ink-3:#6b737c;--brass:#c49a50}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:Archivo,system-ui,sans-serif;
+       display:flex;align-items:center;justify-content:center;min-height:100vh;padding:32px}
+  .wrap{max-width:640px;width:100%}
+  .brand{display:flex;align-items:center;gap:12px;margin-bottom:28px}
+  h1{font-size:19px;margin:0;font-weight:800}
+  .sub{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-top:2px}
+  a.card{display:block;text-decoration:none;background:var(--surface);border:1px solid var(--line);
+         border-radius:16px;padding:20px 22px;margin-bottom:12px;transition:border-color .15s}
+  a.card:hover{border-color:var(--brass)}
+  a.card h2{margin:0 0 6px;font-size:17px;color:var(--ink);font-weight:800}
+  a.card p{margin:0;font-size:13px;color:var(--ink-2);line-height:1.55}
+  a.card .go{display:inline-block;margin-top:12px;color:var(--brass);font-size:12.5px;font-weight:700}
+  footer{color:var(--ink-3);font-size:11.5px;margin-top:22px;line-height:1.7}
+</style>
+<div class="wrap">
+  <div class="brand">
+    <svg width="34" height="34" viewBox="0 0 32 32" fill="none">
+      <rect x="1" y="1" width="30" height="30" rx="8" stroke="#c49a50" stroke-width="1.5"/>
+      <path d="M9 22V10l14 12V10" stroke="#c49a50" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+      <circle cx="9" cy="22" r="2.6" fill="#c49a50"/>
+    </svg>
+    <div><h1>Nathaniel Labs — Music Apps</h1><div class="sub">Open on any machine</div></div>
+  </div>
+
+  <a class="card" href="chart-studio.html">
+    <h2>Chart Studio</h2>
+    <p>Six handwritten gig charts, digitised in their original layout. Transpose for any instrument
+       or to any key, play any section on real piano samples, dictate music by voice, write with an
+       Apple Pencil, and correct anything by right-clicking it.</p>
+    <span class="go">Open Chart Studio →</span>
+  </a>
+
+  <a class="card" href="trumpet-transposer.html">
+    <h2>Trumpet Transposer</h2>
+    <p>The original one: three handwritten concert-pitch exercise sheets, redrawn cleanly and
+       transposed for B♭ trumpet — with notation and real piano playback for every line.</p>
+    <span class="go">Open Trumpet Transposer →</span>
+  </a>
+
+  <footer>
+    Both apps are single self-contained files — they keep working with no network once loaded.
+    Your edits are saved in the browser you open them in, so each machine keeps its own copy.
+  </footer>
+</div>
