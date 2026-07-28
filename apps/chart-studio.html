@@ -54,7 +54,14 @@ button{font-family:inherit}
 .brand .sub{font-size:10px;color:var(--ink-3);letter-spacing:.14em;text-transform:uppercase;margin-top:1px}
 
 .side-label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);
-  padding:14px 8px 6px;font-weight:700}
+  padding:14px 8px 6px;font-weight:700;display:flex;align-items:center;gap:6px}
+.side-acts{margin-left:auto;display:flex;gap:4px}
+.mini{background:var(--surface-2);border:1px solid var(--line);color:var(--ink-2);
+  border-radius:6px;padding:2px 8px;font-size:10px;font-weight:700;cursor:pointer;
+  letter-spacing:0;text-transform:none;font-family:inherit}
+.mini:hover{background:var(--brass);border-color:var(--brass);color:#17130a}
+.songchip{border-top:2px solid transparent}
+body.editing .section[data-sec]{cursor:grab}
 .side-scroll{overflow-y:auto;min-height:0}
 
 /* ---------- song list ---------- */
@@ -422,7 +429,12 @@ kbd{font-family:var(--mono);font-size:10.5px;background:var(--surface-2);border:
       </div>
     </div>
 
-    <div class="side-label">Charts</div>
+    <div class="side-label">Charts
+      <span class="side-acts">
+        <button class="mini" onclick="createChart()" title="Start a blank chart">+ New</button>
+        <button class="mini" onclick="importChart()" title="Open a chart file">Import</button>
+      </span>
+    </div>
     <div class="songbar" id="songbar"></div>
 
     <div id="drop">
@@ -506,6 +518,7 @@ kbd{font-family:var(--mono);font-size:10.5px;background:var(--surface-2);border:
         <span>〜 ornament</span>
         <span>′ octave up</span>
         <span style="color:var(--brass)">right-click or double-click any chord or note to pick the right symbol</span>
+        <span>in Edit: drag a section to move it · drag charts in the sidebar to reorder</span>
       </div>
     </header>
 
@@ -887,13 +900,89 @@ function applyPrefs(){
   if(p.ivldir)document.getElementById("ivldir").value=p.ivldir;
   if(p.bpm){document.getElementById("bpm").value=p.bpm;document.getElementById("bpmval").textContent=p.bpm;}
   if(p.countin)document.getElementById("countin").checked=true;
-  if(p.song&&SONGS_DEFAULT.some(s=>s.id===p.song))CUR=p.song;
+  if(p.song&&allCharts().some(s=>s.id===p.song))CUR=p.song;
+}
+/**
+ * The project list. Defaults ship with the app; anything the musician creates or
+ * drops in joins them, and the order is theirs to rearrange.
+ */
+function allCharts(){
+  if(!Array.isArray(STATE.order)||!STATE.order.length)
+    STATE.order=SONGS_DEFAULT.map(s=>s.id);
+  for(const id of Object.keys(STATE.songs||{}))
+    if(!STATE.order.includes(id))STATE.order.push(id);
+  STATE.order=STATE.order.filter(id=>STATE.songs?.[id]||SONGS_DEFAULT.some(s=>s.id===id));
+  return STATE.order.map(id=>STATE.songs?.[id]||SONGS_DEFAULT.find(s=>s.id===id)).filter(Boolean);
+}
+function newChartId(){return "c"+Math.random().toString(36).slice(2,8);}
+function createChart(title){
+  const id=newChartId();
+  STATE.songs[id]={id,title:title||"Untitled chart",concertRoot:"C",minor:true,
+    cols:"1.25fr 1fr",sections:[]};
+  allCharts();                       // adopts the new id at the end
+  CUR=id;SONG=STATE.songs[id];
+  saveState();fillKeyPicker();render();
+}
+function duplicateChart(id){
+  const src=STATE.songs[id]||SONGS_DEFAULT.find(s=>s.id===id);
+  if(!src)return;
+  const copy=JSON.parse(JSON.stringify(src));
+  copy.id=newChartId();copy.title=src.title+" copy";
+  STATE.songs[copy.id]=copy;
+  allCharts();                       // adopts the copy, then sit it beside its source
+  const arr=STATE.order;
+  arr.splice(arr.indexOf(id)+1,0,...arr.splice(arr.indexOf(copy.id),1));
+  CUR=copy.id;SONG=copy;saveState();fillKeyPicker();render();
+}
+function renameChart(id){
+  const cur=(STATE.songs[id]||SONGS_DEFAULT.find(s=>s.id===id));
+  if(!cur)return;
+  const t=prompt("Name this chart",cur.title);
+  if(t==null||!t.trim())return;
+  const c=songData(id);c.title=t.trim();saveState();render();
+}
+function deleteChart(id){
+  const c=STATE.songs[id]||SONGS_DEFAULT.find(s=>s.id===id);
+  if(!c)return;
+  if(!confirm(`Remove “${c.title}” from this app?\n\nCharts that shipped with the app come back with Reset.`))return;
+  delete STATE.songs[id];
+  allCharts();STATE.order=STATE.order.filter(x=>x!==id);
+  if(CUR===id)CUR=(allCharts()[0]||{}).id;
+  SONG=CUR?songData(CUR):null;
+  saveState();fillKeyPicker();render();
+}
+function exportChart(id){
+  const c=songData(id);
+  const blob=new Blob([JSON.stringify(c,null,2)],{type:"application/json"});
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(blob);
+  a.download=(c.title||"chart").replace(/[^a-z0-9]+/gi,"-").toLowerCase()+".json";
+  a.click();
+}
+function importChart(){
+  const inp=document.createElement("input");
+  inp.type="file";inp.accept="application/json,.json";
+  inp.onchange=async()=>{
+    const f=inp.files&&inp.files[0];if(!f)return;
+    try{
+      const c=JSON.parse(await f.text());
+      if(!c||!Array.isArray(c.sections))throw new Error("that file is not a chart");
+      c.id=c.id&&!STATE.songs[c.id]?c.id:newChartId();
+      STATE.songs[c.id]=c;allCharts();STATE.order.push(c.id);
+      CUR=c.id;SONG=c;saveState();fillKeyPicker();render();
+    }catch(e){alert("Could not import that file: "+e.message);}
+  };
+  inp.click();
 }
 function songData(id){
-  if(!STATE.songs[id])STATE.songs[id]=JSON.parse(JSON.stringify(SONGS_DEFAULT.find(s=>s.id===id)));
+  if(!STATE.songs[id]){
+    const d=SONGS_DEFAULT.find(s=>s.id===id);
+    if(!d)return null;
+    STATE.songs[id]=JSON.parse(JSON.stringify(d));
+  }
   return STATE.songs[id];
 }
-let CUR=SONGS_DEFAULT[0].id;
+let CUR=(SONGS_DEFAULT[0]||{}).id;
 let SONG=songData(CUR);
 function logEdit(kind,where,from,to){
   STATE.ledger.unshift({when:new Date().toISOString().slice(0,16).replace("T"," "),song:SONG.title,kind,where,from,to});
@@ -1470,7 +1559,7 @@ function renderStage(){
   const qual=SONG.minor?" minor":" major";
   let h=`<div style="display:flex;justify-content:center;gap:14px;align-items:center;margin-top:6px">
       <button class="mode" onclick="stepSong(-1)">‹ prev song</button>
-      <span style="color:#666;font-size:12px">setlist ${SONGS_DEFAULT.findIndex(s=>s.id===CUR)+1} / ${SONGS_DEFAULT.length}</span>
+      <span style="color:#666;font-size:12px">setlist ${allCharts().findIndex(s=>s.id===CUR)+1} / ${allCharts().length}</span>
       <button class="mode" onclick="stepSong(1)">next song ›</button></div>
     <div class="st-title">${SONG.title}</div>
     <div class="st-keys">${(TR.semis||TR.steps)?`Written: ${prettyNote(writtenRoot)}${qual} · Concert: ${prettyNote(SONG.concertRoot)}${qual}`:`Concert: ${prettyNote(SONG.concertRoot)}${qual}`}</div>`;
@@ -1509,14 +1598,37 @@ function renderStage(){
   document.getElementById("stage").innerHTML=h;
 }
 function renderSongbar(){
-  document.getElementById("songbar").innerHTML=SONGS_DEFAULT.map(s=>{
+  document.getElementById("songbar").innerHTML=allCharts().map(s=>{
     const n=openItemsFor(s.id).length;
-    return `<span class="songchip ${s.id===CUR?"on":""}" data-song="${s.id}">${s.title}${n?`<span class="flag">${n}</span>`:""}</span>`;
+    return `<span class="songchip ${s.id===CUR?"on":""}" draggable="true" data-song="${s.id}"
+      title="right-click for rename, duplicate, export, remove">${s.title}${n?`<span class="flag">${n}</span>`:""}</span>`;
   }).join("");
   document.querySelectorAll("[data-song]").forEach(el=>{
     el.onclick=()=>{stopSong();CUR=el.dataset.song;JOURNEY=[];SONG=songData(CUR);fillKeyPicker();render();savePrefs();window.scrollTo(0,0);};
+    el.oncontextmenu=e=>{
+      e.preventDefault();
+      const id=el.dataset.song;
+      const what=prompt(`“${(songData(id)||{}).title}”\n\n1 rename\n2 duplicate\n3 export as a file\n4 remove\n\nType a number:`);
+      if(what==="1")renameChart(id);
+      else if(what==="2")duplicateChart(id);
+      else if(what==="3")exportChart(id);
+      else if(what==="4")deleteChart(id);
+    };
+    // drag a chart up or down to set the running order
+    el.ondragstart=e=>{e.dataTransfer.setData("text/chart",el.dataset.song);e.dataTransfer.effectAllowed="move";};
+    el.ondragover=e=>{if(e.dataTransfer.types.includes("text/chart")){e.preventDefault();el.style.borderTopColor="var(--brass)";}};
+    el.ondragleave=()=>{el.style.borderTopColor="";};
+    el.ondrop=e=>{
+      e.preventDefault();el.style.borderTopColor="";
+      const from=e.dataTransfer.getData("text/chart"),to=el.dataset.song;
+      if(!from||from===to)return;
+      allCharts();
+      const arr=STATE.order;
+      arr.splice(arr.indexOf(to),0,...arr.splice(arr.indexOf(from),1));
+      saveState();render();
+    };
   });
-  const total=SONGS_DEFAULT.reduce((a,s)=>a+openItemsFor(s.id).length,0);
+  const total=allCharts().reduce((a,s)=>a+openItemsFor(s.id).length,0);
   document.getElementById("revcount").textContent=total?String(total):"";
 }
 
@@ -1567,6 +1679,7 @@ function doSwap(secId,a,b){
 // ===================== REVIEW DESK — the improvement system =====================
 function itemsForSong(songId){
   const song=STATE.songs[songId]||SONGS_DEFAULT.find(s=>s.id===songId);
+  if(!song)return [];
   const out=[];
   const push=(o)=>out.push(Object.assign({songId,songTitle:song.title},o));
   push({key:"complete",kind:"coverage",where:"the whole page",secId:song.sections[0]?.id||"",
@@ -1613,7 +1726,7 @@ function openItemsFor(songId){
   return itemsForSong(songId).filter(it=>!STATE.verified[vkey(songId,it.key)]);
 }
 function renderReview(){
-  const all=SONGS_DEFAULT.map(s=>({song:s,items:itemsForSong(s.id)}));
+  const all=allCharts().map(s=>({song:s,items:itemsForSong(s.id)}));
   const totalItems=all.reduce((a,x)=>a+x.items.length,0);
   const done=all.reduce((a,x)=>a+x.items.filter(i=>STATE.verified[vkey(x.song.id,i.key)]).length,0);
   const pct=totalItems?Math.round(done/totalItems*100):100;
@@ -1717,7 +1830,7 @@ function exportTraining(){
     purpose:"Handwriting reader training data — Jason Zac chart transcriptions",
     verified:STATE.verified,
     corrections:STATE.ledger,
-    songs:Object.fromEntries(SONGS_DEFAULT.map(s=>[s.id,{
+    songs:Object.fromEntries(allCharts().map(s=>[s.id,{
       title:s.title,concertRoot:s.concertRoot,minor:s.minor,
       original:s,corrected:STATE.songs[s.id]||null
     }]))
@@ -2082,6 +2195,35 @@ function wire(){
       };
     });
   }
+  // drag a whole section to move it — it adopts the zone it lands in
+  if(EDITING)document.querySelectorAll(".section[data-sec]").forEach(el=>{
+    el.setAttribute("draggable","true");
+    el.ondragstart=e=>{
+      if(e.target.closest("[data-bar],[data-lick],.playbtn"))return;
+      e.dataTransfer.setData("text/section",el.dataset.sec);
+      e.dataTransfer.effectAllowed="move";
+    };
+    el.ondragover=e=>{
+      if([...e.dataTransfer.types].includes("text/section")){
+        e.preventDefault();el.style.outline="2px dashed var(--brass)";}
+    };
+    el.ondragleave=()=>{el.style.outline="";};
+    el.ondrop=e=>{
+      if(![...e.dataTransfer.types].includes("text/section"))return;
+      e.preventDefault();e.stopPropagation();el.style.outline="";
+      const from=e.dataTransfer.getData("text/section"),to=el.dataset.sec;
+      if(!from||from===to)return;
+      const secs=SONG.sections;
+      const fi=secs.findIndex(x=>x.id===from), ti=secs.findIndex(x=>x.id===to);
+      if(fi<0||ti<0)return;
+      const [moved]=secs.splice(fi,1);
+      const at=ti>fi?ti-1:ti;
+      moved.zone=(secs[at]||{}).zone||"main";
+      secs.splice(at,0,moved);
+      logEdit("order",moved.label||moved.nav||moved.id,"section "+(fi+1),"position "+(at+1));
+      saveState();render();
+    };
+  });
   document.querySelectorAll("[data-dur]").forEach(el=>{
     el.onclick=()=>{
       const[secId,iStr]=el.dataset.dur.split(":");
@@ -2181,7 +2323,7 @@ async function readChart(file){
     const chart=await res.json();
     if(!chart||!chart.sections)throw new Error("no chart in the response");
     chart.id=chart.id||("chart-"+Math.random().toString(36).slice(2,8));
-    SONGS_DEFAULT.push(chart);
+    SONGS_DEFAULT.push(chart);allCharts();
     STATE.songs[chart.id]=chart;CUR=chart.id;saveState();
     fillKeyPicker();render();
     drop.classList.remove("busy");
@@ -2199,8 +2341,9 @@ async function readChart(file){
 
 // ---- setlist / keyboard ----
 function stepSong(d){
-  const i=SONGS_DEFAULT.findIndex(s=>s.id===CUR);
-  const n=SONGS_DEFAULT[(i+d+SONGS_DEFAULT.length)%SONGS_DEFAULT.length];
+  const L=allCharts();
+  const i=L.findIndex(s=>s.id===CUR);
+  const n=L[(i+d+L.length)%L.length];
   stopSong();CUR=n.id;JOURNEY=[];SONG=songData(CUR);fillKeyPicker();render();savePrefs();window.scrollTo(0,0);
 }
 document.getElementById("loopbtn").onclick=()=>{
