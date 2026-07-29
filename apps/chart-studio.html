@@ -203,6 +203,15 @@ body.editing .addbar{display:flex}
 .lick-letters{font-family:var(--hand);font-size:27px;font-weight:700;display:flex;gap:8px;
   flex-wrap:wrap;align-items:center}
 .lick-letters .tok{cursor:pointer;padding:0 2px;border-radius:4px}
+.harm-letters{font-family:var(--hand);font-size:22px;font-weight:700;display:flex;gap:8px;
+  flex-wrap:wrap;align-items:center;opacity:.68;margin-top:2px}
+.harm-letters .tok{cursor:pointer;padding:0 2px}
+.harm-tag{font-family:Archivo;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+  opacity:.8;font-weight:700;margin-right:4px}
+.harmbtn{font-family:Archivo;font-size:11px;font-weight:700;background:#dfe6ef;border:1px solid #8fa3bb;
+  color:#2c4364;border-radius:6px;padding:2px 8px;cursor:pointer}
+.harmbtn:hover{background:#cfdcea}
+.harmbtn.on{background:#e8dcc6;border-color:#b9a37a;color:#6a4a1a}
 .lick-letters .tok:hover{background:#00000010}
 .orn{font-size:.7em;vertical-align:super;opacity:.8}
 .segno{font-size:.9em;opacity:.85;margin-right:2px}
@@ -1055,6 +1064,7 @@ function verify(k,on=true){
 // Where the engraving lives: beside the letters (uses the empty right-hand
 // space), underneath them, or nowhere at all.
 let NOTATION=(STATE.prefs&&STATE.prefs.notation)||"side";
+let SCALE=null;                       // the scale this chart is actually using
 let TR={semis:0,steps:0};
 // circle-of-fifths accidental count: negative = flats, positive = sharps
 const SIG_MAJ={"C":0,"G":1,"D":2,"A":3,"E":4,"B":5,"F#":6,"C#":7,"G#":8,"D#":9,"A#":10,
@@ -1222,13 +1232,35 @@ function swapLetterChord(sym,a,b){
 }
 function lickTokens(sec){
   const out=lickTokensRaw(sec);
+  // a harmony line sits in the same octave neighbourhood as the melody it shadows
+  if(sec.lick&&sec.lick.harm&&Array.isArray(sec.lick.harm.notes)){
+    const h=sec.lick.harm.notes.filter(x=>/^[A-G]/.test(x));
+    out.forEach((tk,i)=>{
+      const raw=h[i];
+      if(!raw)return;
+      const m=raw.match(/^([A-G][b#]*)/);
+      if(!m)return;
+      tk.harmT=trPitch(m[1]);
+      const{letter,acc}=parsePitch(tk.harmT);
+      const above=sec.lick.harm.steps>0;
+      let best=null,bd=1e9;
+      for(let o=2;o<=7;o++){
+        const mid=midiOf(letter,acc,o);
+        const okSide=above?mid>tk.midi:mid<tk.midi;
+        if(!okSide)continue;
+        const d=Math.abs(mid-tk.midi);
+        if(d<bd){bd=d;best=mid;}
+      }
+      tk.harmMidi=best??midiOf(letter,acc,tk.oct);
+    });
+  }
   // Centre the line on the staff: shift by octaves until the median note sits
   // near B4, so a lick stops living three ledger lines above the stave.
   if(out.length){
     const ms=out.map(t=>t.midi).sort((a,b)=>a-b);
     const med=ms[Math.floor(ms.length/2)];
     const shift=Math.round((71-med)/12);
-    if(shift)out.forEach(t=>{t.midi+=shift*12;t.oct+=shift;});
+    if(shift)out.forEach(t=>{t.midi+=shift*12;t.oct+=shift;if(t.harmMidi)t.harmMidi+=shift*12;});
   }
   return out;
 }
@@ -1350,7 +1382,10 @@ function scheduleSectionOnce(sec,t,beat){
       if(e.type==="chord"){playChord(trChord(e.sym),t,beat*2);continue;}
       if(e.type==="bar")continue;
       const dur=(DUR_BEATS[e.d]||0.5)*beat;
-      if(e.type==="note")playMidi(e.tok.midi,t,dur*1.6);
+      if(e.type==="note"){
+        playMidi(e.tok.midi,t,dur*1.6);
+        if(e.tok.harmMidi!=null)playMidi(e.tok.harmMidi,t,dur*1.6,0.62);
+      }
       t+=dur;
     }
   }
@@ -1440,13 +1475,30 @@ function lickBlockHTML(sec){
   closeUl();
   if(sec.after)h+=`<span class="onecircle" style="color:var(--green)" data-onecircle="${sec.id}">${sec.after.ch.map(g=>g.split(" ").map(c=>chordHTML(trChord(c))).join(" ")).join(" · ")}</span>`;
   h+=`</div>`;
+  if(sec.lick.harm){
+    h+=`<div class="harm-letters" style="color:${sec.lettersColor||sec.color}">
+        <span class="harm-tag">${sec.lick.harm.name}</span>`;
+    for(const tok of lickTokens(sec)){
+      if(!tok.harmT)continue;
+      const{letter,acc}=parsePitch(tok.harmT);
+      h+=`<span class="tok" data-midi="${tok.harmMidi}">${letter}<sup>${accGlyph(acc)}</sup></span>`;
+    }
+    h+=`</div>`;
+  }
   const L={16:"𝅘𝅥𝅯 16th",8:"♪ 8th","8d":"♪· dotted 8th","8t":"♪₃ triplet",4:"♩ ¼","4d":"♩· dotted ¼",2:"𝅗𝅥 ½","2d":"𝅗𝅥· dotted ½",w:"𝅝 whole"};
   h+=`<div class="durchips">`+sec.lick.durs.map((d,i)=>
     `<span class="durchip ${d.endsWith("r")?"rest":""}" data-dur="${sec.id}:${i}">${d.endsWith("r")?d.replace("r","")+" rest":(L[d]||d)}</span>`).join("")
     +`<span class="durchip" data-addnote="${sec.id}">＋♪ note</span><span class="durchip rest" data-addrest="${sec.id}">＋𝄾 rest</span></div>`;
   if(sec.bracket)h+=`</div>`;
+  h+=`<div class="durchips">`;
   if(sectionLetterHits(sec,"E","G").length>=2)
-    h+=`<div class="durchips"><span class="swapbtn" data-swapsec="${sec.id}">⇄ swap E↔G in this line</span></div>`;
+    h+=`<span class="swapbtn" data-swapsec="${sec.id}">⇄ swap E↔G in this line</span>`;
+  h+=(sec.lick.harm
+      ? `<span class="harmbtn on" data-harm="${sec.id}:0">✕ remove ${sec.lick.harm.name}</span>`
+      : `<span class="harmbtn" data-harm="${sec.id}:2">＋ 3rd above (alto)</span>
+         <span class="harmbtn" data-harm="${sec.id}:-2">＋ 3rd below (tenor)</span>
+         <span class="harmbtn" data-harm="${sec.id}:-5">＋ 6th below</span>`);
+  h+=`</div>`;
   h+=`</div>`;                                    // end .lickmain
   h+=`<div class="lickside"><div class="vexbox" id="lickvex-${sec.id}"></div>`;
   h+=barMathHTML(sec);
@@ -1495,8 +1547,11 @@ function render(){
   const writtenRoot=trPitch(SONG.concertRoot);
   const qual=SONG.minor?" minor":" major";
   document.getElementById("songtitle").textContent=SONG.title;
+  SCALE=(typeof detectScale==="function")?detectScale(SONG,EAR.pcOf(SONG.concertRoot)):null;
+  const scaleBit=SCALE?`  ·  scale <b title="${SCALE.notes.join(" ")}">${SCALE.label}</b>`
+      +(SCALE.confidence<0.9?` <span style="color:var(--warn)">(${Math.round(SCALE.confidence*100)}% — mixed)</span>`:``):``;
   document.getElementById("keyline").innerHTML=
-    `Concert <b>${prettyNote(SONG.concertRoot)}${qual}</b>${(TR.semis||TR.steps)?`  ·  Written <b>${prettyNote(writtenRoot)}${qual}</b>`:""}`;
+    `Concert <b>${prettyNote(SONG.concertRoot)}${qual}</b>${(TR.semis||TR.steps)?`  ·  Written <b>${prettyNote(writtenRoot)}${qual}</b>`:""}${scaleBit}`;
   renderSongbar();
   const zones={main:[],side:[],bottom:[]};
   SONG.sections.forEach(s=>zones[s.zone||"main"].push(s));
@@ -1628,7 +1683,14 @@ function drawLickStaves(sec,el,writtenKey){
         vnotes.push(rn);continue;
       }
       const{letter,acc}=parsePitch(e.tok.pT);
-      const sn=new VF.StaveNote({keys:[`${letter.toLowerCase()}${accStr(acc)}/${e.tok.oct}`],duration:base});
+      const keys=[`${letter.toLowerCase()}${accStr(acc)}/${e.tok.oct}`];
+      if(e.tok.harmT&&e.tok.harmMidi!=null){
+        const hp=parsePitch(e.tok.harmT);
+        const hOct=Math.floor(e.tok.harmMidi/12)-1;
+        keys.push(`${hp.letter.toLowerCase()}${accStr(hp.acc)}/${hOct}`);
+        keys.sort((a,b)=>parseInt(a.split("/")[1])-parseInt(b.split("/")[1]));
+      }
+      const sn=new VF.StaveNote({keys,duration:base});
       if(e.d.includes("d"))try{VF.Dot.buildAndAttach([sn],{all:true});}catch(err){}
       const curAcc=state[letter]||0;
       if(acc!==curAcc){sn.addModifier(new VF.Accidental(acc===0?"n":accStr(acc)));state[letter]=acc;}
@@ -2152,6 +2214,26 @@ function wire(){
       if(!tok)return;
       ensureAudio().then(()=>playMidi(tok.midi,0,0.5));
       selSet(secId,i,ev.shiftKey);
+    };
+  });
+  document.querySelectorAll("[data-harm]").forEach(el=>{
+    el.onclick=()=>{
+      const[secId,stepStr]=el.dataset.harm.split(":");
+      const sec=SONG.sections.find(x=>x.id===secId);
+      if(!sec)return;
+      const steps=+stepStr;
+      if(!steps){delete sec.lick.harm;logEdit("harmony",secName(secId),"harmony","removed");}
+      else{
+        // read this line on its own terms where it can be, else the whole chart
+        const sc=(typeof detectSectionScale==="function"&&detectSectionScale(sec,SONG))||SCALE;
+        if(!sc){alert("Could not work out a scale for this line yet.");return;}
+        const notes=harmoniseLick(sec,sc,steps);
+        if(!notes)return;
+        const NAMES={2:"3rd above · alto",[-2]:"3rd below · tenor",[-5]:"6th below"};
+        sec.lick.harm={steps,notes,name:NAMES[steps]||`${steps} steps`,scale:sc.label};
+        logEdit("harmony",secName(secId),sc.label,NAMES[steps]||String(steps));
+      }
+      saveState();render();
     };
   });
   document.querySelectorAll("[data-swapsec]").forEach(el=>{
@@ -3720,6 +3802,189 @@ function openChordPalette(anchor,curSym,apply){
     b.onmouseenter=()=>ensureAudio().then(()=>playChord(b.dataset.pc,0,0.7));
     b.onclick=()=>{el.style.display="none";apply(b.dataset.pc);};
   });
+}
+
+
+// ============================================================================
+// SCALE — work out what scale a chart is actually using, then harmonise from it.
+//
+// A third is only musical if it comes from the scale: in B♭ minor the third
+// above D♭ is F (a major third) while the third above B♭ is D♭ (a minor third).
+// Harmonising by a fixed number of semitones gets that wrong every time, so
+// every added voice here is a DIATONIC step count inside the detected scale.
+// ============================================================================
+const SCALE_TYPES=[
+  {name:"major",           ivs:[0,2,4,5,7,9,11], w:1.00},
+  {name:"natural minor",   ivs:[0,2,3,5,7,8,10], w:1.00},
+  {name:"harmonic minor",  ivs:[0,2,3,5,7,8,11], w:0.97},
+  {name:"melodic minor",   ivs:[0,2,3,5,7,9,11], w:0.95},
+  {name:"dorian",          ivs:[0,2,3,5,7,9,10], w:0.96},
+  {name:"mixolydian",      ivs:[0,2,4,5,7,9,10], w:0.96},
+  {name:"phrygian",        ivs:[0,1,3,5,7,8,10], w:0.93},
+  {name:"lydian",          ivs:[0,2,4,6,7,9,11], w:0.93},
+  {name:"locrian",         ivs:[0,1,3,5,6,8,10], w:0.85},
+  {name:"minor pentatonic",ivs:[0,3,5,7,10],     w:0.80},
+  {name:"major pentatonic",ivs:[0,2,4,7,9],      w:0.80},
+  {name:"minor blues",     ivs:[0,3,5,6,7,10],   w:0.82},
+];
+const SC_LTRS=["C","D","E","F","G","A","B"];
+const SC_PC={C:0,D:2,E:4,F:5,G:7,A:9,B:11};
+const sc12=n=>((n%12)+12)%12;
+function scAcc(a){return a===0?"":a===-1?"b":a===-2?"bb":a===1?"#":"##";}
+function scParse(p){let a=0;for(const c of p.slice(1)){if(c==="b")a--;if(c==="#")a++;}return{letter:p[0].toUpperCase(),acc:a};}
+
+/** Spell a scale from its root so each degree gets its own letter. */
+function spellScale(root,ivs){
+  const {letter,acc}=scParse(root);
+  const ri=SC_LTRS.indexOf(letter);
+  // seven-note scales take one letter per degree; smaller scales pick the
+  // nearest sensible letter for each interval
+  const seven=ivs.length===7;
+  return ivs.map((iv,i)=>{
+    const li=seven?(ri+i)%7:(ri+Math.round(iv*7/12))%7;
+    const L=SC_LTRS[li];
+    let na=sc12(SC_PC[letter]+acc+iv)-SC_PC[L];
+    if(na>6)na-=12; if(na<-6)na+=12;
+    return L+scAcc(na);
+  });
+}
+
+/**
+ * Weigh every pitch the chart actually uses and find the scale that explains
+ * them. Notes outside a candidate cost more than notes it leaves unused: a
+ * scale that cannot account for what is played is simply the wrong scale.
+ */
+/** Read one section on its own terms — a medley changes key mid-page. */
+function detectSectionScale(sec,chart){
+  const one=detectScale({sections:[sec],concertRoot:chart&&chart.concertRoot},
+                        chart?EAR.pcOf(chart.concertRoot):null);
+  if(!one)return null;
+  const notes=(sec.lick&&sec.lick.notes||[]).filter(x=>/^[A-G]/.test(x)).length;
+  // too few notes to argue with the chart; fall back rather than guess
+  if(notes<5||one.confidence<0.9)return null;
+  return one;
+}
+function detectScale(chart,hintRoot){
+  const w=new Array(12).fill(0);
+  let n=0;
+  const add=(pcs,weight)=>{for(const pc of pcs){w[sc12(pc)]+=weight;n+=weight;}};
+  const tonic=new Array(12).fill(0);      // evidence for what the TONIC is
+  for(const sec of chart.sections||[]){
+    if(sec.isLick&&sec.lick){
+      const melodic=sec.lick.notes.filter(x=>/^[A-G]/.test(x));
+      for(const raw of sec.lick.notes){
+        if(raw==="|"||raw==="‖"||raw==="𝄋"||raw==="//")continue;
+        if(raw.startsWith("@")){                       // circled chord in the line
+          const m=raw.slice(1).match(/^([A-G][b#]*)/);
+          if(m){add([EAR.pcOf(m[1])],1.4);tonic[sc12(EAR.pcOf(m[1]))]+=0.6;}
+          continue;
+        }
+        const m=raw.match(/^([A-G][b#]*)/);
+        if(m)add([EAR.pcOf(m[1])],2);                  // melody carries the most weight
+      }
+      // where a phrase starts and where it comes to rest say most about the key
+      if(melodic.length){
+        const f=melodic[0].match(/^([A-G][b#]*)/),l=melodic[melodic.length-1].match(/^([A-G][b#]*)/);
+        if(f)tonic[sc12(EAR.pcOf(f[1]))]+=1.2;
+        if(l)tonic[sc12(EAR.pcOf(l[1]))]+=2.0;
+      }
+    }
+    for(const bars of [sec.bars,sec.bars2]){
+      for(const bar of bars||[]){
+        for(const c of bar.ch||[]){
+          const core=c.replace(/^\(|\)$/g,"").split("/")[0];
+          const m=core.match(/^([A-G][b#]*)(.*)$/);
+          if(!m)continue;
+          add([EAR.pcOf(m[1])],1.6);                   // root
+          tonic[sc12(EAR.pcOf(m[1]))]+=0.5;
+          const q=m[2];
+          const third=/m(?!aj)|dim|ø|°/.test(q)?3:4;
+          add([EAR.pcOf(m[1])+third],0.7);             // the third colours the mode
+        }
+      }
+    }
+  }
+  if(!n)return null;
+
+  // A note touched once in a whole chart is a chromatic passing note, not a
+  // degree of the scale. Left at full weight, one B natural turns a minor key
+  // into phrygian. They still count against a candidate, just far less.
+  const CHROMATIC_SHARE=0.045;
+  const chromatic=new Array(12).fill(false);
+  for(let pc=0;pc<12;pc++){
+    if(w[pc]&&w[pc]/n<CHROMATIC_SHARE){chromatic[pc]=true;}
+  }
+
+  let best=null;
+  for(let root=0;root<12;root++){
+    for(const t of SCALE_TYPES){
+      const inScale=t.ivs.map(iv=>sc12(root+iv));
+      let inside=0,outside=0;
+      for(let pc=0;pc<12;pc++){
+        if(!w[pc])continue;
+        const weight=chromatic[pc]?w[pc]*0.25:w[pc];
+        if(inScale.includes(pc))inside+=weight; else outside+=weight;
+      }
+      const unused=inScale.filter(pc=>!w[pc]).length;
+      let score=(inside-outside*2.2-unused*0.6)*t.w;
+      // Relative modes share every note, so the tonic has to break the tie:
+      // the written key, and where the phrases actually come to rest.
+      score+=tonic[sc12(root)]*1.8;
+      if(hintRoot!=null&&sc12(root)===sc12(hintRoot))score+=n*0.10;
+      if(!best||score>best.score)best={root,t,score,inside,outside,unused};
+    }
+  }
+  if(!best)return null;
+  const rootName=EAR.spellInKey(best.root,hintRootName(chart));
+  const notes=spellScale(rootName,best.t.ivs);
+  const covered=best.inside/(best.inside+best.outside||1);
+  return {
+    root:rootName, name:best.t.name, ivs:best.t.ivs, notes,
+    degrees:best.t.ivs.length,
+    outside:best.outside, confidence:Math.max(0,Math.min(1,covered)),
+    label:`${EAR.spellInKey(best.root,hintRootName(chart)).replace("b","♭").replace("#","♯")} ${best.t.name}`,
+  };
+}
+function hintRootName(chart){return chart&&chart.concertRoot||"C";}
+
+/**
+ * Move a pitch by whole SCALE steps — the only way an added voice stays in key.
+ * Returns a spelled pitch and the octave shift it crossed.
+ */
+function scaleStep(pitch,steps,scale){
+  const pcs=scale.notes.map(EAR.pcOf);
+  const pc=EAR.pcOf(pitch);
+  let i=pcs.indexOf(pc);
+  if(i<0){
+    // chromatic passing note: lean on the nearest scale tone and keep the offset
+    let bd=99,bi=0;
+    pcs.forEach((p,k)=>{const d=Math.min(sc12(p-pc),sc12(pc-p));if(d<bd){bd=d;bi=k;}});
+    i=bi;
+  }
+  const len=pcs.length;
+  const j=i+steps;
+  const wrapped=((j%len)+len)%len;
+  const oct=Math.floor(j/len);
+  return {pitch:scale.notes[wrapped],oct};
+}
+
+/**
+ * Build a harmony line for a lick: a third above (an alto sitting over the
+ * melody) or a third below (a tenor under it), diatonic to the detected scale.
+ */
+function harmoniseLick(sec,scale,steps){
+  if(!sec.isLick||!sec.lick||!scale)return null;
+  const out=[];
+  for(const raw of sec.lick.notes){
+    if(raw==="|"||raw==="‖"||raw==="𝄋"||raw==="//"||raw.startsWith("@")){out.push(raw);continue;}
+    const m=raw.match(/^([A-G][b#]*)('*)(~?)(_?)$/);
+    if(!m){out.push(raw);continue;}
+    const {pitch,oct}=scaleStep(m[1],steps,scale);
+    // keep the written octave marks, shifted if the harmony crossed an octave
+    const hi=Math.max(0,(m[2]||"").length+oct);
+    out.push(pitch+"'".repeat(hi)+(m[3]||"")+(m[4]||""));
+  }
+  return out;
 }
 
 
