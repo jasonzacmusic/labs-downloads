@@ -131,6 +131,7 @@ button.mode.on{background:var(--brass-soft);border-color:var(--brass-dim);color:
 
 /* ---------- legend / help ---------- */
 .legend{font-size:11px;color:var(--ink-3);padding:0 0 12px;display:flex;gap:14px;flex-wrap:wrap}
+.sharestatus{font-size:11px;color:var(--brass);min-width:0}
 .legend span{white-space:nowrap}
 .unc-demo{border-bottom:2px dotted var(--amber);padding:0 2px;color:var(--ink-2)}
 
@@ -201,7 +202,20 @@ body.editing .addbar{display:flex}
 .lickbracket{border-left:4px solid currentColor;border-right:4px solid currentColor;
   border-radius:6px;padding:4px 10px;display:inline-block}
 .barline{color:#1a7a1a;font-weight:900;font-size:33px}
-.vexbox{background:#fff;border:1px solid var(--paper-line);border-radius:10px;margin-top:8px;
+/* The engraving sits BESIDE the letters by default, filling the empty space to
+   their right; the toolbar can push it below or hide it entirely. */
+.lickwrap{display:flex;gap:18px;align-items:flex-start}
+.lickwrap .lickmain,.lickwrap .lickside{min-width:0}
+.lickwrap.side .lickmain{flex:1 1 44%}
+.lickwrap.side .lickside{flex:1 1 56%}
+.lickwrap.below,.lickwrap.off{display:block}
+.lickwrap.below .lickside{margin-top:8px}
+.lickwrap.off .lickside{display:none}
+@media (max-width:1180px){
+  .lickwrap.side{display:block}
+  .lickwrap.side .lickside{margin-top:8px}
+}
+.vexbox{background:#fff;border:1px solid var(--paper-line);border-radius:10px;margin-top:4px;
   padding:6px 8px;overflow:hidden;max-width:100%}
 .vexbox svg{max-width:100%;height:auto}
 .durchips{display:none;gap:5px;flex-wrap:wrap;margin-top:6px}
@@ -499,6 +513,24 @@ kbd{font-family:var(--mono);font-size:10.5px;background:var(--surface-2);border:
           <button class="mode" id="voicebtn" title="Dictate music by voice (D)">Dictate</button>
           <button class="mode" id="inkbtn" onclick="inkToggle()" style="display:none"
                   title="Write with the Apple Pencil — it digitises when you pause">Ink</button>
+        </div>
+
+        <div class="tgroup">
+          <span class="tlabel">Share</span>
+          <button class="mode" onclick="savePicture()" title="Save the chart as a picture">Picture</button>
+          <button class="mode" onclick="copyPicture()" title="Copy the picture — paste it into Notes, Messages, anywhere">Copy</button>
+          <button class="mode" id="sharebtn" onclick="sharePicture()" title="Send it with AirDrop, Messages, Notes…">Send…</button>
+          <button class="mode" onclick="shareChartFile()" title="Send the editable chart to another device">Send chart</button>
+          <span id="sharestatus" class="sharestatus"></span>
+        </div>
+
+        <div class="tgroup">
+          <span class="tlabel">Notation</span>
+          <select id="notation" title="Where the engraved staff appears">
+            <option value="side">beside the letters</option>
+            <option value="below">below the letters</option>
+            <option value="off">off</option>
+          </select>
         </div>
 
         <div class="tgroup">
@@ -889,6 +921,7 @@ function savePrefs(){
     ivldir:document.getElementById("ivldir").value,
     bpm:document.getElementById("bpm").value,
     countin:document.getElementById("countin").checked,
+    notation:NOTATION,
     song:CUR});
   saveState();
 }
@@ -900,6 +933,7 @@ function applyPrefs(){
   if(p.ivldir)document.getElementById("ivldir").value=p.ivldir;
   if(p.bpm){document.getElementById("bpm").value=p.bpm;document.getElementById("bpmval").textContent=p.bpm;}
   if(p.countin)document.getElementById("countin").checked=true;
+  if(p.notation){NOTATION=p.notation;const n=document.getElementById("notation");if(n)n.value=NOTATION;}
   if(p.song&&allCharts().some(s=>s.id===p.song))CUR=p.song;
 }
 /**
@@ -997,6 +1031,9 @@ function verify(k,on=true){
 }
 
 // ===================== transposition =====================
+// Where the engraving lives: beside the letters (uses the empty right-hand
+// space), underneath them, or nowhere at all.
+let NOTATION=(STATE.prefs&&STATE.prefs.notation)||"side";
 let TR={semis:0,steps:0};
 // circle-of-fifths accidental count: negative = flats, positive = sharps
 const SIG_MAJ={"C":0,"G":1,"D":2,"A":3,"E":4,"B":5,"F#":6,"C#":7,"G#":8,"D#":9,"A#":10,
@@ -1328,7 +1365,7 @@ function chordHTML(sym,cls){
   return `<span class="${(cls||"")+(paren?" passing":"")}">${paren?"(":""}${parts}${paren?")":""}</span>`;
 }
 function lickBlockHTML(sec){
-  let h=``;
+  let h=`<div class="lickwrap ${NOTATION}"><div class="lickmain">`;
   if(sec.bracket)h+=`<div class="lickbracket" style="border-color:${sec.lettersColor||sec.color}">`;
   h+=`<div class="lick-letters" style="color:${sec.lettersColor||sec.color}">`;
   let ni=0;const toks=lickTokens(sec);
@@ -1357,12 +1394,14 @@ function lickBlockHTML(sec){
     `<span class="durchip ${d.endsWith("r")?"rest":""}" data-dur="${sec.id}:${i}">${d.endsWith("r")?d.replace("r","")+" rest":(L[d]||d)}</span>`).join("")
     +`<span class="durchip" data-addnote="${sec.id}">＋♪ note</span><span class="durchip rest" data-addrest="${sec.id}">＋𝄾 rest</span></div>`;
   if(sec.bracket)h+=`</div>`;
-  h+=`<div class="vexbox" id="lickvex-${sec.id}"></div>`;
-  h+=barMathHTML(sec);
   if(sectionLetterHits(sec,"E","G").length>=2)
     h+=`<div class="durchips"><span class="swapbtn" data-swapsec="${sec.id}">⇄ swap E↔G in this line</span></div>`;
+  h+=`</div>`;                                    // end .lickmain
+  h+=`<div class="lickside"><div class="vexbox" id="lickvex-${sec.id}"></div>`;
+  h+=barMathHTML(sec);
   if(sec.lick.approx&&!isVerified("rhythm:"+sec.id))
-    h+=`<div class="rhythm-note">rhythm approximate — cycle chips in ✏️ Edit to correct <span class="okbtn" data-verify="rhythm:${sec.id}">✓ this is right</span></div>`;
+    h+=`<div class="rhythm-note">rhythm approximate — cycle chips in Edit to correct <span class="okbtn" data-verify="rhythm:${sec.id}">✓ this is right</span></div>`;
+  h+=`</div></div>`;                              // end .lickside, .lickwrap
   return h;
 }
 function sectionHTML(sec){
@@ -1416,7 +1455,7 @@ function render(){
       <div class="side-col">${zones.side.map(sectionHTML).join("")}</div>
       <div class="bottom">${zones.bottom.map(sectionHTML).join("")}</div>
     </div>`;
-  renderVex();
+  scheduleVex();
   renderStage();
   renderNav();
   renderReview();
@@ -1431,7 +1470,26 @@ function keySigMap(key){
   if(n>0)SO.slice(0,n).forEach(l=>map[l]=1);
   return map;
 }
+let __vexRO=null;
+function scheduleVex(){
+  requestAnimationFrame(()=>{
+    renderVex();
+    // watch the paper: any width change re-engraves at the real size
+    if(!__vexRO&&window.ResizeObserver){
+      __vexRO=new ResizeObserver(()=>{
+        clearTimeout(__vexRO._t);
+        __vexRO._t=setTimeout(()=>renderVex(),120);
+      });
+    }
+    if(__vexRO){
+      __vexRO.disconnect();
+      const c=document.getElementById("chart");
+      if(c)__vexRO.observe(c);
+    }
+  });
+}
 function renderVex(){
+  if(NOTATION==="off")return;
   const VF=Vex.Flow;
   const writtenKey=trPitch(SONG.concertRoot)+(SONG.minor?"m":"");
   for(const sec of SONG.sections){
@@ -2350,6 +2408,7 @@ document.getElementById("loopbtn").onclick=()=>{
   LOOPING=!LOOPING;document.getElementById("loopbtn").classList.toggle("on",LOOPING);
 };
 document.getElementById("countin").onchange=savePrefs;
+document.getElementById("notation").onchange=e=>{NOTATION=e.target.value;savePrefs();render();};
 document.addEventListener("keydown",e=>{
   if(/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName))return;
   const k=e.key.toLowerCase();
@@ -3832,6 +3891,126 @@ document.addEventListener("keydown",e=>{
   else if(k==="Delete"||k==="Backspace"){e.preventDefault();selDelete();}
   else if(k==="Escape"){selClear();}
 },true);
+
+
+// ============================================================================
+// SHARE — turn the chart on screen into a picture, then hand it to the system.
+//
+// The paper is ordinary DOM, so it is serialised into an SVG <foreignObject>
+// and painted to a canvas: no external library, nothing to load, works offline.
+// From there it can be saved, copied to the clipboard, or handed to the native
+// share sheet — which on a Mac or an iPad is where AirDrop lives.
+// ============================================================================
+
+/** Inline the computed styles so the snapshot looks like what is on screen. */
+function inlineStyles(src,dst){
+  const cs=getComputedStyle(src);
+  const keep=["color","background-color","background-image","border","border-radius",
+    "border-top","border-right","border-bottom","border-left","border-color","border-style",
+    "border-width","font","font-family","font-size","font-weight","font-style","line-height",
+    "letter-spacing","text-decoration","text-align","padding","margin","display","flex",
+    "flex-wrap","flex-direction","flex-basis","gap","align-items","justify-content",
+    "min-width","min-height","width","height","box-shadow","opacity","vertical-align",
+    "grid-template-columns","white-space","position","overflow","box-sizing"];
+  let css="";
+  for(const k of keep){
+    const v=cs.getPropertyValue(k);
+    if(v)css+=k+":"+v+";";
+  }
+  dst.setAttribute("style",css);
+  const a=src.children,b=dst.children;
+  for(let i=0;i<a.length;i++)if(b[i])inlineStyles(a[i],b[i]);
+}
+
+async function chartToBlob(scale=2){
+  const src=document.getElementById("chart");
+  if(!src)throw new Error("no chart on screen");
+  const rect=src.getBoundingClientRect();
+  const w=Math.ceil(rect.width),h=Math.ceil(src.scrollHeight);
+
+  const clone=src.cloneNode(true);
+  inlineStyles(src,clone);
+  // editing chrome has no place in a picture
+  clone.querySelectorAll(".playbtn,.addbar,.durchips,.okbtn,.swapbtn,.bm-fit").forEach(e=>e.remove());
+  clone.style.width=w+"px";
+  clone.style.margin="0";
+  clone.style.boxShadow="none";
+
+  const xml=new XMLSerializer().serializeToString(clone);
+  const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}">
+      <foreignObject width="100%" height="100%">
+        <div xmlns="http://www.w3.org/1999/xhtml" style="width:${w}px">${xml}</div>
+      </foreignObject></svg>`;
+  const img=new Image();
+  img.src="data:image/svg+xml;charset=utf-8,"+encodeURIComponent(svg);
+  await new Promise((res,rej)=>{img.onload=res;img.onerror=()=>rej(new Error("could not draw the chart"));});
+
+  const cv=document.createElement("canvas");
+  cv.width=w*scale;cv.height=h*scale;
+  const ctx=cv.getContext("2d");
+  ctx.fillStyle="#f4f2ec";ctx.fillRect(0,0,cv.width,cv.height);
+  ctx.scale(scale,scale);
+  ctx.drawImage(img,0,0);
+  return new Promise(res=>cv.toBlob(res,"image/png"));
+}
+const chartFileName=()=>((SONG&&SONG.title)||"chart").replace(/[^a-z0-9]+/gi,"-").toLowerCase()+".png";
+
+async function shareStatus(msg,bad){
+  const el=document.getElementById("sharestatus");
+  if(el){el.textContent=msg;el.style.color=bad?"var(--danger)":"var(--brass)";
+    clearTimeout(el._t);el._t=setTimeout(()=>{el.textContent="";},4000);}
+}
+async function savePicture(){
+  try{
+    shareStatus("drawing…");
+    const blob=await chartToBlob();
+    const a=document.createElement("a");
+    a.href=URL.createObjectURL(blob);a.download=chartFileName();a.click();
+    shareStatus("saved "+chartFileName());
+  }catch(e){shareStatus(e.message,true);}
+}
+async function copyPicture(){
+  try{
+    shareStatus("drawing…");
+    const blob=await chartToBlob();
+    if(!navigator.clipboard||!window.ClipboardItem)throw new Error("this browser cannot copy images");
+    await navigator.clipboard.write([new ClipboardItem({"image/png":blob})]);
+    shareStatus("copied — paste it anywhere");
+  }catch(e){shareStatus(e.message,true);}
+}
+/** The native share sheet: AirDrop, Messages, Notes, anything the device offers. */
+async function sharePicture(){
+  try{
+    shareStatus("drawing…");
+    const blob=await chartToBlob();
+    const file=new File([blob],chartFileName(),{type:"image/png"});
+    if(navigator.canShare&&navigator.canShare({files:[file]})){
+      await navigator.share({files:[file],title:(SONG&&SONG.title)||"Chart"});
+      shareStatus("shared");
+    } else {
+      await savePicture();
+      shareStatus("this browser has no share sheet — saved the file instead");
+    }
+  }catch(e){
+    if(e && e.name==="AbortError"){shareStatus("");return;}   // user closed the sheet
+    shareStatus(e.message,true);
+  }
+}
+/** Send the chart itself (not a picture) to another device, editable there. */
+async function shareChartFile(){
+  try{
+    const c=songData(CUR);
+    const file=new File([JSON.stringify(c,null,2)],
+      ((c.title||"chart").replace(/[^a-z0-9]+/gi,"-").toLowerCase()+".json"),{type:"application/json"});
+    if(navigator.canShare&&navigator.canShare({files:[file]})){
+      await navigator.share({files:[file],title:c.title});
+      shareStatus("sent — Import it on the other device");
+    } else { exportChart(CUR); shareStatus("saved the chart file — Import it on the other device"); }
+  }catch(e){
+    if(e && e.name==="AbortError")return;
+    shareStatus(e.message,true);
+  }
+}
 
 
 if(window.matchMedia("(pointer:coarse)").matches)document.getElementById("inkbtn").style.display="";
