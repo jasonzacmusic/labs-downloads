@@ -57,7 +57,7 @@
 "jasonzacmusic/Handwritten-Music-Composer": {
 "commit": "Add revival audit report (20 Jul 2026)",
 "ios": false,
-"pushed": "2026-07-27T11:24:23Z"
+"pushed": "2026-07-29T07:59:29Z"
 },
 "jasonzacmusic/Intermediate-Planner": {
 "ios": false
@@ -160,9 +160,9 @@
 "pushed": "2026-07-20T10:15:05Z"
 },
 "jasonzacmusic/Riff-Database": {
-"commit": "Riff Sets: /sets and /sets/:slug \u2014 batches of riffs rele",
+"commit": "Live Mode data: auto-sync new freestyle riffs",
 "ios": false,
-"pushed": "2026-07-23T07:32:37Z"
+"pushed": "2026-07-28T06:48:50Z"
 },
 "jasonzacmusic/Sales-Nathaniel": {
 "ios": false
@@ -213,17 +213,17 @@
 "pushed": "2026-07-25T12:48:00Z"
 },
 "jasonzacmusic/chorale": {
-"commit": "v0.5.0: Living Choir release \u2014 audit polish + version bu",
+"commit": "docs: Higgsfield asset prompts + trial findings",
 "ios": false,
-"pushed": "2026-07-20T10:29:54Z"
+"pushed": "2026-07-29T14:38:23Z"
 },
 "jasonzacmusic/chord-tree-canopy": {
 "ios": false
 },
 "jasonzacmusic/chord-tree-canopy-ultimate": {
-"commit": "v1.1: realism + real platformer game feel",
+"commit": "docs: handoff for audit/rebuild \u2014 looks-like-game diagno",
 "ios": true,
-"pushed": "2026-07-20T10:17:45Z"
+"pushed": "2026-07-29T14:00:00Z"
 },
 "jasonzacmusic/cwa-community": {
 "ios": false
@@ -310,17 +310,17 @@
 "ios": false
 },
 "jasonzacmusic/nathaniel-photo-hub": {
-"commit": "feat(design): centre-align, text shadow and outline; doc",
+"commit": "The NSM 2026 background bank \u2014 23 surfaces covering ever",
 "ios": false,
-"pushed": "2026-07-26T10:31:42Z"
+"pushed": "2026-07-29T14:32:58Z"
 },
 "jasonzacmusic/nathaniel-production-house": {
 "ios": false
 },
 "jasonzacmusic/net-sense": {
-"commit": "Compare Mac update build numbers",
+"commit": "Fix Net Sense performance, identity, and working studio ",
 "ios": false,
-"pushed": "2026-07-27T11:20:10Z"
+"pushed": "2026-07-29T14:22:26Z"
 },
 "jasonzacmusic/nsm-aria": {
 "ios": false
@@ -411,7 +411,7 @@
 "jasonzacmusic/sangam": {
 "commit": "ci: reduce redundant macOS Actions usage",
 "ios": false,
-"pushed": "2026-07-25T11:34:13Z"
+"pushed": "2026-07-27T15:56:30Z"
 },
 "jasonzacmusic/shaanbelchada": {
 "ios": false
