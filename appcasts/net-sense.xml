@@ -6,15 +6,17 @@
         <description>Studio network monitoring for Mac, by Nathaniel Labs.</description>
         <language>en</language>
         <item>
-            <title>1.0.8</title>
-            <pubDate>Wed, 29 Jul 2026 21:50:00 +0530</pubDate>
-            <sparkle:version>202607292150</sparkle:version>
-            <sparkle:shortVersionString>1.0.8</sparkle:shortVersionString>
+            <title>1.0.9</title>
+            <pubDate>Wed, 29 Jul 2026 22:06:00 +0530</pubDate>
+            <sparkle:version>202607292206</sparkle:version>
+            <sparkle:shortVersionString>1.0.9</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Net Sense 1.0.8
+            <description sparkle:format="markdown"><![CDATA[# Net Sense 1.0.9
 
 Security and reliability release for the native Mac app.
 
+- Shows all four access points even when a room has no clients, with controller-proven wired, mesh, offline or unknown uplink state.
+- Warns when an AP has PoE power but no Ethernet data path. The live studio audit currently identifies NSM - Studio as one-hop Wi-Fi mesh; Main, Hall and Music are wired.
 - Packages its own standalone Apple-silicon engine; receiving Macs no longer need Python, Xcode or Homebrew.
 - Keeps the controller login in this Mac's Keychain and preserves the app's browser session across launches.
 - Restricts the engine and every private or mutating action to this Mac only, with loopback, host, origin and JSON request checks.
@@ -26,9 +28,9 @@ Security and reliability release for the native Mac app.
 ]]></description>
             <enclosure
                 url="https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/Net-Sense-mac.dmg"
-                sparkle:version="202607292150"
-                sparkle:shortVersionString="1.0.8"
-                length="7146365"
+                sparkle:version="202607292206"
+                sparkle:shortVersionString="1.0.9"
+                length="7146283"
                 type="application/octet-stream" />
         </item>
     </channel>

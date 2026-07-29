@@ -221,9 +221,9 @@
 "ios": false
 },
 "jasonzacmusic/chord-tree-canopy-ultimate": {
-"commit": "feat: turn World 1 into a playable chord-tree adventure",
+"commit": "Add Higgsfield hero animation set",
 "ios": true,
-"pushed": "2026-07-29T15:04:20Z"
+"pushed": "2026-07-29T16:26:50Z"
 },
 "jasonzacmusic/cwa-community": {
 "ios": false
@@ -318,9 +318,9 @@
 "ios": false
 },
 "jasonzacmusic/net-sense": {
-"commit": "Sign embedded engine components for notarization (#2)",
+"commit": "Expose wired and mesh AP uplinks (#4)",
 "ios": false,
-"pushed": "2026-07-29T16:20:20Z"
+"pushed": "2026-07-29T16:35:39Z"
 },
 "jasonzacmusic/nsm-aria": {
 "ios": false
