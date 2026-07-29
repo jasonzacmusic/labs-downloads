@@ -200,7 +200,7 @@ body.editing .bar,body.editing .lick-letters .tok,body.editing .inchord,body.edi
 body.editing .addbar{display:flex}
 .swaparrow{font-size:25px;color:var(--cyan);margin:-4px 0 -4px 24px}
 .arrowto{font-family:var(--hand);font-size:21px;font-weight:700;color:var(--green);margin-top:3px}
-.lick-letters{font-family:var(--hand);font-size:29px;font-weight:700;display:flex;gap:9px;
+.lick-letters{font-family:var(--hand);font-size:27px;font-weight:700;display:flex;gap:8px;
   flex-wrap:wrap;align-items:center}
 .lick-letters .tok{cursor:pointer;padding:0 2px;border-radius:4px}
 .lick-letters .tok:hover{background:#00000010}
@@ -215,11 +215,14 @@ body.editing .addbar{display:flex}
    their right; the toolbar can push it below or hide it entirely. */
 .lickwrap{display:flex;gap:18px;align-items:flex-start}
 .lickwrap .lickmain,.lickwrap .lickside{min-width:0}
-.lickwrap.side .lickmain{flex:1 1 44%}
-.lickwrap.side .lickside{flex:1 1 56%}
+.lickwrap.side .lickmain{flex:1 1 48%}
+.lickwrap.side .lickside{flex:1 1 52%}
 .lickwrap.below,.lickwrap.off{display:block}
 .lickwrap.below .lickside{margin-top:8px}
 .lickwrap.off .lickside{display:none}
+/* Not enough room to sit beside the letters — stack, and use the full width. */
+.lickwrap.side.narrow{display:block}
+.lickwrap.side.narrow .lickside{margin-top:8px}
 @media (max-width:1180px){
   .lickwrap.side{display:block}
   .lickwrap.side .lickside{margin-top:8px}
@@ -528,8 +531,10 @@ kbd{font-family:var(--mono);font-size:10.5px;background:var(--surface-2);border:
           <span class="tlabel">Share</span>
           <button class="mode" onclick="savePicture()" title="Save the chart as a picture">Picture</button>
           <button class="mode" onclick="copyPicture()" title="Copy the picture — paste it into Notes, Messages, anywhere">Copy</button>
-          <button class="mode" id="sharebtn" onclick="sharePicture()" title="Send it with AirDrop, Messages, Notes…">Send…</button>
+          <button class="mode" id="sharebtn" onpointerdown="preparePicture()" onclick="sharePicture()"
+                  title="Send it with AirDrop, Messages, Notes… (iPad and iPhone)">Send…</button>
           <button class="mode" onclick="shareChartFile()" title="Send the editable chart to another device">Send chart</button>
+          <button class="mode" onclick="airdropHelp()" title="How to get this onto another Apple device">?</button>
           <span id="sharestatus" class="sharestatus"></span>
         </div>
 
@@ -1024,7 +1029,11 @@ function songData(id){
   if(!STATE.songs[id]){
     const d=SONGS_DEFAULT.find(s=>s.id===id);
     if(!d)return null;
-    STATE.songs[id]=JSON.parse(JSON.stringify(d));
+    const copy=JSON.parse(JSON.stringify(d));
+    // Rhythms I only inferred are re-timed so every bar obeys the metre before
+    // the musician ever sees them.
+    if(typeof normaliseChart==="function")normaliseChart(copy);
+    STATE.songs[id]=copy;
   }
   return STATE.songs[id];
 }
@@ -1513,14 +1522,23 @@ function keySigMap(key){
   return map;
 }
 let __vexRO=null;
+/** Below this, a staff beside the letters is narrower than it is readable. */
+const SIDE_MIN=520;
+function fitLickLayout(){
+  document.querySelectorAll(".lickwrap").forEach(w=>{
+    if(!w.classList.contains("side"))return;
+    w.classList.toggle("narrow",w.getBoundingClientRect().width<SIDE_MIN);
+  });
+}
 function scheduleVex(){
   requestAnimationFrame(()=>{
+    fitLickLayout();
     renderVex();
     // watch the paper: any width change re-engraves at the real size
     if(!__vexRO&&window.ResizeObserver){
       __vexRO=new ResizeObserver(()=>{
         clearTimeout(__vexRO._t);
-        __vexRO._t=setTimeout(()=>renderVex(),120);
+        __vexRO._t=setTimeout(()=>{fitLickLayout();renderVex();},120);
       });
     }
     if(__vexRO){
@@ -1575,13 +1593,15 @@ function drawLickStaves(sec,el,writtenKey){
   const VF=Vex.Flow;
   const evs=lickEvents(sec);
   if(!evs.length)return;
-  const W=Math.max(320,(el.clientWidth||el.parentElement.clientWidth||900)-10);
-  const FIRST=118, EVW=36, BARW=16;
-  // break into systems that FIT the page width
-  const lines=[];let cur=[],w=FIRST;
+  const W=Math.max(300,(el.clientWidth||el.parentElement.clientWidth||900)-10);
+  // Clef + key + metre are redrawn on every system, so every system pays for
+  // them; the wrap estimate has to say so or the last notes fall off the end.
+  const HEAD=104, EVW=34, BARW=14;
+  const room=Math.max(120,W-HEAD-14);
+  const lines=[];let cur=[],w=0;
   for(const e of evs){
     const ew=e.type==="bar"?BARW:EVW;
-    if(w+ew>W&&cur.length){lines.push(cur);cur=[];w=46;}
+    if(w+ew>room&&cur.length){lines.push(cur);cur=[];w=0;}
     cur.push(e);w+=ew;
   }
   if(cur.length)lines.push(cur);
@@ -1592,12 +1612,10 @@ function drawLickStaves(sec,el,writtenKey){
   const state=keySigMap(writtenKey);      // accidentals carry across systems
   let tri=0, noteIdx=0;
   lines.forEach((line,li)=>{
-    const stave=new VF.Stave(4,14+li*LH,W-8);
-    if(li===0){
-      stave.addClef("treble");
-      try{stave.addKeySignature(writtenKey);}catch(err){}
-      stave.addTimeSignature("4/4");
-    }
+    const stave=new VF.Stave(4,14+li*LH,W-18);
+    stave.addClef("treble");
+    try{stave.addKeySignature(writtenKey);}catch(err){}
+    if(li===0)stave.addTimeSignature("4/4");
     stave.setContext(ctx).draw();
     const vnotes=[],mine=[];
     for(const e of line){
@@ -1629,7 +1647,7 @@ function drawLickStaves(sec,el,writtenKey){
     if(!vnotes.length)return;
     const v=new VF.Voice({num_beats:64,beat_value:4}).setMode(VF.Voice.Mode.SOFT);
     v.addTickables(vnotes);
-    new VF.Formatter().joinVoices([v]).format([v],W-(li===0?FIRST:60));
+    new VF.Formatter().joinVoices([v]).format([v],Math.max(80,W-HEAD-34));
     // beam per beat, and never across a barline
     const beams=[];
     let run=[];
@@ -3715,7 +3733,7 @@ function openChordPalette(anchor,curSym,apply){
 // ============================================================================
 
 /** Beats per bar for the current meter (4/4 until charts carry a time signature). */
-const METER=4;
+var METER=4;   // var: read during early boot, before this module's consts settle
 
 /** Walk a lick and return its bars with their beat totals. */
 function lickBars(sec){
@@ -3814,6 +3832,62 @@ function fitBars(secId){
     logEdit("rhythm",secName(secId),"bars off",`${changed} bar${changed>1?"s":""} completed to ${METER}/4`);
     saveState();render();
   }
+}
+
+/**
+ * Values that fill exactly one bar with n notes, as evenly as the notation
+ * allows. When a rhythm was inferred rather than read, evenly-spaced notes are
+ * the honest engraving: they obey the metre, they read cleanly, and they say
+ * "these are the notes, the rhythm is yours to set" instead of inventing a
+ * lopsided pattern padded out with rests.
+ */
+/** The metre, resolved safely — this runs during early boot, before assignment. */
+function meter(){return (typeof METER==="number"&&METER)||4;}
+function evenDurs(n){
+  // kept inside the function: reachable before this module's own top-level
+  // bindings have initialised, and a const in its dead zone throws
+  const NOTE_VALS=[["16",.25],["8",.5],["4",1],["2",2],["w",4]];
+  const M=meter();
+  if(n<=0)return [];
+  if(n===1)return ["w"];
+  for(let i=0;i<NOTE_VALS.length;i++){
+    const [name,v]=NOTE_VALS[i];
+    if(n*v>M)continue;
+    const up=NOTE_VALS[i+1];
+    const remainder=M-n*v;
+    if(remainder<0.001)return Array(n).fill(name);
+    if(!up)break;
+    const k=remainder/(up[1]-v);
+    if(Math.abs(k-Math.round(k))<0.001&&Math.round(k)<=n)
+      return Array(n).fill(name).map((d,j)=>j<Math.round(k)?up[0]:d);
+  }
+  // more notes than a bar can hold at a sixteenth: keep them, smallest value
+  return Array(n).fill("16");
+}
+/**
+ * Re-time a lick whose rhythm was only inferred, bar by bar, so every bar adds
+ * up to the metre. The musician's NOTES and BARLINES are untouched — only the
+ * durations I guessed are replaced, and invented rests are dropped.
+ */
+function normaliseApproxLick(sec){
+  if(!sec.isLick||!sec.lick||!sec.lick.approx)return false;
+  const isNote=t=>/^[A-G]/.test(t);
+  const bars=[];let cur=0;
+  for(const raw of sec.lick.notes){
+    if(raw==="|"||raw==="‖"){ if(cur){bars.push(cur);cur=0;} continue; }
+    if(isNote(raw))cur++;
+  }
+  if(cur)bars.push(cur);
+  if(!bars.length)return false;
+  const durs=[];
+  for(const n of bars)durs.push(...evenDurs(n));
+  sec.lick.durs=durs;
+  return true;
+}
+function normaliseChart(chart){
+  let n=0;
+  for(const sec of chart.sections||[])if(normaliseApproxLick(sec))n++;
+  return n;
 }
 
 // ============================================================================
@@ -4020,24 +4094,50 @@ async function copyPicture(){
     shareStatus("copied — paste it anywhere");
   }catch(e){shareStatus(e.message,true);}
 }
-/** The native share sheet: AirDrop, Messages, Notes, anything the device offers. */
-async function sharePicture(){
+/**
+ * The native share sheet.
+ *
+ * Two things break AirDrop from a browser, and both are handled here:
+ *  1. navigator.share() needs the user's gesture still to be "fresh". Awaiting
+ *     the PNG first spends that activation and Safari refuses, so the picture is
+ *     drawn on pointer-down and the click shares the already-finished file.
+ *  2. macOS Safari does not accept FILES in the share sheet at all (iPadOS and
+ *     iOS do). There is no way around it from a web page, so rather than fail
+ *     quietly we save the picture and say where AirDrop actually lives.
+ */
+let PENDING_PNG=null;
+async function preparePicture(){
   try{
-    shareStatus("drawing…");
+    PENDING_PNG=null;
     const blob=await chartToBlob();
-    const file=new File([blob],chartFileName(),{type:"image/png"});
-    if(navigator.canShare&&navigator.canShare({files:[file]})){
-      await navigator.share({files:[file],title:(SONG&&SONG.title)||"Chart"});
-      shareStatus("shared");
-    } else {
-      await savePicture();
-      shareStatus("this browser has no share sheet — saved the file instead");
-    }
-  }catch(e){
-    if(e && e.name==="AbortError"){shareStatus("");return;}   // user closed the sheet
-    shareStatus(e.message,true);
-  }
+    PENDING_PNG=new File([blob],chartFileName(),{type:"image/png"});
+  }catch(e){PENDING_PNG=null;}
 }
+function canShareFiles(){
+  try{
+    const probe=new File(["x"],"probe.png",{type:"image/png"});
+    return !!(navigator.canShare&&navigator.canShare({files:[probe]}));
+  }catch(e){return false;}
+}
+function sharePicture(){
+  if(!canShareFiles()){
+    // Be straight about it instead of opening nothing.
+    savePicture().then(()=>shareStatus(
+      "this browser can’t open the share sheet with a file — picture saved; AirDrop it from Finder, or use Copy and paste it into Messages"));
+    return;
+  }
+  const file=PENDING_PNG;
+  if(!file){                       // not drawn yet: draw, then ask for one more tap
+    preparePicture().then(()=>shareStatus("picture ready — tap Send… again to AirDrop it"));
+    return;
+  }
+  // called synchronously inside the click, so the gesture is still valid
+  navigator.share({files:[file],title:(SONG&&SONG.title)||"Chart"})
+    .then(()=>shareStatus("shared"))
+    .catch(e=>{ if(e&&e.name!=="AbortError")shareStatus(e.message,true); })
+    .finally(()=>{PENDING_PNG=null;});
+}
+
 /** Send the chart itself (not a picture) to another device, editable there. */
 async function shareChartFile(){
   try{
