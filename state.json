@@ -182,6 +182,9 @@
 "jasonzacmusic/Vocal-MusicMethod": {
 "ios": false
 },
+"jasonzacmusic/aangan": {
+"ios": false
+},
 "jasonzacmusic/aria-website": {
 "commit": "Move lesson search server-side: the corpus never reaches",
 "ios": false,
