@@ -6,28 +6,29 @@
         <description>Studio network monitoring for Mac, by Nathaniel Labs.</description>
         <language>en</language>
         <item>
-            <title>1.0.0</title>
-            <pubDate>Mon, 27 Jul 2026 16:52:03 +0530</pubDate>
-            <sparkle:version>202607271650</sparkle:version>
-            <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
+            <title>1.0.8</title>
+            <pubDate>Wed, 29 Jul 2026 21:50:00 +0530</pubDate>
+            <sparkle:version>202607292150</sparkle:version>
+            <sparkle:shortVersionString>1.0.8</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Net Sense 1.0.0
+            <description sparkle:format="markdown"><![CDATA[# Net Sense 1.0.8
 
-The corrected first native release. A real Mac app — no Chrome, no Chromium, nothing to install alongside it.
+Security and reliability release for the native Mac app.
 
-- Reads the real ER7212PC controller, including the verified ACT/WAN3 and Jio/WAN4 field shapes.
-- **Verdict** — grades each internet line only after an isolated policy-routed test verifies the expected provider ASN.
-- **Airspace** — reads the Wi-Fi around you: who is on which channel, how crowded the air is, and where to move.
-- **Devices** now preserves wall-plate Ethernet ports instead of pretending every wired client is directly attached to the router.
-- **Coverage** is explicitly an unmeasured sketch until real walk-through points are recorded.
-- Finds your router by itself; asks for the controller login once and keeps it in the Mac's Keychain.
-- Opens on any phone or tablet on the same network for viewing.
-- Native sessions clear stale service-worker assets so an older web bundle cannot survive an app update.
+- Packages its own standalone Apple-silicon engine; receiving Macs no longer need Python, Xcode or Homebrew.
+- Keeps the controller login in this Mac's Keychain and preserves the app's browser session across launches.
+- Restricts the engine and every private or mutating action to this Mac only, with loopback, host, origin and JSON request checks.
+- Recovers from the WebKit GPU crash seen on the studio Mac by switching to a stable compatibility renderer.
+- Separates live traffic from tested line capacity so current usage is never presented as an internet speed test.
+- Reads the live ER7212PC controller using field mappings re-verified against a fresh probe: ACT on WAN3, JIO on WAN/LAN4, four EAP655-Wall access points.
+- Makes unverified Shield and guest-authentication features visibly unavailable instead of pretending they changed the network.
+- Signed with Jason's Developer ID and accepted and stapled by Apple's notarization service.
 ]]></description>
             <enclosure
                 url="https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/Net-Sense-mac.dmg"
-                sparkle:version="202607271650"
-                sparkle:shortVersionString="1.0.0"
+                sparkle:version="202607292150"
+                sparkle:shortVersionString="1.0.8"
+                length="7146365"
                 type="application/octet-stream" />
         </item>
     </channel>

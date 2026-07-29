@@ -318,9 +318,9 @@
 "ios": false
 },
 "jasonzacmusic/net-sense": {
-"commit": "Fix blank Net Sense window on launch",
+"commit": "Sign embedded engine components for notarization (#2)",
 "ios": false,
-"pushed": "2026-07-29T14:42:17Z"
+"pushed": "2026-07-29T16:20:20Z"
 },
 "jasonzacmusic/nsm-aria": {
 "ios": false
