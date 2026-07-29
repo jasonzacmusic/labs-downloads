@@ -311,7 +311,9 @@ body.editing .durchips{display:flex}
   border-radius:var(--r-md);padding:10px 14px;gap:10px;align-items:center;flex-wrap:wrap}
 #vpanel.live{border-color:var(--brass-dim);box-shadow:0 0 0 1px var(--brass-soft)}
 #vpanel.live #vmic{background:var(--danger);border-color:var(--danger);color:#fff}
-.vwhere{font-size:10.5px;color:var(--brass);font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.vwhere{font-size:10.5px;color:var(--brass);font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  cursor:pointer;border-bottom:1px dashed var(--brass-dim);padding-bottom:1px}
+.vwhere:hover{color:#e0b96a}
 .vinterim{font-size:13px;color:#8fb6ff;font-style:italic;min-width:80px}
 .vtape{display:flex;gap:5px;flex-wrap:wrap}
 .vchip{font-size:11.5px;font-weight:700;background:var(--brass-soft);border:1px solid var(--brass-dim);
@@ -579,7 +581,9 @@ kbd{font-family:var(--mono);font-size:10.5px;background:var(--surface-2);border:
 
     <div id="vpanel">
       <button class="mode" id="vmic" onclick="VOICE.on?voiceStop():voiceStart()">Start dictation</button>
-      <span id="vwhere" class="vwhere"></span>
+      <span id="vwhere" class="vwhere" onclick="voicePickTarget()"></span>
+      <button class="mode" id="vrevert" style="display:none" onclick="voiceRevertSession()"
+              title="Remove only what this dictation added">Undo dictation</button>
       <span id="vinterim" class="vinterim"></span>
       <span id="vtape" class="vtape"></span>
       <button class="mode" id="singbtn" onclick="earSingToggle()" title="Sing the notes of a chord — it names itself">Sing chord</button>
@@ -597,6 +601,9 @@ kbd{font-family:var(--mono);font-size:10.5px;background:var(--surface-2);border:
         <br>· <i>"voicing A flat B flat C E flat"</i> names the chord and offers every other reading
         <br>· sargam is more accurate than letters: <i>"sa ga ma pa · komal ni"</i> (relative to the key)
         <br>· <i>"key D minor" · "tempo one twenty" · "new song …" · "go to pre" · "times two" · "cue wait four bars" · "scratch that"</i>
+        <br><b>Safety.</b> Dictation only ever writes into blocks it created itself, so nothing you typed,
+        drew or read from a photo can be overwritten. The target above is clickable, every utterance is one
+        undo, and <b>Undo dictation</b> removes the whole spoken session and nothing else.
       </div>
     </div>
 
@@ -1414,6 +1421,12 @@ function fitLickLayout(){
   });
 }
 function scheduleVex(){
+  // A hidden or backgrounded tab throttles requestAnimationFrame, and without a
+  // backstop the staves would simply never be drawn — so schedule both ways and
+  // redraw when the tab comes back. renderVex clears before it draws, so a
+  // double call is harmless.
+  clearTimeout(scheduleVex._t);
+  scheduleVex._t=setTimeout(()=>{fitLickLayout();renderVex();},90);
   requestAnimationFrame(()=>{
     fitLickLayout();
     renderVex();
@@ -2379,6 +2392,9 @@ document.getElementById("loopbtn").onclick=()=>{
 };
 document.getElementById("countin").onchange=savePrefs;
 document.getElementById("notation").onchange=e=>{NOTATION=e.target.value;savePrefs();render();};
+document.addEventListener("visibilitychange",()=>{
+  if(!document.hidden&&NOTATION!=="off"){fitLickLayout();renderVex();}
+});
 document.addEventListener("keydown",e=>{
   if(/^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName))return;
   const k=e.key.toLowerCase();
@@ -2935,18 +2951,64 @@ function voiceUndo(){
   STATE.songs[CUR]=JSON.parse(s);SONG=STATE.songs[CUR];saveState();render();
 }
 const VOICE_COLORS=["var(--green)","var(--purple)","var(--orange)","var(--cyan)","var(--magenta)","var(--olive)"];
+/**
+ * DICTATION SAFETY.
+ *
+ * Speech is the least reliable input in the app, and a chart may hold hours of
+ * work. So dictation is only ever allowed to write into sections IT created in
+ * this session: a misheard "section chorus" can never land inside a chorus that
+ * was typed, drawn or read from a photograph. Anything else makes a new block,
+ * which is cheap to delete and impossible to mistake for the original.
+ */
+function voiceOwns(sec){
+  return !!(sec&&sec._v&&VOICE.session&&VOICE.session.has(sec.id));
+}
 function voiceEnsureSection(kind,name){
+  if(!VOICE.session)VOICE.session=new Set();
   let sec=SONG.sections.find(x=>x.id===VOICE.sec);
-  const wrong=!sec||(kind==="lick"&&!sec.isLick)||(kind==="bars"&&sec.isLick);
-  if(!wrong&&!name)return sec;
+  const mismatched=!sec||(kind==="lick"&&!sec.isLick)||(kind==="bars"&&sec.isLick);
+  // the guard: never extend a block this dictation session did not create
+  if(sec&&!voiceOwns(sec))sec=null;
+  if(sec&&!mismatched&&!name)return sec;
   const id="v"+Math.random().toString(36).slice(2,7);
   sec={id,color:VOICE_COLORS[SONG.sections.length%VOICE_COLORS.length],zone:"main",_v:1};
   if(name)sec.label=name.replace(/\b\w/g,c=>c.toUpperCase());else sec.nav="dictated";
   if(kind==="lick"){sec.isLick=1;sec.lick={notes:["|"],durs:[],approx:0};}
   else sec.bars=[];
   SONG.sections.push(sec);
+  VOICE.session.add(id);
   VOICE.sec=id;VOICE.container=kind;
   return sec;
+}
+/** RULE 5 — undo an entire dictation, exactly and only what was spoken. */
+function voiceRevertSession(){
+  if(!VOICE.session||!VOICE.session.size){voiceStatus("nothing dictated in this session yet");return;}
+  const ids=[...VOICE.session].filter(id=>SONG.sections.some(s=>s.id===id));
+  if(!ids.length){voiceStatus("nothing left to undo");return;}
+  if(!confirm(`Remove the ${ids.length} block${ids.length>1?"s":""} added by this dictation?\n\nNothing you typed, drew or read from a photo is touched.`))return;
+  voiceSnapshot();
+  SONG.sections=SONG.sections.filter(s=>!VOICE.session.has(s.id));
+  logEdit("voice","dictation",ids.length+" dictated blocks","removed");
+  VOICE.session.clear();VOICE.sec=null;
+  saveState();render();
+  voiceStatus("dictation removed — the rest of the chart is untouched");
+}
+/** RULE 2 — choose where dictation lands, including a fresh block. */
+function voicePickTarget(){
+  if(!VOICE.session)VOICE.session=new Set();
+  const mine=SONG.sections.filter(voiceOwns);
+  const lines=mine.map((s,i)=>`${i+1}  ${s.label||s.nav||s.id} (${s.isLick?"notes":"chords"})`);
+  const pick=prompt(
+    "Where should dictation go?\n\n0  a new block\n"+(lines.join("\n")||"")+
+    "\n\nOnly blocks this dictation created are listed — nothing else can be written into.",
+    "0");
+  if(pick===null)return;
+  if(pick.trim()==="0"){VOICE.sec=null;voiceStatus("next words start a new block");}
+  else{
+    const s=mine[parseInt(pick,10)-1];
+    if(s){VOICE.sec=s.id;VOICE.container=s.isLick?"lick":"bars";voiceStatus("dictating into "+(s.label||s.nav||s.id));}
+  }
+  updateVoiceUI();
 }
 function applyVoiceActions(actions){
   if(!actions.length)return;
@@ -3088,6 +3150,9 @@ function applyVoiceActions(actions){
 // -- microphone --------------------------------------------------------------
 function voiceSupported(){return !!(window.SpeechRecognition||window.webkitSpeechRecognition);}
 function voiceStart(){
+  if(!VOICE.session)VOICE.session=new Set();
+  // a new dictation never inherits the last one's target
+  VOICE.sec=null;
   const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
   const rec=new SR();
   rec.lang="en-IN";rec.continuous=true;rec.interimResults=true;
@@ -3131,8 +3196,13 @@ function updateVoiceUI(){
   p.classList.toggle("live",VOICE.on);
   document.getElementById("vmic").textContent=VOICE.on?"◉ Listening — tap to stop":"Start dictation";
   const s=SONG.sections.find(x=>x.id===VOICE.sec);
-  document.getElementById("vwhere").textContent=
-    (s?(s.label||s.nav||s.id):"new section")+" · "+(VOICE.container==="lick"?"notes":"chords");
+  const owned=SONG.sections.filter(voiceOwns).length;
+  const vr=document.getElementById("vrevert");
+  if(vr)vr.style.display=owned?"":"none";
+  const where=document.getElementById("vwhere");
+  where.textContent=(s&&voiceOwns(s)?(s.label||s.nav||s.id):"new block")
+    +" · "+(VOICE.container==="lick"?"notes":"chords");
+  where.title="Click to choose where dictation lands";
 }
 function toggleVoicePanel(){
   const p=document.getElementById("vpanel");
