@@ -132,6 +132,15 @@ button.mode.on{background:var(--brass-soft);border-color:var(--brass-dim);color:
 /* ---------- legend / help ---------- */
 .legend{font-size:11px;color:var(--ink-3);padding:0 0 12px;display:flex;gap:14px;flex-wrap:wrap}
 .sharestatus{font-size:11px;color:var(--brass);min-width:0}
+/* Always reachable while anything is sounding — bottom right, above everything. */
+#globalstop{position:fixed;right:24px;bottom:24px;z-index:400;display:none;align-items:center;gap:9px;
+  background:var(--danger);color:#fff;border:none;border-radius:999px;padding:13px 24px;
+  font-family:inherit;font-size:15px;font-weight:800;cursor:pointer;
+  box-shadow:0 10px 30px #0008,0 0 0 4px #b4544a33}
+#globalstop.on{display:flex}
+#globalstop:hover{background:#c96055}
+.gs-dot{width:10px;height:10px;border-radius:2px;background:#fff}
+@media print{#globalstop{display:none!important}}
 .legend span{white-space:nowrap}
 .unc-demo{border-bottom:2px dotted var(--amber);padding:0 2px;color:var(--ink-2)}
 
@@ -600,6 +609,9 @@ kbd{font-family:var(--mono);font-size:10.5px;background:var(--surface-2);border:
       <kbd>E</kbd> edit · <kbd>R</kbd> review · <kbd>L</kbd> loop · <kbd>D</kbd> dictate · <kbd>esc</kbd> stop ·
       <kbd>⌘P</kbd> print.
     </footer>
+    <button id="globalstop" onclick="stopSong()" title="Stop everything (Esc or Space)">
+      <span class="gs-dot"></span>Stop
+    </button>
     <div id="pop"></div>
   </div>
 </div>
@@ -942,6 +954,9 @@ async function ensureAudio(){
     BUFFERS[name]=await AC.decodeAudioData(arr.buffer);
   }));
 }
+// Notes are scheduled ahead on the audio clock, so stopping has to reach the
+// voices that are already queued — clearing the highlight timers is not enough.
+let VOICES=[];
 function playMidi(midi,when=0,dur=0.6,vel=0.9){
   let bn=null,bd=1e9;
   for(const[n,m]of Object.entries(SAMPLE_MIDI)){const d=Math.abs(m-midi);if(d<bd){bd=d;bn=n;}}
@@ -950,6 +965,22 @@ function playMidi(midi,when=0,dur=0.6,vel=0.9){
   const g=AC.createGain();const t0=AC.currentTime+when;
   g.gain.setValueAtTime(vel,t0);g.gain.setTargetAtTime(0.0001,t0+dur,0.15);
   src.connect(g).connect(AC.destination);src.start(t0);src.stop(t0+dur+1.5);
+  const v={src,g};
+  VOICES.push(v);
+  src.onended=()=>{const i=VOICES.indexOf(v);if(i>=0)VOICES.splice(i,1);};
+}
+/** Cut every voice — the ones sounding now and the ones already queued. */
+function silenceAll(){
+  if(!AC)return;
+  const now=AC.currentTime;
+  for(const v of VOICES){
+    try{
+      v.g.gain.cancelScheduledValues(now);
+      v.g.gain.setTargetAtTime(0.0001,now,0.015);   // a short fade, not a click
+      v.src.stop(now+0.06);
+    }catch(e){/* already finished */}
+  }
+  VOICES=[];
 }
 function chordToMidis(sym){
   const paren=sym.startsWith("(")&&sym.endsWith(")");
@@ -1057,16 +1088,26 @@ const DUR_BEATS={"16":0.25,"16d":0.375,"8":0.5,"8d":0.75,"8t":1/3,"4":1,"4d":1.5
   "16r":0.25,"8r":0.5,"4r":1,"2r":2,"wr":4,"2dr":3};
 let playTimer=[],playing=false;
 function stopSong(){
-  playing=false;playTimer.forEach(t=>clearTimeout(t));playTimer=[];
+  playing=false;LOOPING_RUN=false;
+  playTimer.forEach(t=>clearTimeout(t));playTimer=[];
+  silenceAll();
   document.querySelectorAll(".current").forEach(e=>e.classList.remove("current"));
   document.querySelectorAll(".playing").forEach(e=>e.classList.remove("playing"));
   const b=document.getElementById("playsong");b.textContent="▶ Play song";b.classList.remove("stop");
+  const gs=document.getElementById("globalstop");if(gs)gs.classList.remove("on");
+}
+let LOOPING_RUN=false;
+/** Shown the moment anything sounds, so stopping never means hunting for a button. */
+function showGlobalStop(){
+  const gs=document.getElementById("globalstop");
+  if(gs)gs.classList.add("on");
 }
 function playSong(){
   if(playing){stopSong();return;}
   ensureAudio().then(()=>{
     playing=true;
     const b=document.getElementById("playsong");b.textContent="■ Stop";b.classList.add("stop");
+    showGlobalStop();
     const beat=60/(+document.getElementById("bpm").value);
     let t=0.15+scheduleCountIn(beat);
     for(const sec of SONG.sections)t=scheduleSection(sec,t,beat);
@@ -1084,6 +1125,7 @@ function playSection(id){
   ensureAudio().then(()=>{
     stopSong();playing=true;
     const b=document.getElementById("playsong");b.textContent="■ Stop";b.classList.add("stop");
+    showGlobalStop();
     const beat=60/(+document.getElementById("bpm").value);
     const sec=SONG.sections.find(s=>s.id===id);
     const run=start=>{
@@ -2248,7 +2290,7 @@ document.addEventListener("keydown",e=>{
   else if(k==="r")document.getElementById("reviewbtn").click();
   else if(k==="l")document.getElementById("loopbtn").click();
   else if(k==="d")toggleVoicePanel();
-  else if(k==="escape")stopSong();
+  else if(k==="escape"){stopSong();selClear&&selClear();}
 });
 
 // ============================================================================
