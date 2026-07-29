@@ -213,17 +213,17 @@
 "pushed": "2026-07-25T12:48:00Z"
 },
 "jasonzacmusic/chorale": {
-"commit": "docs: Higgsfield asset prompts + trial findings",
+"commit": "v0.5.2: new Higgsfield-generated app icon",
 "ios": false,
-"pushed": "2026-07-29T14:38:23Z"
+"pushed": "2026-07-29T15:22:15Z"
 },
 "jasonzacmusic/chord-tree-canopy": {
 "ios": false
 },
 "jasonzacmusic/chord-tree-canopy-ultimate": {
-"commit": "docs: handoff for audit/rebuild \u2014 looks-like-game diagno",
+"commit": "feat: turn World 1 into a playable chord-tree adventure",
 "ios": true,
-"pushed": "2026-07-29T14:00:00Z"
+"pushed": "2026-07-29T15:04:20Z"
 },
 "jasonzacmusic/cwa-community": {
 "ios": false
@@ -318,9 +318,9 @@
 "ios": false
 },
 "jasonzacmusic/net-sense": {
-"commit": "Fix Net Sense performance, identity, and working studio ",
+"commit": "Fix blank Net Sense window on launch",
 "ios": false,
-"pushed": "2026-07-29T14:22:26Z"
+"pushed": "2026-07-29T14:42:17Z"
 },
 "jasonzacmusic/nsm-aria": {
 "ios": false
