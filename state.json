@@ -55,9 +55,9 @@
 "ios": false
 },
 "jasonzacmusic/Handwritten-Music-Composer": {
-"commit": "Audit brief for an independent agent on another machine",
+"commit": "with-key.sh: pull the Anthropic key from the Keychain, n",
 "ios": false,
-"pushed": "2026-07-31T04:38:22Z"
+"pushed": "2026-07-31T05:09:20Z"
 },
 "jasonzacmusic/Intermediate-Planner": {
 "ios": false
@@ -78,7 +78,7 @@
 "jasonzacmusic/MidiVisualizer": {
 "commit": "Fun Mode: dock the recording studio controls INTO the he",
 "ios": false,
-"pushed": "2026-07-31T04:50:47Z"
+"pushed": "2026-07-31T05:26:44Z"
 },
 "jasonzacmusic/MidiVisualizer-Releases": {
 "ios": false
@@ -191,9 +191,9 @@
 "pushed": "2026-07-20T10:31:39Z"
 },
 "jasonzacmusic/atlas": {
-"commit": "Strings vibrating in real 3D \u2014 WebGL, not a flat drawing",
+"commit": "Outside audit \u2014 Grok's findings, verified, with my verdi",
 "ios": false,
-"pushed": "2026-07-30T16:10:48Z"
+"pushed": "2026-07-31T05:31:24Z"
 },
 "jasonzacmusic/baithak": {
 "ios": false
@@ -215,9 +215,9 @@
 "pushed": "2026-07-25T12:48:00Z"
 },
 "jasonzacmusic/chorale": {
-"commit": "Phase E: Stage Screen - the audience projection (placeho",
+"commit": "Phase E: Stage Screen \u2014 port the Constellation Choir des",
 "ios": false,
-"pushed": "2026-07-31T04:39:47Z"
+"pushed": "2026-07-31T05:15:58Z"
 },
 "jasonzacmusic/chord-tree-canopy": {
 "ios": false
@@ -322,9 +322,9 @@
 "ios": false
 },
 "jasonzacmusic/nathaniel-photo-hub": {
-"commit": "feat(studio): music objects, the actual-size check, and ",
+"commit": "fix(studio): a photo with a look but no cached filter ex",
 "ios": false,
-"pushed": "2026-07-31T04:36:14Z"
+"pushed": "2026-07-31T05:05:03Z"
 },
 "jasonzacmusic/nathaniel-production-house": {
 "ios": false
@@ -438,9 +438,9 @@
 "ios": false
 },
 "jasonzacmusic/sight-singing-studio": {
-"commit": "Four canvases, third-party credit where it is legally re",
+"commit": "SEO recce, and the five things it said I got wrong",
 "ios": false,
-"pushed": "2026-07-31T04:39:32Z"
+"pushed": "2026-07-31T05:19:44Z"
 },
 "jasonzacmusic/sightread": {
 "commit": "Add X-ray (figuration\u2194block-chord) toggle and polish wai",
