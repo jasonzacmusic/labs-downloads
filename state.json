@@ -55,9 +55,9 @@
 "ios": false
 },
 "jasonzacmusic/Handwritten-Music-Composer": {
-"commit": "with-key.sh: pull the Anthropic key from the Keychain, n",
+"commit": "Portal brief: merge the two standalone apps, add a secon",
 "ios": false,
-"pushed": "2026-07-31T05:09:20Z"
+"pushed": "2026-07-31T05:37:42Z"
 },
 "jasonzacmusic/Intermediate-Planner": {
 "ios": false
@@ -78,7 +78,7 @@
 "jasonzacmusic/MidiVisualizer": {
 "commit": "Fun Mode: dock the recording studio controls INTO the he",
 "ios": false,
-"pushed": "2026-07-31T05:26:44Z"
+"pushed": "2026-07-31T05:41:54Z"
 },
 "jasonzacmusic/MidiVisualizer-Releases": {
 "ios": false
