@@ -1406,13 +1406,22 @@ function render(){
   renderReview();
   wire();
 }
+// Key signature for a written key like "Eb" or "Bbm".
+// This used to carry its OWN partial table of 26 keys with a `??0` fallback, so
+// C#, G#, D#, A# and Cb major — and D♭m, G♭m, A#m, C♭m — silently drew NO key
+// signature at all and every accidental after them was computed against an empty
+// map. C# is in the key picker, so it was reachable. SIG_MAJ/SIG_MIN sat twelve
+// lines away, complete, the whole time.
 function keySigMap(key){
-  const K={"Am":0,"Em":1,"Bm":2,"F#m":3,"C#m":4,"G#m":5,"D#m":6,"Dm":-1,"Gm":-2,"Cm":-3,"Fm":-4,"Bbm":-5,"Ebm":-6,"Abm":-7,
-           "C":0,"G":1,"D":2,"A":3,"E":4,"B":5,"F#":6,"F":-1,"Bb":-2,"Eb":-3,"Ab":-4,"Db":-5,"Gb":-6};
-  const n=K[key]??0,map={};
+  const minor=/m$/.test(key), root=key.replace(/m$/,"");
+  const n=(minor?SIG_MIN:SIG_MAJ)[root];
+  if(n===undefined||n===0)return{};
+  const map={};
   const FO=["B","E","A","D","G","C","F"],SO=["F","C","G","D","A","E","B"];
-  if(n<0)FO.slice(0,-n).forEach(l=>map[l]=-1);
-  if(n>0)SO.slice(0,n).forEach(l=>map[l]=1);
+  const order=n<0?FO:SO, sign=n<0?-1:1, count=Math.abs(n);
+  // beyond seven the signature starts doubling (D flat minor = 8 flats)
+  order.slice(0,Math.min(7,count)).forEach(l=>map[l]=sign);
+  if(count>7)order.slice(0,count-7).forEach(l=>map[l]=sign*2);
   return map;
 }
 let __vexRO=null;
