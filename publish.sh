@@ -25,6 +25,14 @@ git pull --rebase --autostash origin main
 # dist/ — which may be stale or belong to a different release. Falls back to canonical.
 SHRUTI_DMG_SRC="${SHRUTI_DMG:-$HOME/Documents/Claude/sangam/dist/Shruti-signed.dmg}"
 NET_SENSE_DMG_SRC="${NET_SENSE_DMG:-$HOME/Documents/Claude/net-sense/mac/build/Net-Sense-mac.dmg}"
+# MIDI Visualizer candidates are built and notarized locally for internal
+# testing. Accept that exact DMG when supplied; the GitHub-release fallback is
+# retained for the normal scheduled hub refresh and is never used by this path.
+MIDI_VISUALIZER_DMG_SRC="${MIDI_VISUALIZER_DMG:-}"
+MIDI_VISUALIZER_DMG_ENTRY="ghrel:jasonzacmusic/MidiVisualizer-Releases:MIDI-Piano-Visualizer.dmg"
+if [ -n "$MIDI_VISUALIZER_DMG_SRC" ]; then
+  MIDI_VISUALIZER_DMG_ENTRY="file:${MIDI_VISUALIZER_DMG_SRC}"
+fi
 # Chorale: always ship the NEWEST notarized DMG on the Desktop (the notarize
 # script writes ~/Desktop/Chorale-<version>.dmg on every release).
 CHORALE_DMG_SRC="$(ls -t "$HOME"/Desktop/Chorale-*.dmg 2>/dev/null | head -1 || true)"
@@ -36,7 +44,7 @@ LOCALS=(
   "ghrel:jasonzacmusic/sangam@v1.1.0-rc.7:Sangam-1.1.0-rc.7.dmg|Sangam-mac.dmg"
   "file:${CHORALE_DMG_SRC}|Chorale-mac.dmg"
   "file:~/Documents/Claude/grabit/site/downloads/GrabIt-1.16.dmg|GrabIt-mac.dmg"
-  "ghrel:jasonzacmusic/MidiVisualizer-Releases:MIDI-Piano-Visualizer.dmg|MIDI-Piano-Visualizer-mac.dmg"
+  "${MIDI_VISUALIZER_DMG_ENTRY}|MIDI-Piano-Visualizer-mac.dmg"
   "ghrel:jasonzacmusic/MidiVisualizer-Releases:MIDI-Piano-Visualizer-Setup.exe|MIDI-Piano-Visualizer-win.exe"
   # NSM Photos (internal team app). Built + shipped by nathaniel-photo-hub's own
   # macapp-native/ship.sh, which uploads straight to this release; this row is just
@@ -80,14 +88,19 @@ if [ ${#ASSETS[@]} -gt 0 ]; then
   gh release upload "$TAG" "${ASSETS[@]}" --repo "$REPO" --clobber
 fi
 
-# Keep exactly one Shruti installer on the hub release. Older publishers used versioned
-# names and a release-hosted appcast; the current stable installer is Shruti-mac.dmg and
-# the signed feed lives on GitHub Pages.
+# Keep exactly one installer per app on the hub release. Older publishers used versioned
+# names and a release-hosted appcast; the current stable names are unversioned and the
+# signed Shruti feed lives on GitHub Pages.
 while IFS= read -r stale; do
   [ -n "$stale" ] || continue
   case "$stale" in
     Shruti-mac.dmg) ;;
     Shruti*.dmg|Shruti-appcast.xml)
+      gh release delete-asset "$TAG" "$stale" --repo "$REPO" --yes
+      echo "removed stale $stale"
+      ;;
+    MIDI-Piano-Visualizer-mac.dmg) ;;
+    MIDI-Piano-Visualizer*.dmg)
       gh release delete-asset "$TAG" "$stale" --repo "$REPO" --yes
       echo "removed stale $stale"
       ;;
