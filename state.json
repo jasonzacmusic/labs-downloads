@@ -57,7 +57,7 @@
 "jasonzacmusic/Handwritten-Music-Composer": {
 "commit": "Add revival audit report (20 Jul 2026)",
 "ios": false,
-"pushed": "2026-07-29T07:59:29Z"
+"pushed": "2026-07-30T08:17:41Z"
 },
 "jasonzacmusic/Intermediate-Planner": {
 "ios": false
@@ -78,7 +78,7 @@
 "jasonzacmusic/MidiVisualizer": {
 "commit": "Fun Mode: dock the recording studio controls INTO the he",
 "ios": false,
-"pushed": "2026-07-20T10:28:49Z"
+"pushed": "2026-07-31T03:05:10Z"
 },
 "jasonzacmusic/MidiVisualizer-Releases": {
 "ios": false
@@ -191,7 +191,9 @@
 "pushed": "2026-07-20T10:31:39Z"
 },
 "jasonzacmusic/atlas": {
-"ios": false
+"commit": "Strings vibrating in real 3D \u2014 WebGL, not a flat drawing",
+"ios": false,
+"pushed": "2026-07-30T16:10:48Z"
 },
 "jasonzacmusic/baithak": {
 "ios": false
@@ -221,9 +223,9 @@
 "ios": false
 },
 "jasonzacmusic/chord-tree-canopy-ultimate": {
-"commit": "Add Higgsfield hero animation set",
+"commit": "Document Higgsfield policy and rights caveats",
 "ios": true,
-"pushed": "2026-07-29T16:26:50Z"
+"pushed": "2026-07-30T14:16:19Z"
 },
 "jasonzacmusic/cwa-community": {
 "ios": false
@@ -235,10 +237,14 @@
 "ios": false
 },
 "jasonzacmusic/grabit": {
-"ios": false
+"commit": "Absorb stale v1.9.1 remote line (superseded by the 1.10\u2013",
+"ios": false,
+"pushed": "2026-07-20T10:23:56Z"
 },
 "jasonzacmusic/gradus": {
-"ios": false
+"commit": "Add the Codex audit brief",
+"ios": false,
+"pushed": "2026-07-26T16:38:11Z"
 },
 "jasonzacmusic/groove-metronome": {
 "commit": "Rewrite the store brief for 1.3.0 and record why Android",
@@ -246,7 +252,9 @@
 "pushed": "2026-07-26T11:09:05Z"
 },
 "jasonzacmusic/hexatonic": {
-"ios": false
+"commit": "The pipeline: blues lane, ear game, tihai lab, real jant",
+"ios": false,
+"pushed": "2026-07-31T02:45:26Z"
 },
 "jasonzacmusic/jasonzacmusic": {
 "ios": false
@@ -264,10 +272,14 @@
 "ios": false
 },
 "jasonzacmusic/maatu": {
-"ios": false
+"commit": "Skip empty classroom agenda lookup",
+"ios": false,
+"pushed": "2026-07-31T03:22:28Z"
 },
 "jasonzacmusic/master-key": {
-"ios": false
+"commit": "Design overhaul v2 (engraved brass atelier) + musical-si",
+"ios": false,
+"pushed": "2026-07-20T10:25:45Z"
 },
 "jasonzacmusic/melakarta-sphere": {
 "commit": "An audit pack a Carnatic teacher can actually work throu",
@@ -318,9 +330,9 @@
 "ios": false
 },
 "jasonzacmusic/net-sense": {
-"commit": "Expose wired and mesh AP uplinks (#4)",
+"commit": "Record the v1.0.2 engine-launch regression for the Mac m",
 "ios": false,
-"pushed": "2026-07-29T16:35:39Z"
+"pushed": "2026-07-30T10:45:11Z"
 },
 "jasonzacmusic/nsm-aria": {
 "ios": false
@@ -351,7 +363,9 @@
 "pushed": "2026-07-20T10:30:23Z"
 },
 "jasonzacmusic/nsm-social-command-centre": {
-"ios": false
+"commit": "[deploy] Stop stacking a second lc parameter on YouTube ",
+"ios": false,
+"pushed": "2026-07-26T11:16:10Z"
 },
 "jasonzacmusic/nsm-staff-hub-web": {
 "ios": false
@@ -397,7 +411,9 @@
 "ios": false
 },
 "jasonzacmusic/rhythm-arithmetic": {
-"ios": false
+"commit": "Notation editing: arrows for length and for moving a not",
+"ios": false,
+"pushed": "2026-07-25T04:21:56Z"
 },
 "jasonzacmusic/richmond-park": {
 "ios": false
@@ -406,7 +422,9 @@
 "ios": false
 },
 "jasonzacmusic/runway": {
-"ios": false
+"commit": "Add Daily Runway Drill with Landing-Intent challenges",
+"ios": false,
+"pushed": "2026-07-20T10:30:28Z"
 },
 "jasonzacmusic/sangam": {
 "commit": "ci: reduce redundant macOS Actions usage",
@@ -420,10 +438,14 @@
 "ios": false
 },
 "jasonzacmusic/sight-singing-studio": {
-"ios": false
+"commit": "Bring your own PDF: a music stand, and an honest report ",
+"ios": false,
+"pushed": "2026-07-30T12:40:52Z"
 },
 "jasonzacmusic/sightread": {
-"ios": false
+"commit": "Add X-ray (figuration\u2194block-chord) toggle and polish wai",
+"ios": false,
+"pushed": "2026-07-20T10:33:12Z"
 },
 "jasonzacmusic/studio-command": {
 "ios": false

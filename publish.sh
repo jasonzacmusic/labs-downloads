@@ -24,7 +24,7 @@ git pull --rebase --autostash origin main
 # point at the exact notarized DMG it just built, instead of the canonical checkout's
 # dist/ — which may be stale or belong to a different release. Falls back to canonical.
 SHRUTI_DMG_SRC="${SHRUTI_DMG:-$HOME/Documents/Claude/sangam/dist/Shruti-signed.dmg}"
-NET_SENSE_DMG_SRC="${NET_SENSE_DMG:-$HOME/Documents/Claude Code/net-sense/mac/build/Net-Sense-mac.dmg}"
+NET_SENSE_DMG_SRC="${NET_SENSE_DMG:-$HOME/Documents/Claude/net-sense/mac/build/Net-Sense-mac.dmg}"
 # Chorale: always ship the NEWEST notarized DMG on the Desktop (the notarize
 # script writes ~/Desktop/Chorale-<version>.dmg on every release).
 CHORALE_DMG_SRC="$(ls -t "$HOME"/Desktop/Chorale-*.dmg 2>/dev/null | head -1 || true)"
@@ -38,10 +38,11 @@ LOCALS=(
   "file:~/Documents/Claude/grabit/site/downloads/GrabIt-1.16.dmg|GrabIt-mac.dmg"
   "ghrel:jasonzacmusic/MidiVisualizer-Releases:MIDI-Piano-Visualizer.dmg|MIDI-Piano-Visualizer-mac.dmg"
   "ghrel:jasonzacmusic/MidiVisualizer-Releases:MIDI-Piano-Visualizer-Setup.exe|MIDI-Piano-Visualizer-win.exe"
-  # NSM Photos (internal team app). Build with:
-  #   ~/nathaniel-photo-hub/macapp/build_dmg_labs.sh <VERSION>
+  # NSM Photos (internal team app). Built + shipped by nathaniel-photo-hub's own
+  # macapp-native/ship.sh, which uploads straight to this release; this row is just
+  # a refresh path when a freshly built DMG is sitting locally.
   # No secrets baked in — safe on the public downloads release.
-  "file:$HOME/nathaniel-photo-hub/macapp/build/NSMPhotos-mac.dmg|NSMPhotos-mac.dmg"
+  "file:$HOME/Documents/Claude/nathaniel-photo-hub/macapp-native/build/NSMPhotos-mac.dmg|NSMPhotos-mac.dmg"
 )
 if [ "${NET_SENSE_ONLY:-0}" = "1" ]; then
   LOCALS=("$NET_SENSE_ROW")

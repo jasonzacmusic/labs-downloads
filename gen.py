@@ -140,56 +140,58 @@ def rel_time(iso):
 
 def build():
     cat = json.load(open(os.path.join(HERE, "catalog.json")))["apps"]
-    by_repo = {a["repo"]: a for a in cat if a.get("repo")}
     assets = hub_assets()
     apps = {}   # key -> record
 
     def add(key, name, category, repo=None):
         apps.setdefault(key, {"name": name, "category": category, "repo": repo,
                               "downloads": [], "web": None, "ios": False,
-                              "ios_url": None, "site": None, "blurb": None})
+                              "ios_url": None, "site": None, "blurb": None,
+                              "access": "public"})
         return apps[key]
 
     # 1. Curated catalog apps (pretty names, public URLs, App Store / sales links).
+    # Keyed by NAME, not repo: two apps may share one repo (Shruti + Sangam) and
+    # each must keep its own card.
+    claims = {}   # repo -> [app names that curate it]
     for a in cat:
-        key = a.get("repo") or a["name"]
-        rec = add(key, a["name"], a.get("category", "App"), a.get("repo"))
+        rec = add(a["name"], a["name"], a.get("category", "App"), a.get("repo"))
+        if a.get("repo"):
+            claims.setdefault(a["repo"], []).append(a["name"])
         rec["web"] = a.get("web") or rec["web"]
         rec["ios_url"] = a.get("ios_url") or rec["ios_url"]
         rec["site"] = a.get("site") or rec["site"]
         rec["blurb"] = a.get("blurb") or rec.get("blurb")
+        rec["access"] = a.get("access", "public")
         if a.get("ios") == "live" or a.get("ios") == "soon":
             rec["ios"] = True
         for n in a.get("native", []):
             if n["asset"] in assets:
                 rec["downloads"].append((n["platform"],
-                    f"https://github.com/{REPO}/releases/latest/download/{n['asset']}"))
+                    f"https://github.com/{REPO}/releases/latest/download/{n['asset']}",
+                    n.get("label", "")))
 
     # 2. Auto-discover native / iOS apps anywhere in the org (future-proof).
     repos = gh_json(["repo", "list", ORG, "--limit", "200", "--no-archived",
                      "--json", "name,homepageUrl,pushedAt"]) or []
     for r in repos:
         full = f"{ORG}/{r['name']}"
+        owners = claims.get(full, [])
+        if len(owners) > 1:
+            continue   # repo shared by several curated apps (e.g. sangam) — catalog is authoritative
         langs = languages(full)
         ios = detect_ios(full, langs)
         rel = native_from_release(full) if "Swift" in langs or "C++" in langs else {}
         if not (ios or rel):
             continue   # not a native/iOS app -> web apps stay curated via the sheet
-        src = by_repo.get(full)
-        key = full
-        rec = add(key, src["name"] if src else prettify(full),
-                  (src or {}).get("category", "App"), full)
-        if src:
-            rec["web"] = rec["web"] or src.get("web")
-            rec["ios_url"] = rec["ios_url"] or src.get("ios_url")
-            rec["site"] = rec["site"] or src.get("site")
+        rec = apps[owners[0]] if owners else add(full, prettify(full), "App", full)
         if not rec["web"] and r.get("homepageUrl") and "replit.com" not in r["homepageUrl"]:
             rec["web"] = r["homepageUrl"]
         if ios:
             rec["ios"] = True
         for plat, url in rel.items():
-            if plat not in {p for p, _ in rec["downloads"]}:
-                rec["downloads"].append((plat, url))
+            if plat not in {p for p, _, _ in rec["downloads"]}:
+                rec["downloads"].append((plat, url, ""))
 
     # 3. Dates + commit, then classify + sort.
     out = []
@@ -197,8 +199,8 @@ def build():
         pushed, commit = repo_meta(rec["repo"]) if rec["repo"] else ("", "")
         rec["pushed"], rec["commit"] = pushed, commit
         rec["rel"], rec["abs"] = rel_time(pushed)
-        has_mac = any(p == "mac" for p, _ in rec["downloads"])
-        has_win = any(p == "win" for p, _ in rec["downloads"])
+        has_mac = any(p == "mac" for p, _, _ in rec["downloads"])
+        has_win = any(p == "win" for p, _, _ in rec["downloads"])
         rec["section"] = "mac" if has_mac else "ios" if rec["ios"] else "win" if has_win else "web"
         out.append(rec)
     out.sort(key=lambda a: a["pushed"], reverse=True)
@@ -214,12 +216,14 @@ def card(rec):
     line = rec.get("blurb") or rec["commit"]
     commit = f'<p class="commit">{html.escape(line)}</p>' if line else ""
 
-    chips = [(PLAT[p], p) for p, _ in rec["downloads"]]
+    chips = [(PLAT[p], p) for p, _, _ in rec["downloads"]]
     if rec["ios"]:
         chips.append(("iOS", "ios"))
     if rec["web"]:
         chips.append(("Web", "web"))
     seen = set(); chipline = ""
+    if rec.get("access") == "team":
+        chipline += '<span class="chip tm">Team only</span>'
     for label, c in chips:
         if c in seen:
             continue
@@ -227,8 +231,9 @@ def card(rec):
         chipline += f'<span class="chip {c}">{html.escape(label)}</span>'
 
     acts = []
-    for plat, url in rec["downloads"]:
-        acts.append(f'<a class="btn" href="{html.escape(url)}">Download {PLAT[plat]} &darr;</a>')
+    for plat, url, variant in rec["downloads"]:
+        what = PLAT[plat] + (f" ({variant})" if variant else "")
+        acts.append(f'<a class="btn" href="{html.escape(url)}">Download {html.escape(what)} &darr;</a>')
     if rec["ios"]:
         if rec["ios_url"]:
             acts.append(f'<a class="btn ios" href="{html.escape(rec["ios_url"])}" target="_blank" rel="noopener">App Store &rarr;</a>')
@@ -307,6 +312,7 @@ TEMPLATE = """<!doctype html>
   .chip.win{color:var(--blue);background:rgba(78,155,240,.14)}
   .chip.ios{color:var(--violet);background:rgba(143,130,255,.16)}
   .chip.web{color:var(--green);background:rgba(87,217,138,.13)}
+  .chip.tm{color:#F06A6A;background:rgba(240,106,106,.14);letter-spacing:.5px}
   .commit{color:var(--faint);font-family:'IBM Plex Mono',monospace;font-size:10.5px;line-height:1.4}
   .acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
   .btn{font-size:13px;font-weight:500;text-decoration:none;color:var(--ink);background:var(--amber);padding:6px 12px;border-radius:8px}
@@ -337,10 +343,12 @@ TEMPLATE = """<!doctype html>
   </div>
 
   <p class="note">
-    Platform is detected from each repo automatically, and any new native or iOS app in the
-    org shows up here on its own. macOS apps are Apple-notarized and self-installing; iOS apps
-    open in the App Store (or TestFlight while in beta); every web app link is live — tap to
-    open. Ordered by whatever changed most recently. &nbsp;·&nbsp; Team only; don't share.
+    Every link always serves the LATEST version: web apps redeploy on every push, and native
+    installers use stable release URLs that publish.sh refreshes on every build. macOS apps
+    are Apple-notarized and self-installing; iOS apps open in the App Store (or TestFlight
+    while in beta). Apps marked <b>Team only</b> are internal — never share those links
+    outside the team; everything else is public and safe to share. Ordered by whatever
+    changed most recently. &nbsp;·&nbsp; This page itself is team-only; don't share it.
   </p>
 </div></body></html>"""
 
