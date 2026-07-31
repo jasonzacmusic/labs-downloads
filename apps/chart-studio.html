@@ -1216,9 +1216,10 @@ function parseLickToken(str){
   if(str==="//")return{type:"br"};
   if(str.startsWith("@"))return{type:"chord",sym:str.slice(1)};
   // note = letter + accidental, then any of: ' octave up, ~ ornament, _ underlined
-  const m=str.match(/^([A-G][b#]*)('*)(~?)(_?)$/);
+  const m=str.match(/^([A-G][b#]*)(['~_]*)$/);
   if(!m)return{type:"chord",sym:str};
-  return{type:"note",p:m[1],hi:m[2].length,orn:!!m[3],ul:!!m[4]};
+  const k=m[2];
+  return{type:"note",p:m[1],hi:(k.match(/'/g)||[]).length,orn:k.includes("~"),ul:k.includes("_")};
 }
 /** Swap one letter for another inside a note or chord token, keeping everything else. */
 function swapLetterToken(raw,a,b){
@@ -1275,6 +1276,9 @@ function lickTokensRaw(sec){
   const out=[];let prev=null;
   for(const raw of sec.lick.notes){
     const tk=parseLickToken(raw);
+    // a new line restarts the register: without this each line of a descending
+    // phrase begins where the last one ended, so line four plays an octave low
+    if(tk.type==="br"||tk.type==="segno"){prev=null;continue;}
     if(tk.type!=="note")continue;
     tk.pT=trPitch(tk.p);
     const{letter,acc}=parsePitch(tk.pT);
@@ -2261,13 +2265,13 @@ function wire(){
         const[secId,iStr]=el.dataset.lick.split(":");
         const sec=SONG.sections.find(x=>x.id===secId),i=+iStr;
         const toks=lickTokens(sec);
-        const before=toks[i].pT+"'".repeat(toks[i].hi)+(toks[i].orn?"~":"");
+        const before=toks[i].pT+"'".repeat(toks[i].hi)+(toks[i].orn?"~":"")+(toks[i].ul?"_":"");
         openEditor(el,{value:before,respell:true,
-          hint:"note in current key — add ' for octave up, ~ for ornament",
+          hint:"note in current key — ' octave up, ~ ornament, _ underlined",
           commit:v=>{
-            const m=v.match(/^([A-G][b#]*)('*)(~?)$/);if(!m)return;
+            const m=v.match(/^([A-G][b#]*)(['~_]*)$/);if(!m)return;
             const ri=noteIndexToRaw(sec,i);if(ri<0)return;
-            sec.lick.notes[ri]=transposePitch(m[1],-TR.semis,-TR.steps)+m[2]+m[3];
+            sec.lick.notes[ri]=transposePitch(m[1],-TR.semis,-TR.steps)+m[2];
             logEdit("note",secName(secId),before,v);saveState();render();
           }});
         return;
