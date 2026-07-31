@@ -6116,8 +6116,10 @@ var NSMReader = (() => {
   var reader_web_exports = {};
   __export(reader_web_exports, {
     MODELS: () => MODELS,
+    defaultProxyUrl: () => defaultProxyUrl,
     extractJson: () => extractJson,
-    readChart: () => readChart
+    readChart: () => readChart,
+    readerAvailability: () => readerAvailability
   });
 
   // node_modules/zod/v3/external.js
@@ -10443,16 +10445,37 @@ Order the blocks the way a musician would read them.
       const out = {};
       for (const [k, val] of Object.entries(v)) {
         if (val === null || val === void 0) continue;
-        if (val === true && FLAG_KEYS.has(k)) {
+        if (FLAG_KEYS.has(k)) {
+          if (val === 0 || val === false || val === "0" || val === "") continue;
           out[k] = 1;
           continue;
         }
-        if (val === false && FLAG_KEYS.has(k)) continue;
+        if (k === "ch" && Array.isArray(val)) {
+          out[k] = val.map(chordString);
+          continue;
+        }
+        if (k === "id" && typeof val === "number") {
+          out[k] = String(val);
+          continue;
+        }
+        if (k === "figure" && typeof val === "string") continue;
         out[k] = coerceModelJson(val);
       }
+      if (typeof out.after === "string" && !out.events) out.after = { ch: [out.after] };
+      if (out.notes && Array.isArray(out.notes) && !Array.isArray(out.durs)) out.durs = [];
       return out;
     }
     return v;
+  }
+  function chordString(c) {
+    if (typeof c === "string") return c;
+    if (c && typeof c === "object") {
+      for (const key of ["symbol", "chord", "name", "text", "value", "ch"]) {
+        const v = c[key];
+        if (typeof v === "string" && v.trim()) return v;
+      }
+    }
+    return c;
   }
   var FLAG_KEYS = /* @__PURE__ */ new Set(["isLick", "rpt", "sep", "u", "circ", "unc", "noteUnc", "afterUnc"]);
   function blockPrompt(block, key) {
@@ -10514,6 +10537,15 @@ Return empty arrays if it is faithful.`;
   }
 
   // studio/reader-web.ts
+  function defaultProxyUrl() {
+    if (typeof location === "undefined") return null;
+    return location.protocol === "http:" || location.protocol === "https:" ? "/api/vision" : null;
+  }
+  function readerAvailability(apiKey) {
+    if (apiKey) return { canRead: true, how: "own-key" };
+    if (defaultProxyUrl()) return { canRead: true, how: "hosted" };
+    return { canRead: false, how: "none" };
+  }
   var surveySchema = external_exports.object({
     title: external_exports.string().nullable().optional(),
     concertRoot: external_exports.string().optional(),
@@ -10661,6 +10693,36 @@ Return empty arrays if it is faithful.`;
       throw last != null ? last : new Error("OpenAI: retries exhausted");
     };
   }
+  function proxyAsk(url, provider, model) {
+    return async (imageB64, prompt, maxTokens) => {
+      var _a;
+      let last = null;
+      for (let attempt = 0; attempt < 3; attempt++) {
+        const r = await fetch(url, {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ provider, model, image: imageB64, prompt, maxTokens })
+        });
+        if (r.status === 429) {
+          const j2 = await r.json().catch(() => ({}));
+          throw new Error(j2.error || "the free reader is at its limit for today \u2014 add your own API key in Settings to keep reading");
+        }
+        if (r.status >= 500) {
+          last = new Error(`the reader service had a problem (${r.status})`);
+          await new Promise((res) => setTimeout(res, 2500 * (attempt + 1)));
+          continue;
+        }
+        if (!r.ok) {
+          const j2 = await r.json().catch(() => ({}));
+          throw new Error(j2.error || `the reader service refused this request (${r.status})`);
+        }
+        const j = await r.json();
+        if (j.error) throw new Error(j.error);
+        return (_a = j.text) != null ? _a : "";
+      }
+      throw last != null ? last : new Error("the reader service did not respond");
+    };
+  }
   async function pool(items, limit, fn) {
     const out = new Array(items.length);
     let next = 0;
@@ -10675,9 +10737,18 @@ Return empty arrays if it is faithful.`;
   }
   async function readChart(imageBlob, opts) {
     var _a, _b, _c, _d, _e, _f, _g;
-    if (!opts.apiKey) throw new Error("no API key \u2014 add one in Settings to read photographs");
-    if (!navigator.onLine) throw new Error("you are offline \u2014 reading a photo needs the network (everything else works offline)");
-    const ask = opts.provider === "openai" ? openaiAsk(opts.apiKey, opts.model) : anthropicAsk(opts.apiKey, opts.model);
+    if (typeof navigator !== "undefined" && navigator.onLine === false) {
+      throw new Error("you are offline \u2014 reading a photo needs the network (everything else in here works offline)");
+    }
+    const proxyUrl = opts.proxyUrl === void 0 ? defaultProxyUrl() : opts.proxyUrl;
+    let ask;
+    if (opts.apiKey) {
+      ask = opts.provider === "openai" ? openaiAsk(opts.apiKey, opts.model) : anthropicAsk(opts.apiKey, opts.model);
+    } else if (proxyUrl) {
+      ask = proxyAsk(proxyUrl, opts.provider, opts.model);
+    } else {
+      throw new Error("this offline copy cannot read photographs \u2014 open Chart Studio on the web, or add your own API key in Settings");
+    }
     const progress = (_a = opts.onProgress) != null ? _a : (() => {
     });
     const started = Date.now();
@@ -10806,14 +10877,19 @@ ${survey.handwritingKey}
 
 // ===================== reader UI: bring your own key =====================
 // ============================================================================
-// READER UI — bring your own key.
+// READER UI — read a photograph, with or without your own key.
 //
-// This app is a single file. It can be opened from a web address, from a USB
-// stick or from a folder on a plane, and there is no server behind it to keep a
-// secret in. So reading a photograph works the way the brief asks: the musician
-// pastes their OWN provider key, it is kept on their OWN machine, and the
-// browser talks to the provider directly. The key is never logged, never put in
-// a URL, and never sent anywhere except the provider they picked.
+// Two ways in, and the UI must say which one applies rather than demanding a key
+// that is not required:
+//   · served from the app's own deployment — a hosted reader holds the school's
+//     key server-side, so a musician can just drop a photo. Capped, because it
+//     spends Jason's money.
+//   · with the musician's own key — unlimited, their choice of model, billed to
+//     them. The key is kept on THEIR machine and the browser talks to the
+//     provider directly; it is never logged, never put in a URL, and never sent
+//     anywhere except the provider they picked.
+// A copy opened from a USB stick or from GitHub Pages has neither, and says so
+// instead of promising a read that would 404 after a minute of waiting.
 //
 // The reading itself is NSMReader (studio/reader-web.ts), which runs the same
 // multi-pass flow and the same prompt contract as the server reader — survey the
@@ -10837,6 +10913,33 @@ ${survey.handwritingKey}
   const K_KEY = "nsm-reader-key";        // the secret, on this device only
   const K_PROV = "nsm-reader-provider";
   const K_MODEL = "nsm-reader-model";
+  const K_PROXY = "nsm-reader-proxy";    // "" means: deliberately turned off
+
+  /**
+   * Where the hosted reader lives, when there is one.
+   *
+   * A key is OPTIONAL: served from the app's own deployment, reading falls back
+   * to a proxy that holds the school's key server-side. But the offline copies
+   * are static files on GitHub Pages with no server behind them, so promising a
+   * hosted read there would be a lie that turns into a 404 after the musician
+   * has already waited. Say what is actually true of THIS copy.
+   */
+  function proxyURL() {
+    const saved = localStorage.getItem(K_PROXY);
+    if (saved !== null) return saved || null;
+    if (location.protocol !== "http:" && location.protocol !== "https:") return null;
+    if (/\.github\.io$/i.test(location.hostname)) return null;
+    return "/api/vision";
+  }
+
+  /** own-key · hosted · none — what this copy can do right now. */
+  function availability() {
+    if (getKey()) return "own-key";
+    return proxyURL() ? "hosted" : "none";
+  }
+
+  /** The hosted reader is pinned to one model; a personal key picks its own. */
+  const HOSTED_MODEL = "Claude Opus 5";
 
   const getProvider = () => localStorage.getItem(K_PROV) || "anthropic";
   const getModel = () => {
@@ -10877,9 +10980,12 @@ ${survey.handwritingKey}
   panel.innerHTML = `
     <h3>Reading a photograph of a chart</h3>
     <div class="why">
-      Chart Studio reads your photo using your own account with an AI provider.
-      <b>The key stays on this device and is sent only to the provider you choose.</b>
-      It is never written to a link, never logged, and never sent to Nathaniel School of Music.
+      <b>You do not need a key.</b> Drop a photo and Chart Studio reads it for you —
+      a few charts a day, on the school's account.
+      <br>Adding your own key removes that limit, lets you choose the model, and bills
+      the reading to you instead. <b>Your key stays on this device and is sent only to
+      the provider you choose</b> — never written to a link, never logged, and never
+      sent to Nathaniel School of Music.
     </div>
     <div class="row">
       <label for="rd-prov">Provider</label>
@@ -10942,11 +11048,18 @@ ${survey.handwritingKey}
     const n = $("rd-state");
     if (!n) return;
     const list = (R && R.MODELS[getProvider()]) || [];
-    const label = (list.find((m) => m.id === getModel()) || {}).label || getModel();
-    n.innerHTML = (hasKey()
-      ? `<span class="ok">● A key is saved on this device.</span> Reading with <b>${esc(label)}</b>.`
-      : `<span class="no">● No key saved.</span> Paste one above, or point this copy at your own reader.`)
-      + (msg ? ` <span style="opacity:.7">— ${esc(msg)}</span>` : "");
+    // The label carries its own description ("Claude Opus 5 — deepest read, costs
+    // more"), which reads as nonsense mid-sentence. Take just the name.
+    const full = (list.find((m) => m.id === getModel()) || {}).label || getModel();
+    const label = full.split("—")[0].trim();
+    const how = availability();
+    const line =
+      how === "own-key"
+        ? `<span class="ok">● Reading with your own key</span> — unlimited, using <b>${esc(label)}</b>, billed to your account.`
+        : how === "hosted"
+          ? `<span class="ok">● Ready to read, no key needed</span> — on the school's account with <b>${esc(HOSTED_MODEL)}</b>, a few charts a day. Add a key above for unlimited reading and your choice of model.`
+          : `<span class="no">● This copy cannot read photographs on its own.</span> Add a key above, or open Chart Studio at <b>chords.nathanielschool.com</b>, where the reading is done for you.`;
+    n.innerHTML = line + (msg ? ` <span style="opacity:.7">— ${esc(msg)}</span>` : "");
   }
 
   // ── progress, because multi-pass takes real seconds ──────────────────────
@@ -11001,15 +11114,17 @@ ${survey.handwritingKey}
     const drop = $("drop");
     const done = (html) => { if (drop) drop.innerHTML = html; };
 
-    // No key? Fall back to a reader endpoint if one is configured, otherwise say
-    // plainly what to do — never fail silently.
-    if (!hasKey()) {
+    // A key is optional. With one we go straight to the provider; without one we
+    // use the hosted reader. Only when this copy has NEITHER — a static file with
+    // no server behind it — is there nothing to do but say so.
+    const how = availability();
+    if (how === "none") {
       const custom = localStorage.getItem("chartstudio-reader-url");
       if (custom && typeof serverRead === "function") return serverRead(file);
       openPanel(true);
-      done(`<b>Add a key to read photographs</b><span>Chart Studio reads your photo with your own ` +
-        `AI account — the key stays on this device. Open <b>Reader settings</b> above and paste one in. ` +
-        `Or use Chart Studio at <b>chords.nathanielschool.com</b>, where the reading is done for you.</span>`);
+      done(`<b>This copy cannot read photographs</b><span>It is a file on your machine with no ` +
+        `reader behind it. Open <b>Reader settings</b> above and paste in your own key, or use ` +
+        `Chart Studio at <b>chords.nathanielschool.com</b>, where the reading is done for you.</span>`);
       return;
     }
 
@@ -11018,7 +11133,8 @@ ${survey.handwritingKey}
       const res = await R.readChart(file, {
         provider: getProvider(),
         model: getModel(),
-        apiKey: getKey(),
+        apiKey: getKey() || undefined,
+        proxyUrl: proxyURL(),
         onProgress: showProgress,
       });
       const chart = res.chart;
@@ -11062,7 +11178,7 @@ ${survey.handwritingKey}
     g.appendChild(el("label", null, "Reader"));
     const b = el("button", "mode", "Reader settings");
     b.id = "readerbtn";
-    b.title = "Choose the AI provider and paste your key — it stays on this device";
+    b.title = "Reading works without a key. Add your own for unlimited reading and your choice of model.";
     b.onclick = () => openPanel();
     g.appendChild(b);
     tools.appendChild(g);
