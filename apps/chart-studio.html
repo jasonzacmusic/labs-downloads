@@ -10932,10 +10932,65 @@ ${survey.handwritingKey}
     return "/api/vision";
   }
 
-  /** own-key · hosted · none — what this copy can do right now. */
+  /**
+   * Whether the hosted reader is really there.
+   *
+   * Not every deployment carries one, so ASSUMING it exists puts "no key needed"
+   * on screen and then fails a minute into the read — the worst possible order.
+   * Probe once, cheaply, and cache it for the session. null = not asked yet, and
+   * until the answer arrives the UI stays quiet rather than promising anything.
+   */
+  let PROXY_OK = null;
+  async function probeProxy() {
+    if (PROXY_OK !== null) return PROXY_OK;
+    const url = proxyURL();
+    if (!url) { PROXY_OK = false; return false; }
+    try {
+      const r = await fetch(url, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: "{}",
+      });
+      // A real endpoint rejects a junk body (400/422/429/500). A missing one 404s,
+      // and a static host answers 405 or serves the page itself.
+      PROXY_OK = r.status !== 404 && r.status !== 405 && !String(r.headers.get("content-type") || "").includes("text/html");
+    } catch (e) {
+      PROXY_OK = false;                 // offline, blocked, or no such host
+    }
+    return PROXY_OK;
+  }
+
+  /**
+   * The ORIGINAL server reader (/api/chart/read). chords.nathanielschool.com has
+   * carried it all along and reads a photo for a signed-in musician, so it stays
+   * a fallback — BYOK must not take away something that already worked.
+   */
+  let SERVER_OK = null;
+  function serverReadURL() {
+    if (location.protocol !== "http:" && location.protocol !== "https:") return null;
+    if (/\.github\.io$/i.test(location.hostname)) return null;
+    return "/api/chart/read";
+  }
+  const serverReadAvailable = () => SERVER_OK === true;
+  async function probeServerRead() {
+    if (SERVER_OK !== null) return SERVER_OK;
+    const url = serverReadURL();
+    if (!url) { SERVER_OK = false; return false; }
+    try {
+      const r = await fetch(url, { method: "POST" });
+      // 400 (no image) or 401 (sign in) both mean the endpoint is really there.
+      SERVER_OK = r.status !== 404 && r.status !== 405 &&
+        !String(r.headers.get("content-type") || "").includes("text/html");
+    } catch (e) { SERVER_OK = false; }
+    return SERVER_OK;
+  }
+
+  /** own-key · hosted · server · none — what this copy can do right now. */
   function availability() {
     if (getKey()) return "own-key";
-    return proxyURL() ? "hosted" : "none";
+    if (PROXY_OK) return "hosted";
+    if (SERVER_OK) return "server";
+    return "none";
   }
 
   /** The hosted reader is pinned to one model; a personal key picks its own. */
@@ -10980,12 +11035,12 @@ ${survey.handwritingKey}
   panel.innerHTML = `
     <h3>Reading a photograph of a chart</h3>
     <div class="why">
-      <b>You do not need a key.</b> Drop a photo and Chart Studio reads it for you —
-      a few charts a day, on the school's account.
-      <br>Adding your own key removes that limit, lets you choose the model, and bills
-      the reading to you instead. <b>Your key stays on this device and is sent only to
-      the provider you choose</b> — never written to a link, never logged, and never
-      sent to Nathaniel School of Music.
+      Chart Studio can read a photograph of a handwritten chart into something you can
+      transpose, play and engrave. Where a hosted reader is available you need no key at
+      all — it reads a few charts a day on the school's account. Adding your own key
+      removes that limit, lets you choose the model, and bills the reading to you.
+      <br><b>Your key stays on this device and is sent only to the provider you choose</b>
+      — never written to a link, never logged, and never sent to Nathaniel School of Music.
     </div>
     <div class="row">
       <label for="rd-prov">Provider</label>
@@ -11042,6 +11097,7 @@ ${survey.handwritingKey}
       state("Key removed from this device.");
     };
     state();
+    Promise.all([probeProxy(), probeServerRead()]).then(() => state());
   }
 
   function state(msg) {
@@ -11054,9 +11110,13 @@ ${survey.handwritingKey}
     const label = full.split("—")[0].trim();
     const how = availability();
     const line =
-      how === "own-key"
+      (PROXY_OK === null || SERVER_OK === null) && !getKey()
+        ? `<span style="opacity:.6">● Checking whether this copy can read photographs…</span>`
+      : how === "own-key"
         ? `<span class="ok">● Reading with your own key</span> — unlimited, using <b>${esc(label)}</b>, billed to your account.`
-        : how === "hosted"
+        : how === "server"
+        ? `<span class="ok">● Ready to read on this site</span> — sign in and drop a photo, and the reading is done for you. Add a key above to read without signing in.`
+      : how === "hosted"
           ? `<span class="ok">● Ready to read, no key needed</span> — on the school's account with <b>${esc(HOSTED_MODEL)}</b>, a few charts a day. Add a key above for unlimited reading and your choice of model.`
           : `<span class="no">● This copy cannot read photographs on its own.</span> Add a key above, or open Chart Studio at <b>chords.nathanielschool.com</b>, where the reading is done for you.`;
     n.innerHTML = line + (msg ? ` <span style="opacity:.7">— ${esc(msg)}</span>` : "");
@@ -11117,10 +11177,16 @@ ${survey.handwritingKey}
     // A key is optional. With one we go straight to the provider; without one we
     // use the hosted reader. Only when this copy has NEITHER — a static file with
     // no server behind it — is there nothing to do but say so.
+    if (!getKey()) await Promise.all([probeProxy(), probeServerRead()]);
     const how = availability();
+    // This deployment may carry the ORIGINAL server reader (/api/chart/read),
+    // which is how chords.nathanielschool.com has always read a photo for a
+    // signed-in musician. Use it rather than taking away something that worked.
+    const custom = localStorage.getItem("chartstudio-reader-url");
+    if ((how === "server" || custom) && typeof serverRead === "function") {
+      return serverRead(file);
+    }
     if (how === "none") {
-      const custom = localStorage.getItem("chartstudio-reader-url");
-      if (custom && typeof serverRead === "function") return serverRead(file);
       openPanel(true);
       done(`<b>This copy cannot read photographs</b><span>It is a file on your machine with no ` +
         `reader behind it. Open <b>Reader settings</b> above and paste in your own key, or use ` +
