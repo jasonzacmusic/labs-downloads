@@ -55,9 +55,9 @@
 "ios": false
 },
 "jasonzacmusic/Handwritten-Music-Composer": {
-"commit": "Portal brief: merge the two standalone apps, add a secon",
+"commit": "Bake-off: add Sol's verified pricing, leave Luna unprice",
 "ios": false,
-"pushed": "2026-07-31T05:37:42Z"
+"pushed": "2026-07-31T08:14:44Z"
 },
 "jasonzacmusic/Intermediate-Planner": {
 "ios": false
@@ -76,9 +76,9 @@
 "pushed": "2026-07-26T12:11:41Z"
 },
 "jasonzacmusic/MidiVisualizer": {
-"commit": "Fun Mode: dock the recording studio controls INTO the he",
+"commit": "Deploy: merge launch-blockers-phase2 to production",
 "ios": false,
-"pushed": "2026-07-31T05:41:54Z"
+"pushed": "2026-08-01T07:57:37Z"
 },
 "jasonzacmusic/MidiVisualizer-Releases": {
 "ios": false
@@ -191,9 +191,9 @@
 "pushed": "2026-07-20T10:31:39Z"
 },
 "jasonzacmusic/atlas": {
-"commit": "Outside audit \u2014 Grok's findings, verified, with my verdi",
+"commit": "MIDI in for piano and drums, always-live QWERTY, and the",
 "ios": false,
-"pushed": "2026-07-31T05:31:24Z"
+"pushed": "2026-07-31T07:22:27Z"
 },
 "jasonzacmusic/baithak": {
 "ios": false
@@ -214,10 +214,13 @@
 "ios": true,
 "pushed": "2026-07-25T12:48:00Z"
 },
+"jasonzacmusic/chart-studio-web": {
+"ios": false
+},
 "jasonzacmusic/chorale": {
-"commit": "Phase E: Stage Screen \u2014 port the Constellation Choir des",
+"commit": "v0.9.0: harmony styles, freeze, and two MIDI bugs found ",
 "ios": false,
-"pushed": "2026-07-31T05:15:58Z"
+"pushed": "2026-08-01T11:00:50Z"
 },
 "jasonzacmusic/chord-tree-canopy": {
 "ios": false
@@ -251,12 +254,18 @@
 "ios": true,
 "pushed": "2026-07-26T11:09:05Z"
 },
+"jasonzacmusic/handwritten-trumpet": {
+"ios": false
+},
 "jasonzacmusic/hexatonic": {
 "commit": "The pipeline: blues lane, ear game, tihai lab, real jant",
 "ios": false,
 "pushed": "2026-07-31T02:45:26Z"
 },
 "jasonzacmusic/jasonzacmusic": {
+"ios": false
+},
+"jasonzacmusic/jazz-251-lab": {
 "ios": false
 },
 "jasonzacmusic/jz-comment-studio": {
@@ -330,9 +339,9 @@
 "ios": false
 },
 "jasonzacmusic/net-sense": {
-"commit": "Add revocable team device access",
+"commit": "Replace speed tests with clear live telemetry",
 "ios": false,
-"pushed": "2026-07-31T04:59:29Z"
+"pushed": "2026-08-01T08:10:14Z"
 },
 "jasonzacmusic/nsm-aria": {
 "ios": false
@@ -355,6 +364,9 @@
 "ios": false
 },
 "jasonzacmusic/nsm-logic-mainstage-bridge": {
+"ios": false
+},
+"jasonzacmusic/nsm-media-gen": {
 "ios": false
 },
 "jasonzacmusic/nsm-melody-rhythm-playground": {
@@ -389,9 +401,9 @@
 "ios": false
 },
 "jasonzacmusic/ossia": {
-"commit": "Design rethink: Paper Pro gap analysis + Claude Design b",
+"commit": "Wall mode \u2014 OSSIA on pen-less touch boards (IR frames, t",
 "ios": true,
-"pushed": "2026-07-20T10:30:07Z"
+"pushed": "2026-07-31T08:27:13Z"
 },
 "jasonzacmusic/pendulum": {
 "commit": "feat: count-in + gap-click practice modes, and a clean l",
@@ -438,9 +450,9 @@
 "ios": false
 },
 "jasonzacmusic/sight-singing-studio": {
-"commit": "SEO recce, and the five things it said I got wrong",
+"commit": "Drop the halo; let the shade of the note do the work",
 "ios": false,
-"pushed": "2026-07-31T05:19:44Z"
+"pushed": "2026-08-01T07:51:10Z"
 },
 "jasonzacmusic/sightread": {
 "commit": "Add X-ray (figuration\u2194block-chord) toggle and polish wai",
