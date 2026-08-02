@@ -55,9 +55,9 @@
 "ios": false
 },
 "jasonzacmusic/Handwritten-Music-Composer": {
-"commit": "Bake-off: add Sol's verified pricing, leave Luna unprice",
+"commit": "Key signatures past seven, and scripts that run on more ",
 "ios": false,
-"pushed": "2026-07-31T08:14:44Z"
+"pushed": "2026-08-02T05:19:50Z"
 },
 "jasonzacmusic/Intermediate-Planner": {
 "ios": false
@@ -78,7 +78,7 @@
 "jasonzacmusic/MidiVisualizer": {
 "commit": "Deploy: merge launch-blockers-phase2 to production",
 "ios": false,
-"pushed": "2026-08-01T07:57:37Z"
+"pushed": "2026-08-02T07:42:24Z"
 },
 "jasonzacmusic/MidiVisualizer-Releases": {
 "ios": false
@@ -218,9 +218,9 @@
 "ios": false
 },
 "jasonzacmusic/chorale": {
-"commit": "v0.9.0: harmony styles, freeze, and two MIDI bugs found ",
+"commit": "Record notarized Chorale 1.2 installation",
 "ios": false,
-"pushed": "2026-08-01T11:00:50Z"
+"pushed": "2026-08-02T07:33:38Z"
 },
 "jasonzacmusic/chord-tree-canopy": {
 "ios": false
@@ -331,9 +331,9 @@
 "ios": false
 },
 "jasonzacmusic/nathaniel-photo-hub": {
-"commit": "fix(studio): a photo with a look but no cached filter ex",
+"commit": "The 12 Riff Studio pianos, matted so they sit on any des",
 "ios": false,
-"pushed": "2026-07-31T05:05:03Z"
+"pushed": "2026-08-02T07:34:34Z"
 },
 "jasonzacmusic/nathaniel-production-house": {
 "ios": false
@@ -367,6 +367,9 @@
 "ios": false
 },
 "jasonzacmusic/nsm-media-gen": {
+"ios": false
+},
+"jasonzacmusic/nsm-media-skills": {
 "ios": false
 },
 "jasonzacmusic/nsm-melody-rhythm-playground": {
@@ -450,9 +453,9 @@
 "ios": false
 },
 "jasonzacmusic/sight-singing-studio": {
-"commit": "Drop the halo; let the shade of the note do the work",
+"commit": "The Pattern Lab: the drill every tradition shares \u2014 plus",
 "ios": false,
-"pushed": "2026-08-01T07:51:10Z"
+"pushed": "2026-08-02T04:32:03Z"
 },
 "jasonzacmusic/sightread": {
 "commit": "Add X-ray (figuration\u2194block-chord) toggle and polish wai",
@@ -472,9 +475,9 @@
 "ios": false
 },
 "jasonzacmusic/woodshed": {
-"commit": "Add GO_LIVE checklist (Brevo email + Blob = live)",
+"commit": "Merge remote-tracking branch 'origin/main'",
 "ios": true,
-"pushed": "2026-07-20T10:25:49Z"
+"pushed": "2026-08-02T08:05:05Z"
 },
 "jasonzacmusic/zen-studio-app": {
 "ios": false
