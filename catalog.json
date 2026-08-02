@@ -2,6 +2,14 @@
   "_comment": "Nathaniel Labs hub catalog. Fields per app: repo (drives last-updated date), native[] (hub asset per platform; optional label distinguishes two builds of the same platform), web (live app url, always clickable), ios ('soon'|'live'), ios_url (TestFlight/App Store when live), site (sales/landing page when one exists), access ('public' = anyone may use/share it, 'team' = internal only, never share), blurb (one-line description). Downloadable apps are shown first; iOS apps are labeled + colored distinctly. Two apps may share one repo (e.g. Shruti + Sangam) — each still gets its own card.",
   "apps": [
     {
+      "name": "Baithak",
+      "category": "Audio",
+      "access": "team",
+      "repo": "jasonzacmusic/baithak",
+      "web": "https://baithak.nathanielschool.com",
+      "blurb": "NSM's own Riverside: remote podcast and music-class studio where every guest's camera and mic record a local master (1080p/4K video + 48 kHz 24-bit stereo WAV) that survives bad internet, plus branded YouTube Live scenes."
+    },
+    {
       "name": "Net Sense",
       "category": "Utility",
       "access": "team",
