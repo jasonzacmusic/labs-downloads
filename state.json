@@ -78,7 +78,7 @@
 "jasonzacmusic/MidiVisualizer": {
 "commit": "Deploy: merge launch-blockers-phase2 to production",
 "ios": false,
-"pushed": "2026-08-02T07:42:24Z"
+"pushed": "2026-08-02T08:36:30Z"
 },
 "jasonzacmusic/MidiVisualizer-Releases": {
 "ios": false
@@ -218,9 +218,9 @@
 "ios": false
 },
 "jasonzacmusic/chorale": {
-"commit": "Record notarized Chorale 1.2 installation",
+"commit": "Fix live latency and chromatic piano defaults",
 "ios": false,
-"pushed": "2026-08-02T07:33:38Z"
+"pushed": "2026-08-02T08:20:01Z"
 },
 "jasonzacmusic/chord-tree-canopy": {
 "ios": false
@@ -331,9 +331,9 @@
 "ios": false
 },
 "jasonzacmusic/nathaniel-photo-hub": {
-"commit": "The 12 Riff Studio pianos, matted so they sit on any des",
+"commit": "The burn prompt, grounded in the actual lesson log",
 "ios": false,
-"pushed": "2026-08-02T07:34:34Z"
+"pushed": "2026-08-02T08:19:08Z"
 },
 "jasonzacmusic/nathaniel-production-house": {
 "ios": false
@@ -475,9 +475,9 @@
 "ios": false
 },
 "jasonzacmusic/woodshed": {
-"commit": "Merge remote-tracking branch 'origin/main'",
+"commit": "Payments the house way: PayPal + manual INR rail + real ",
 "ios": true,
-"pushed": "2026-08-02T08:05:05Z"
+"pushed": "2026-08-02T08:56:00Z"
 },
 "jasonzacmusic/zen-studio-app": {
 "ios": false
