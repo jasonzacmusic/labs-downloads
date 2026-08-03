@@ -459,6 +459,9 @@ kbd{font-family:var(--mono);font-size:10.5px;background:var(--surface-2);border:
   .section{break-inside:avoid}
 }
 
+.modpath{color:var(--brass,#c49a50)}
+.modpath b{font-weight:700;letter-spacing:.01em}
+.modpath[title]{cursor:help;border-bottom:1px dotted color-mix(in srgb,var(--brass,#c49a50) 55%,transparent)}
 </style>
 </head>
 <body>
@@ -708,6 +711,7 @@ var NSMEngine = (() => {
     harmonyXml: () => harmonyXml,
     isStop: () => isStop,
     keySigMap: () => keySigMap,
+    keySummary: () => keySummary,
     lickEvents: () => lickEvents,
     lickIssues: () => lickIssues,
     lickTokenToString: () => lickTokenToString,
@@ -785,7 +789,7 @@ var NSMEngine = (() => {
         best = nl + accStr(na);
       }
     }
-    return best != null ? best : "";
+    return best ?? "";
   }
   function respell(p) {
     const { letter, acc } = parsePitch(p);
@@ -805,7 +809,7 @@ var NSMEngine = (() => {
       }
     }
     if (best && bestAbs > 1 && Math.abs(acc) <= 1) return p;
-    return best != null ? best : p;
+    return best ?? p;
   }
   function midiOf(letter, acc, oct) {
     return 12 * (oct + 1) + NAT_PC[letter] + acc;
@@ -858,11 +862,14 @@ var NSMEngine = (() => {
   var FLAT_ORDER = ["B", "E", "A", "D", "G", "C", "F"];
   var SHARP_ORDER = ["F", "C", "G", "D", "A", "E", "B"];
   function keySigMap(root, minor) {
-    var _a;
-    const n = (_a = sigCount(root, minor)) != null ? _a : 0;
+    const n = sigCount(root, minor) ?? 0;
     const map = {};
-    if (n < 0) FLAT_ORDER.slice(0, -n).forEach((l) => map[l] = -1);
-    if (n > 0) SHARP_ORDER.slice(0, n).forEach((l) => map[l] = 1);
+    if (n === 0) return map;
+    const order = n < 0 ? FLAT_ORDER : SHARP_ORDER;
+    const sign = n < 0 ? -1 : 1;
+    const count = Math.abs(n);
+    order.slice(0, Math.min(7, count)).forEach((l) => map[l] = sign);
+    if (count > 7) order.slice(0, count - 7).forEach((l) => map[l] = sign * 2);
     return map;
   }
   var INSTRUMENTS = [
@@ -937,7 +944,7 @@ var NSMEngine = (() => {
     return trPitch(chart.concertRoot, tr) + (chart.minor ? "m" : "");
   }
   function chordIntervals(raw) {
-    let q = (raw != null ? raw : "").replace(/[()\s]/g, "").replace(/X/g, "");
+    let q = (raw ?? "").replace(/[()\s]/g, "").replace(/X/g, "");
     q = q.replace(/[△Δ∆](?=\d)/g, "maj").replace(/[△Δ∆]/g, "maj7");
     q = q.replace(/[°º]/g, "dim").replace(/[ø⌀]/g, "m7b5");
     if (q.startsWith("-")) q = "m" + q.slice(1);
@@ -1105,7 +1112,6 @@ var NSMEngine = (() => {
   }
   var isStop = (sym) => sym.includes("X");
   function parseLickToken(str) {
-    var _a;
     if (str === "|") return { type: "bar" };
     if (str === "\u2016") return { type: "bar", double: true };
     if (str === "//") return { type: "break" };
@@ -1117,7 +1123,7 @@ var NSMEngine = (() => {
     return {
       type: "note",
       p: m[1],
-      hi: ((_a = marks.match(/'/g)) != null ? _a : []).length,
+      hi: (marks.match(/'/g) ?? []).length,
       orn: marks.includes("~"),
       und: marks.includes("_")
     };
@@ -1137,12 +1143,11 @@ var NSMEngine = (() => {
     }
   }
   function placeLickNotes(sec, tr, anchor = 67) {
-    var _a, _b, _c;
     const out = [];
-    const written = (_a = sec.lick) == null ? void 0 : _a.oct;
+    const written = sec.lick?.oct;
     let prev = null;
     let n = 0;
-    for (const raw of (_c = (_b = sec.lick) == null ? void 0 : _b.notes) != null ? _c : []) {
+    for (const raw of sec.lick?.notes ?? []) {
       const tk = parseLickToken(raw);
       if (tk.type === "break" || tk.type === "segno") {
         prev = null;
@@ -1151,7 +1156,7 @@ var NSMEngine = (() => {
       if (tk.type !== "note") continue;
       const pRaw = transposePitch(tk.p, tr.semis, tr.steps);
       const pT = fixSide(pRaw, tr.side);
-      const stated = written == null ? void 0 : written[n];
+      const stated = written?.[n];
       n++;
       if (typeof stated === "number") {
         const idx = LETTERS.indexOf(parsePitch(tk.p).letter);
@@ -1168,7 +1173,7 @@ var NSMEngine = (() => {
       let bd = Infinity;
       for (let o = 3; o <= 6; o++) {
         const m = midiOf(letter, acc, o);
-        const d = Math.abs(m - (prev != null ? prev : anchor));
+        const d = Math.abs(m - (prev ?? anchor));
         if (d < bd) {
           bd = d;
           best = { m, o };
@@ -1181,9 +1186,8 @@ var NSMEngine = (() => {
   }
   var DEFAULT_DUR = "8";
   function lickEvents(sec, tr) {
-    var _a, _b, _c, _d, _e;
     const toks = placeLickNotes(sec, tr);
-    const durs = (_b = (_a = sec.lick) == null ? void 0 : _a.durs) != null ? _b : [];
+    const durs = sec.lick?.durs ?? [];
     const ev = [];
     let di = 0, ti = 0;
     const flushRests = () => {
@@ -1192,7 +1196,7 @@ var NSMEngine = (() => {
         di++;
       }
     };
-    for (const raw of (_d = (_c = sec.lick) == null ? void 0 : _c.notes) != null ? _d : []) {
+    for (const raw of sec.lick?.notes ?? []) {
       const tk = parseLickToken(raw);
       if (tk.type === "bar") {
         flushRests();
@@ -1213,7 +1217,7 @@ var NSMEngine = (() => {
       }
       flushRests();
       const tok = toks[ti++];
-      if (tok) ev.push({ type: "note", d: (_e = durs[di]) != null ? _e : DEFAULT_DUR, tok, assumed: di >= durs.length });
+      if (tok) ev.push({ type: "note", d: durs[di] ?? DEFAULT_DUR, tok, assumed: di >= durs.length });
       if (di < durs.length) di++;
     }
     flushRests();
@@ -1252,45 +1256,42 @@ var NSMEngine = (() => {
   };
   var KNOWN_DURS = new Set(Object.keys(DUR_BEATS));
   function lickIssues(sec) {
-    var _a, _b, _c, _d, _e;
     const out = [];
     const lick = sec.lick;
     if (!lick) return out;
-    const noteCount = ((_a = lick.notes) != null ? _a : []).filter((t) => parseLickToken(t).type === "note").length;
-    const durNotes = ((_b = lick.durs) != null ? _b : []).filter((d) => !d.endsWith("r")).length;
-    if (((_c = lick.durs) == null ? void 0 : _c.length) && durNotes < noteCount) {
+    const noteCount = (lick.notes ?? []).filter((t) => parseLickToken(t).type === "note").length;
+    const durNotes = (lick.durs ?? []).filter((d) => !d.endsWith("r")).length;
+    if (lick.durs?.length && durNotes < noteCount) {
       out.push(`${noteCount} notes but only ${durNotes} note durations \u2014 the last ${noteCount - durNotes} are playing as even eighths`);
     }
     if (durNotes > noteCount) {
       out.push(`${durNotes} note durations but only ${noteCount} notes \u2014 ${durNotes - noteCount} durations have no note to play`);
     }
-    const unknown = Array.from(new Set(((_d = lick.durs) != null ? _d : []).filter((d) => !KNOWN_DURS.has(d))));
+    const unknown = Array.from(new Set((lick.durs ?? []).filter((d) => !KNOWN_DURS.has(d))));
     if (unknown.length) out.push(`durations not understood: ${unknown.join(", ")}`);
-    if (((_e = lick.oct) == null ? void 0 : _e.length) && lick.oct.length !== noteCount) {
+    if (lick.oct?.length && lick.oct.length !== noteCount) {
       out.push(`${lick.oct.length} stated octaves for ${noteCount} notes \u2014 the stave octaves do not line up`);
     }
     return out;
   }
   function reviewItems(chart) {
-    var _a, _b, _c, _d;
     const out = [];
     for (const sec of chart.sections) {
       const where = sec.label || sec.nav || sec.tag || sec.id;
       [sec.bars, sec.bars2].forEach((bars, ri) => {
-        (bars != null ? bars : []).forEach((bar, bi) => {
-          var _a2;
+        (bars ?? []).forEach((bar, bi) => {
           if (!bar.unc) return;
           out.push({
             key: `bar:${sec.id}-${ri}-${bi}`,
             kind: "chord",
             sectionId: sec.id,
             where,
-            what: ((_a2 = bar.ch) != null ? _a2 : []).join(" "),
+            what: (bar.ch ?? []).join(" "),
             why: "the reader was not certain of this chord \u2014 confirm it or type the right one"
           });
         });
       });
-      if (sec.isLick && ((_a = sec.lick) == null ? void 0 : _a.approx)) {
+      if (sec.isLick && sec.lick?.approx) {
         out.push({
           key: `rhythm:${sec.id}`,
           kind: "rhythm",
@@ -1316,17 +1317,17 @@ var NSMEngine = (() => {
           kind: "label",
           sectionId: sec.id,
           where,
-          what: (_b = sec.note) != null ? _b : "",
+          what: sec.note ?? "",
           why: "handwritten label the reader could not resolve cleanly"
         });
       }
-      if ((_c = sec.figure) == null ? void 0 : _c.afterUnc) {
+      if (sec.figure?.afterUnc) {
         out.push({
           key: `figafter:${sec.id}`,
           kind: "chord",
           sectionId: sec.id,
           where,
-          what: (_d = sec.figure.after) != null ? _d : "",
+          what: sec.figure.after ?? "",
           why: "chord written after the notation figure \u2014 confirm the symbol and its position"
         });
       }
@@ -1368,14 +1369,8 @@ var NSMEngine = (() => {
     w: "whole",
     wd: "whole"
   };
-  var durDivisions = (d) => {
-    var _a;
-    return (_a = DUR_TO_DIV[d.replace(/r$/, "")]) != null ? _a : 24;
-  };
-  var durType = (d) => {
-    var _a;
-    return (_a = TYPE_OF[d.replace(/r$/, "")]) != null ? _a : "quarter";
-  };
+  var durDivisions = (d) => DUR_TO_DIV[d.replace(/r$/, "")] ?? 24;
+  var durType = (d) => TYPE_OF[d.replace(/r$/, "")] ?? "quarter";
   var durDotted = (d) => /d$/.test(d.replace(/r$/, ""));
   var durTriplet = (d) => /t$/.test(d.replace(/r$/, ""));
   var esc = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -1397,8 +1392,7 @@ var NSMEngine = (() => {
     Cb: -7
   };
   function fifthsOf(root, minor) {
-    var _a, _b, _c;
-    if (!minor) return (_a = FIFTHS[root]) != null ? _a : 0;
+    if (!minor) return FIFTHS[root] ?? 0;
     const REL = {
       A: "C",
       E: "G",
@@ -1416,7 +1410,7 @@ var NSMEngine = (() => {
       Eb: "Gb",
       Ab: "Cb"
     };
-    return (_c = FIFTHS[(_b = REL[root]) != null ? _b : "C"]) != null ? _c : 0;
+    return FIFTHS[REL[root] ?? "C"] ?? 0;
   }
   var CLEF_XML = {
     treble: { sign: "G", line: 2 },
@@ -1425,7 +1419,6 @@ var NSMEngine = (() => {
     tenor: { sign: "C", line: 4 }
   };
   function eventsOf(sec, placed) {
-    var _a, _b, _c;
     const lick = sec.lick;
     if (!lick) return [];
     const out = [];
@@ -1451,10 +1444,10 @@ var NSMEngine = (() => {
         kind: "note",
         step: m[1],
         alter,
-        oct: (_b = (_a = placed[ni]) == null ? void 0 : _a.oct) != null ? _b : 4,
+        oct: placed[ni]?.oct ?? 4,
         // A lick with fewer durations than notes still exports every note — the
         // tail simply reads as even eighths rather than disappearing.
-        dur: (_c = lick.durs[di]) != null ? _c : "8",
+        dur: lick.durs[di] ?? "8",
         chord: pending
       });
       pending = void 0;
@@ -1465,23 +1458,20 @@ var NSMEngine = (() => {
   }
   var CLEF_CENTRE = { treble: 71, bass: 50, alto: 60, tenor: 57 };
   function centreOctaves(placed, midis, clef) {
-    var _a;
     if (!midis.length) return placed;
     const sorted = [...midis].sort((a, b) => a - b);
     const median = sorted[Math.floor(sorted.length / 2)];
-    const shift = Math.round((((_a = CLEF_CENTRE[clef]) != null ? _a : 71) - median) / 12);
+    const shift = Math.round(((CLEF_CENTRE[clef] ?? 71) - median) / 12);
     return shift === 0 ? placed : placed.map((n) => ({ ...n, oct: n.oct + shift }));
   }
   function harmonyBars(chart) {
-    var _a, _b, _c, _d, _e, _f;
     const out = [];
     let prev = [];
     const pushRow = (bars, label) => {
-      var _a2;
       let first = true;
-      for (const bar of bars != null ? bars : []) {
+      for (const bar of bars ?? []) {
         if (bar.sep) continue;
-        const ch = bar.rpt ? prev : (_a2 = bar.ch) != null ? _a2 : [];
+        const ch = bar.rpt ? prev : bar.ch ?? [];
         if (!ch.length) {
           out.push({ ch: [] });
           continue;
@@ -1494,24 +1484,20 @@ var NSMEngine = (() => {
     for (const sec of chart.sections) {
       const label = sec.label || sec.nav || sec.tag;
       pushRow(sec.bars, label);
-      pushRow(sec.bars2, ((_a = sec.bars2) == null ? void 0 : _a.length) ? `${label != null ? label : sec.id} (row 2)` : void 0);
-      const fig = ((_c = (_b = sec.figure) == null ? void 0 : _b.events) != null ? _c : []).map((e) => e.ch).filter(Boolean);
-      if (fig.length) out.push({ ch: fig, label: `${label != null ? label : sec.id} (figure)` });
-      if ((_d = sec.figure) == null ? void 0 : _d.after) out.push({ ch: [sec.figure.after] });
-      for (const group of (_f = (_e = sec.after) == null ? void 0 : _e.ch) != null ? _f : []) {
+      pushRow(sec.bars2, sec.bars2?.length ? `${label ?? sec.id} (row 2)` : void 0);
+      const fig = (sec.figure?.events ?? []).map((e) => e.ch).filter(Boolean);
+      if (fig.length) out.push({ ch: fig, label: `${label ?? sec.id} (figure)` });
+      if (sec.figure?.after) out.push({ ch: [sec.figure.after] });
+      for (const group of sec.after?.ch ?? []) {
         const cs = group.split(/\s+/).filter(Boolean);
-        if (cs.length) out.push({ ch: cs, label: `${label != null ? label : sec.id} (after)` });
+        if (cs.length) out.push({ ch: cs, label: `${label ?? sec.id} (after)` });
       }
     }
     return out;
   }
   function chartToMusicXML(chart, opts) {
-    var _a, _b, _c, _d, _e, _f;
     const parts = [];
-    const melodic = chart.sections.filter((s) => {
-      var _a2, _b2;
-      return (_b2 = (_a2 = s.lick) == null ? void 0 : _a2.notes) == null ? void 0 : _b2.length;
-    });
+    const melodic = chart.sections.filter((s) => s.lick?.notes?.length);
     const measures = [];
     let measureNo = 1;
     const flush = (body, attrs) => {
@@ -1521,16 +1507,13 @@ ${attrs}${body.join("")}      </measure>`);
     let first = true;
     for (const sec of melodic) {
       const lick = sec.lick;
-      const clefName = (_a = lick.clef) != null ? _a : "treble";
+      const clefName = lick.clef ?? "treble";
       const raw = opts.placeOctaves(sec);
-      const placed = ((_b = lick.oct) == null ? void 0 : _b.length) ? raw : centreOctaves(raw, raw.map((n) => {
-        var _a2;
-        return (_a2 = n.midi) != null ? _a2 : 0;
-      }).filter(Boolean), clefName);
+      const placed = lick.oct?.length ? raw : centreOctaves(raw, raw.map((n) => n.midi ?? 0).filter(Boolean), clefName);
       const evs = eventsOf(sec, placed);
       const clef = CLEF_XML[clefName];
       const fifths = lick.keySig ? fifthsOf(lick.keySig.replace(/m$/, ""), /m$/.test(lick.keySig) || !/m$/.test(lick.keySig) && chart.minor) : fifthsOf(chart.concertRoot, chart.minor);
-      const [beats, beatType] = ((_c = lick.timeSig) != null ? _c : "4/4").split("/");
+      const [beats, beatType] = (lick.timeSig ?? "4/4").split("/");
       const barDivs = Math.round(DIVISIONS * 4 * (parseInt(beats, 10) / parseInt(beatType, 10)));
       let filled = 0;
       const padTo = (body2) => {
@@ -1558,7 +1541,7 @@ ${attrs}${body.join("")}      </measure>`);
       }
       if (sec.label || sec.nav) {
         body.push(
-          `        <direction placement="above"><direction-type><rehearsal>${esc((_e = (_d = sec.label) != null ? _d : sec.nav) != null ? _e : "")}</rehearsal></direction-type></direction>
+          `        <direction placement="above"><direction-type><rehearsal>${esc(sec.label ?? sec.nav ?? "")}</rehearsal></direction-type></direction>
 `
         );
       }
@@ -1640,10 +1623,7 @@ ${chordBody.join("\n")}
     </part>`);
     }
     const partList = parts.map((_, i) => `    <score-part id="P${i + 1}"><part-name>${i === 0 && measures.length ? "Melody" : "Changes"}</part-name></score-part>`).join("\n");
-    const approxIds = melodic.filter((s) => {
-      var _a2;
-      return (_a2 = s.lick) == null ? void 0 : _a2.approx;
-    }).map((s) => s.id);
+    const approxIds = melodic.filter((s) => s.lick?.approx).map((s) => s.id);
     const misc = [
       approxIds.length ? `      <miscellaneous-field name="chart-approx-rhythm">${esc(approxIds.join(","))}</miscellaneous-field>` : "",
       melodyPadFrom <= span ? `      <miscellaneous-field name="chart-melody-real-measures">${melodyPadFrom - 1}</miscellaneous-field>` : ""
@@ -1651,7 +1631,7 @@ ${chordBody.join("\n")}
     return `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 4.0 Partwise//EN" "http://www.musicxml.org/dtds/partwise.dtd">
 <score-partwise version="4.0">
-  <work><work-title>${esc((_f = opts.title) != null ? _f : chart.title)}</work-title></work>
+  <work><work-title>${esc(opts.title ?? chart.title)}</work-title></work>
   <identification><encoding><software>Chart Studio</software></encoding>${misc ? `
     <miscellaneous>
 ${misc}
@@ -1692,7 +1672,6 @@ ${parts.join("\n")}
     [/^add9/, "major"]
   ];
   function harmonyXml(sym) {
-    var _a, _b;
     const noStop = sym.replace(/X$/, "").trim();
     const clean = noStop.startsWith("(") && noStop.endsWith(")") ? noStop.slice(1, -1) : noStop;
     const m = clean.match(/^([A-G])(b*|#*)(.*)$/);
@@ -1700,8 +1679,8 @@ ${parts.join("\n")}
     const [, step, accs, restRaw] = m;
     const alter = accs.startsWith("b") ? -accs.length : accs.length;
     const [qualityRaw, bass] = restRaw.split(/\/(?=[A-G])/);
-    const forKind = (qualityRaw != null ? qualityRaw : "").replace(/[()]/g, "");
-    const kind = forKind ? (_b = (_a = KIND_OF.find(([re]) => re.test(forKind))) == null ? void 0 : _a[1]) != null ? _b : "major" : "major";
+    const forKind = (qualityRaw ?? "").replace(/[()]/g, "");
+    const kind = forKind ? KIND_OF.find(([re]) => re.test(forKind))?.[1] ?? "major" : "major";
     const textAttr = qualityRaw ? ` text="${esc(qualityRaw)}"` : "";
     let out = `        <harmony><root><root-step>${step}</root-step>${alter ? `<root-alter>${alter}</root-alter>` : ""}</root><kind${textAttr}>${kind}</kind>`;
     if (bass) {
@@ -1731,31 +1710,23 @@ ${parts.join("\n")}
   };
   var CLEF_FROM = (sign, line) => sign === "F" ? "bass" : sign === "C" ? line === "4" ? "tenor" : "alto" : "treble";
   var ROOT_OF_FIFTHS = (f, minor) => {
-    var _a;
     const MAJ = ["Cb", "Gb", "Db", "Ab", "Eb", "Bb", "F", "C", "G", "D", "A", "E", "B", "F#", "C#"];
     const MIN = ["Ab", "Eb", "Bb", "F", "C", "G", "D", "A", "E", "B", "F#", "C#", "G#", "D#", "A#"];
-    return (_a = (minor ? MIN : MAJ)[f + 7]) != null ? _a : "C";
+    return (minor ? MIN : MAJ)[f + 7] ?? "C";
   };
-  var textOf = (xml, tag) => {
-    var _a, _b;
-    return (_b = (_a = xml.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)</${tag}>`))) == null ? void 0 : _a[1]) == null ? void 0 : _b.trim();
-  };
-  var attrOf = (xml, tag, attr) => {
-    var _a;
-    return (_a = xml.match(new RegExp(`<${tag}[^>]*\\b${attr}="([^"]*)"`))) == null ? void 0 : _a[1];
-  };
+  var textOf = (xml, tag) => xml.match(new RegExp(`<${tag}[^>]*>([\\s\\S]*?)</${tag}>`))?.[1]?.trim();
+  var attrOf = (xml, tag, attr) => xml.match(new RegExp(`<${tag}[^>]*\\b${attr}="([^"]*)"`))?.[1];
   function musicXMLToChart(xml, id = `mx-${Math.abs(hash(xml))}`) {
-    var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q;
     const title = textOf(xml, "work-title") || textOf(xml, "movement-title") || "Imported score";
-    const fifths = parseInt((_a = textOf(xml, "fifths")) != null ? _a : "0", 10) || 0;
-    const mode = ((_b = textOf(xml, "mode")) != null ? _b : "major").toLowerCase();
+    const fifths = parseInt(textOf(xml, "fifths") ?? "0", 10) || 0;
+    const mode = (textOf(xml, "mode") ?? "major").toLowerCase();
     const minor = mode === "minor";
-    const divisions = parseInt((_c = textOf(xml, "divisions")) != null ? _c : "24", 10) || 24;
-    const sign = (_d = textOf(xml, "sign")) != null ? _d : "G";
-    const line = (_e = textOf(xml, "line")) != null ? _e : "2";
-    const beats = (_f = textOf(xml, "beats")) != null ? _f : "4";
-    const beatType = (_g = textOf(xml, "beat-type")) != null ? _g : "4";
-    const approxField = (_h = xml.match(/<miscellaneous-field name="chart-approx-rhythm">([^<]*)</)) == null ? void 0 : _h[1];
+    const divisions = parseInt(textOf(xml, "divisions") ?? "24", 10) || 24;
+    const sign = textOf(xml, "sign") ?? "G";
+    const line = textOf(xml, "line") ?? "2";
+    const beats = textOf(xml, "beats") ?? "4";
+    const beatType = textOf(xml, "beat-type") ?? "4";
+    const approxField = xml.match(/<miscellaneous-field name="chart-approx-rhythm">([^<]*)</)?.[1];
     const notes = [];
     const durs = [];
     const oct = [];
@@ -1763,17 +1734,16 @@ ${parts.join("\n")}
     const notices = [];
     const partBlocks = xml.split(/<part\b[^>]*>/).slice(1).map((p) => p.split("</part>")[0]);
     const parts = partBlocks.length ? partBlocks : [xml];
-    const melodyPart = (_i = parts.find((p) => /<note[\s\S]*?<pitch/.test(p))) != null ? _i : parts[0];
+    const melodyPart = parts.find((p) => /<note[\s\S]*?<pitch/.test(p)) ?? parts[0];
     const chordOf = (block) => {
-      var _a2, _b2, _c2;
       const step = textOf(block, "root-step");
       if (!step) return null;
-      const alter = parseInt((_a2 = textOf(block, "root-alter")) != null ? _a2 : "0", 10) || 0;
-      const kind = (_b2 = textOf(block, "kind")) != null ? _b2 : "major";
+      const alter = parseInt(textOf(block, "root-alter") ?? "0", 10) || 0;
+      const kind = textOf(block, "kind") ?? "major";
       const written = attrOf(block, "kind", "text");
       const suffix = written && /^[A-Za-z0-9()#♭♯+°ø△/b-]*$/.test(written) ? written : suffixOf(kind);
       const bstep = textOf(block, "bass-step");
-      const balter = parseInt((_c2 = textOf(block, "bass-alter")) != null ? _c2 : "0", 10) || 0;
+      const balter = parseInt(textOf(block, "bass-alter") ?? "0", 10) || 0;
       return step + accOf(alter) + suffix + (bstep ? "/" + bstep + accOf(balter) : "");
     };
     const measures = melodyPart.split(/<measure\b/).slice(1);
@@ -1782,7 +1752,7 @@ ${parts.join("\n")}
     let melodyVoice = null;
     for (const measure of measures) {
       const barChords = [];
-      const tokens = (_j = measure.match(/<harmony[\s\S]*?<\/harmony>|<note[\s\S]*?<\/note>/g)) != null ? _j : [];
+      const tokens = measure.match(/<harmony[\s\S]*?<\/harmony>|<note[\s\S]*?<\/note>/g) ?? [];
       for (const t of tokens) {
         if (t.startsWith("<harmony")) {
           const sym = chordOf(t);
@@ -1790,14 +1760,14 @@ ${parts.join("\n")}
           continue;
         }
         if (/<chord\s*\/>/.test(t)) continue;
-        const voice = (_k = textOf(t, "voice")) != null ? _k : "1";
+        const voice = textOf(t, "voice") ?? "1";
         voicesSeen.add(voice);
         if (melodyVoice === null) melodyVoice = voice;
         if (voice !== melodyVoice) {
           droppedVoiceNotes++;
           continue;
         }
-        const div = parseInt((_l = textOf(t, "duration")) != null ? _l : String(divisions), 10) || divisions;
+        const div = parseInt(textOf(t, "duration") ?? String(divisions), 10) || divisions;
         const dotted = /<dot\s*\/>/.test(t);
         const triplet = /<actual-notes>3<\/actual-notes>/.test(t);
         const d = DIV_TO_DUR(div, divisions, dotted, triplet);
@@ -1809,13 +1779,13 @@ ${parts.join("\n")}
         if (!step) continue;
         const tieStop = /<tie[^>]*type="stop"|<tied[^>]*type="stop"/.test(t);
         if (tieStop && notes.length) {
-          const prevDiv = durDivisions((_m = durs[durs.length - 1]) != null ? _m : "4");
+          const prevDiv = durDivisions(durs[durs.length - 1] ?? "4");
           durs[durs.length - 1] = DIV_TO_DUR(prevDiv + div, divisions, false, false);
           continue;
         }
-        const alter = parseInt((_n = textOf(t, "alter")) != null ? _n : "0", 10) || 0;
+        const alter = parseInt(textOf(t, "alter") ?? "0", 10) || 0;
         notes.push(step + accOf(alter));
-        oct.push(parseInt((_o = textOf(t, "octave")) != null ? _o : "4", 10) || 4);
+        oct.push(parseInt(textOf(t, "octave") ?? "4", 10) || 4);
         durs.push(d);
       }
       notes.push("|");
@@ -1827,16 +1797,13 @@ ${parts.join("\n")}
     for (const part of parts) {
       if (part === melodyPart) continue;
       for (const measure of part.split(/<measure\b/).slice(1)) {
-        const chs = ((_p = measure.match(/<harmony[\s\S]*?<\/harmony>/g)) != null ? _p : []).map((h) => {
-          var _a2;
-          return (_a2 = chordOf(h)) != null ? _a2 : "";
-        }).filter(Boolean);
+        const chs = (measure.match(/<harmony[\s\S]*?<\/harmony>/g) ?? []).map((h) => chordOf(h) ?? "").filter(Boolean);
         if (chs.length) bars.push({ ch: chs });
       }
     }
     while (durs.length && /r$/.test(durs[durs.length - 1])) durs.pop();
     while (notes.length && notes[notes.length - 1] === "|") notes.pop();
-    while (bars.length && !((_q = bars[bars.length - 1].ch) == null ? void 0 : _q.length)) bars.pop();
+    while (bars.length && !bars[bars.length - 1].ch?.length) bars.pop();
     const sections = [];
     const noteCount = notes.filter((n) => n !== "|").length;
     if (noteCount) {
@@ -1860,14 +1827,8 @@ ${parts.join("\n")}
         }
       });
     }
-    if (bars.some((b) => {
-      var _a2;
-      return (_a2 = b.ch) == null ? void 0 : _a2.length;
-    })) {
-      sections.push({ id: "changes", nav: "Changes", bars: bars.filter((b) => {
-        var _a2;
-        return (_a2 = b.ch) == null ? void 0 : _a2.length;
-      }) });
+    if (bars.some((b) => b.ch?.length)) {
+      sections.push({ id: "changes", nav: "Changes", bars: bars.filter((b) => b.ch?.length) });
     }
     if (!sections.length) sections.push({ id: "empty", nav: "Empty", note: "No notes or chords found in this file", noteUnc: 1 });
     return {
@@ -1919,10 +1880,7 @@ ${parts.join("\n")}
     power: "5",
     none: ""
   };
-  var suffixOf = (kind) => {
-    var _a;
-    return (_a = SUFFIX[kind]) != null ? _a : "";
-  };
+  var suffixOf = (kind) => SUFFIX[kind] ?? "";
   function hash(s) {
     let h = 0;
     for (let i = 0; i < s.length; i++) h = Math.imul(31, h) + s.charCodeAt(i) | 0;
@@ -1934,14 +1892,13 @@ ${parts.join("\n")}
   var NAT_PC2 = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
   var mod2 = (n, m) => (n % m + m) % m;
   function degreeOf(root, keyRoot, minor) {
-    var _a;
     const r = parsePitch(root);
     const k = parsePitch(keyRoot);
     if (!(r.letter in NAT_PC2) || !(k.letter in NAT_PC2)) return null;
     const step = mod2(LETTERS.indexOf(r.letter) - LETTERS.indexOf(k.letter), 7);
     const sig = keySigMap(keyRoot, minor);
     const diatonicLetter = LETTERS[mod2(LETTERS.indexOf(k.letter) + step, 7)];
-    const diatonicPc = mod2(NAT_PC2[diatonicLetter] + ((_a = sig[diatonicLetter]) != null ? _a : 0), 12);
+    const diatonicPc = mod2(NAT_PC2[diatonicLetter] + (sig[diatonicLetter] ?? 0), 12);
     const actualPc = mod2(NAT_PC2[r.letter] + r.acc, 12);
     let alter = mod2(actualPc - diatonicPc, 12);
     if (alter > 6) alter -= 12;
@@ -1992,37 +1949,22 @@ ${parts.join("\n")}
     };
   }
   function analyseChart(chart, keyRoot = chart.concertRoot, minor = chart.minor) {
-    const row = (bars) => (bars != null ? bars : []).map((bar) => {
-      var _a;
-      return {
-        ...bar,
-        analysis: ((_a = bar.ch) != null ? _a : []).map((c) => analyseChord(c, keyRoot, minor))
-      };
-    });
-    return chart.sections.map((sec) => {
-      var _a, _b;
-      return {
-        id: sec.id,
-        nav: (_b = (_a = sec.nav) != null ? _a : sec.label) != null ? _b : sec.id,
-        bars: row(sec.bars),
-        bars2: sec.bars2 ? row(sec.bars2) : void 0
-      };
-    });
+    const row = (bars) => (bars ?? []).map((bar) => ({
+      ...bar,
+      analysis: (bar.ch ?? []).map((c) => analyseChord(c, keyRoot, minor))
+    }));
+    return chart.sections.map((sec) => ({
+      id: sec.id,
+      nav: sec.nav ?? sec.label ?? sec.id,
+      bars: row(sec.bars),
+      bars2: sec.bars2 ? row(sec.bars2) : void 0
+    }));
   }
   function allChordSymbols(chart) {
-    return chart.sections.flatMap((s) => {
-      var _a, _b;
-      return [
-        ...((_a = s.bars) != null ? _a : []).flatMap((b) => {
-          var _a2;
-          return (_a2 = b.ch) != null ? _a2 : [];
-        }),
-        ...((_b = s.bars2) != null ? _b : []).flatMap((b) => {
-          var _a2;
-          return (_a2 = b.ch) != null ? _a2 : [];
-        })
-      ];
-    });
+    return chart.sections.flatMap((s) => [
+      ...(s.bars ?? []).flatMap((b) => b.ch ?? []),
+      ...(s.bars2 ?? []).flatMap((b) => b.ch ?? [])
+    ]);
   }
   var CANDIDATES = ["C", "G", "D", "A", "E", "B", "F#", "Db", "Ab", "Eb", "Bb", "F", "Gb", "Cb"];
   function detectKeyFromChart(chart) {
@@ -2075,18 +2017,11 @@ ${parts.join("\n")}
     return scored.sort((a, b) => b.confidence - a.confidence).slice(0, 5);
   }
   function detectKeyRegions(chart) {
-    var _a, _b;
     const out = [];
     for (const sec of chart.sections) {
       const syms = [
-        ...((_a = sec.bars) != null ? _a : []).flatMap((b) => {
-          var _a2;
-          return (_a2 = b.ch) != null ? _a2 : [];
-        }),
-        ...((_b = sec.bars2) != null ? _b : []).flatMap((b) => {
-          var _a2;
-          return (_a2 = b.ch) != null ? _a2 : [];
-        })
+        ...(sec.bars ?? []).flatMap((b) => b.ch ?? []),
+        ...(sec.bars2 ?? []).flatMap((b) => b.ch ?? [])
       ];
       if (syms.length < 2) continue;
       const guess = detectKeyFromChart({ ...chart, sections: [sec] })[0];
@@ -2113,11 +2048,43 @@ ${parts.join("\n")}
   }
   function modulates(regions) {
     const solid = regions.filter((r) => r.chords >= 3 && r.confidence >= 0.5);
-    const distinct = new Set(solid.map((r) => r.root + (r.minor ? "m" : "")));
-    return distinct.size > 1;
+    const signatures = new Set(solid.map((r) => sigCount(r.root, r.minor)).filter((n) => n !== void 0));
+    return signatures.size > 1;
+  }
+  var keyName = (r) => r.root + (r.minor ? "m" : "");
+  function keySummary(chart) {
+    const regions = detectKeyRegions(chart);
+    const solid = regions.filter((r) => r.chords >= 3 && r.confidence >= 0.5);
+    const moves = modulates(regions);
+    const sigOf = (r) => sigCount(r.root, r.minor);
+    const steps = [];
+    let lastSig = null;
+    for (const r of solid) {
+      const s = sigOf(r);
+      if (lastSig !== null && s === lastSig) continue;
+      lastSig = s;
+      steps.push(keyName(r));
+    }
+    const byKey = /* @__PURE__ */ new Map();
+    for (const r of solid) {
+      const n = keyName(r);
+      byKey.set(n, [...byKey.get(n) ?? [], r.where]);
+    }
+    const written = chart.concertRoot + (chart.minor ? "m" : "");
+    return {
+      written,
+      modulates: moves,
+      regions,
+      // When nothing modulates, say what the MUSICIAN wrote. The detector names
+      // whichever tonic the first section rests on, and on a C major song that is
+      // often its relative A minor — true, and not what anyone wants to read at
+      // the top of their own chart.
+      path: moves ? steps.join(" \u2192 ") : written,
+      detail: Array.from(byKey.entries()).map(([k, wheres]) => `${k}: ${wheres.join(", ")}`).join("  \xB7  "),
+      singleKey: !moves
+    };
   }
   function romanToChord(roman, keyRoot, minor) {
-    var _a;
     const m = roman.match(/^([b#]*)([ivIVX]+)(.*)$/);
     if (!m) return null;
     const [, acc, num, rest] = m;
@@ -2126,7 +2093,7 @@ ${parts.join("\n")}
     const k = parsePitch(keyRoot);
     const letter = LETTERS[mod2(LETTERS.indexOf(k.letter) + step, 7)];
     const sig = keySigMap(keyRoot, minor);
-    let alt = ((_a = sig[letter]) != null ? _a : 0) + (acc.startsWith("b") ? -acc.length : acc.length);
+    let alt = (sig[letter] ?? 0) + (acc.startsWith("b") ? -acc.length : acc.length);
     const accStr2 = alt === 0 ? "" : alt < 0 ? "b".repeat(-alt) : "#".repeat(alt);
     const lower = num === num.toLowerCase();
     const quality = rest.startsWith("\xB0") ? "dim" : rest.startsWith("\xF8") ? "m7b5" : lower ? "m" : "";
@@ -3162,8 +3129,23 @@ function render(){
   const qual=SONG.minor?" minor":" major";
   document.getElementById("songtitle").textContent=SONG.title;
   SCALE=(typeof detectScale==="function")?detectScale(SONG,EAR.pcOf(SONG.concertRoot)):null;
-  const scaleBit=SCALE?`  ·  scale <b title="${SCALE.notes.join(" ")}">${SCALE.label}</b>`
-      +(SCALE.confidence<0.9?` <span style="color:var(--warn)">(${Math.round(SCALE.confidence*100)}% — mixed)</span>`:``):``;
+  // A chart that MOVES must say so. Fitting one global scale over a page that
+  // visits six keys names a tonic most of the page disagrees with — that is how
+  // this line came to read "Concert E flat minor  ·  scale E melodic minor",
+  // which looks like a contradiction and is really a song that modulates. The
+  // regions were already being computed and thrown away.
+  const KS=(E&&E.keySummary)?E.keySummary(SONG):null;
+  let scaleBit="";
+  if(KS&&KS.modulates){
+    // the engine speaks ASCII ("Ebm"); the header speaks music ("E♭m")
+    const pretty=t=>t.replace(/([A-G])(b+|#+)?/,(_,l,a)=>l+(a?a.replace(/b/g,"♭").replace(/#/g,"♯"):""));
+    const path=KS.path.split(" → ").map(pretty).join(" → ");
+    const detail=KS.detail.split("  ·  ").map(d=>{const i=d.indexOf(":");return i<0?d:pretty(d.slice(0,i))+d.slice(i);}).join("  ·  ");
+    scaleBit=`  ·  <span class="modpath" title="${detail.replace(/"/g,"&quot;")}">moves <b>${path}</b></span>`;
+  }else if(SCALE){
+    scaleBit=`  ·  scale <b title="${SCALE.notes.join(" ")}">${SCALE.label}</b>`
+      +(SCALE.confidence<0.9?` <span style="color:var(--warn)">(${Math.round(SCALE.confidence*100)}% — mixed)</span>`:``);
+  }
   document.getElementById("keyline").innerHTML=
     `Concert <b>${prettyNote(SONG.concertRoot)}${qual}</b>${(TR.semis||TR.steps)?`  ·  Written <b>${prettyNote(writtenRoot)}${qual}</b>`:""}${scaleBit}`;
   renderSongbar();
