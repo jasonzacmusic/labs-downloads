@@ -1,18 +1,18 @@
 {
   "version": "0.3.0-alpha.1",
   "notes": "Signed and notarized installers; Local dictation, no account needed; Musician-grade typing",
-  "pub_date": "2026-08-04T04:26:15Z",
+  "pub_date": "2026-08-04T05:07:18Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSOXo2YUl2MDhSODRDN09PMTRxTTFDUkcxYVFWMHhQelVyUnBWYUtkTmRFNEVxNXlrNjBYaXhKYWxjSUJnek8zdzJFclcvamNwUGY0MkxhQ09wTXVFOUliY1lnMlFQWGd3PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1ODE3NTcyCWZpbGU6TlNNLUZsb3ctbWFjLUFwcGxlLVNpbGljb24uYXBwLnRhci5negpWOUlENFEzVWpRMUNLSXJSbEIrdFladHF5RjBaVTlXRE5iV3RuUkpOMzdQR09XRnArcTljdmFMYzl5c2ZPempqUDhMNFpvbEdGVUZFdmpVUDhSamFCZz09Cg==",
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSOXo2YUl2MDhSODIrUng0aUV2OE9NZEJWMEU2bys0d3lDVituUjNmK1BoVnNicWY5MkwrcGVtcjlyTkhKWnZxN1JldENzcnlsUkZ3b01rMDNlL21SMHpXNmorVkwySkFrPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1ODIwMDMxCWZpbGU6TlNNLUZsb3ctbWFjLUFwcGxlLVNpbGljb24uYXBwLnRhci5negpOUmxuL0pmcSs0WUZDcW1VZERSdE1yVDFiYVA5Uys3bkNNcXhlcFNWdU1mdnBlUCtER3hrK0R4YlRFVFR4VW1VNXczSjlZZHhCbGYzZFZGVzNSTEdEZz09Cg==",
       "url": "https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/NSM-Flow-mac-Apple-Silicon.app.tar.gz"
     },
     "darwin-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSOXo2YUl2MDhSODVWSzQ5YWdRRlp2Sk9ST0dSelBJRDJZWU1OcEh6N0NrQTRvYlNFamJLQUxIYTkyRm42anFxY2lZK0JPNkFXa1JFb1JvY2kyeTRFVDMzMmhNWVNBaGdnPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1ODE3NTc1CWZpbGU6TlNNLUZsb3ctbWFjLUludGVsLmFwcC50YXIuZ3oKZm5vUUFtdCthNXBCRGoyWm9pVHdGK3plbWM5K3NvakN3TkRHYzVFZkxva1hENHJVMnN0NVNLN3NxZGxiYk5MQmJNdVRSQThJM2x5d003dUlWdlJIQmc9PQo=",
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSOXo2YUl2MDhSOHlNZG9XU2xzbjlvek1nek5PR2xwb3pSM0Fsc2VSR1FvMEh2WnBlY01zclJVcDExRktkUTM2aFhsUUQyckFQaXBHV2szRHd2MGVRSlN5T3NGSFlhU1FjPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1ODIwMDM4CWZpbGU6TlNNLUZsb3ctbWFjLUludGVsLmFwcC50YXIuZ3oKRkJzRDJTUVJFYzllQjRndEZUOXkwV3FKci9lRkx5VU1qVUpyYWwwN1dDdXBLaktvWGMxQ09FVkQ2OUlyZlVES0lWbm0wRk44V0dTRXQ0Y25IbkdEQ3c9PQo=",
       "url": "https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/NSM-Flow-mac-Intel.app.tar.gz"
     },
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSOXo2YUl2MDhSODl4RlZ0SXU0QVk3L0NBL1JIb2l1UlMwUmJaUXNqZWdKUSthMkt6WWd3L1ZrYXpha3JaQlhPZnk5Sm5GRzRyRXJTK3g3WUN1SXhUMkNzZDR3eHo5VndRPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1ODE3NTc1CWZpbGU6TlNNLUZsb3ctd2luZG93cy14NjQtc2V0dXAuZXhlClgzTlBPaW9PclhVS2VMZHRhV1FiRVoweGpyRVdZWUdlV0FPYXFFZFlXaGE5SU9BY0JMWDBHWFpOYS92UGxIK3Rid2k2TVVuRUJhanFSK2ZpRlk2cEN3PT0K",
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSOXo2YUl2MDhSODFHZVhScTFSN3MxTVZnOWFJbmRHdDR0NnBSUzYvQ09md3hybDlPZjVrSXRqWjI4TEw5MkNZTk5ESVI5RXU5SS9qZjYyNXhXQUhQaUtBUVI3eWxud1FjPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1ODIwMDM4CWZpbGU6TlNNLUZsb3ctd2luZG93cy14NjQtc2V0dXAuZXhlClF6cFM5RzRwSGtBU2RLVHYrRmJRaUxkYVpFSlE3anpTRVQ2ZU1ka0dVekZBWDc4b3VKUUVmUmtmZ0k3K0xqbzBxWDl3ZzJrQjV4R1BCR016eG5TT0R3PT0K",
       "url": "https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/NSM-Flow-windows-x64-setup.exe"
     }
   }
