@@ -247,9 +247,9 @@
 "pushed": "2026-07-20T10:23:56Z"
 },
 "jasonzacmusic/gradus": {
-"commit": "Musical audit: fix the 18 failing tests (a worker flag, ",
+"commit": "Add the five-species theory core",
 "ios": false,
-"pushed": "2026-08-03T04:54:55Z"
+"pushed": "2026-08-04T04:38:26Z"
 },
 "jasonzacmusic/groove-metronome": {
 "commit": "Add the App Store privacy manifest",
@@ -343,6 +343,9 @@
 "jasonzacmusic/nathaniel-production-house": {
 "ios": false
 },
+"jasonzacmusic/nathaniel-tools": {
+"ios": false
+},
 "jasonzacmusic/net-sense": {
 "commit": "Replace speed tests with clear live telemetry",
 "ios": false,
@@ -366,7 +369,7 @@
 "jasonzacmusic/nsm-flow": {
 "commit": "Merge pull request #3 from jasonzacmusic/agent/musical-t",
 "ios": false,
-"pushed": "2026-08-03T15:39:20Z"
+"pushed": "2026-08-04T04:38:36Z"
 },
 "jasonzacmusic/nsm-lesson-engine": {
 "ios": false
@@ -421,9 +424,9 @@
 "ios": false
 },
 "jasonzacmusic/ossia": {
-"commit": "Manifest no longer advertises live sync",
+"commit": "Exports work on the iPad, and a score has pages you can ",
 "ios": true,
-"pushed": "2026-08-04T02:04:04Z"
+"pushed": "2026-08-04T02:41:50Z"
 },
 "jasonzacmusic/pendulum": {
 "commit": "Add the App Store privacy manifest",
