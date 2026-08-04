@@ -38,6 +38,13 @@ fi
 CHORALE_DMG_SRC="$(ls -t "$HOME"/Desktop/Chorale-*.dmg 2>/dev/null | head -1 || true)"
 NET_SENSE_ROW="file:${NET_SENSE_DMG_SRC}|Net-Sense-mac.dmg"
 SHRUTI_ROW="file:${SHRUTI_DMG_SRC}|Shruti-mac.dmg"
+NSM_FLOW_DIST="${NSM_FLOW_DIST:-$HOME/Documents/Claude/nsm-flow-clone/dist-release}"
+NSM_FLOW_ROWS=(
+  "file:${NSM_FLOW_DIST}/NSM-Flow-mac-Apple-Silicon.dmg|NSM-Flow-mac-Apple-Silicon.dmg"
+  "file:${NSM_FLOW_DIST}/NSM-Flow-mac-Intel.dmg|NSM-Flow-mac-Intel.dmg"
+  "file:${NSM_FLOW_DIST}/NSM-Flow-windows-x64-setup.exe|NSM-Flow-windows-x64-setup.exe"
+  "file:${NSM_FLOW_DIST}/NSM-Flow-windows-x64.msi|NSM-Flow-windows-x64.msi"
+)
 LOCALS=(
   "$NET_SENSE_ROW"
   "$SHRUTI_ROW"
@@ -51,11 +58,19 @@ LOCALS=(
   # a refresh path when a freshly built DMG is sitting locally.
   # No secrets baked in — safe on the public downloads release.
   "file:$HOME/Documents/Claude/nathaniel-photo-hub/macapp-native/build/NSMPhotos-mac.dmg|NSMPhotos-mac.dmg"
+  # NSM Flow. The two Mac DMGs are signed + notarized by nsm-flow's own
+  # scripts/release-macos.sh, which writes them to dist-release/. The Windows
+  # pair comes out of the nsm-flow GitHub Actions matrix and is staged into the
+  # same folder — Windows installers are unsigned until Nathaniel has a code
+  # signing certificate, so they carry no staple and skip the notarize gate.
+  "${NSM_FLOW_ROWS[@]}"
 )
 if [ "${NET_SENSE_ONLY:-0}" = "1" ]; then
   LOCALS=("$NET_SENSE_ROW")
 elif [ "${SHRUTI_ONLY:-0}" = "1" ]; then
   LOCALS=("$SHRUTI_ROW")
+elif [ "${NSM_FLOW_ONLY:-0}" = "1" ]; then
+  LOCALS=("${NSM_FLOW_ROWS[@]}")
 fi
 
 gh release view "$TAG" --repo "$REPO" >/dev/null 2>&1 \
@@ -67,7 +82,14 @@ for row in "${LOCALS[@]}"; do
   case "$src" in
     file:*) p="${src#file:}"; p="${p/#\~/$HOME}"
       [ -f "$p" ] || { echo "WARN  missing $p"; continue; }
-      xcrun stapler validate "$p" >/dev/null 2>&1 || { echo "SKIP  $name not notarized yet"; continue; }
+      # Stapling is an Apple concept: only .dmg/.pkg/.zip carry a notarization
+      # ticket. Gating a Windows .exe/.msi on it would silently skip every
+      # Windows upload, so the gate applies to Mac artifacts only.
+      case "$name" in
+        *.dmg|*.pkg)
+          xcrun stapler validate "$p" >/dev/null 2>&1 \
+            || { echo "SKIP  $name not notarized yet"; continue; } ;;
+      esac
       cp "$p" "$STAGE/$name"; ASSETS+=("$STAGE/$name"); echo "local $name ($(du -h "$p"|cut -f1))" ;;
     ghrel:*) spec="${src#ghrel:}"; orepo="${spec%%:*}"; asset="${spec##*:}"
       rtag=""
@@ -77,7 +99,8 @@ for row in "${LOCALS[@]}"; do
       else echo "WARN  could not fetch $asset from $orepo${rtag:+@$rtag}"; fi ;;
   esac
 done
-if { [ "${NET_SENSE_ONLY:-0}" = "1" ] || [ "${SHRUTI_ONLY:-0}" = "1" ]; } \
+if { [ "${NET_SENSE_ONLY:-0}" = "1" ] || [ "${SHRUTI_ONLY:-0}" = "1" ] \
+     || [ "${NSM_FLOW_ONLY:-0}" = "1" ]; } \
     && [ ${#ASSETS[@]} -eq 0 ]; then
   # A product-specific release that could not stage its installer must fail loudly:
   # otherwise the appcast advances while the hub keeps serving the previous DMG.
@@ -109,7 +132,7 @@ done < <(gh release view "$TAG" --repo "$REPO" --json assets --jq '.assets[].nam
 
 # This is Shruti's backup feed; the primary GrabIt-style feed lives on Shruti's dedicated
 # site. Never publish an unsigned scaffold: Shruti requires both archive and feed signing.
-if [ "${NET_SENSE_ONLY:-0}" != "1" ]; then
+if [ "${NET_SENSE_ONLY:-0}" != "1" ] && [ "${NSM_FLOW_ONLY:-0}" != "1" ]; then
   SHRUTI_APPCAST="${SHRUTI_APPCAST_SRC:-$HOME/Documents/Claude/sangam/appcasts/shruti.xml}"
   if [ -f "$SHRUTI_APPCAST" ] \
       && grep -q 'sparkle:edSignature=' "$SHRUTI_APPCAST" \

@@ -55,9 +55,9 @@
 "ios": false
 },
 "jasonzacmusic/Handwritten-Music-Composer": {
-"commit": "Spell transposed chords by letter, and stop the highligh",
+"commit": "Briefs now describe the app that exists, not the one fro",
 "ios": false,
-"pushed": "2026-08-03T04:08:39Z"
+"pushed": "2026-08-03T17:03:35Z"
 },
 "jasonzacmusic/Intermediate-Planner": {
 "ios": false
@@ -220,9 +220,9 @@
 "ios": false
 },
 "jasonzacmusic/chorale": {
-"commit": "1.3.0: the harmony brain \u2014 sound right with no setup",
+"commit": "1.3.0 release record: Codex handoff, verified state, sta",
 "ios": false,
-"pushed": "2026-08-03T16:15:47Z"
+"pushed": "2026-08-03T16:37:21Z"
 },
 "jasonzacmusic/chord-tree-canopy": {
 "ios": false
@@ -421,9 +421,9 @@
 "ios": false
 },
 "jasonzacmusic/ossia": {
-"commit": "Add the App Store privacy manifest",
+"commit": "Manifest no longer advertises live sync",
 "ios": true,
-"pushed": "2026-08-03T08:31:41Z"
+"pushed": "2026-08-04T02:04:04Z"
 },
 "jasonzacmusic/pendulum": {
 "commit": "Add the App Store privacy manifest",
