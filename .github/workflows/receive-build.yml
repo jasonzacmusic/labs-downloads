@@ -1,0 +1,65 @@
+name: Receive a build
+
+# Puts an installer onto the downloads release when it cannot be uploaded from
+# where it was built.
+#
+# Mac apps can only be BUILT on a Mac, and the machine that builds NSM Cut
+# Studio lives in a private repo whose token cannot write here. This repo's own
+# token can. So a build arrives as a commit on an `incoming/**` branch, this
+# job moves it onto the release, and then deletes the branch again so the file
+# never lands on main.
+on:
+  push:
+    branches: ["incoming/**"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: receive-build
+  cancel-in-progress: false
+
+jobs:
+  receive:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Move the arrivals onto the release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          shopt -s nullglob
+          files=(incoming/*)
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "::error::Nothing in incoming/ — the branch carried no build."
+            exit 1
+          fi
+          printf 'uploading: %s\n' "${files[@]}"
+          gh release upload downloads "${files[@]}" --repo "$GITHUB_REPOSITORY" --clobber
+
+          # Read it back off the public download address. An upload that
+          # silently did nothing looks exactly like one that worked.
+          for f in "${files[@]}"; do
+            name="$(basename "$f")"
+            url="https://github.com/$GITHUB_REPOSITORY/releases/latest/download/$name"
+            code="$(curl -sSL -o /dev/null -w '%{http_code}' "$url")"
+            echo "$name -> $code"
+            [ "$code" = "200" ] || { echo "::error::$name is not downloadable"; exit 1; }
+          done
+
+      - name: Put the branch back in the bin
+        if: success()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # The build is on the release now; leaving it in git would grow this
+          # repo by an installer every single time.
+          gh api -X DELETE "repos/$GITHUB_REPOSITORY/git/refs/heads/${GITHUB_REF_NAME}" || true
+
+      - name: Refresh the download page
+        if: success()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run refresh.yml --repo "$GITHUB_REPOSITORY" --ref main || true
