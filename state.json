@@ -350,9 +350,9 @@
 "ios": false
 },
 "jasonzacmusic/net-sense": {
-"commit": "Close the audit findings: viewer secrets, rebinding, orp",
+"commit": "Only WAN-mode ports are internet lines",
 "ios": false,
-"pushed": "2026-08-06T02:39:57Z"
+"pushed": "2026-08-06T02:51:21Z"
 },
 "jasonzacmusic/nph-reaper-suite": {
 "ios": false
