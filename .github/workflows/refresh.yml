@@ -7,6 +7,11 @@ on:
   workflow_dispatch:
   repository_dispatch:
     types: [refresh-hub, registry-updated, release-published]
+  # A new app should reach the page the moment it is added to the catalogue,
+  # not whenever tomorrow's scheduled refresh happens to run. Scoped to
+  # catalog.json alone, so the index.html this job commits cannot retrigger it.
+  push:
+    paths: ["catalog.json"]
 permissions:
   contents: write
 concurrency:

@@ -24,6 +24,19 @@
       "blurb": "Watches every internet line and access point in the studio, proves which provider is at fault, and reads the Wi-Fi around you. Native Mac app."
     },
     {
+      "name": "NSM Cut Studio",
+      "category": "Production",
+      "access": "team",
+      "repo": "jasonzacmusic/nsm-cut-studio",
+      "native": [
+        {
+          "platform": "mac",
+          "asset": "NSM-Cut-Studio-mac.zip"
+        }
+      ],
+      "blurb": "Cuts a promo by cutting the words. Syncs the camera to the recorder, writes out every word you said, and you delete the ones you do not want — it builds the reel, endcard and caption from what is left. Native Mac app."
+    },
+    {
       "name": "NSM Flow",
       "category": "Productivity",
       "access": "public",
