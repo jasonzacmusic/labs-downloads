@@ -6,15 +6,19 @@
         <description>Studio network monitoring for Mac, by Nathaniel Labs.</description>
         <language>en</language>
         <item>
-            <title>1.2.0</title>
-            <pubDate>Wed, 06 Aug 2026 07:47:00 +0530</pubDate>
-            <sparkle:version>202608060745</sparkle:version>
-            <sparkle:shortVersionString>1.2.0</sparkle:shortVersionString>
+            <title>1.2.1</title>
+            <pubDate>Wed, 06 Aug 2026 08:12:00 +0530</pubDate>
+            <sparkle:version>202608060810</sparkle:version>
+            <sparkle:shortVersionString>1.2.1</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Net Sense 1.2.0
+            <description sparkle:format="markdown"><![CDATA[# Net Sense 1.2.1
 
-Live telemetry release.
+Live telemetry and security hardening release.
 
+- Team devices can no longer read the studio Wi-Fi password or staff phone numbers; the Wi-Fi QR now needs the Operator role.
+- Quitting or crashing the app can never leave the engine running unnoticed on the network.
+- An idle phone can no longer appear to be downloading at its radio link rate; unknown readings show as blanks instead of invented numbers.
+- A controller hiccup keeps the previous reading and says so, instead of wiping the lines while claiming to be live.
 - Replaces the disruptive on-demand speed tests with always-on live per-line telemetry: each WAN card now shows what the line is actually doing right now, continuously.
 - Restores the verified Omada session login, so the controller connection is authenticated the proven way again.
 - Clarifies roaming and device trust: a phone moving between access points is no longer mistaken for a new device.
@@ -23,9 +27,9 @@ Live telemetry release.
 ]]></description>
             <enclosure
                 url="https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/Net-Sense-mac.dmg"
-                sparkle:version="202608060745"
-                sparkle:shortVersionString="1.2.0"
-                length="7154943"
+                sparkle:version="202608060810"
+                sparkle:shortVersionString="1.2.1"
+                length="7162897"
                 type="application/octet-stream" />
         </item>
     </channel>

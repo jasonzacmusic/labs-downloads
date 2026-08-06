@@ -350,9 +350,9 @@
 "ios": false
 },
 "jasonzacmusic/net-sense": {
-"commit": "Close the dependency advisories so releases pass their o",
+"commit": "Close the audit findings: viewer secrets, rebinding, orp",
 "ios": false,
-"pushed": "2026-08-06T02:18:40Z"
+"pushed": "2026-08-06T02:39:57Z"
 },
 "jasonzacmusic/nph-reaper-suite": {
 "ios": false
