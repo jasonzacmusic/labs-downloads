@@ -11,6 +11,12 @@ name: Receive a build
 on:
   push:
     branches: ["incoming/**"]
+  # A build pushed with a DEPLOY KEY lands the branch but does not start a
+  # workflow — GitHub suppresses that. So the hub also sweeps for arrivals on
+  # its own clock, which needs no credential from the sending repo at all.
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -24,9 +30,27 @@ jobs:
   receive:
     runs-on: ubuntu-latest
     steps:
+      # On a push we are already on the incoming branch. On a sweep we have to
+      # go and find one; if there is nothing waiting, stop quietly.
+      - name: Find a waiting build
+        id: find
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ "${{ github.event_name }}" = "push" ]; then
+            echo "branch=${GITHUB_REF_NAME}" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          B="$(gh api "repos/$GITHUB_REPOSITORY/branches" --paginate --jq \
+                '.[].name | select(startswith("incoming/"))' | head -1)"
+          [ -n "$B" ] && echo "branch=$B" >> "$GITHUB_OUTPUT" || echo "nothing waiting"
+
       - uses: actions/checkout@v4
+        if: steps.find.outputs.branch != ''
+        with:
+          ref: ${{ steps.find.outputs.branch }}
 
       - name: Move the arrivals onto the release
+        if: steps.find.outputs.branch != ''
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -51,16 +75,16 @@ jobs:
           done
 
       - name: Put the branch back in the bin
-        if: success()
+        if: success() && steps.find.outputs.branch != ''
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # The build is on the release now; leaving it in git would grow this
           # repo by an installer every single time.
-          gh api -X DELETE "repos/$GITHUB_REPOSITORY/git/refs/heads/${GITHUB_REF_NAME}" || true
+          gh api -X DELETE "repos/$GITHUB_REPOSITORY/git/refs/heads/${{ steps.find.outputs.branch }}" || true
 
       - name: Refresh the download page
-        if: success()
+        if: success() && steps.find.outputs.branch != ''
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: gh workflow run refresh.yml --repo "$GITHUB_REPOSITORY" --ref main || true
