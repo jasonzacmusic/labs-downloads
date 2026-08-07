@@ -14,8 +14,10 @@ on:
   # A build pushed with a DEPLOY KEY lands the branch but does not start a
   # workflow — GitHub suppresses that. So the hub also sweeps for arrivals on
   # its own clock, which needs no credential from the sending repo at all.
+  # Every 5 minutes: the sending repo waits for this, so a slower sweep just
+  # means a build sitting undownloadable while its own run goes red.
   schedule:
-    - cron: "*/10 * * * *"
+    - cron: "*/5 * * * *"
   workflow_dispatch:
 
 permissions:
