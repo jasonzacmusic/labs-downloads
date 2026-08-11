@@ -4,32 +4,33 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>Shruti</title>
         <item>
-            <title>1.3.0</title>
-            <pubDate>Tue, 11 Aug 2026 22:50:39 +0530</pubDate>
-            <sparkle:version>16</sparkle:version>
-            <sparkle:shortVersionString>1.3.0</sparkle:shortVersionString>
+            <title>1.4.0</title>
+            <pubDate>Wed, 12 Aug 2026 00:32:16 +0530</pubDate>
+            <sparkle:version>17</sparkle:version>
+            <sparkle:shortVersionString>1.4.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.2</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Shruti 1.3.0
+            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.0
 
-Your SoundSource setup, brought across safely — plus the missing system route and a more dependable release.
+This release makes the audio path harder to break and moving from SoundSource more complete.
 
-- **One-click SoundSource migration:** imports saved app levels, mutes, favourites, 10-band EQ, balance and excluded apps. Registration data is never read or copied.
-- **Live-host protection during migration:** MainStage and every excluded DAW or routing app are forced back to Shruti's direct, zero-added-latency path before the import is applied.
-- **Useful effect translation:** Jason's Waves NS1 intent is preserved with Shruti's built-in, out-of-process-safe Noise Suppressor. Proprietary presets that cannot be translated honestly are listed for review.
-- **Sound Effects route:** Output, Input and macOS alert sounds now form a complete System section, including a clear “Follows Output” default.
-- **Release reliability:** the production performance suite now runs in optimised mode everywhere, and public releases can only be published from this repository's reviewed `main` branch.
-- **Audio-engine hardening:** closed clients cannot crash the service, device and playback
-  discovery stays off the command path, and browser/helper churn no longer rebuilds a healthy
-  tap underneath live audio.
+- Each controlled app now gets its own isolated audio helper. If one Core Audio graph or Audio
+  Unit fails, that app returns to the direct macOS path without taking the mixer—or another
+  app—with it.
+- SoundSource migration now transfers the exact Audio Unit preset when the same plug-in is
+  installed. Missing plug-ins remain explicit and Waves NS1 still has a safe built-in fallback.
+- The current mixer, protected-app list and system routes survive restart as before.
+- The optimized product suite now passes 320 checks, including exact preset restore and tap
+  containment support, with eight full processing chains averaging below 0.4 ms on the release
+  test Mac.
+- A compatibility table now separates physical hardware passes from build-only coverage.
 
-Verified with 313 production checks plus a live Core Audio engagement/direct-path exercise,
-including direct-path transparency, protected-host safety, click-free ramps, effect fallback,
-configuration persistence and real-time render budgets.
+Licensing infrastructure is ready for a three-Mac personal license, but public payment remains
+closed until a real Paddle purchase, email delivery and refund are completed without manual help.
 ]]></description>
-            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.3.0.dmg" length="8863584" type="application/octet-stream" sparkle:edSignature="dCOAa1JdI8pxkTkjtJ0XuKng/Y6Iln9oX17AxPYfENN3ohJOf+zFQrJ2/Hrqywbxac2Z2kUNbzzDH3Kdtm1gCg=="></enclosure>
+            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.0.dmg" length="9019650" type="application/octet-stream" sparkle:edSignature="AS0O9tHTaGtWEMcnYQXmY+KKepL3X77KJCQQJvKHV7h5QYnt6JoSft+yy46sLHUB40VKrEzClypIhCWTGDjsBw=="></enclosure>
         </item>
     </channel>
 </rss><!-- sparkle-signatures:
-edSignature: TjIDrGHIyBwHGATB33LaAu/GCNxwNSUD92PRHLQZOHr/tawwhTph/bUaNOcspZ6SaxTZbcFkfPaNZtU2tkAkCw==
-length: 2580
+edSignature: gwZLSsNJQtK9hTKTAx/WCWzuMnSVooW9SUejzauu5+ms5bv16hb8srPfcozWUhcyohdOMdlEPRm5suzeV6/+Aw==
+length: 2169
 -->
