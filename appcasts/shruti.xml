@@ -4,23 +4,32 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>Shruti</title>
         <item>
-            <title>1.2.1</title>
-            <pubDate>Mon, 20 Jul 2026 10:09:29 +0530</pubDate>
-            <sparkle:version>15</sparkle:version>
-            <sparkle:shortVersionString>1.2.1</sparkle:shortVersionString>
+            <title>1.3.0</title>
+            <pubDate>Tue, 11 Aug 2026 22:50:39 +0530</pubDate>
+            <sparkle:version>16</sparkle:version>
+            <sparkle:shortVersionString>1.3.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.2</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Shruti 1.2.1
+            <description sparkle:format="markdown"><![CDATA[# Shruti 1.3.0
 
-Everything from today's launch, hardened.
+Your SoundSource setup, brought across safely — plus the missing system route and a more dependable release.
 
-- **Steady Volume** (new in 1.2.0): per-app ad-blast protection — Shruti learns the loudness you listen at and rides louder ad breaks back down to it. Right-click an app row → "Steady Volume — tame loud ads."
-- Quitting an app no longer forgets its settings: volume, EQ, output and device memories now survive quit, relaunch, and reboot exactly as you left them.
-- Additional stability hardening across the audio engine and device handling, and licensing readiness fixes, ahead of public sale.
+- **One-click SoundSource migration:** imports saved app levels, mutes, favourites, 10-band EQ, balance and excluded apps. Registration data is never read or copied.
+- **Live-host protection during migration:** MainStage and every excluded DAW or routing app are forced back to Shruti's direct, zero-added-latency path before the import is applied.
+- **Useful effect translation:** Jason's Waves NS1 intent is preserved with Shruti's built-in, out-of-process-safe Noise Suppressor. Proprietary presets that cannot be translated honestly are listed for review.
+- **Sound Effects route:** Output, Input and macOS alert sounds now form a complete System section, including a clear “Follows Output” default.
+- **Release reliability:** the production performance suite now runs in optimised mode everywhere, and public releases can only be published from this repository's reviewed `main` branch.
+- **Audio-engine hardening:** closed clients cannot crash the service, device and playback
+  discovery stays off the command path, and browser/helper churn no longer rebuilds a healthy
+  tap underneath live audio.
+
+Verified with 313 production checks plus a live Core Audio engagement/direct-path exercise,
+including direct-path transparency, protected-host safety, click-free ramps, effect fallback,
+configuration persistence and real-time render budgets.
 ]]></description>
-            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.2.1.dmg" length="8527623" type="application/octet-stream" sparkle:edSignature="mKFd5QdSGxTtT5f9ZGEXu8/PPokF8ZUa3Z9cnG3Et2Y6T8kbwW+AqufCGM+/PAY+G+ocUDCtaysDNGv32LIMDw=="></enclosure>
+            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.3.0.dmg" length="8863584" type="application/octet-stream" sparkle:edSignature="dCOAa1JdI8pxkTkjtJ0XuKng/Y6Iln9oX17AxPYfENN3ohJOf+zFQrJ2/Hrqywbxac2Z2kUNbzzDH3Kdtm1gCg=="></enclosure>
         </item>
     </channel>
 </rss><!-- sparkle-signatures:
-edSignature: aaXyLVyH7zTbhG1sKP053ouz5xn/J9QIlQQ4bxK4EJtwXnRBX+6FpppQkmTKcYKUOsNkGYY3Wd5bmGcK8zmMAg==
-length: 1658
+edSignature: TjIDrGHIyBwHGATB33LaAu/GCNxwNSUD92PRHLQZOHr/tawwhTph/bUaNOcspZ6SaxTZbcFkfPaNZtU2tkAkCw==
+length: 2580
 -->
