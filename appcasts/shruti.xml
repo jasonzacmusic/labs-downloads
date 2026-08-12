@@ -4,29 +4,27 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>Shruti</title>
         <item>
-            <title>1.4.7</title>
-            <pubDate>Wed, 12 Aug 2026 16:07:52 +0530</pubDate>
-            <sparkle:version>24</sparkle:version>
-            <sparkle:shortVersionString>1.4.7</sparkle:shortVersionString>
+            <title>1.4.8</title>
+            <pubDate>Wed, 12 Aug 2026 18:12:45 +0530</pubDate>
+            <sparkle:version>25</sparkle:version>
+            <sparkle:shortVersionString>1.4.8</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.2</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.7
+            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.8
 
-- Keeps every installed playback-capable app in the mixer whether it is silent or active,
-  instead of removing rows a few seconds after playback stops.
-- Uses Core Audio activity only for the LIVE indicator and discovery; it never changes the
-  user's manual app order.
-- Remembers uncommon applications after they produce real audio once, covering apps whose
-  bundle metadata does not declare playback capability.
-- Expands installed-app recognition for browsers, media players, DAWs, communication apps,
-  games and video editors, including ScreenFlow, while excluding capture-only utilities such
-  as Wispr Flow and Camo.
-- Keeps searches and directories in deterministic name order so playback changes cannot make
-  Chrome, Pianoteq, REAPER or another row jump around.
+- Starts with a focused automatic mixer: Claude/ChatGPT, browsers, MuseScore, DAWs and
+  live music hosts, instead of filling the panel with every application that might play.
+- Adds a visible Remove control to every app row, plus a destructive context-menu action.
+- Returns a removed app to untouched direct audio and clears its saved level, effects,
+  redirect, favorite, lane and ducking references so no invisible processing survives.
+- Keeps removal durable across app restarts, Mac restarts and SoundSource imports.
+- Makes Add App show explicit Add, Remove and Restore states, with search covering known
+  playback apps and applications Shruti has genuinely heard before.
+- Preserves deterministic manual ordering; LIVE state never moves a row.
 ]]></description>
-            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.7.dmg" length="9252120" type="application/octet-stream" sparkle:edSignature="ZbhjNgfE1JrzZI1hA+Y2mmvpOezd+3Sflb6tmtorvOHfT3PaHqev2AHH77foCrokX4XQLiTpJhruDaz7jW1+Ag=="></enclosure>
+            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.8.dmg" length="9300982" type="application/octet-stream" sparkle:edSignature="i58Ch01NJRaR+eSNQltVNlEGt453KPKCvJqleCeE5UaRE/qGyVgKa0OP1yj0vzec3FQb+gdn/6RCI7MI9i8KCg=="></enclosure>
         </item>
     </channel>
 </rss><!-- sparkle-signatures:
-edSignature: RG8PdCwwNFbvJUyeD0mzHqNbzDJnDMUB7OFZz9BeeP/Z0WLNN4q370Q5W8wYkfLtyVhTxYmsvrU+SxZvvUr/Bw==
-length: 1890
+edSignature: MyBK6WVZhbqph9VWIXXQPLdD58NuSSSxLNECe8kLeJUEWInyMqdCq9nfmGVTXvg7YYu060ffacBArmn5smkNBw==
+length: 1868
 -->
