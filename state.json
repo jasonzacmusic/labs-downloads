@@ -571,9 +571,9 @@
 "ios": false
 },
 "jasonzacmusic/shruti": {
-"commit": "Merge pull request #12 from jasonzacmusic/codex/removabl",
+"commit": "Merge pull request #13 from jasonzacmusic/codex/exclude-",
 "ios": false,
-"pushed": "2026-08-12T12:46:05Z"
+"pushed": "2026-08-12T12:57:46Z"
 },
 "jasonzacmusic/sight-singing-studio": {
 "commit": "Fix review rest icon and tempo dial copy",

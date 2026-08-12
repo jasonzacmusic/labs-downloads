@@ -4,27 +4,21 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>Shruti</title>
         <item>
-            <title>1.4.8</title>
-            <pubDate>Wed, 12 Aug 2026 18:12:45 +0530</pubDate>
-            <sparkle:version>25</sparkle:version>
-            <sparkle:shortVersionString>1.4.8</sparkle:shortVersionString>
+            <title>1.4.9</title>
+            <pubDate>Wed, 12 Aug 2026 18:26:47 +0530</pubDate>
+            <sparkle:version>26</sparkle:version>
+            <sparkle:shortVersionString>1.4.9</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.2</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.8
+            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.9
 
-- Starts with a focused automatic mixer: Claude/ChatGPT, browsers, MuseScore, DAWs and
-  live music hosts, instead of filling the panel with every application that might play.
-- Adds a visible Remove control to every app row, plus a destructive context-menu action.
-- Returns a removed app to untouched direct audio and clears its saved level, effects,
-  redirect, favorite, lane and ducking references so no invisible processing survives.
-- Keeps removal durable across app restarts, Mac restarts and SoundSource imports.
-- Makes Add App show explicit Add, Remove and Restore states, with search covering known
-  playback apps and applications Shruti has genuinely heard before.
-- Preserves deterministic manual ordering; LIVE state never moves a row.
+- Excludes Tracktion's `pluginval` validation utility from automatic DAW discovery.
+- Keeps actual Waveform/Tracktion DAW installations in the focused default mixer.
+- Retains the durable Add, Remove and Restore behavior introduced in Shruti 1.4.8.
 ]]></description>
-            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.8.dmg" length="9300982" type="application/octet-stream" sparkle:edSignature="i58Ch01NJRaR+eSNQltVNlEGt453KPKCvJqleCeE5UaRE/qGyVgKa0OP1yj0vzec3FQb+gdn/6RCI7MI9i8KCg=="></enclosure>
+            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.9.dmg" length="9301067" type="application/octet-stream" sparkle:edSignature="BDCmXCKVKY39yq01BLknKeRnzBnqgpQi1hEnAxvOpN2ETzg4z95HV5U1lKCC/cYOuSB8WqnAjryMjCUQuN0KDA=="></enclosure>
         </item>
     </channel>
 </rss><!-- sparkle-signatures:
-edSignature: MyBK6WVZhbqph9VWIXXQPLdD58NuSSSxLNECe8kLeJUEWInyMqdCq9nfmGVTXvg7YYu060ffacBArmn5smkNBw==
-length: 1868
+edSignature: unabrGGynq0vxKxM0G/qZyoZ2oViyvVGAyHUzuO0A4osfqCwOcsHM0el4bYaoNcix4Q7CgVpaWHgt3JIwHN4DA==
+length: 1364
 -->
