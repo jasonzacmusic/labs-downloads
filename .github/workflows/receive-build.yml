@@ -11,13 +11,10 @@ name: Receive a build
 on:
   push:
     branches: ["incoming/**"]
-  # A build pushed with a DEPLOY KEY lands the branch but does not start a
-  # workflow — GitHub suppresses that. So the hub also sweeps for arrivals on
-  # its own clock, which needs no credential from the sending repo at all.
-  # Every 5 minutes: the sending repo waits for this, so a slower sweep just
-  # means a build sitting undownloadable while its own run goes red.
-  schedule:
-    - cron: "*/5 * * * *"
+  # Deploy-key pushes do not start workflows. Their sender must emit one explicit
+  # repository dispatch after upload; polling every five minutes wasted 288 jobs/day.
+  repository_dispatch:
+    types: [receive-build]
   workflow_dispatch:
 
 permissions:
@@ -31,6 +28,7 @@ concurrency:
 jobs:
   receive:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       # On a push we are already on the incoming branch. On a sweep we have to
       # go and find one; if there is nothing waiting, stop quietly.
