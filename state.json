@@ -8,7 +8,7 @@
 "jasonzacmusic/Chord-Randomiser": {
 "commit": "Add a .gitignore \u2014 the repo had none",
 "ios": false,
-"pushed": "2026-08-03T04:26:47Z"
+"pushed": "2026-08-11T12:57:02Z"
 },
 "jasonzacmusic/Christmas": {
 "ios": false
@@ -34,7 +34,7 @@
 "jasonzacmusic/Fifth-Harmony": {
 "commit": "Spell note labels from the key instead of a private tabl",
 "ios": true,
-"pushed": "2026-08-04T13:15:31Z"
+"pushed": "2026-08-11T12:56:58Z"
 },
 "jasonzacmusic/Fifth-Harmony-Mobile": {
 "ios": false
@@ -76,9 +76,9 @@
 "pushed": "2026-08-03T04:26:23Z"
 },
 "jasonzacmusic/MidiVisualizer": {
-"commit": "Merge branch 'agent/launch-blockers-phase2'",
+"commit": "Optimize cross-platform recording and rendering performa",
 "ios": false,
-"pushed": "2026-08-05T09:50:14Z"
+"pushed": "2026-08-12T08:46:44Z"
 },
 "jasonzacmusic/MidiVisualizer-Releases": {
 "ios": false
@@ -95,7 +95,7 @@
 "jasonzacmusic/MusicMentor": {
 "commit": "Fix iOS ring/silent-switch muting: port groove-metronome",
 "ios": true,
-"pushed": "2026-08-03T12:22:31Z"
+"pushed": "2026-08-11T12:57:00Z"
 },
 "jasonzacmusic/Musical-Document-Utility": {
 "commit": "Finalize capped chat streams cleanly",
@@ -120,7 +120,7 @@
 "jasonzacmusic/Note-Forge": {
 "commit": "Ignore .env so a pulled secret cannot be committed",
 "ios": false,
-"pushed": "2026-08-03T04:26:33Z"
+"pushed": "2026-08-11T12:57:12Z"
 },
 "jasonzacmusic/Piano-Course-Creative": {
 "ios": false
@@ -149,15 +149,15 @@
 "jasonzacmusic/Reaper-Companion-JZ": {
 "commit": "Add the App Store privacy manifest",
 "ios": false,
-"pushed": "2026-08-03T08:32:16Z"
+"pushed": "2026-08-11T12:57:24Z"
 },
 "jasonzacmusic/Reel-Mastermind": {
 "ios": false
 },
 "jasonzacmusic/RhythmMaster": {
-"commit": "Musical audit: rumba clave was playing the bossa nova cl",
-"ios": false,
-"pushed": "2026-08-03T08:12:53Z"
+"commit": "Add true polymeter to Divide the Beat; animate beat hits",
+"ios": true,
+"pushed": "2026-08-11T12:56:56Z"
 },
 "jasonzacmusic/Riff-Database": {
 "commit": "Live Mode data: auto-sync new freestyle riffs",
@@ -186,24 +186,27 @@
 "ios": false
 },
 "jasonzacmusic/aria-website": {
-"commit": "Move lesson search server-side: the corpus never reaches",
+"commit": "Aria: keep Jason's phrasing instead of synthesising it a",
 "ios": false,
-"pushed": "2026-07-20T10:31:39Z"
+"pushed": "2026-08-11T08:28:52Z"
 },
 "jasonzacmusic/atlas": {
 "commit": "MIDI in for piano and drums, always-live QWERTY, and the",
 "ios": false,
-"pushed": "2026-07-31T07:22:27Z"
+"pushed": "2026-08-11T14:27:51Z"
 },
 "jasonzacmusic/baithak": {
-"commit": "Release bandwidth protection when the take ends",
+"commit": "Make the recording disk safe to configure before it is m",
 "ios": false,
-"pushed": "2026-08-03T14:02:24Z"
+"pushed": "2026-08-07T03:47:27Z"
 },
 "jasonzacmusic/bass-alchemy": {
 "commit": "Add the App Store privacy manifest",
 "ios": true,
-"pushed": "2026-08-03T08:30:19Z"
+"pushed": "2026-08-11T12:57:59Z"
+},
+"jasonzacmusic/beat-grid-analyzer": {
+"ios": false
 },
 "jasonzacmusic/bug-raga": {
 "ios": false
@@ -212,17 +215,17 @@
 "ios": false
 },
 "jasonzacmusic/cantus": {
-"commit": "Fix iOS ring/silent-switch muting: port groove-metronome",
+"commit": "Add Android platform for Cantus",
 "ios": true,
-"pushed": "2026-08-03T12:22:38Z"
+"pushed": "2026-08-11T12:57:08Z"
 },
 "jasonzacmusic/chart-studio-web": {
 "ios": false
 },
 "jasonzacmusic/chorale": {
-"commit": "1.3.4: never delay the singer, monitor A/B, harmonies st",
+"commit": "Audit page: set the asides like a printed score, not lik",
 "ios": false,
-"pushed": "2026-08-05T10:44:21Z"
+"pushed": "2026-08-11T08:35:18Z"
 },
 "jasonzacmusic/chord-tree-canopy": {
 "ios": false
@@ -230,7 +233,10 @@
 "jasonzacmusic/chord-tree-canopy-ultimate": {
 "commit": "Fix iOS ring/silent-switch muting: port groove-metronome",
 "ios": true,
-"pushed": "2026-08-03T12:22:44Z"
+"pushed": "2026-08-11T14:11:46Z"
+},
+"jasonzacmusic/claude-clone-kit": {
+"ios": false
 },
 "jasonzacmusic/cwa-community": {
 "ios": false
@@ -242,9 +248,9 @@
 "ios": false
 },
 "jasonzacmusic/grabit": {
-"commit": "Absorb stale v1.9.1 remote line (superseded by the 1.10\u2013",
+"commit": "Fix GrabIt Search, Batch, Capture, and Smart Moments (#7",
 "ios": false,
-"pushed": "2026-07-20T10:23:56Z"
+"pushed": "2026-08-12T08:57:25Z"
 },
 "jasonzacmusic/gradus": {
 "commit": "Add the five-species theory core",
@@ -254,7 +260,7 @@
 "jasonzacmusic/groove-metronome": {
 "commit": "Add the App Store privacy manifest",
 "ios": true,
-"pushed": "2026-08-03T08:30:37Z"
+"pushed": "2026-08-09T15:23:41Z"
 },
 "jasonzacmusic/handwritten-trumpet": {
 "ios": false
@@ -267,6 +273,9 @@
 "jasonzacmusic/horo": {
 "ios": false
 },
+"jasonzacmusic/jason-bot": {
+"ios": false
+},
 "jasonzacmusic/jasonzacmusic": {
 "ios": false
 },
@@ -274,6 +283,9 @@
 "ios": false
 },
 "jasonzacmusic/jz-comment-studio": {
+"ios": false
+},
+"jasonzacmusic/jzm-go-live": {
 "ios": false
 },
 "jasonzacmusic/labs-downloads": {
@@ -296,12 +308,12 @@
 "jasonzacmusic/master-key": {
 "commit": "Musical audit: make voice leading an assignment, not fou",
 "ios": false,
-"pushed": "2026-08-03T04:50:49Z"
+"pushed": "2026-08-11T08:35:00Z"
 },
 "jasonzacmusic/melakarta-sphere": {
 "commit": "Capture scripts the class campaign actually needed",
 "ios": false,
-"pushed": "2026-08-04T11:57:22Z"
+"pushed": "2026-08-11T08:34:36Z"
 },
 "jasonzacmusic/money-os": {
 "ios": false
@@ -330,7 +342,7 @@
 "jasonzacmusic/nathaniel-music-hub": {
 "commit": "Declare the iOS privacy manifest for the Expo build",
 "ios": false,
-"pushed": "2026-08-03T08:32:45Z"
+"pushed": "2026-08-11T12:57:21Z"
 },
 "jasonzacmusic/nathaniel-music-quiz": {
 "ios": false
@@ -341,7 +353,7 @@
 "jasonzacmusic/nathaniel-photo-hub": {
 "commit": "Rebuild after fixing the inverted Ignored Build Step rul",
 "ios": false,
-"pushed": "2026-08-03T16:34:41Z"
+"pushed": "2026-08-07T14:31:50Z"
 },
 "jasonzacmusic/nathaniel-production-house": {
 "ios": false
@@ -357,14 +369,40 @@
 "jasonzacmusic/nph-reaper-suite": {
 "ios": false
 },
+"jasonzacmusic/nsm-app-marketing": {
+"ios": false
+},
 "jasonzacmusic/nsm-aria": {
+"ios": false
+},
+"jasonzacmusic/nsm-asset-studio": {
+"ios": false
+},
+"jasonzacmusic/nsm-brand-render": {
+"ios": false
+},
+"jasonzacmusic/nsm-brevo-sync": {
 "ios": false
 },
 "jasonzacmusic/nsm-brochures": {
 "ios": false
 },
-"jasonzacmusic/nsm-cut-studio": {
+"jasonzacmusic/nsm-campaign-board": {
 "ios": false
+},
+"jasonzacmusic/nsm-community-polls": {
+"ios": false
+},
+"jasonzacmusic/nsm-concert-tagger": {
+"ios": false
+},
+"jasonzacmusic/nsm-content-studio": {
+"ios": false
+},
+"jasonzacmusic/nsm-cut-studio": {
+"commit": "Add reproducible August promo reel builds",
+"ios": false,
+"pushed": "2026-08-07T18:25:25Z"
 },
 "jasonzacmusic/nsm-email-assets": {
 "ios": false
@@ -372,7 +410,13 @@
 "jasonzacmusic/nsm-flow": {
 "commit": "Merge pull request #3 from jasonzacmusic/agent/musical-t",
 "ios": false,
-"pushed": "2026-08-04T04:38:36Z"
+"pushed": "2026-08-07T14:40:01Z"
+},
+"jasonzacmusic/nsm-forge": {
+"ios": false
+},
+"jasonzacmusic/nsm-invariant-net": {
+"ios": false
 },
 "jasonzacmusic/nsm-lesson-engine": {
 "ios": false
@@ -392,7 +436,22 @@
 "jasonzacmusic/nsm-melody-rhythm-playground": {
 "commit": "Fix iOS ring/silent-switch muting: port groove-metronome",
 "ios": true,
-"pushed": "2026-08-03T12:22:51Z"
+"pushed": "2026-08-11T12:57:14Z"
+},
+"jasonzacmusic/nsm-meta-ads-agent": {
+"ios": false
+},
+"jasonzacmusic/nsm-monitor": {
+"ios": false
+},
+"jasonzacmusic/nsm-notebook-studio": {
+"ios": false
+},
+"jasonzacmusic/nsm-orphan-apps": {
+"ios": false
+},
+"jasonzacmusic/nsm-pedal-cycle": {
+"ios": false
 },
 "jasonzacmusic/nsm-production-lab": {
 "ios": false
@@ -405,10 +464,22 @@
 "ios": false,
 "pushed": "2026-08-03T16:33:18Z"
 },
+"jasonzacmusic/nsm-staff-hub-desktop": {
+"ios": false
+},
 "jasonzacmusic/nsm-staff-hub-web": {
 "ios": false
 },
+"jasonzacmusic/nsm-stage-studio-tools": {
+"ios": false
+},
 "jasonzacmusic/nsm-team-hub": {
+"ios": false
+},
+"jasonzacmusic/nsm-thumbnail-designer": {
+"ios": false
+},
+"jasonzacmusic/nsm-thumbnail-pipeline": {
 "ios": false
 },
 "jasonzacmusic/nsm-tools": {
@@ -420,6 +491,9 @@
 "jasonzacmusic/nsm-uploader": {
 "ios": false
 },
+"jasonzacmusic/nsm-video-pipeline": {
+"ios": false
+},
 "jasonzacmusic/nsm-workshop": {
 "ios": false
 },
@@ -429,15 +503,27 @@
 "jasonzacmusic/nsm-xr18-studio": {
 "ios": false
 },
+"jasonzacmusic/nsm-youtube-command-center": {
+"ios": false
+},
+"jasonzacmusic/nsm-youtube-pipeline": {
+"ios": false
+},
 "jasonzacmusic/ossia": {
-"commit": "Exports work on the iPad, and a score has pages you can ",
+"commit": "Let users delete encrypted cloud accounts",
 "ios": true,
-"pushed": "2026-08-04T02:41:50Z"
+"pushed": "2026-08-11T15:37:25Z"
+},
+"jasonzacmusic/paper-trash-cleaner": {
+"ios": false
 },
 "jasonzacmusic/pendulum": {
 "commit": "Add the App Store privacy manifest",
 "ios": true,
-"pushed": "2026-08-03T08:30:39Z"
+"pushed": "2026-08-11T12:57:03Z"
+},
+"jasonzacmusic/piano3d-viewer": {
+"ios": false
 },
 "jasonzacmusic/pocket-piano-broll-studio": {
 "ios": false
@@ -454,9 +540,12 @@
 "jasonzacmusic/rhythm-arithmetic": {
 "commit": "Musical audit: hear the downbeat when the singer comes i",
 "ios": false,
-"pushed": "2026-08-03T07:19:41Z"
+"pushed": "2026-08-08T15:05:39Z"
 },
 "jasonzacmusic/richmond-park": {
+"ios": false
+},
+"jasonzacmusic/riff-design-board": {
 "ios": false
 },
 "jasonzacmusic/riff-studio": {
@@ -468,25 +557,39 @@
 "pushed": "2026-08-03T07:16:23Z"
 },
 "jasonzacmusic/sangam": {
-"commit": "ci: reduce redundant macOS Actions usage",
+"commit": "Merge Sangam 1.2.0-rc.9 live-status fix",
 "ios": false,
-"pushed": "2026-08-03T16:20:31Z"
+"pushed": "2026-08-12T08:54:01Z"
+},
+"jasonzacmusic/scores-ios": {
+"ios": false
+},
+"jasonzacmusic/scores-mac": {
+"ios": false
 },
 "jasonzacmusic/shaanbelchada": {
 "ios": false
 },
 "jasonzacmusic/shruti": {
-"ios": false
+"commit": "release: publish Shruti 1.4.6 assets",
+"ios": false,
+"pushed": "2026-08-12T09:23:53Z"
 },
 "jasonzacmusic/sight-singing-studio": {
-"commit": "Hymn mode, rebuilt: 22 more settings, alternate tunes, a",
+"commit": "Fix review rest icon and tempo dial copy",
 "ios": false,
-"pushed": "2026-08-04T12:42:37Z"
+"pushed": "2026-08-11T08:34:56Z"
 },
 "jasonzacmusic/sightread": {
 "commit": "Musical audit: the ninth was voiced below the seventh",
 "ios": false,
 "pushed": "2026-08-03T07:59:16Z"
+},
+"jasonzacmusic/silence-stripper": {
+"ios": false
+},
+"jasonzacmusic/smriti": {
+"ios": false
 },
 "jasonzacmusic/span": {
 "ios": false
@@ -503,13 +606,19 @@
 "jasonzacmusic/two-notes": {
 "ios": false
 },
+"jasonzacmusic/video-edit-automation": {
+"ios": false
+},
 "jasonzacmusic/watch-listen": {
 "ios": false
 },
 "jasonzacmusic/woodshed": {
-"commit": "Rebuild after fixing the inverted Ignored Build Step rul",
+"commit": "Harden mobile privacy and prepare store listing",
 "ios": true,
-"pushed": "2026-08-03T16:34:43Z"
+"pushed": "2026-08-11T14:39:15Z"
+},
+"jasonzacmusic/yt-carousel-remotion": {
+"ios": false
 },
 "jasonzacmusic/zen-studio-app": {
 "ios": false

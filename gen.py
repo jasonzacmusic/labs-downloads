@@ -22,6 +22,8 @@ CAT_EMOJI = {"Audio": "🔊", "Music": "🎵", "Practice": "🎹", "Productivity
              "Portal": "🎓", "Team": "🧩", "Utility": "⚡", "Landing": "🌐", "App": "✨"}
 PLAT = {"mac": "macOS", "win": "Windows", "ios": "iOS", "web": "Web"}
 GH_TIMEOUT_SECONDS = int(os.environ.get("HUB_GH_TIMEOUT_SECONDS", "12"))
+REFRESH_REPO = os.environ.get("HUB_REFRESH_REPO", "").strip()
+CURATED_ONLY = os.environ.get("HUB_CURATED_ONLY", "0") == "1"
 
 
 def gh_json(args):
@@ -70,6 +72,8 @@ def hub_assets():
 
 def repo_meta(repo):
     """pushed_at + first line of latest commit; cached, degrades to cache on no-access."""
+    if REFRESH_REPO and repo != REFRESH_REPO:
+        return cget(repo, "pushed", ""), cget(repo, "commit", "")
     info = api(f"/repos/{repo}")
     if info:
         cput(repo, "pushed", info.get("pushed_at") or cget(repo, "pushed", ""))
@@ -172,8 +176,10 @@ def build():
                     n.get("label", "")))
 
     # 2. Auto-discover native / iOS apps anywhere in the org (future-proof).
-    repos = gh_json(["repo", "list", ORG, "--limit", "200", "--no-archived",
-                     "--json", "name,homepageUrl,pushedAt"]) or []
+    repos = [] if CURATED_ONLY else (gh_json([
+        "repo", "list", ORG, "--limit", "200", "--no-archived",
+        "--json", "name,homepageUrl,pushedAt",
+    ]) or [])
     for r in repos:
         full = f"{ORG}/{r['name']}"
         owners = claims.get(full, [])
