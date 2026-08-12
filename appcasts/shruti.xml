@@ -4,25 +4,28 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>Shruti</title>
         <item>
-            <title>1.4.3</title>
-            <pubDate>Wed, 12 Aug 2026 13:25:02 +0530</pubDate>
-            <sparkle:version>20</sparkle:version>
-            <sparkle:shortVersionString>1.4.3</sparkle:shortVersionString>
+            <title>1.4.4</title>
+            <pubDate>Wed, 12 Aug 2026 13:56:50 +0530</pubDate>
+            <sparkle:version>21</sparkle:version>
+            <sparkle:shortVersionString>1.4.4</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.2</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.3
+            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.4
 
-- Cuts steady background discovery work by combining Shruti's raw and owner-resolved audio
-  activity into one Core Audio process-registry pass.
-- Throttles status-driven discovery refreshes and uses a two-second low-priority fallback while
-  retaining immediate Core Audio start/stop notifications, so a new playing app is still picked
-  up promptly.
-- Preserves the independent `ShrutiService`, evidence-only mixer, device ordering, Frequently Used
-  routes and safe device removal introduced in 1.4.2.
+- Shows only proven live audio, actively controlled rows, and a short 15-second recent-audio
+  grace; running utilities and neutral SoundSource imports stay out of the mixer.
+- Suppresses Wispr Flow, Camo and ScreenFlow playback false positives caused by capture apps
+  keeping a nominal Core Audio output stream warm while emitting no sound.
+- Adds persistent up/down ordering controls to every visible app, plus one-click Smart Order
+  that restores the automatic playing-now-first layout.
+- Replaces the ambiguous green-dot treatment with an explicit LIVE waveform badge and labels
+  short recent-audio grace rows by age, so a volume slider is never mistaken for a meter.
+- Keeps Google Chrome helper processes attributed to Chrome and preserves existing device order,
+  routes, favorites, effects, locks and SoundSource-imported settings during the update.
 ]]></description>
-            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.3.dmg" length="9125504" type="application/octet-stream" sparkle:edSignature="4fxk6M2kJYfH2omajdGpctzbf+3srTbenRyq9IAcYwC0tU3Wm/k00eW+9wDfjkjP3rCzgZXpJaCGoBakfv1aBA=="></enclosure>
+            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.4.dmg" length="9152928" type="application/octet-stream" sparkle:edSignature="8vFmivCXvqs44kqmDIzmNvZA6K7lK9EA336qktPZJMmRToxV4hHhI7JA/d77HsFEMpTTtZuHl8jjDtlaV5igCA=="></enclosure>
         </item>
     </channel>
 </rss><!-- sparkle-signatures:
-edSignature: 0YfG4syPTMkGEdfC62DHA714e7ubUv2mThMj+nM2szS7LRg7EB2aiIhUU/5AQWl2pp1JqPv8QfDaH5NyuTETAw==
-length: 1620
+edSignature: q0wNts9KA9suzQGkHer7oeYhQgyTlGaw2IGYtqyShyt2yaNm7RLRTci1Gp4dGzHKw+CkOVJYCbpoOxdiE78iDg==
+length: 1976
 -->
