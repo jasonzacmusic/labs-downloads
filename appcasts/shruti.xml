@@ -4,30 +4,25 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>Shruti</title>
         <item>
-            <title>1.4.2</title>
-            <pubDate>Wed, 12 Aug 2026 13:16:47 +0530</pubDate>
-            <sparkle:version>19</sparkle:version>
-            <sparkle:shortVersionString>1.4.2</sparkle:shortVersionString>
+            <title>1.4.3</title>
+            <pubDate>Wed, 12 Aug 2026 13:25:02 +0530</pubDate>
+            <sparkle:version>20</sparkle:version>
+            <sparkle:shortVersionString>1.4.3</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.2</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.2
+            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.3
 
-- Gives Shruti its own `ShrutiService` executable, singleton lock, control socket and logs.
-- Removes Sangam service startup, shutdown and packaging from every Shruti shipping path.
-- Keeps each engaged app inside its own sacrificial tap worker while the main service stays responsive.
-- Adds a release gate that rejects any future runtime or installer coupling to Sangam.
-- Shows only apps with real or recent output activity (or an active control), removing idle
-  SoundSource imports such as Terminal, Wispr Flow and ScreenFlow from the live mixer.
-- Adds drag-free Move Up/Move Down device ordering and a Frequently Used section backed by
-  durable output, input and alert-route history.
-- Adds safe Remove and Restore for physical audio devices without uninstalling macOS drivers;
-  a current system route must be changed before it can be removed.
-- Keeps audio-app discovery playback-focused, so microphone permission or a video category
-  alone no longer puts recording and dictation tools in the Add App list.
+- Cuts steady background discovery work by combining Shruti's raw and owner-resolved audio
+  activity into one Core Audio process-registry pass.
+- Throttles status-driven discovery refreshes and uses a two-second low-priority fallback while
+  retaining immediate Core Audio start/stop notifications, so a new playing app is still picked
+  up promptly.
+- Preserves the independent `ShrutiService`, evidence-only mixer, device ordering, Frequently Used
+  routes and safe device removal introduced in 1.4.2.
 ]]></description>
-            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.2.dmg" length="9128512" type="application/octet-stream" sparkle:edSignature="q18mSxLdh46T3D1TN0TRd61i5m++9gtsT0ja4baUAdjQ3zYTcHWxr8zyM9V9hw1rojeVM5MlrKCoq4H4qeRNBA=="></enclosure>
+            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.3.dmg" length="9125504" type="application/octet-stream" sparkle:edSignature="4fxk6M2kJYfH2omajdGpctzbf+3srTbenRyq9IAcYwC0tU3Wm/k00eW+9wDfjkjP3rCzgZXpJaCGoBakfv1aBA=="></enclosure>
         </item>
     </channel>
 </rss><!-- sparkle-signatures:
-edSignature: rhY0hn7JcFL/zLvvwCh5OPgwhX40LreniIJkpUXuDoKMfoTVKMIjlUjfawFerHOAPoVwUU5F0+VKDkIKdNUFDQ==
-length: 2133
+edSignature: 0YfG4syPTMkGEdfC62DHA714e7ubUv2mThMj+nM2szS7LRg7EB2aiIhUU/5AQWl2pp1JqPv8QfDaH5NyuTETAw==
+length: 1620
 -->
