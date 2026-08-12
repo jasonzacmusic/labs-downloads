@@ -4,33 +4,40 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>Shruti</title>
         <item>
-            <title>1.4.0</title>
-            <pubDate>Wed, 12 Aug 2026 00:32:16 +0530</pubDate>
-            <sparkle:version>17</sparkle:version>
-            <sparkle:shortVersionString>1.4.0</sparkle:shortVersionString>
+            <title>1.4.1</title>
+            <pubDate>Wed, 12 Aug 2026 11:44:42 +0530</pubDate>
+            <sparkle:version>18</sparkle:version>
+            <sparkle:shortVersionString>1.4.1</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.2</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.0
+            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.1
 
-This release makes the audio path harder to break and moving from SoundSource more complete.
+This reliability update fixes app playback on multichannel audio interfaces and reduces the
+Core Audio work Shruti performs during streaming and video playback.
 
-- Each controlled app now gets its own isolated audio helper. If one Core Audio graph or Audio
-  Unit fails, that app returns to the direct macOS path without taking the mixer—or another
-  app—with it.
-- SoundSource migration now transfers the exact Audio Unit preset when the same plug-in is
-  installed. Missing plug-ins remain explicit and Waves NS1 still has a safe built-in fallback.
-- The current mixer, protected-app list and system routes survive restart as before.
-- The optimized product suite now passes 320 checks, including exact preset restore and tap
-  containment support, with eight full processing chains averaging below 0.4 ms on the release
-  test Mac.
-- A compatibility table now separates physical hardware passes from build-only coverage.
+## Fixed
 
-Licensing infrastructure is ready for a three-Mac personal license, but public payment remains
-closed until a real Paddle purchase, email delivery and refund are completed without manual help.
+- Spotify, Chrome, YouTube and other app audio no longer go silent when Shruti engages on a
+  device whose hardware-input buffers appear before the app's stereo process tap.
+- Capture-only apps such as camera utilities no longer keep an output aggregate alive.
+- A camera or call app whose Core Audio output flag remains stuck on after proven silence stays
+  on the direct path until a real playback stop/start transition.
+- Short browser-helper and player-state changes no longer churn otherwise healthy tap helpers.
+
+## Performance
+
+- The audio callback now reuses its buffer and performs no steady-state heap allocation.
+- Wall-clock activity sampling moved out of the real-time callback and onto the existing worker
+  heartbeat.
+- The menu UI refreshes once per second while visible and every three seconds while hidden,
+  instead of rebuilding the full app and device snapshot twice per second at all times.
+
+Shruti remains direct by default: an app receives a private, isolated helper only while one of
+its saved controls is engaged and macOS reports real playback.
 ]]></description>
-            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.0.dmg" length="9019650" type="application/octet-stream" sparkle:edSignature="AS0O9tHTaGtWEMcnYQXmY+KKepL3X77KJCQQJvKHV7h5QYnt6JoSft+yy46sLHUB40VKrEzClypIhCWTGDjsBw=="></enclosure>
+            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.1.dmg" length="9030106" type="application/octet-stream" sparkle:edSignature="TGLYxB2QzesbkpRLqN6EPu7H99JJQ7nVNg/bespLjAqpt81t6/Wjy/Ymbx/wYkky88F7KuWYEgoPfNMdMtNVAQ=="></enclosure>
         </item>
     </channel>
 </rss><!-- sparkle-signatures:
-edSignature: gwZLSsNJQtK9hTKTAx/WCWzuMnSVooW9SUejzauu5+ms5bv16hb8srPfcozWUhcyohdOMdlEPRm5suzeV6/+Aw==
-length: 2169
+edSignature: mDCN5jDGvQuVB1ve1ELXvtnf2TIdarqJdiJfiPkjDgcK4dRLDHclAt7mbWD20VmSZ7Cc+FNu7Ez0EVQ1ibmsDw==
+length: 2359
 -->
