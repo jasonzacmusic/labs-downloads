@@ -14,3 +14,6 @@ site locally, verify the live version and installer hash, and only then report c
 The zero-cost default is event-driven: release dispatches and manual fallback only. Do not
 add polling or scheduled Actions, and do not use paid macOS runners for these locally built,
 signed, and notarized apps.
+
+Incoming installer branches trigger by push or a single `receive-build` repository dispatch.
+The former five-minute sweep and daily hub scan are intentionally disabled.
