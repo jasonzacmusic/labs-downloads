@@ -4,32 +4,29 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>Shruti</title>
         <item>
-            <title>1.4.6</title>
-            <pubDate>Wed, 12 Aug 2026 14:53:43 +0530</pubDate>
-            <sparkle:version>23</sparkle:version>
-            <sparkle:shortVersionString>1.4.6</sparkle:shortVersionString>
+            <title>1.4.7</title>
+            <pubDate>Wed, 12 Aug 2026 16:07:52 +0530</pubDate>
+            <sparkle:version>24</sparkle:version>
+            <sparkle:shortVersionString>1.4.7</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.2</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.6
+            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.7
 
-- Fixes Audio Devices, Scenes, Settings and Output Groups controls when Shruti is pinned
-  as a floating panel; every footer control now opens the same real window from either UI.
-- Finds playback apps using both the installed-app directory and live Core Audio evidence,
-  so newly observed apps appear without needing a hard-coded catalogue entry.
-- Makes Claude and ChatGPT searchable playback apps and lets vendor-style searches such as
-  “Google Chrome” match an app whose display name is simply “Chrome”.
-- Keeps the live mixer focused on apps producing output now, with a three-second anti-flicker
-  grace instead of retaining silent utilities or every installed application.
-- Removes playback-driven “smart” reordering. Your order remains fixed, hidden apps retain
-  their positions, and newly heard apps join without making existing rows fight.
-- Makes Compact a genuine two-line mixer layout so app names remain readable while level,
-  boost, output and FX controls remain available.
-- Replaces the vague “fix volume keys” prompt with a contextual Mac volume-keys setup for
-  fixed-volume HDMI, display, TV and audio-interface outputs.
+- Keeps every installed playback-capable app in the mixer whether it is silent or active,
+  instead of removing rows a few seconds after playback stops.
+- Uses Core Audio activity only for the LIVE indicator and discovery; it never changes the
+  user's manual app order.
+- Remembers uncommon applications after they produce real audio once, covering apps whose
+  bundle metadata does not declare playback capability.
+- Expands installed-app recognition for browsers, media players, DAWs, communication apps,
+  games and video editors, including ScreenFlow, while excluding capture-only utilities such
+  as Wispr Flow and Camo.
+- Keeps searches and directories in deterministic name order so playback changes cannot make
+  Chrome, Pianoteq, REAPER or another row jump around.
 ]]></description>
-            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.6.dmg" length="9253102" type="application/octet-stream" sparkle:edSignature="0K0tPnHN86azJTanB/ac3kjpbvxO00MilYkpTwtyaIIGRugO0cntI6dL4HkolYKU4+/ZayaUMQimAGoWqJQfCA=="></enclosure>
+            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.7.dmg" length="9252120" type="application/octet-stream" sparkle:edSignature="ZbhjNgfE1JrzZI1hA+Y2mmvpOezd+3Sflb6tmtorvOHfT3PaHqev2AHH77foCrokX4XQLiTpJhruDaz7jW1+Ag=="></enclosure>
         </item>
     </channel>
 </rss><!-- sparkle-signatures:
-edSignature: CUtBM8wGQL4m2SQtxY5tGA6YWfLCxeYp9yxkOjiQXzQd/P+vbjMj9iYwa6woUYn2UKrF0lITgzxVQjy0aMM/CA==
-length: 2277
+edSignature: RG8PdCwwNFbvJUyeD0mzHqNbzDJnDMUB7OFZz9BeeP/Z0WLNN4q370Q5W8wYkfLtyVhTxYmsvrU+SxZvvUr/Bw==
+length: 1890
 -->
