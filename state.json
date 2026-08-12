@@ -248,9 +248,9 @@
 "ios": false
 },
 "jasonzacmusic/grabit": {
-"commit": "Fix GrabIt Search, Batch, Capture, and Smart Moments (#7",
+"commit": "Merge pull request #8 from jasonzacmusic/codex/fix-scree",
 "ios": false,
-"pushed": "2026-08-12T08:57:25Z"
+"pushed": "2026-08-12T12:26:46Z"
 },
 "jasonzacmusic/gradus": {
 "commit": "Add the five-species theory core",
