@@ -25,6 +25,10 @@ git pull --rebase --autostash origin main
 # dist/ — which may be stale or belong to a different release. Falls back to canonical.
 SHRUTI_DMG_SRC="${SHRUTI_DMG:-$HOME/Documents/New project/shruti/dist/Shruti-signed.dmg}"
 NET_SENSE_DMG_SRC="${NET_SENSE_DMG:-$HOME/Documents/Claude/net-sense/mac/build/Net-Sense-mac.dmg}"
+GRABIT_REPO_SRC="${GRABIT_REPO:-$HOME/Documents/Claude Code/grabit}"
+GRABIT_VERSION="$(plutil -extract CFBundleShortVersionString raw "$GRABIT_REPO_SRC/Resources/Info.plist" 2>/dev/null || true)"
+GRABIT_BUILD="$(plutil -extract CFBundleVersion raw "$GRABIT_REPO_SRC/Resources/Info.plist" 2>/dev/null || true)"
+GRABIT_DMG_SRC="${GRABIT_DMG:-$GRABIT_REPO_SRC/build/GrabIt-$GRABIT_VERSION.dmg}"
 # MIDI Visualizer candidates are built and notarized locally for internal
 # testing. Accept that exact DMG when supplied; the GitHub-release fallback is
 # retained for the normal scheduled hub refresh and is never used by this path.
@@ -38,6 +42,7 @@ fi
 CHORALE_DMG_SRC="$(ls -t "$HOME"/Desktop/Chorale-*.dmg 2>/dev/null | head -1 || true)"
 NET_SENSE_ROW="file:${NET_SENSE_DMG_SRC}|Net-Sense-mac.dmg"
 SHRUTI_ROW="file:${SHRUTI_DMG_SRC}|Shruti-mac.dmg"
+GRABIT_ROW="file:${GRABIT_DMG_SRC}|GrabIt-mac.dmg"
 NSM_FLOW_DIST="${NSM_FLOW_DIST:-$HOME/Documents/Claude/nsm-flow-clone/dist-release}"
 NSM_FLOW_ROWS=(
   "file:${NSM_FLOW_DIST}/NSM-Flow-mac-Apple-Silicon.dmg|NSM-Flow-mac-Apple-Silicon.dmg"
@@ -50,7 +55,7 @@ LOCALS=(
   "$SHRUTI_ROW"
   "ghrel:jasonzacmusic/sangam@v1.1.0-rc.7:Sangam-1.1.0-rc.7.dmg|Sangam-mac.dmg"
   "file:${CHORALE_DMG_SRC}|Chorale-mac.dmg"
-  "file:~/Documents/Claude/grabit/site/downloads/GrabIt-1.16.dmg|GrabIt-mac.dmg"
+  "$GRABIT_ROW"
   "${MIDI_VISUALIZER_DMG_ENTRY}|MIDI-Piano-Visualizer-mac.dmg"
   "ghrel:jasonzacmusic/MidiVisualizer-Releases:MIDI-Piano-Visualizer-Setup.exe|MIDI-Piano-Visualizer-win.exe"
   # NSM Photos (internal team app). Built + shipped by nathaniel-photo-hub's own
@@ -69,6 +74,8 @@ if [ "${NET_SENSE_ONLY:-0}" = "1" ]; then
   LOCALS=("$NET_SENSE_ROW")
 elif [ "${SHRUTI_ONLY:-0}" = "1" ]; then
   LOCALS=("$SHRUTI_ROW")
+elif [ "${GRABIT_ONLY:-0}" = "1" ]; then
+  LOCALS=("$GRABIT_ROW")
 elif [ "${NSM_FLOW_ONLY:-0}" = "1" ]; then
   LOCALS=("${NSM_FLOW_ROWS[@]}")
 fi
@@ -100,12 +107,30 @@ for row in "${LOCALS[@]}"; do
   esac
 done
 if { [ "${NET_SENSE_ONLY:-0}" = "1" ] || [ "${SHRUTI_ONLY:-0}" = "1" ] \
+     || [ "${GRABIT_ONLY:-0}" = "1" ] \
      || [ "${NSM_FLOW_ONLY:-0}" = "1" ]; } \
     && [ ${#ASSETS[@]} -eq 0 ]; then
   # A product-specific release that could not stage its installer must fail loudly:
   # otherwise the appcast advances while the hub keeps serving the previous DMG.
   echo "ERROR requested installer missing or not notarized; nothing uploaded" >&2
   exit 1
+fi
+if [ "${GRABIT_ONLY:-0}" = "1" ] && [ -f "$STAGE/GrabIt-mac.dmg" ]; then
+  GRABIT_SHA="$(shasum -a 256 "$STAGE/GrabIt-mac.dmg" | awk '{print $1}')"
+  GRABIT_SIZE="$(stat -f %z "$STAGE/GrabIt-mac.dmg")"
+  cat > "$STAGE/grabit.json" <<JSON
+{
+  "app": "grabit",
+  "version": "$GRABIT_VERSION",
+  "build": "$GRABIT_BUILD",
+  "notes": "Screenshot permission restart and resume reliability",
+  "date": "$(date -u '+%Y-%m-%dT%H:%M:%SZ')",
+  "sha256": "$GRABIT_SHA",
+  "size": $GRABIT_SIZE,
+  "url": "https://github.com/jasonzacmusic/labs-downloads/releases/download/downloads/GrabIt-mac.dmg"
+}
+JSON
+  ASSETS+=("$STAGE/grabit.json")
 fi
 if [ ${#ASSETS[@]} -gt 0 ]; then
   gh release upload "$TAG" "${ASSETS[@]}" --repo "$REPO" --clobber
@@ -132,7 +157,8 @@ done < <(gh release view "$TAG" --repo "$REPO" --json assets --jq '.assets[].nam
 
 # This is Shruti's backup feed; the primary GrabIt-style feed lives on Shruti's dedicated
 # site. Never publish an unsigned scaffold: Shruti requires both archive and feed signing.
-if [ "${NET_SENSE_ONLY:-0}" != "1" ] && [ "${NSM_FLOW_ONLY:-0}" != "1" ]; then
+if [ "${NET_SENSE_ONLY:-0}" != "1" ] && [ "${NSM_FLOW_ONLY:-0}" != "1" ] \
+    && [ "${GRABIT_ONLY:-0}" != "1" ]; then
   SHRUTI_APPCAST="${SHRUTI_APPCAST_SRC:-$HOME/Documents/New project/shruti/appcasts/shruti.xml}"
   if [ -f "$SHRUTI_APPCAST" ] \
       && grep -q 'sparkle:edSignature=' "$SHRUTI_APPCAST" \
@@ -154,6 +180,9 @@ if [ "${SHRUTI_ONLY:-0}" = "1" ]; then
   # index.html leaves the checkout dirty and makes the next targeted refresh compare
   # against stale release metadata.
   git add appcasts/shruti.xml index.html state.json
+elif [ "${GRABIT_ONLY:-0}" = "1" ]; then
+  HUB_CURATED_ONLY=1 HUB_REFRESH_REPO=jasonzacmusic/grabit python3 gen.py
+  git add index.html state.json
 else
   python3 gen.py
   git add -A
@@ -191,6 +220,11 @@ if [ "${NET_SENSE_ONLY:-0}" = "1" ]; then
   curl -fsSIL --retry 8 --retry-all-errors --retry-delay 5 \
     "https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/Net-Sense-mac.dmg" >/dev/null \
     || echo "WARN Net-Sense-mac.dmg not yet visible on the download CDN (propagation lag)"
+fi
+if [ "${GRABIT_ONLY:-0}" = "1" ]; then
+  curl -fsSIL --retry 8 --retry-all-errors --retry-delay 5 \
+    "https://github.com/jasonzacmusic/labs-downloads/releases/download/downloads/GrabIt-mac.dmg" >/dev/null \
+    || echo "WARN GrabIt-mac.dmg not yet visible on the download CDN (propagation lag)"
 fi
 echo ""
 echo "Live at: https://jasonzacmusic.github.io/labs-downloads/"
