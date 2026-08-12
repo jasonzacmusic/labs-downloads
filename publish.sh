@@ -150,7 +150,10 @@ if [ "${SHRUTI_ONLY:-0}" = "1" ]; then
   # A Shruti release changes the appcast and the source repo's update timestamp. Always
   # regenerate the page in the same release so the umbrella cannot stay one version behind.
   HUB_CURATED_ONLY=1 HUB_REFRESH_REPO=jasonzacmusic/shruti python3 gen.py
-  git add appcasts/shruti.xml index.html
+  # gen.py updates both the rendered page and its source-state snapshot. Committing only
+  # index.html leaves the checkout dirty and makes the next targeted refresh compare
+  # against stale release metadata.
+  git add appcasts/shruti.xml index.html state.json
 else
   python3 gen.py
   git add -A
