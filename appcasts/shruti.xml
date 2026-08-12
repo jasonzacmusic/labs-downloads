@@ -4,40 +4,30 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>Shruti</title>
         <item>
-            <title>1.4.1</title>
-            <pubDate>Wed, 12 Aug 2026 11:44:42 +0530</pubDate>
-            <sparkle:version>18</sparkle:version>
-            <sparkle:shortVersionString>1.4.1</sparkle:shortVersionString>
+            <title>1.4.2</title>
+            <pubDate>Wed, 12 Aug 2026 13:16:47 +0530</pubDate>
+            <sparkle:version>19</sparkle:version>
+            <sparkle:shortVersionString>1.4.2</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.2</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.1
+            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.2
 
-This reliability update fixes app playback on multichannel audio interfaces and reduces the
-Core Audio work Shruti performs during streaming and video playback.
-
-## Fixed
-
-- Spotify, Chrome, YouTube and other app audio no longer go silent when Shruti engages on a
-  device whose hardware-input buffers appear before the app's stereo process tap.
-- Capture-only apps such as camera utilities no longer keep an output aggregate alive.
-- A camera or call app whose Core Audio output flag remains stuck on after proven silence stays
-  on the direct path until a real playback stop/start transition.
-- Short browser-helper and player-state changes no longer churn otherwise healthy tap helpers.
-
-## Performance
-
-- The audio callback now reuses its buffer and performs no steady-state heap allocation.
-- Wall-clock activity sampling moved out of the real-time callback and onto the existing worker
-  heartbeat.
-- The menu UI refreshes once per second while visible and every three seconds while hidden,
-  instead of rebuilding the full app and device snapshot twice per second at all times.
-
-Shruti remains direct by default: an app receives a private, isolated helper only while one of
-its saved controls is engaged and macOS reports real playback.
+- Gives Shruti its own `ShrutiService` executable, singleton lock, control socket and logs.
+- Removes Sangam service startup, shutdown and packaging from every Shruti shipping path.
+- Keeps each engaged app inside its own sacrificial tap worker while the main service stays responsive.
+- Adds a release gate that rejects any future runtime or installer coupling to Sangam.
+- Shows only apps with real or recent output activity (or an active control), removing idle
+  SoundSource imports such as Terminal, Wispr Flow and ScreenFlow from the live mixer.
+- Adds drag-free Move Up/Move Down device ordering and a Frequently Used section backed by
+  durable output, input and alert-route history.
+- Adds safe Remove and Restore for physical audio devices without uninstalling macOS drivers;
+  a current system route must be changed before it can be removed.
+- Keeps audio-app discovery playback-focused, so microphone permission or a video category
+  alone no longer puts recording and dictation tools in the Add App list.
 ]]></description>
-            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.1.dmg" length="9030106" type="application/octet-stream" sparkle:edSignature="TGLYxB2QzesbkpRLqN6EPu7H99JJQ7nVNg/bespLjAqpt81t6/Wjy/Ymbx/wYkky88F7KuWYEgoPfNMdMtNVAQ=="></enclosure>
+            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.2.dmg" length="9128512" type="application/octet-stream" sparkle:edSignature="q18mSxLdh46T3D1TN0TRd61i5m++9gtsT0ja4baUAdjQ3zYTcHWxr8zyM9V9hw1rojeVM5MlrKCoq4H4qeRNBA=="></enclosure>
         </item>
     </channel>
 </rss><!-- sparkle-signatures:
-edSignature: mDCN5jDGvQuVB1ve1ELXvtnf2TIdarqJdiJfiPkjDgcK4dRLDHclAt7mbWD20VmSZ7Cc+FNu7Ez0EVQ1ibmsDw==
-length: 2359
+edSignature: rhY0hn7JcFL/zLvvwCh5OPgwhX40LreniIJkpUXuDoKMfoTVKMIjlUjfawFerHOAPoVwUU5F0+VKDkIKdNUFDQ==
+length: 2133
 -->
