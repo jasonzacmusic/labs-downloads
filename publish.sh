@@ -1,8 +1,8 @@
 #!/bin/bash
 # Nathaniel Labs — push local native installers, then regenerate + deploy the hub.
 # Run this on the Mac that BUILT a native app (the cloud can't build/notarize Mac apps).
-# For web apps you never need to run this — the scheduled GitHub Action refreshes their
-# "last updated" dates automatically. This just uploads Mac/Windows installers and refreshes.
+# For web apps you never need to run this. Native releases upload their notarized installers
+# and regenerate the catalog here; the Labs site refresh is release-driven, not polled.
 #
 #   ./publish.sh
 set -euo pipefail
@@ -23,7 +23,7 @@ git pull --rebase --autostash origin main
 # SHRUTI_DMG lets the caller (release-shruti.sh, possibly running from a git worktree)
 # point at the exact notarized DMG it just built, instead of the canonical checkout's
 # dist/ — which may be stale or belong to a different release. Falls back to canonical.
-SHRUTI_DMG_SRC="${SHRUTI_DMG:-$HOME/Documents/Claude/sangam/dist/Shruti-signed.dmg}"
+SHRUTI_DMG_SRC="${SHRUTI_DMG:-$HOME/Documents/New project/shruti/dist/Shruti-signed.dmg}"
 NET_SENSE_DMG_SRC="${NET_SENSE_DMG:-$HOME/Documents/Claude/net-sense/mac/build/Net-Sense-mac.dmg}"
 # MIDI Visualizer candidates are built and notarized locally for internal
 # testing. Accept that exact DMG when supplied; the GitHub-release fallback is
@@ -133,7 +133,7 @@ done < <(gh release view "$TAG" --repo "$REPO" --json assets --jq '.assets[].nam
 # This is Shruti's backup feed; the primary GrabIt-style feed lives on Shruti's dedicated
 # site. Never publish an unsigned scaffold: Shruti requires both archive and feed signing.
 if [ "${NET_SENSE_ONLY:-0}" != "1" ] && [ "${NSM_FLOW_ONLY:-0}" != "1" ]; then
-  SHRUTI_APPCAST="${SHRUTI_APPCAST_SRC:-$HOME/Documents/Claude/sangam/appcasts/shruti.xml}"
+  SHRUTI_APPCAST="${SHRUTI_APPCAST_SRC:-$HOME/Documents/New project/shruti/appcasts/shruti.xml}"
   if [ -f "$SHRUTI_APPCAST" ] \
       && grep -q 'sparkle:edSignature=' "$SHRUTI_APPCAST" \
       && grep -q 'sparkle-signatures:' "$SHRUTI_APPCAST"; then
@@ -141,13 +141,16 @@ if [ "${NET_SENSE_ONLY:-0}" != "1" ] && [ "${NSM_FLOW_ONLY:-0}" != "1" ]; then
     cp "$SHRUTI_APPCAST" appcasts/shruti.xml
     echo "local appcasts/shruti.xml (Ed25519 signed)"
   else
-    echo "ERROR signed Shruti appcast not ready; run sangam/scripts/generate-shruti-appcast.sh" >&2
+    echo "ERROR signed Shruti appcast not ready; run shruti/scripts/generate-shruti-appcast.sh" >&2
     exit 1
   fi
 fi
 
 if [ "${SHRUTI_ONLY:-0}" = "1" ]; then
-  git add appcasts/shruti.xml
+  # A Shruti release changes the appcast and the source repo's update timestamp. Always
+  # regenerate the page in the same release so the umbrella cannot stay one version behind.
+  HUB_CURATED_ONLY=1 HUB_REFRESH_REPO=jasonzacmusic/shruti python3 gen.py
+  git add appcasts/shruti.xml index.html
 else
   python3 gen.py
   git add -A
@@ -165,13 +168,13 @@ done
 [ "$published" = true ] || { echo "ERROR hub publish did not reach origin/main" >&2; exit 1; }
 
 # The catalog resolves current version/download metadata from the release and appcast.
-# Refresh it immediately rather than waiting for the six-hour safety schedule. This runs
+# Refresh it immediately as the release event. This runs
 # BEFORE the edge-availability checks below: the asset upload and git push already
 # succeeded (both verified above), so the catalog must refresh even if GitHub's download
 # CDN is briefly lagging.
 gh api repos/jasonzacmusic/nathaniel-labs-site/dispatches --method POST \
   -H "Accept: application/vnd.github+json" -f event_type=release-published || \
-  echo "WARN catalog dispatch failed; the 6-hour scheduled refresh will catch up"
+  echo "WARN catalog dispatch failed; run the Labs site refresh locally before closing the release"
 
 # Best-effort edge check: GitHub's release-download CDN can lag 10-30 s after a --clobber,
 # so give it real time but never fail the publish over propagation (the bytes are up).
