@@ -6,6 +6,32 @@
         <description>Studio network monitoring for Mac, by Nathaniel Labs.</description>
         <language>en</language>
         <item>
+            <title>1.2.2</title>
+            <pubDate>Thu, 13 Aug 2026 13:58:29 +0530</pubDate>
+            <sparkle:version>202608131355</sparkle:version>
+            <sparkle:shortVersionString>1.2.2</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[# Net Sense 1.2.2
+
+Sharing the studio Wi-Fi finally works.
+
+- The guest Wi-Fi QR now builds itself. Net Sense is already signed in to the Omada controller, so it reads the school's network name and password straight from the router — nothing to type, and the code works the first time you ask for it.
+- Both QR codes can now leave this Mac. Share opens the Mac share sheet for AirDrop, Messages, Mail or WhatsApp; Save writes the picture to Downloads and shows it in Finder. Previously the buttons did nothing at all, silently, because a Mac app's web view has no downloads or share sheet of its own.
+- The Wi-Fi sheet says out loud that anyone who receives the picture can join. The team enrolment sheet says the opposite: that code only works on school Wi-Fi, and only for five minutes.
+- When something is refused, Net Sense now shows its own plain-English reason instead of a line like "/api/wifi-qr?network=main → 400".
+- An enterprise (802.1X) network is told it cannot become a QR, rather than producing a code that could never work.
+- A momentary controller failure keeps the last good answer instead of erasing a QR that was working a second ago.
+- The Power page names the router by model (ER7212PC) instead of showing its raw MAC address.
+- Closes a dependency security advisory, and the engine now runs on a maintained Python with its own current security libraries.
+- Signed with Jason Zac's Developer ID and accepted and stapled by Apple's notarization service.]]></description>
+            <enclosure
+                url="https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/Net-Sense-mac.dmg"
+                sparkle:version="202608131355"
+                sparkle:shortVersionString="1.2.2"
+                length="12319651"
+                type="application/octet-stream" />
+        </item>
+        <item>
             <title>1.2.1</title>
             <pubDate>Wed, 06 Aug 2026 08:12:00 +0530</pubDate>
             <sparkle:version>202608060818</sparkle:version>

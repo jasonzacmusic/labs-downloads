@@ -76,9 +76,9 @@
 "pushed": "2026-08-03T04:26:23Z"
 },
 "jasonzacmusic/MidiVisualizer": {
-"commit": "Optimize cross-platform recording and rendering performa",
+"commit": "Finish browser parity and Teacher recording (#17)",
 "ios": false,
-"pushed": "2026-08-12T08:46:44Z"
+"pushed": "2026-08-13T08:25:07Z"
 },
 "jasonzacmusic/MidiVisualizer-Releases": {
 "ios": false
@@ -260,7 +260,7 @@
 "jasonzacmusic/groove-metronome": {
 "commit": "Add the App Store privacy manifest",
 "ios": true,
-"pushed": "2026-08-09T15:23:41Z"
+"pushed": "2026-08-12T15:28:05Z"
 },
 "jasonzacmusic/handwritten-trumpet": {
 "ios": false
@@ -327,6 +327,9 @@
 "jasonzacmusic/nakshatra": {
 "ios": false
 },
+"jasonzacmusic/namma-care": {
+"ios": false
+},
 "jasonzacmusic/namma-circle": {
 "ios": false
 },
@@ -362,9 +365,9 @@
 "ios": false
 },
 "jasonzacmusic/net-sense": {
-"commit": "Only WAN-mode ports are internet lines",
+"commit": "Build the guest Wi-Fi QR from the router, and let it be ",
 "ios": false,
-"pushed": "2026-08-06T02:51:21Z"
+"pushed": "2026-08-13T07:24:38Z"
 },
 "jasonzacmusic/nph-reaper-suite": {
 "ios": false
@@ -400,9 +403,9 @@
 "ios": false
 },
 "jasonzacmusic/nsm-cut-studio": {
-"commit": "Add reproducible August promo reel builds",
+"commit": "ci: build Cut Studio only for main (#2)",
 "ios": false,
-"pushed": "2026-08-07T18:25:25Z"
+"pushed": "2026-08-13T05:26:04Z"
 },
 "jasonzacmusic/nsm-email-assets": {
 "ios": false
@@ -522,6 +525,9 @@
 "ios": true,
 "pushed": "2026-08-11T12:57:03Z"
 },
+"jasonzacmusic/pi-nathaniel": {
+"ios": false
+},
 "jasonzacmusic/piano3d-viewer": {
 "ios": false
 },
@@ -557,9 +563,9 @@
 "pushed": "2026-08-03T07:16:23Z"
 },
 "jasonzacmusic/sangam": {
-"commit": "Merge Sangam 1.2.0-rc.9 live-status fix",
+"commit": "Merge pull request #6 from jasonzacmusic/codex/sangam-cp",
 "ios": false,
-"pushed": "2026-08-12T08:54:01Z"
+"pushed": "2026-08-13T08:03:36Z"
 },
 "jasonzacmusic/scores-ios": {
 "ios": false
@@ -578,7 +584,7 @@
 "jasonzacmusic/sight-singing-studio": {
 "commit": "Fix review rest icon and tempo dial copy",
 "ios": false,
-"pushed": "2026-08-11T08:34:56Z"
+"pushed": "2026-08-12T11:53:56Z"
 },
 "jasonzacmusic/sightread": {
 "commit": "Musical audit: the ninth was voiced below the seventh",

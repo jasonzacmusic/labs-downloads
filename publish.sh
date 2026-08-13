@@ -24,7 +24,11 @@ git pull --rebase --autostash origin main
 # point at the exact notarized DMG it just built, instead of the canonical checkout's
 # dist/ — which may be stale or belong to a different release. Falls back to canonical.
 SHRUTI_DMG_SRC="${SHRUTI_DMG:-$HOME/Documents/New project/shruti/dist/Shruti-signed.dmg}"
-NET_SENSE_DMG_SRC="${NET_SENSE_DMG:-$HOME/Documents/Claude/net-sense/mac/build/Net-Sense-mac.dmg}"
+# The only Net Sense checkout on this Mac is under "Claude Code"; the old
+# "Claude" path no longer exists, and a missing file here is merely WARNed and
+# skipped further down — so the wrong default would quietly leave Net Sense on
+# an old build while the publish still reported success.
+NET_SENSE_DMG_SRC="${NET_SENSE_DMG:-$HOME/Documents/Claude Code/net-sense/mac/build/Net-Sense-mac.dmg}"
 GRABIT_REPO_SRC="${GRABIT_REPO:-$HOME/Documents/Claude Code/grabit}"
 GRABIT_VERSION="$(plutil -extract CFBundleShortVersionString raw "$GRABIT_REPO_SRC/Resources/Info.plist" 2>/dev/null || true)"
 GRABIT_BUILD="$(plutil -extract CFBundleVersion raw "$GRABIT_REPO_SRC/Resources/Info.plist" 2>/dev/null || true)"
