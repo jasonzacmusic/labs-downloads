@@ -4,21 +4,68 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>Shruti</title>
         <item>
-            <title>1.4.9</title>
-            <pubDate>Wed, 12 Aug 2026 18:26:47 +0530</pubDate>
-            <sparkle:version>26</sparkle:version>
-            <sparkle:shortVersionString>1.4.9</sparkle:shortVersionString>
+            <title>1.4.11</title>
+            <pubDate>Sat, 15 Aug 2026 11:32:41 +0530</pubDate>
+            <sparkle:version>28</sparkle:version>
+            <sparkle:shortVersionString>1.4.11</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.2</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.9
+            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.11
 
-- Excludes Tracktion's `pluginval` validation utility from automatic DAW discovery.
-- Keeps actual Waveform/Tracktion DAW installations in the focused default mixer.
-- Retains the durable Add, Remove and Restore behavior introduced in Shruti 1.4.8.
+This release makes the mixer behave like dependable audio hardware: apps keep their place,
+100% means unity, mute means silent, and an untouched app stays on macOS's original direct path.
+
+## Reliable controls
+
+- Moving a volume or boost control no longer repeatedly tears down and reconnects the app's
+  audio graph. Control attachment is retained and gain changes ramp smoothly, avoiding digital
+  glitches and the previous all-loud-or-all-soft feel.
+- Unity gain is level-matched with true bypass. Shruti adds no compressor, ducking or hidden
+  attenuation unless the user explicitly enables that feature.
+- Mute is click-free and remains hearing-safe across helper recovery, device switching and
+  license state changes.
+- The 1x–4x boost uses the same low-latency render path as ordinary volume. Boost does not add a
+  look-ahead stage or an extra buffering cycle.
+
+## Apps that stay where you put them
+
+- **My Order** is entirely user-controlled. Playback starts, stops and meter updates cannot move
+  a row.
+- **Recent Audio** is the same stable order filtered to apps heard during the last three days; it
+  is not a second auto-sort engine.
+- A genuinely new playback app is detected once and appended at the bottom. It begins at 100%
+  direct passthrough with no tap and zero added latency until the user changes a control.
+- Remove and Restore are durable. Capture-only utilities such as Wispr Flow do not reappear due
+  to ambiguous Core Audio process flags.
+- Search combines known audio applications with apps Shruti has actually heard, so uncommon
+  browsers, instruments and players remain findable after they stop.
+
+## A clearer mixer
+
+- Live output meters show which apps are actually producing sound.
+- Stable colour tiles, clearer status copy, move-to-top controls and improved spacing make long
+  app lists easier to scan.
+- The main panel responds to compact and expanded window sizes without clipping app names or
+  controls.
+- Installed Audio Units can open their native editor window, while Shruti's built-in processors
+  remain available as low-overhead alternatives.
+
+## Device-switch safety
+
+Shruti keeps the 1.4.10 make-before-break guarantee: a replacement route is ready before the old
+one is released. This release also serializes multi-app handovers on the lifecycle queue, so apps
+following the default output cannot fight each other during a Mac speaker, display or interface
+switch.
+
+## Compatibility
+
+Shruti 1.4.11 supports macOS 14.2 or newer and ships universal Apple silicon and Intel binaries.
+The direct path remains bit-transparent; processing and its honest latency badge appear only for
+apps the user explicitly controls.
 ]]></description>
-            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.9.dmg" length="9301067" type="application/octet-stream" sparkle:edSignature="BDCmXCKVKY39yq01BLknKeRnzBnqgpQi1hEnAxvOpN2ETzg4z95HV5U1lKCC/cYOuSB8WqnAjryMjCUQuN0KDA=="></enclosure>
+            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.11.dmg" length="9696324" type="application/octet-stream" sparkle:edSignature="yxKwi1W3ZbhwXnKqeEZMo1rHjOOlvwcLM4KBcq8mcrouXGczCImdQqVj1ZOFm3XDdE5Nt9k8mGTYgqH+KSDFAw=="></enclosure>
         </item>
     </channel>
 </rss><!-- sparkle-signatures:
-edSignature: unabrGGynq0vxKxM0G/qZyoZ2oViyvVGAyHUzuO0A4osfqCwOcsHM0el4bYaoNcix4Q7CgVpaWHgt3JIwHN4DA==
-length: 1364
+edSignature: fNaIbEzr5jksYuRtO5KPDq8XD6aeJ02xcN3wM0pIxpxdLjI8/f+ZKMnMCqJOJvmuBZI+OTuJEuvopRNZRHTFAA==
+length: 3787
 -->
