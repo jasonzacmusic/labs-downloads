@@ -6,6 +6,28 @@
         <description>Studio network monitoring for Mac, by Nathaniel Labs.</description>
         <language>en</language>
         <item>
+            <title>1.2.3</title>
+            <pubDate>Mon, 17 Aug 2026 08:07:36 +0530</pubDate>
+            <sparkle:version>202608170807</sparkle:version>
+            <sparkle:shortVersionString>1.2.3</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[# Net Sense 1.2.3
+
+Security release. One gap found by attacking the running app from the studio network, and closed.
+
+- A page on a malicious website could previously confirm Net Sense was running on your network and read back what it was doing, by pretending to be a site your browser already trusted. It could not reach anything private — every page, device list and Wi-Fi code still required an enrolled device — but there was no reason to answer it at all. It is now refused.
+- Net Sense also no longer reports its internal process number to anyone who asks.
+- Everything else held up under attack: made-up access codes, guessed codes, codes copied into a web address, and every attempt to change a setting from an unenrolled phone were all rejected.
+- Your Wi-Fi password and staff details are never written to this Mac in readable form; they stay in the Mac's own Keychain.
+- Signed with Jason Zac's Developer ID and accepted and stapled by Apple's notarization service.]]></description>
+            <enclosure
+                url="https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/Net-Sense-mac.dmg"
+                sparkle:version="202608170807"
+                sparkle:shortVersionString="1.2.3"
+                length="6978098"
+                type="application/octet-stream" />
+        </item>
+        <item>
             <title>1.2.2</title>
             <pubDate>Thu, 13 Aug 2026 13:58:29 +0530</pubDate>
             <sparkle:version>202608131355</sparkle:version>

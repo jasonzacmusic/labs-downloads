@@ -6,9 +6,9 @@
 "ios": false
 },
 "jasonzacmusic/Chord-Randomiser": {
-"commit": "Add a .gitignore \u2014 the repo had none",
+"commit": "Let anyone give any amount, and never leave them without",
 "ios": false,
-"pushed": "2026-08-11T12:57:02Z"
+"pushed": "2026-08-15T06:58:18Z"
 },
 "jasonzacmusic/Christmas": {
 "ios": false
@@ -32,9 +32,9 @@
 "ios": false
 },
 "jasonzacmusic/Fifth-Harmony": {
-"commit": "Spell note labels from the key instead of a private tabl",
+"commit": "Open the microphone through nsm-mic so a Zoom call canno",
 "ios": true,
-"pushed": "2026-08-11T12:56:58Z"
+"pushed": "2026-08-16T12:32:16Z"
 },
 "jasonzacmusic/Fifth-Harmony-Mobile": {
 "ios": false
@@ -55,9 +55,9 @@
 "ios": false
 },
 "jasonzacmusic/Handwritten-Music-Composer": {
-"commit": "Briefs now describe the app that exists, not the one fro",
+"commit": "The studio's microphone survives a Zoom call",
 "ios": false,
-"pushed": "2026-08-03T17:03:35Z"
+"pushed": "2026-08-16T12:32:22Z"
 },
 "jasonzacmusic/Intermediate-Planner": {
 "ios": false
@@ -71,14 +71,14 @@
 "pushed": "2026-07-20T10:30:35Z"
 },
 "jasonzacmusic/Melody-Weaver": {
-"commit": "Ignore .env so a pulled secret cannot be committed",
+"commit": "Open the microphone through the NSM mic module so a Zoom",
 "ios": false,
-"pushed": "2026-08-03T04:26:23Z"
+"pushed": "2026-08-16T12:32:10Z"
 },
 "jasonzacmusic/MidiVisualizer": {
-"commit": "Finish browser parity and Teacher recording (#17)",
+"commit": "Let anyone give any amount, and never leave them without",
 "ios": false,
-"pushed": "2026-08-13T08:25:07Z"
+"pushed": "2026-08-15T06:58:23Z"
 },
 "jasonzacmusic/MidiVisualizer-Releases": {
 "ios": false
@@ -118,9 +118,9 @@
 "ios": false
 },
 "jasonzacmusic/Note-Forge": {
-"commit": "Ignore .env so a pulled secret cannot be committed",
+"commit": "Let anyone give any amount, and never leave them without",
 "ios": false,
-"pushed": "2026-08-11T12:57:12Z"
+"pushed": "2026-08-15T06:58:27Z"
 },
 "jasonzacmusic/Piano-Course-Creative": {
 "ios": false
@@ -155,9 +155,9 @@
 "ios": false
 },
 "jasonzacmusic/RhythmMaster": {
-"commit": "Add true polymeter to Divide the Beat; animate beat hits",
+"commit": "Add Rhythm Lab: rotate, reverse, augment and Euclidean g",
 "ios": true,
-"pushed": "2026-08-11T12:56:56Z"
+"pushed": "2026-08-16T16:12:03Z"
 },
 "jasonzacmusic/Riff-Database": {
 "commit": "Live Mode data: auto-sync new freestyle riffs",
@@ -191,14 +191,14 @@
 "pushed": "2026-08-11T08:28:52Z"
 },
 "jasonzacmusic/atlas": {
-"commit": "MIDI in for piano and drums, always-live QWERTY, and the",
+"commit": "Open every microphone through the NSM Zoom-proof mic mod",
 "ios": false,
-"pushed": "2026-08-11T14:27:51Z"
+"pushed": "2026-08-16T12:32:25Z"
 },
 "jasonzacmusic/baithak": {
-"commit": "Make the recording disk safe to configure before it is m",
+"commit": "Give the Render build enough heap for the TypeScript pas",
 "ios": false,
-"pushed": "2026-08-07T03:47:27Z"
+"pushed": "2026-08-16T15:41:01Z"
 },
 "jasonzacmusic/bass-alchemy": {
 "commit": "Add the App Store privacy manifest",
@@ -217,15 +217,15 @@
 "jasonzacmusic/cantus": {
 "commit": "Add Android platform for Cantus",
 "ios": true,
-"pushed": "2026-08-11T12:57:08Z"
+"pushed": "2026-08-15T06:58:15Z"
 },
 "jasonzacmusic/chart-studio-web": {
 "ios": false
 },
 "jasonzacmusic/chorale": {
-"commit": "Audit page: set the asides like a printed score, not lik",
+"commit": "Handoff: nothing is fixed, and say so at the top",
 "ios": false,
-"pushed": "2026-08-11T08:35:18Z"
+"pushed": "2026-08-16T13:29:03Z"
 },
 "jasonzacmusic/chord-tree-canopy": {
 "ios": false
@@ -255,12 +255,12 @@
 "jasonzacmusic/gradus": {
 "commit": "Add the five-species theory core",
 "ios": false,
-"pushed": "2026-08-04T04:38:26Z"
+"pushed": "2026-08-15T06:58:20Z"
 },
 "jasonzacmusic/groove-metronome": {
-"commit": "Add the App Store privacy manifest",
+"commit": "A different instrument under the beat, not the click at ",
 "ios": true,
-"pushed": "2026-08-12T15:28:05Z"
+"pushed": "2026-08-16T05:52:49Z"
 },
 "jasonzacmusic/handwritten-trumpet": {
 "ios": false
@@ -280,6 +280,9 @@
 "ios": false
 },
 "jasonzacmusic/jazz-251-lab": {
+"ios": false
+},
+"jasonzacmusic/jazz-shells-lesson-plan": {
 "ios": false
 },
 "jasonzacmusic/jz-comment-studio": {
@@ -311,9 +314,9 @@
 "pushed": "2026-08-11T08:35:00Z"
 },
 "jasonzacmusic/melakarta-sphere": {
-"commit": "Capture scripts the class campaign actually needed",
+"commit": "The microphone survives a Zoom call",
 "ios": false,
-"pushed": "2026-08-11T08:34:36Z"
+"pushed": "2026-08-16T12:32:12Z"
 },
 "jasonzacmusic/money-os": {
 "ios": false
@@ -365,9 +368,9 @@
 "ios": false
 },
 "jasonzacmusic/net-sense": {
-"commit": "Build the guest Wi-Fi QR from the router, and let it be ",
+"commit": "Close the DNS-rebinding hole on the unauthenticated read",
 "ios": false,
-"pushed": "2026-08-13T07:24:38Z"
+"pushed": "2026-08-16T15:47:40Z"
 },
 "jasonzacmusic/nph-reaper-suite": {
 "ios": false
@@ -521,9 +524,9 @@
 "ios": false
 },
 "jasonzacmusic/pendulum": {
-"commit": "Add the App Store privacy manifest",
+"commit": "Let anyone give any amount, and never leave them without",
 "ios": true,
-"pushed": "2026-08-11T12:57:03Z"
+"pushed": "2026-08-15T06:58:17Z"
 },
 "jasonzacmusic/pi-nathaniel": {
 "ios": false
@@ -532,6 +535,9 @@
 "ios": false
 },
 "jasonzacmusic/pocket-piano-broll-studio": {
+"ios": false
+},
+"jasonzacmusic/pocket-piano-studio": {
 "ios": false
 },
 "jasonzacmusic/poop-patrol": {
@@ -544,9 +550,9 @@
 "ios": false
 },
 "jasonzacmusic/rhythm-arithmetic": {
-"commit": "Musical audit: hear the downbeat when the singer comes i",
+"commit": "Let anyone give any amount, and never leave them without",
 "ios": false,
-"pushed": "2026-08-08T15:05:39Z"
+"pushed": "2026-08-15T06:58:22Z"
 },
 "jasonzacmusic/richmond-park": {
 "ios": false
@@ -563,9 +569,9 @@
 "pushed": "2026-08-03T07:16:23Z"
 },
 "jasonzacmusic/sangam": {
-"commit": "Merge pull request #7 from jasonzacmusic/codex/sangam-co",
+"commit": "Sangam 1.2.0-rc.19: responsiveness overhaul",
 "ios": false,
-"pushed": "2026-08-15T06:10:04Z"
+"pushed": "2026-08-16T16:49:00Z"
 },
 "jasonzacmusic/scores-ios": {
 "ios": false
@@ -579,12 +585,12 @@
 "jasonzacmusic/shruti": {
 "commit": "Merge Shruti 1.4.11 stable mixer release",
 "ios": false,
-"pushed": "2026-08-15T06:04:40Z"
+"pushed": "2026-08-16T15:44:31Z"
 },
 "jasonzacmusic/sight-singing-studio": {
-"commit": "Fix review rest icon and tempo dial copy",
+"commit": "The choir panel says it in four words, and 23 Anglican h",
 "ios": false,
-"pushed": "2026-08-12T11:53:56Z"
+"pushed": "2026-08-16T17:01:33Z"
 },
 "jasonzacmusic/sightread": {
 "commit": "Musical audit: the ninth was voiced below the seventh",
@@ -619,9 +625,9 @@
 "ios": false
 },
 "jasonzacmusic/woodshed": {
-"commit": "Harden mobile privacy and prepare store listing",
+"commit": "Open the microphone the Zoom-safe way (tuner + recording",
 "ios": true,
-"pushed": "2026-08-11T14:39:15Z"
+"pushed": "2026-08-16T12:32:08Z"
 },
 "jasonzacmusic/yt-carousel-remotion": {
 "ios": false
