@@ -29,6 +29,9 @@ SHRUTI_DMG_SRC="${SHRUTI_DMG:-$HOME/Documents/New project/shruti/dist/Shruti-sig
 # skipped further down — so the wrong default would quietly leave Net Sense on
 # an old build while the publish still reported success.
 NET_SENSE_DMG_SRC="${NET_SENSE_DMG:-$HOME/Documents/Claude Code/net-sense/mac/build/Net-Sense-mac.dmg}"
+# Sangat: the notarized DMG scripts/make_dmg.sh writes into the repo's build/.
+# The app inside is Developer ID signed + stapled; the DMG carries its own ticket.
+SANGAT_DMG_SRC="${SANGAT_DMG:-$HOME/Documents/Claude Code/sangat/build/Sangat-mac.dmg}"
 GRABIT_REPO_SRC="${GRABIT_REPO:-$HOME/Documents/Claude Code/grabit}"
 GRABIT_VERSION="$(plutil -extract CFBundleShortVersionString raw "$GRABIT_REPO_SRC/Resources/Info.plist" 2>/dev/null || true)"
 GRABIT_BUILD="$(plutil -extract CFBundleVersion raw "$GRABIT_REPO_SRC/Resources/Info.plist" 2>/dev/null || true)"
@@ -60,6 +63,7 @@ LOCALS=(
   "ghrel:jasonzacmusic/sangam@v1.2.0-rc.16:Sangam-1.2.0-rc.16.dmg|Sangam-mac.dmg"
   "file:${CHORALE_DMG_SRC}|Chorale-mac.dmg"
   "$GRABIT_ROW"
+  "file:${SANGAT_DMG_SRC}|Sangat-mac.dmg"
   "${MIDI_VISUALIZER_DMG_ENTRY}|MIDI-Piano-Visualizer-mac.dmg"
   "ghrel:jasonzacmusic/MidiVisualizer-Releases:MIDI-Piano-Visualizer-Setup.exe|MIDI-Piano-Visualizer-win.exe"
   # NSM Photos (internal team app). Built + shipped by nathaniel-photo-hub's own
