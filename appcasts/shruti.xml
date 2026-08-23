@@ -4,68 +4,84 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>Shruti</title>
         <item>
-            <title>1.4.11</title>
-            <pubDate>Sat, 15 Aug 2026 11:32:41 +0530</pubDate>
-            <sparkle:version>28</sparkle:version>
-            <sparkle:shortVersionString>1.4.11</sparkle:shortVersionString>
+            <title>1.4.12</title>
+            <pubDate>Mon, 24 Aug 2026 00:17:46 +0530</pubDate>
+            <sparkle:version>36</sparkle:version>
+            <sparkle:shortVersionString>1.4.12</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.2</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.11
+            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.12
 
-This release makes the mixer behave like dependable audio hardware: apps keep their place,
-100% means unity, mute means silent, and an untouched app stays on macOS's original direct path.
+A clarity and safety release. Nothing about how Shruti sounds has changed: the direct path is
+still bit-transparent and processing still costs only what its badge says. What changed is that
+Shruti no longer surprises you — a window control cannot silently stop your audio service, a
+broken service tells you how to fix it, and the mixer says one name for one thing.
 
-## Reliable controls
+## Closing a window no longer quits Shruti
 
-- Moving a volume or boost control no longer repeatedly tears down and reconnects the app's
-  audio graph. Control attachment is retained and gain changes ramp smoothly, avoiding digital
-  glitches and the previous all-loud-or-all-soft feel.
-- Unity gain is level-matched with true bypass. Shruti adds no compressor, ducking or hidden
-  attenuation unless the user explicitly enables that feature.
-- Mute is click-free and remains hearing-safe across helper recovery, device switching and
-  license state changes.
-- The 1x–4x boost uses the same low-latency render path as ordinary volume. Boost does not add a
-  look-ahead stage or an extra buffering cycle.
+- The floating (torn-off) panel's close button collapses it back into the menu bar, which is
+  exactly what the pin button beside it does. Previously the close button quit the whole app and
+  uninstalled the background audio service — from a standard macOS window control, with the menu
+  bar icon still sitting there.
+- That mattered beyond the surprise: stopping the service hands every controlled app back to
+  macOS at its own volume, **including a muted one**. A silent app becoming audible is the exact
+  failure the emergency-bypass path is written to prevent, and a stray window close could cause
+  it. It cannot any more.
+- Quitting is still a real full stop, and still available deliberately: **More → Quit Shruti &
+  Stop Audio Service**.
+- Logging out, restarting or shutting down no longer uninstalls the service agent. macOS stops
+  the job itself as part of closing the session, and Shruti's service is back at the next login
+  instead of waiting for something to reinstall it.
+- "Pinned" is honoured at launch. The preference used to outlive the window: the pin button came
+  back lit with no panel anywhere on screen.
 
-## Apps that stay where you put them
+## A service that is offline now tells you how to fix it
 
-- **My Order** is entirely user-controlled. Playback starts, stops and meter updates cannot move
-  a row.
-- **Recent Audio** is the same stable order filtered to apps heard during the last three days; it
-  is not a second auto-sort engine.
-- A genuinely new playback app is detected once and appended at the bottom. It begins at 100%
-  direct passthrough with no tap and zero added latency until the user changes a control.
-- Remove and Restore are durable. Capture-only utilities such as Wispr Flow do not reappear due
-  to ambiguous Core Audio process flags.
-- Search combines known audio applications with apps Shruti has actually heard, so uncommon
-  browsers, instruments and players remain findable after they stop.
+- When the audio service is not answering, every Shruti surface shows what that means for your
+  sound — your apps are on macOS's normal path, nothing is muted, boosted or processed — with a
+  **Repair** button in the same place. The route back used to be Settings → Health → Setup
+  Assistant → Repair: four steps, documented only in the Support Centre, at the exact moment the
+  product looks broken.
 
-## A clearer mixer
+## One name for one control
 
-- Live output meters show which apps are actually producing sound.
-- Stable colour tiles, clearer status copy, move-to-top controls and improved spacing make long
-  app lists easier to scan.
-- The main panel responds to compact and expanded window sizes without clipping app names or
-  controls.
-- Installed Audio Units can open their native editor window, while Shruti's built-in processors
-  remain available as low-overhead alternatives.
+- The panel button, the More menu, the Support Centre and VoiceOver now all call the global
+  control **Bypass All**. The button reads `BYPASS ALL` when it is off and `BYPASSED` when it is
+  on, so the label describes either the action or the state, never both. "True Bypass" now means
+  the per-app power button and nothing else.
+- In AppleScript, the Shortcuts actions and the `shruti` command line this same control keeps its
+  existing name, Stage Mode, so no saved script or shortcut breaks. The Support Centre says so.
+- The menu bar icon no longer glows amber while Bypass All is on. Amber means "Shruti is in this
+  audio path", and a muted app legitimately keeps its tap under Bypass All — so the bypass shield
+  used to light up amber at the one moment the whole promise is that Shruti is out of the way. It
+  is now the same green the panel's `BYPASSED` button uses.
 
-## Device-switch safety
+## A quieter, faster mixer
 
-Shruti keeps the 1.4.10 make-before-break guarantee: a replacement route is ready before the old
-one is released. This release also serializes multi-app handovers on the lifecycle queue, so apps
-following the default output cannot fight each other during a Mac speaker, display or interface
-switch.
+- App icons are resolved once instead of on every repaint. Each row used to perform a Launch
+  Services lookup and an icon rasterization inside its view body, so they ran again for every row
+  on every status poll, every hover and every frame of a slider drag — and fifty times per
+  keystroke in the Add App list. That work is now done once per app.
+- The colour tile behind each app icon is a quiet backing plate rather than a full-strength
+  gradient with a coloured glow. The real app icon sits larger and reads first; the colour
+  survives as a rim and a wash, and a long list no longer carries a shadow layer per row.
+- **Remove** is no longer a permanently visible destructive button sitting beside the favourite
+  star at the same weight as the volume controls. It appears when the row is under the pointer or
+  is the keyboard-selected row, its space is always reserved so nothing shifts, and it remains
+  permanently in the row's right-click menu — which is also how VoiceOver reaches it. It still
+  asks for confirmation.
+- The `LEVEL BOOST` column heading was wider than its column and clipped. It reads `BOOST`, which
+  is what the control under it does.
 
 ## Compatibility
 
-Shruti 1.4.11 supports macOS 14.2 or newer and ships universal Apple silicon and Intel binaries.
-The direct path remains bit-transparent; processing and its honest latency badge appear only for
-apps the user explicitly controls.
+Shruti 1.4.12 supports macOS 14.2 or newer and ships universal Apple silicon and Intel binaries.
+510 product, safety, DSP and real-time checks pass, including the eight-app real-time budget at a
+512-frame buffer.
 ]]></description>
-            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.11.dmg" length="9696324" type="application/octet-stream" sparkle:edSignature="yxKwi1W3ZbhwXnKqeEZMo1rHjOOlvwcLM4KBcq8mcrouXGczCImdQqVj1ZOFm3XDdE5Nt9k8mGTYgqH+KSDFAw=="></enclosure>
+            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.12.dmg" length="9753010" type="application/octet-stream" sparkle:edSignature="KVZ2U4I4zkiqKD2tXFMM03do0ZJpJKxQZKHOQdiGEX3mPI0mq0kPdcCLjk0tJNj1ol4I8uwyGr6l7VcAWybyBQ=="></enclosure>
         </item>
     </channel>
 </rss><!-- sparkle-signatures:
-edSignature: fNaIbEzr5jksYuRtO5KPDq8XD6aeJ02xcN3wM0pIxpxdLjI8/f+ZKMnMCqJOJvmuBZI+OTuJEuvopRNZRHTFAA==
-length: 3787
+edSignature: Zj7YtsotJ7SWj/AYVoBjVrb8GivDxzc5VNsx9rK6Xkf1VxVgUBIXox/yEO2cupZoqP1Un+fLBunP9VI+wgFWAA==
+length: 5486
 -->
