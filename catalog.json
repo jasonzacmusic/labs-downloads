@@ -1,398 +1,412 @@
 {
-  "_comment": "Nathaniel Labs hub catalog. Fields per app: repo (drives last-updated date), native[] (hub asset per platform; optional label distinguishes two builds of the same platform), web (live app url, always clickable), ios ('soon'|'live'), ios_url (TestFlight/App Store when live), site (sales/landing page when one exists), access ('public' = anyone may use/share it, 'team' = internal only, never share), blurb (one-line description). Downloadable apps are shown first; iOS apps are labeled + colored distinctly. Two apps may share one repo (e.g. Shruti + Sangam) — each still gets its own card.",
-  "apps": [
+ "_comment": "Nathaniel Labs hub catalog. Fields per app: repo (drives last-updated date), native[] (hub asset per platform; optional label distinguishes two builds of the same platform), web (live app url, always clickable), ios ('soon'|'live'), ios_url (TestFlight/App Store when live), site (sales/landing page when one exists), access ('public' = anyone may use/share it, 'team' = internal only, never share), blurb (one-line description). Downloadable apps are shown first; iOS apps are labeled + colored distinctly. Two apps may share one repo (e.g. Shruti + Sangam) — each still gets its own card.",
+ "apps": [
+  {
+   "name": "Baithak",
+   "category": "Audio",
+   "access": "team",
+   "repo": "jasonzacmusic/baithak",
+   "web": "https://baithak.nathanielschool.com",
+   "blurb": "NSM's own Riverside: remote podcast and music-class studio where every guest's camera and mic record a local master (1080p/4K video + 48 kHz 24-bit stereo WAV) that survives bad internet, plus branded YouTube Live scenes."
+  },
+  {
+   "name": "Net Sense",
+   "category": "Utility",
+   "access": "team",
+   "repo": "jasonzacmusic/net-sense",
+   "native": [
     {
-      "name": "Baithak",
-      "category": "Audio",
-      "access": "team",
-      "repo": "jasonzacmusic/baithak",
-      "web": "https://baithak.nathanielschool.com",
-      "blurb": "NSM's own Riverside: remote podcast and music-class studio where every guest's camera and mic record a local master (1080p/4K video + 48 kHz 24-bit stereo WAV) that survives bad internet, plus branded YouTube Live scenes."
-    },
-    {
-      "name": "Net Sense",
-      "category": "Utility",
-      "access": "team",
-      "repo": "jasonzacmusic/net-sense",
-      "native": [
-        {
-          "platform": "mac",
-          "asset": "Net-Sense-mac.dmg"
-        }
-      ],
-      "web": "https://net-sense-tau.vercel.app",
-      "blurb": "Watches every internet line and access point in the studio, proves which provider is at fault, and reads the Wi-Fi around you. Native Mac app."
-    },
-    {
-      "name": "NSM Cut Studio",
-      "category": "Production",
-      "access": "team",
-      "repo": "jasonzacmusic/nsm-cut-studio",
-      "native": [
-        {
-          "platform": "mac",
-          "asset": "NSM-Cut-Studio-mac.zip"
-        }
-      ],
-      "blurb": "Cuts a promo by cutting the words. Syncs camera to recorder, writes out every word you said, and removes the repeats, fillers and throat clears before you even open it. Delete a word, lose it from the video. Native Mac app."
-    },
-    {
-      "name": "NSM Flow",
-      "category": "Productivity",
-      "access": "public",
-      "repo": "jasonzacmusic/nsm-flow",
-      "native": [
-        {
-          "platform": "mac",
-          "asset": "NSM-Flow-mac-Apple-Silicon.dmg",
-          "label": "Apple Silicon"
-        },
-        {
-          "platform": "mac",
-          "asset": "NSM-Flow-mac-Intel.dmg",
-          "label": "Intel"
-        },
-        {
-          "platform": "win",
-          "asset": "NSM-Flow-windows-x64-setup.exe"
-        }
-      ],
-      "site": "https://labs.nathanielschool.com/products/nsm-flow",
-      "blurb": "Free local voice typing for email, WhatsApp, prompts, Indian names and musician-grade chord symbols. Public alpha for Mac and Windows."
-    },
-    {
-      "name": "Shruti",
-      "category": "Audio",
-      "access": "public",
-      "repo": "jasonzacmusic/shruti",
-      "native": [
-        {
-          "platform": "mac",
-          "asset": "Shruti-mac.dmg"
-        }
-      ],
-      "site": "https://shruti.nathanielschool.com",
-      "blurb": "Per-app volume, EQ and output control for Mac. Official page has the latest installer and update feed."
-    },
-    {
-      "name": "Sangam",
-      "category": "Audio",
-      "access": "team",
-      "repo": "jasonzacmusic/sangam",
-      "native": [
-        {
-          "platform": "mac",
-          "asset": "Sangam-mac.dmg"
-        }
-      ],
-      "blurb": "Per-app audio routing engine for the studio — latency-locked sends into REAPER. Internal release candidate."
-    },
-    {
-      "name": "Chorale",
-      "category": "Audio",
-      "access": "team",
-      "repo": "jasonzacmusic/chorale",
-      "native": [
-        {
-          "platform": "mac",
-          "asset": "Chorale-mac.dmg"
-        }
-      ],
-      "blurb": "Sing one line, hear a choir - real-time vocal harmonizer with key-aware harmony, pro auto-tune and camera gesture control. Standalone, AU and VST3."
-    },
-    {
-      "name": "GrabIt",
-      "category": "Utility",
-      "access": "team",
-      "repo": "jasonzacmusic/grabit",
-      "native": [
-        {
-          "platform": "mac",
-          "asset": "GrabIt-mac.dmg"
-        }
-      ],
-      "blurb": "Native Mac video downloader — paste a link, get the file."
-    },
-    {
-      "name": "MIDI Piano Visualizer",
-      "category": "Music",
-      "access": "public",
-      "repo": "jasonzacmusic/MidiVisualizer",
-      "web": "https://midi-visualizer.nathanielschool.com",
-      "native": [
-        {
-          "platform": "mac",
-          "asset": "MIDI-Piano-Visualizer-mac.dmg"
-        },
-        {
-          "platform": "win",
-          "asset": "MIDI-Piano-Visualizer-win.exe"
-        }
-      ]
-    },
-    {
-      "name": "NSM Social Command Centre",
-      "category": "Team",
-      "access": "team",
-      "repo": "jasonzacmusic/nsm-social-command-centre",
-      "web": "https://nsm-social-command-centre.vercel.app",
-      "native": [
-        {
-          "platform": "mac",
-          "asset": "SocialCommandCentre-mac.dmg"
-        }
-      ],
-      "blurb": "The social planning console + content calendar, in the browser or as a Mac app."
-    },
-    {
-      "name": "Nathaniel Photo Hub",
-      "category": "Team",
-      "access": "team",
-      "repo": "jasonzacmusic/nathaniel-photo-hub",
-      "web": "https://photos.nathanielschool.com",
-      "native": [
-        {
-          "platform": "mac",
-          "asset": "NSMPhotos-mac.dmg"
-        }
-      ],
-      "blurb": "NSM Photos — the team photo library + Design Studio as a Mac app. Signed & notarized; opens the hub signed-in after a one-time login."
-    },
-    {
-      "name": "Nathaniel Music Hub",
-      "category": "Team",
-      "access": "team",
-      "repo": "jasonzacmusic/nathaniel-music-hub",
-      "ios": "soon"
-    },
-    {
-      "name": "Chart Studio",
-      "category": "Music",
-      "access": "team",
-      "repo": null,
-      "web": "https://jasonzacmusic.github.io/labs-downloads/apps/chart-studio.html",
-      "blurb": "Jason's handwritten gig charts, digitised — transpose to any key or instrument, play sections on real piano, edit by voice or Apple Pencil. Single-file app, works offline."
-    },
-    {
-      "name": "Trumpet Transposer",
-      "category": "Music",
-      "access": "team",
-      "repo": null,
-      "web": "https://jasonzacmusic.github.io/labs-downloads/apps/trumpet-transposer.html",
-      "blurb": "Handwritten concert-pitch exercise sheets redrawn for B♭ trumpet — same engine as Chart Studio. Single-file app, works offline."
-    },
-    {
-      "name": "Hexatonic",
-      "category": "Practice",
-      "access": "public",
-      "repo": "jasonzacmusic/hexatonic",
-      "web": "https://hexatonic.nathanielschool.com",
-      "blurb": "The six-note scale laboratory — explore hexatonic scales and generate melodic groupings against any tala."
-    },
-    {
-      "name": "Prima Vista",
-      "category": "Practice",
-      "access": "public",
-      "repo": "jasonzacmusic/sight-singing-studio",
-      "web": "https://sightsinging.nathanielschool.com",
-      "blurb": "Sight-singing trainer — real-time pitch and rhythm scoring on real notation, with SATB hymns and a circle-of-fifths key wheel."
-    },
-    {
-      "name": "GRADUS",
-      "category": "Practice",
-      "access": "public",
-      "repo": "jasonzacmusic/gradus",
-      "web": "https://counterpoint.nathanielschool.com",
-      "blurb": "Fux species counterpoint, taught interactively — the Weave solver finds every valid counterpoint for an exercise."
-    },
-    {
-      "name": "Master Key",
-      "category": "Practice",
-      "access": "public",
-      "repo": "jasonzacmusic/master-key",
-      "web": "https://master-key-nsm.vercel.app",
-      "blurb": "The diminished-seventh laboratory — hear how one dim7 chord unlocks every key on the Key Ring."
-    },
-    {
-      "name": "Rhythm Arithmetic",
-      "category": "Practice",
-      "access": "public",
-      "repo": "jasonzacmusic/rhythm-arithmetic",
-      "web": "https://rhythm-arithmetic.vercel.app",
-      "blurb": "Binary-rhythm practice — build bars from note-value arithmetic and clap them back."
-    },
-    {
-      "name": "Atlas",
-      "category": "Music",
-      "access": "public",
-      "repo": "jasonzacmusic/atlas",
-      "web": "https://atlas.nathanielschool.com",
-      "blurb": "Instrument science, beginner-first — how every instrument really works, with a tuner and a math lab."
-    },
-    {
-      "name": "Runway",
-      "category": "Practice",
-      "access": "public",
-      "repo": "jasonzacmusic/runway",
-      "web": "https://runway-sand.vercel.app",
-      "blurb": "Improvisation trainer — practice runs, fills and licks that land, over seven playback feels."
-    },
-    {
-      "name": "Read — Sight-Reading",
-      "category": "Practice",
-      "access": "public",
-      "repo": "jasonzacmusic/sightread",
-      "web": "https://sightread-ten.vercel.app",
-      "blurb": "Sight-reading companion built on Bach's Well-Tempered Clavier — a fresh passage every session."
-    },
-    {
-      "name": "Maatu",
-      "category": "App",
-      "access": "public",
-      "repo": "jasonzacmusic/maatu",
-      "web": "https://maatu.vercel.app",
-      "blurb": "Learn spoken Kannada, Hindi and Tamil — a 16-lesson course with real audio."
-    },
-    {
-      "name": "Chord Trees",
-      "category": "Practice",
-      "access": "public",
-      "repo": "jasonzacmusic/MusicMentor",
-      "web": "https://chord-trees.nathanielschool.com"
-    },
-    {
-      "name": "Rhythm Master",
-      "category": "Practice",
-      "access": "public",
-      "repo": "jasonzacmusic/RhythmMaster",
-      "web": "https://rhythm-master.nathanielschool.com"
-    },
-    {
-      "name": "Note Forge",
-      "category": "Practice",
-      "access": "public",
-      "repo": "jasonzacmusic/Note-Forge",
-      "web": "https://note-forge.nathanielschool.com"
-    },
-    {
-      "name": "Chord Randomizer",
-      "category": "Practice",
-      "access": "public",
-      "repo": "jasonzacmusic/Chord-Randomiser",
-      "web": "https://chord-randomizer.nathanielschool.com"
-    },
-    {
-      "name": "Melody Weaver",
-      "category": "Practice",
-      "access": "public",
-      "repo": "jasonzacmusic/Melody-Weaver",
-      "web": "https://melody-weaver.nathanielschool.com"
-    },
-    {
-      "name": "Fifth Harmony",
-      "category": "Practice",
-      "access": "public",
-      "repo": "jasonzacmusic/Fifth-Harmony",
-      "web": "https://circle-of-fifths.nathanielschool.com"
-    },
-    {
-      "name": "Melakarta Sphere",
-      "category": "Practice",
-      "access": "public",
-      "repo": "jasonzacmusic/melakarta-sphere",
-      "web": "https://melakarta.nathanielschool.com"
-    },
-    {
-      "name": "Handwritten Music Composer",
-      "category": "Productivity",
-      "access": "public",
-      "repo": "jasonzacmusic/Handwritten-Music-Composer",
-      "web": "https://chords.nathanielschool.com"
-    },
-    {
-      "name": "Reaper DAW Mentor",
-      "category": "Productivity",
-      "access": "public",
-      "repo": "jasonzacmusic/Reaper-Companion-JZ",
-      "web": "https://daw.nathanielschool.com"
-    },
-    {
-      "name": "Woodshed",
-      "category": "Productivity",
-      "access": "public",
-      "repo": "jasonzacmusic/woodshed",
-      "web": "https://woodshed.nathanielschool.com"
-    },
-    {
-      "name": "Mehfil",
-      "category": "Productivity",
-      "access": "public",
-      "repo": "jasonzacmusic/Mehfil-Independent-Music",
-      "web": "https://mehfil.nathanielschool.com"
-    },
-    {
-      "name": "Aria",
-      "category": "Productivity",
-      "access": "public",
-      "repo": "jasonzacmusic/aria-website",
-      "web": "https://aria.nathanielschool.com"
-    },
-    {
-      "name": "Ossia",
-      "category": "Productivity",
-      "access": "public",
-      "repo": "jasonzacmusic/ossia",
-      "web": "https://ossia-lyart.vercel.app",
-      "ios": "soon"
-    },
-    {
-      "name": "Music PDF Studio",
-      "category": "Productivity",
-      "access": "public",
-      "repo": "jasonzacmusic/Musical-Document-Utility",
-      "web": "https://music-pdf-studio.vercel.app"
-    },
-    {
-      "name": "Riff Database",
-      "category": "Portal",
-      "access": "public",
-      "repo": "jasonzacmusic/Riff-Database",
-      "web": "https://riffs.jasonzacmusic.com"
-    },
-    {
-      "name": "Cantus",
-      "category": "Practice",
-      "access": "public",
-      "repo": "jasonzacmusic/cantus",
-      "web": "https://cantus-lyart.vercel.app"
-    },
-    {
-      "name": "Pendulum",
-      "category": "Practice",
-      "access": "public",
-      "repo": "jasonzacmusic/pendulum",
-      "web": "https://pendulum-kohl.vercel.app"
-    },
-    {
-      "name": "Bass Alchemy",
-      "category": "Practice",
-      "access": "public",
-      "repo": "jasonzacmusic/bass-alchemy",
-      "web": "https://bass-alchemy.vercel.app"
-    },
-    {
-      "name": "Groove Metronome",
-      "category": "Practice",
-      "access": "public",
-      "repo": "jasonzacmusic/groove-metronome",
-      "web": "https://metronome.nathanielschool.com"
-    },
-    {
-      "name": "Melody & Rhythm Playground",
-      "category": "Practice",
-      "access": "public",
-      "repo": "jasonzacmusic/nsm-melody-rhythm-playground",
-      "web": "https://gemini-nsm.vercel.app"
+     "platform": "mac",
+     "asset": "Net-Sense-mac.dmg"
     }
-  ]
+   ],
+   "web": "https://net-sense-tau.vercel.app",
+   "blurb": "Watches every internet line and access point in the studio, proves which provider is at fault, and reads the Wi-Fi around you. Native Mac app."
+  },
+  {
+   "name": "NSM Cut Studio",
+   "category": "Production",
+   "access": "team",
+   "repo": "jasonzacmusic/nsm-cut-studio",
+   "native": [
+    {
+     "platform": "mac",
+     "asset": "NSM-Cut-Studio-mac.zip"
+    }
+   ],
+   "blurb": "Cuts a promo by cutting the words. Syncs camera to recorder, writes out every word you said, and removes the repeats, fillers and throat clears before you even open it. Delete a word, lose it from the video. Native Mac app."
+  },
+  {
+   "name": "NSM Flow",
+   "category": "Productivity",
+   "access": "public",
+   "repo": "jasonzacmusic/nsm-flow",
+   "native": [
+    {
+     "platform": "mac",
+     "asset": "NSM-Flow-mac-Apple-Silicon.dmg",
+     "label": "Apple Silicon"
+    },
+    {
+     "platform": "mac",
+     "asset": "NSM-Flow-mac-Intel.dmg",
+     "label": "Intel"
+    },
+    {
+     "platform": "win",
+     "asset": "NSM-Flow-windows-x64-setup.exe"
+    }
+   ],
+   "site": "https://labs.nathanielschool.com/products/nsm-flow",
+   "blurb": "Free local voice typing for email, WhatsApp, prompts, Indian names and musician-grade chord symbols. Public alpha for Mac and Windows."
+  },
+  {
+   "name": "Shruti",
+   "category": "Audio",
+   "access": "public",
+   "repo": "jasonzacmusic/shruti",
+   "native": [
+    {
+     "platform": "mac",
+     "asset": "Shruti-mac.dmg"
+    }
+   ],
+   "site": "https://shruti.nathanielschool.com",
+   "blurb": "Per-app volume, EQ and output control for Mac. Official page has the latest installer and update feed."
+  },
+  {
+   "name": "Sangat",
+   "category": "Audio",
+   "access": "public",
+   "repo": "jasonzacmusic/sangat",
+   "native": [
+    {
+     "platform": "mac",
+     "asset": "Sangat-mac.dmg"
+    }
+   ],
+   "site": "https://labs.nathanielschool.com/products/sangat",
+   "blurb": "The musician who listens. Always on in the menu bar: it tells you the honest tempo, the key and the raga of whatever you play or sing, remembers every idea, charts it, clicks along with you and hands the night to REAPER."
+  },
+  {
+   "name": "Sangam",
+   "category": "Audio",
+   "access": "team",
+   "repo": "jasonzacmusic/sangam",
+   "native": [
+    {
+     "platform": "mac",
+     "asset": "Sangam-mac.dmg"
+    }
+   ],
+   "blurb": "Per-app audio routing engine for the studio — latency-locked sends into REAPER. Internal release candidate."
+  },
+  {
+   "name": "Chorale",
+   "category": "Audio",
+   "access": "team",
+   "repo": "jasonzacmusic/chorale",
+   "native": [
+    {
+     "platform": "mac",
+     "asset": "Chorale-mac.dmg"
+    }
+   ],
+   "blurb": "Sing one line, hear a choir - real-time vocal harmonizer with key-aware harmony, pro auto-tune and camera gesture control. Standalone, AU and VST3."
+  },
+  {
+   "name": "GrabIt",
+   "category": "Utility",
+   "access": "team",
+   "repo": "jasonzacmusic/grabit",
+   "native": [
+    {
+     "platform": "mac",
+     "asset": "GrabIt-mac.dmg"
+    }
+   ],
+   "blurb": "Native Mac video downloader — paste a link, get the file."
+  },
+  {
+   "name": "MIDI Piano Visualizer",
+   "category": "Music",
+   "access": "public",
+   "repo": "jasonzacmusic/MidiVisualizer",
+   "web": "https://midi-visualizer.nathanielschool.com",
+   "native": [
+    {
+     "platform": "mac",
+     "asset": "MIDI-Piano-Visualizer-mac.dmg"
+    },
+    {
+     "platform": "win",
+     "asset": "MIDI-Piano-Visualizer-win.exe"
+    }
+   ]
+  },
+  {
+   "name": "NSM Social Command Centre",
+   "category": "Team",
+   "access": "team",
+   "repo": "jasonzacmusic/nsm-social-command-centre",
+   "web": "https://nsm-social-command-centre.vercel.app",
+   "native": [
+    {
+     "platform": "mac",
+     "asset": "SocialCommandCentre-mac.dmg"
+    }
+   ],
+   "blurb": "The social planning console + content calendar, in the browser or as a Mac app."
+  },
+  {
+   "name": "Nathaniel Photo Hub",
+   "category": "Team",
+   "access": "team",
+   "repo": "jasonzacmusic/nathaniel-photo-hub",
+   "web": "https://photos.nathanielschool.com",
+   "native": [
+    {
+     "platform": "mac",
+     "asset": "NSMPhotos-mac.dmg"
+    }
+   ],
+   "blurb": "NSM Photos — the team photo library + Design Studio as a Mac app. Signed & notarized; opens the hub signed-in after a one-time login."
+  },
+  {
+   "name": "Nathaniel Music Hub",
+   "category": "Team",
+   "access": "team",
+   "repo": "jasonzacmusic/nathaniel-music-hub",
+   "ios": "soon"
+  },
+  {
+   "name": "Chart Studio",
+   "category": "Music",
+   "access": "team",
+   "repo": null,
+   "web": "https://jasonzacmusic.github.io/labs-downloads/apps/chart-studio.html",
+   "blurb": "Jason's handwritten gig charts, digitised — transpose to any key or instrument, play sections on real piano, edit by voice or Apple Pencil. Single-file app, works offline."
+  },
+  {
+   "name": "Trumpet Transposer",
+   "category": "Music",
+   "access": "team",
+   "repo": null,
+   "web": "https://jasonzacmusic.github.io/labs-downloads/apps/trumpet-transposer.html",
+   "blurb": "Handwritten concert-pitch exercise sheets redrawn for B♭ trumpet — same engine as Chart Studio. Single-file app, works offline."
+  },
+  {
+   "name": "Hexatonic",
+   "category": "Practice",
+   "access": "public",
+   "repo": "jasonzacmusic/hexatonic",
+   "web": "https://hexatonic.nathanielschool.com",
+   "blurb": "The six-note scale laboratory — explore hexatonic scales and generate melodic groupings against any tala."
+  },
+  {
+   "name": "Prima Vista",
+   "category": "Practice",
+   "access": "public",
+   "repo": "jasonzacmusic/sight-singing-studio",
+   "web": "https://sightsinging.nathanielschool.com",
+   "blurb": "Sight-singing trainer — real-time pitch and rhythm scoring on real notation, with SATB hymns and a circle-of-fifths key wheel."
+  },
+  {
+   "name": "GRADUS",
+   "category": "Practice",
+   "access": "public",
+   "repo": "jasonzacmusic/gradus",
+   "web": "https://counterpoint.nathanielschool.com",
+   "blurb": "Fux species counterpoint, taught interactively — the Weave solver finds every valid counterpoint for an exercise."
+  },
+  {
+   "name": "Master Key",
+   "category": "Practice",
+   "access": "public",
+   "repo": "jasonzacmusic/master-key",
+   "web": "https://master-key-nsm.vercel.app",
+   "blurb": "The diminished-seventh laboratory — hear how one dim7 chord unlocks every key on the Key Ring."
+  },
+  {
+   "name": "Rhythm Arithmetic",
+   "category": "Practice",
+   "access": "public",
+   "repo": "jasonzacmusic/rhythm-arithmetic",
+   "web": "https://rhythm-arithmetic.vercel.app",
+   "blurb": "Binary-rhythm practice — build bars from note-value arithmetic and clap them back."
+  },
+  {
+   "name": "Atlas",
+   "category": "Music",
+   "access": "public",
+   "repo": "jasonzacmusic/atlas",
+   "web": "https://atlas.nathanielschool.com",
+   "blurb": "Instrument science, beginner-first — how every instrument really works, with a tuner and a math lab."
+  },
+  {
+   "name": "Runway",
+   "category": "Practice",
+   "access": "public",
+   "repo": "jasonzacmusic/runway",
+   "web": "https://runway-sand.vercel.app",
+   "blurb": "Improvisation trainer — practice runs, fills and licks that land, over seven playback feels."
+  },
+  {
+   "name": "Read — Sight-Reading",
+   "category": "Practice",
+   "access": "public",
+   "repo": "jasonzacmusic/sightread",
+   "web": "https://sightread-ten.vercel.app",
+   "blurb": "Sight-reading companion built on Bach's Well-Tempered Clavier — a fresh passage every session."
+  },
+  {
+   "name": "Maatu",
+   "category": "App",
+   "access": "public",
+   "repo": "jasonzacmusic/maatu",
+   "web": "https://maatu.vercel.app",
+   "blurb": "Learn spoken Kannada, Hindi and Tamil — a 16-lesson course with real audio."
+  },
+  {
+   "name": "Chord Trees",
+   "category": "Practice",
+   "access": "public",
+   "repo": "jasonzacmusic/MusicMentor",
+   "web": "https://chord-trees.nathanielschool.com"
+  },
+  {
+   "name": "Rhythm Master",
+   "category": "Practice",
+   "access": "public",
+   "repo": "jasonzacmusic/RhythmMaster",
+   "web": "https://rhythm-master.nathanielschool.com"
+  },
+  {
+   "name": "Note Forge",
+   "category": "Practice",
+   "access": "public",
+   "repo": "jasonzacmusic/Note-Forge",
+   "web": "https://note-forge.nathanielschool.com"
+  },
+  {
+   "name": "Chord Randomizer",
+   "category": "Practice",
+   "access": "public",
+   "repo": "jasonzacmusic/Chord-Randomiser",
+   "web": "https://chord-randomizer.nathanielschool.com"
+  },
+  {
+   "name": "Melody Weaver",
+   "category": "Practice",
+   "access": "public",
+   "repo": "jasonzacmusic/Melody-Weaver",
+   "web": "https://melody-weaver.nathanielschool.com"
+  },
+  {
+   "name": "Fifth Harmony",
+   "category": "Practice",
+   "access": "public",
+   "repo": "jasonzacmusic/Fifth-Harmony",
+   "web": "https://circle-of-fifths.nathanielschool.com"
+  },
+  {
+   "name": "Melakarta Sphere",
+   "category": "Practice",
+   "access": "public",
+   "repo": "jasonzacmusic/melakarta-sphere",
+   "web": "https://melakarta.nathanielschool.com"
+  },
+  {
+   "name": "Handwritten Music Composer",
+   "category": "Productivity",
+   "access": "public",
+   "repo": "jasonzacmusic/Handwritten-Music-Composer",
+   "web": "https://chords.nathanielschool.com"
+  },
+  {
+   "name": "Reaper DAW Mentor",
+   "category": "Productivity",
+   "access": "public",
+   "repo": "jasonzacmusic/Reaper-Companion-JZ",
+   "web": "https://daw.nathanielschool.com"
+  },
+  {
+   "name": "Woodshed",
+   "category": "Productivity",
+   "access": "public",
+   "repo": "jasonzacmusic/woodshed",
+   "web": "https://woodshed.nathanielschool.com"
+  },
+  {
+   "name": "Mehfil",
+   "category": "Productivity",
+   "access": "public",
+   "repo": "jasonzacmusic/Mehfil-Independent-Music",
+   "web": "https://mehfil.nathanielschool.com"
+  },
+  {
+   "name": "Aria",
+   "category": "Productivity",
+   "access": "public",
+   "repo": "jasonzacmusic/aria-website",
+   "web": "https://aria.nathanielschool.com"
+  },
+  {
+   "name": "Ossia",
+   "category": "Productivity",
+   "access": "public",
+   "repo": "jasonzacmusic/ossia",
+   "web": "https://ossia-lyart.vercel.app",
+   "ios": "soon"
+  },
+  {
+   "name": "Music PDF Studio",
+   "category": "Productivity",
+   "access": "public",
+   "repo": "jasonzacmusic/Musical-Document-Utility",
+   "web": "https://music-pdf-studio.vercel.app"
+  },
+  {
+   "name": "Riff Database",
+   "category": "Portal",
+   "access": "public",
+   "repo": "jasonzacmusic/Riff-Database",
+   "web": "https://riffs.jasonzacmusic.com"
+  },
+  {
+   "name": "Cantus",
+   "category": "Practice",
+   "access": "public",
+   "repo": "jasonzacmusic/cantus",
+   "web": "https://cantus-lyart.vercel.app"
+  },
+  {
+   "name": "Pendulum",
+   "category": "Practice",
+   "access": "public",
+   "repo": "jasonzacmusic/pendulum",
+   "web": "https://pendulum-kohl.vercel.app"
+  },
+  {
+   "name": "Bass Alchemy",
+   "category": "Practice",
+   "access": "public",
+   "repo": "jasonzacmusic/bass-alchemy",
+   "web": "https://bass-alchemy.vercel.app"
+  },
+  {
+   "name": "Groove Metronome",
+   "category": "Practice",
+   "access": "public",
+   "repo": "jasonzacmusic/groove-metronome",
+   "web": "https://metronome.nathanielschool.com"
+  },
+  {
+   "name": "Melody & Rhythm Playground",
+   "category": "Practice",
+   "access": "public",
+   "repo": "jasonzacmusic/nsm-melody-rhythm-playground",
+   "web": "https://gemini-nsm.vercel.app"
+  }
+ ]
 }
