@@ -76,9 +76,9 @@
 "pushed": "2026-08-16T12:32:10Z"
 },
 "jasonzacmusic/MidiVisualizer": {
-"commit": "Let anyone give any amount, and never leave them without",
+"commit": "Merge cursor/ipad-native: camera sync, Zoom face quality",
 "ios": false,
-"pushed": "2026-08-15T06:58:23Z"
+"pushed": "2026-08-24T13:04:33Z"
 },
 "jasonzacmusic/MidiVisualizer-Releases": {
 "ios": false
@@ -111,6 +111,9 @@
 "jasonzacmusic/NSMPortal": {
 "ios": false
 },
+"jasonzacmusic/NSMStageBridge": {
+"ios": false
+},
 "jasonzacmusic/NathaniLMS": {
 "ios": false
 },
@@ -118,9 +121,9 @@
 "ios": false
 },
 "jasonzacmusic/Note-Forge": {
-"commit": "Let anyone give any amount, and never leave them without",
+"commit": "Fix notation meter engraving",
 "ios": false,
-"pushed": "2026-08-15T06:58:27Z"
+"pushed": "2026-08-21T12:51:51Z"
 },
 "jasonzacmusic/Piano-Course-Creative": {
 "ios": false
@@ -223,9 +226,9 @@
 "ios": false
 },
 "jasonzacmusic/chorale": {
-"commit": "Handoff: nothing is fixed, and say so at the top",
+"commit": "1.5.6: audit fixes \u2014 phrase-onset burst, audio-thread al",
 "ios": false,
-"pushed": "2026-08-16T13:29:03Z"
+"pushed": "2026-08-23T11:10:32Z"
 },
 "jasonzacmusic/chord-tree-canopy": {
 "ios": false
@@ -248,9 +251,9 @@
 "ios": false
 },
 "jasonzacmusic/grabit": {
-"commit": "Merge pull request #8 from jasonzacmusic/codex/fix-scree",
+"commit": "Label main tab buttons for VoiceOver",
 "ios": false,
-"pushed": "2026-08-12T12:26:46Z"
+"pushed": "2026-08-25T05:42:50Z"
 },
 "jasonzacmusic/gradus": {
 "commit": "Add the five-species theory core",
@@ -289,6 +292,9 @@
 "ios": false
 },
 "jasonzacmusic/jzm-go-live": {
+"ios": false
+},
+"jasonzacmusic/konnakol-course": {
 "ios": false
 },
 "jasonzacmusic/labs-downloads": {
@@ -368,9 +374,9 @@
 "ios": false
 },
 "jasonzacmusic/net-sense": {
-"commit": "Close the DNS-rebinding hole on the unauthenticated read",
+"commit": "Restore useful live ISP statistics and reliable updates",
 "ios": false,
-"pushed": "2026-08-16T15:47:40Z"
+"pushed": "2026-08-25T05:40:22Z"
 },
 "jasonzacmusic/nph-reaper-suite": {
 "ios": false
@@ -406,9 +412,12 @@
 "ios": false
 },
 "jasonzacmusic/nsm-cut-studio": {
-"commit": "ci: build Cut Studio only for main (#2)",
+"commit": "Do not call a good ship a failure",
 "ios": false,
-"pushed": "2026-08-13T05:26:04Z"
+"pushed": "2026-08-20T05:36:33Z"
+},
+"jasonzacmusic/nsm-disk-hygiene": {
+"ios": false
 },
 "jasonzacmusic/nsm-email-assets": {
 "ios": false
@@ -465,10 +474,13 @@
 "jasonzacmusic/nsm-reaper-course": {
 "ios": false
 },
+"jasonzacmusic/nsm-sight-reading": {
+"ios": false
+},
 "jasonzacmusic/nsm-social-command-centre": {
-"commit": "Throttle Instagram polling crons to hourly to stop pinni",
+"commit": "Handoff note: YouTube token fix, integrations check, cal",
 "ios": false,
-"pushed": "2026-08-03T16:33:18Z"
+"pushed": "2026-08-18T08:29:30Z"
 },
 "jasonzacmusic/nsm-staff-hub-desktop": {
 "ios": false
@@ -516,9 +528,9 @@
 "ios": false
 },
 "jasonzacmusic/ossia": {
-"commit": "Let users delete encrypted cloud accounts",
+"commit": "A deleted page comes back",
 "ios": true,
-"pushed": "2026-08-11T15:37:25Z"
+"pushed": "2026-08-24T01:59:43Z"
 },
 "jasonzacmusic/paper-trash-cleaner": {
 "ios": false
@@ -541,6 +553,9 @@
 "ios": false
 },
 "jasonzacmusic/poop-patrol": {
+"ios": false
+},
+"jasonzacmusic/portfolio-audit": {
 "ios": false
 },
 "jasonzacmusic/product-registry": {
@@ -569,9 +584,14 @@
 "pushed": "2026-08-03T07:16:23Z"
 },
 "jasonzacmusic/sangam": {
-"commit": "Sangam 1.2.0-rc.19: responsiveness overhaul",
+"commit": "Honest routing labels; exclusive routing measured and re",
 "ios": false,
-"pushed": "2026-08-16T16:49:00Z"
+"pushed": "2026-08-17T03:53:32Z"
+},
+"jasonzacmusic/sangat": {
+"commit": "1.9.0: the Player \u2014 the riff archive finally gets its ow",
+"ios": false,
+"pushed": "2026-08-25T05:47:52Z"
 },
 "jasonzacmusic/scores-ios": {
 "ios": false
@@ -583,14 +603,14 @@
 "ios": false
 },
 "jasonzacmusic/shruti": {
-"commit": "release: publish Shruti 1.4.12 assets",
+"commit": "build: a release stops leaving a second Shruti on the di",
 "ios": false,
-"pushed": "2026-08-23T18:47:55Z"
+"pushed": "2026-08-24T14:58:32Z"
 },
 "jasonzacmusic/sight-singing-studio": {
-"commit": "The choir panel says it in four words, and 23 Anglican h",
+"commit": "Every exercise in the library, sung by a human, marked f",
 "ios": false,
-"pushed": "2026-08-16T17:01:33Z"
+"pushed": "2026-08-23T17:54:13Z"
 },
 "jasonzacmusic/sightread": {
 "commit": "Musical audit: the ninth was voiced below the seventh",
