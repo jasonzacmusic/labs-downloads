@@ -251,9 +251,9 @@
 "ios": false
 },
 "jasonzacmusic/grabit": {
-"commit": "Label main tab buttons for VoiceOver",
+"commit": "Fix Openverse silently mirroring Wikimedia results",
 "ios": false,
-"pushed": "2026-08-25T05:42:50Z"
+"pushed": "2026-08-25T07:39:12Z"
 },
 "jasonzacmusic/gradus": {
 "commit": "Add the five-species theory core",
@@ -374,9 +374,9 @@
 "ios": false
 },
 "jasonzacmusic/net-sense": {
-"commit": "Restore useful live ISP statistics and reliable updates",
+"commit": "Do not call live monitoring unmeasured",
 "ios": false,
-"pushed": "2026-08-25T05:40:22Z"
+"pushed": "2026-08-25T07:42:01Z"
 },
 "jasonzacmusic/nph-reaper-suite": {
 "ios": false
