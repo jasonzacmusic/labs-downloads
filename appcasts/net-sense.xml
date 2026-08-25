@@ -6,6 +6,30 @@
         <description>Studio network monitoring for Mac, by Nathaniel Labs.</description>
         <language>en</language>
         <item>
+            <title>1.3.0</title>
+            <pubDate>Tue, 25 Aug 2026 11:07:00 +0530</pubDate>
+            <sparkle:version>202608251107</sparkle:version>
+            <sparkle:shortVersionString>1.3.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[# Net Sense 1.3.0
+
+The live ISP statistics are useful again without running disruptive speed tests.
+
+- Omada's direct WAN state now records confirmed line availability and observed downtime separately for ACT and Jio.
+- The lightweight 30-second probes now produce median and p95 latency, jitter, packet loss, reply availability, and represented no-reply time instead of being discarded from the scorecard.
+- A controller-confirmed line outage is no longer mixed up with an unverified routed-path failure, so Net Sense does not blame an ISP without the right evidence.
+- Throughput and bufferbloat remain clearly historical and ungraded while automatic bandwidth-saturating tests are off.
+- An app left open now checks for updates every six hours and opens the current notarized installer directly, while avoiding repeated prompts for the same version.
+- The release build now refuses a non-portable Python engine before it can reach another Mac.
+- Signed with Jason Zac's Developer ID and accepted and stapled by Apple's notarization service.]]></description>
+            <enclosure
+                url="https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/Net-Sense-mac.dmg"
+                sparkle:version="202608251107"
+                sparkle:shortVersionString="1.3.0"
+                length="12345771"
+                type="application/octet-stream" />
+        </item>
+        <item>
             <title>1.2.3</title>
             <pubDate>Mon, 17 Aug 2026 08:07:36 +0530</pubDate>
             <sparkle:version>202608170807</sparkle:version>
