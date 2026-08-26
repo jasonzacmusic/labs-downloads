@@ -78,7 +78,7 @@
 "jasonzacmusic/MidiVisualizer": {
 "commit": "Merge cursor/ipad-native: camera sync, Zoom face quality",
 "ios": false,
-"pushed": "2026-08-24T13:04:33Z"
+"pushed": "2026-08-25T08:46:24Z"
 },
 "jasonzacmusic/MidiVisualizer-Releases": {
 "ios": false
@@ -251,9 +251,9 @@
 "ios": false
 },
 "jasonzacmusic/grabit": {
-"commit": "Fix Openverse silently mirroring Wikimedia results",
+"commit": "GrabIt 1.18.0 \u2014 release the NSM Portal pane",
 "ios": false,
-"pushed": "2026-08-25T07:39:12Z"
+"pushed": "2026-08-26T09:02:45Z"
 },
 "jasonzacmusic/gradus": {
 "commit": "Add the five-species theory core",
@@ -313,6 +313,9 @@
 "commit": "Protect learner pauses in voice endpointing",
 "ios": false,
 "pushed": "2026-07-31T04:20:07Z"
+},
+"jasonzacmusic/manch": {
+"ios": false
 },
 "jasonzacmusic/master-key": {
 "commit": "Musical audit: make voice leading an assignment, not fou",
@@ -374,9 +377,9 @@
 "ios": false
 },
 "jasonzacmusic/net-sense": {
-"commit": "Do not call live monitoring unmeasured",
+"commit": "Add instant provider outage reports",
 "ios": false,
-"pushed": "2026-08-25T07:42:01Z"
+"pushed": "2026-08-26T08:03:23Z"
 },
 "jasonzacmusic/nph-reaper-suite": {
 "ios": false
