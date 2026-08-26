@@ -6,6 +6,28 @@
         <description>Studio network monitoring for Mac, by Nathaniel Labs.</description>
         <language>en</language>
         <item>
+            <title>1.5.0</title>
+            <pubDate>Wed, 26 Aug 2026 19:04:00 +0530</pubDate>
+            <sparkle:version>202608261902</sparkle:version>
+            <sparkle:shortVersionString>1.5.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>13.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[# Net Sense 1.5.0
+
+Every connected host can now have its own internet preference, speed cap, and school identity.
+
+- Tap a device to prefer ACT or Jio for that host, with automatic fallback on the other line.
+- Set a download and upload speed cap per host, then read the live rate and session totals back from the controller.
+- NSM-owned systems are recognised separately from people, including the Mac running Net Sense.
+- The new-user QR stays single-use, expires in five minutes, and points at this Mac on Nathaniel School Wi-Fi.
+- Signed with Jason Zac's Developer ID and accepted and stapled by Apple's notarization service.]]></description>
+            <enclosure
+                url="https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/Net-Sense-mac.dmg"
+                sparkle:version="202608261902"
+                sparkle:shortVersionString="1.5.0"
+                length="11994950"
+                type="application/octet-stream" />
+        </item>
+        <item>
             <title>1.4.0</title>
             <pubDate>Wed, 26 Aug 2026 12:53:00 +0530</pubDate>
             <sparkle:version>202608261253</sparkle:version>
