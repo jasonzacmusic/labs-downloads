@@ -112,7 +112,9 @@
 "ios": false
 },
 "jasonzacmusic/NSMStageBridge": {
-"ios": false
+"commit": "Default the stage bridge to silence",
+"ios": false,
+"pushed": "2026-08-28T05:56:46Z"
 },
 "jasonzacmusic/NathaniLMS": {
 "ios": false
