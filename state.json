@@ -112,9 +112,9 @@
 "ios": false
 },
 "jasonzacmusic/NSMStageBridge": {
-"commit": "fix: reject low-pressure 12 Step ghost notes",
+"commit": "release: make stage handoff and Xkey routing fail-safe",
 "ios": false,
-"pushed": "2026-08-28T06:35:09Z"
+"pushed": "2026-08-28T08:04:04Z"
 },
 "jasonzacmusic/NathaniLMS": {
 "ios": false
