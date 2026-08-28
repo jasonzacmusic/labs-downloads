@@ -112,9 +112,9 @@
 "ios": false
 },
 "jasonzacmusic/NSMStageBridge": {
-"commit": "Default the stage bridge to silence",
+"commit": "fix: reject low-pressure 12 Step ghost notes",
 "ios": false,
-"pushed": "2026-08-28T05:56:46Z"
+"pushed": "2026-08-28T06:35:09Z"
 },
 "jasonzacmusic/NathaniLMS": {
 "ios": false
