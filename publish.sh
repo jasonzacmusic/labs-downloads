@@ -44,6 +44,8 @@ MIDI_VISUALIZER_DMG_ENTRY="ghrel:jasonzacmusic/MidiVisualizer-Releases:MIDI-Pian
 if [ -n "$MIDI_VISUALIZER_DMG_SRC" ]; then
   MIDI_VISUALIZER_DMG_ENTRY="file:${MIDI_VISUALIZER_DMG_SRC}"
 fi
+NSM_STAGE_BRIDGE_DMG_SRC="${NSM_STAGE_BRIDGE_DMG:-}"
+NSM_STAGE_BRIDGE_ROW="file:${NSM_STAGE_BRIDGE_DMG_SRC}|NSM-Stage-Bridge-mac.dmg"
 # Chorale: always ship the NEWEST notarized DMG on the Desktop (the notarize
 # script writes ~/Desktop/Chorale-<version>.dmg on every release).
 CHORALE_DMG_SRC="$(ls -t "$HOME"/Desktop/Chorale-*.dmg 2>/dev/null | head -1 || true)"
@@ -86,6 +88,8 @@ elif [ "${GRABIT_ONLY:-0}" = "1" ]; then
   LOCALS=("$GRABIT_ROW")
 elif [ "${NSM_FLOW_ONLY:-0}" = "1" ]; then
   LOCALS=("${NSM_FLOW_ROWS[@]}")
+elif [ "${NSM_STAGE_BRIDGE_ONLY:-0}" = "1" ]; then
+  LOCALS=("$NSM_STAGE_BRIDGE_ROW")
 fi
 
 gh release view "$TAG" --repo "$REPO" >/dev/null 2>&1 \
@@ -116,7 +120,8 @@ for row in "${LOCALS[@]}"; do
 done
 if { [ "${NET_SENSE_ONLY:-0}" = "1" ] || [ "${SHRUTI_ONLY:-0}" = "1" ] \
      || [ "${GRABIT_ONLY:-0}" = "1" ] \
-     || [ "${NSM_FLOW_ONLY:-0}" = "1" ]; } \
+     || [ "${NSM_FLOW_ONLY:-0}" = "1" ] \
+     || [ "${NSM_STAGE_BRIDGE_ONLY:-0}" = "1" ]; } \
     && [ ${#ASSETS[@]} -eq 0 ]; then
   # A product-specific release that could not stage its installer must fail loudly:
   # otherwise the appcast advances while the hub keeps serving the previous DMG.
@@ -166,7 +171,8 @@ done < <(gh release view "$TAG" --repo "$REPO" --json assets --jq '.assets[].nam
 # This is Shruti's backup feed; the primary GrabIt-style feed lives on Shruti's dedicated
 # site. Never publish an unsigned scaffold: Shruti requires both archive and feed signing.
 if [ "${NET_SENSE_ONLY:-0}" != "1" ] && [ "${NSM_FLOW_ONLY:-0}" != "1" ] \
-    && [ "${GRABIT_ONLY:-0}" != "1" ]; then
+    && [ "${GRABIT_ONLY:-0}" != "1" ] \
+    && [ "${NSM_STAGE_BRIDGE_ONLY:-0}" != "1" ]; then
   SHRUTI_APPCAST="${SHRUTI_APPCAST_SRC:-$HOME/Documents/New project/shruti/appcasts/shruti.xml}"
   if [ -f "$SHRUTI_APPCAST" ] \
       && grep -q 'sparkle:edSignature=' "$SHRUTI_APPCAST" \
@@ -191,6 +197,9 @@ if [ "${SHRUTI_ONLY:-0}" = "1" ]; then
 elif [ "${GRABIT_ONLY:-0}" = "1" ]; then
   HUB_CURATED_ONLY=1 HUB_REFRESH_REPO=jasonzacmusic/grabit python3 gen.py
   git add index.html state.json
+elif [ "${NSM_STAGE_BRIDGE_ONLY:-0}" = "1" ]; then
+  HUB_CURATED_ONLY=1 HUB_REFRESH_REPO=jasonzacmusic/NSMStageBridge python3 gen.py
+  git add catalog.json index.html state.json
 else
   python3 gen.py
   git add -A
@@ -198,7 +207,10 @@ fi
 git commit -q -m "publish: native installers + refresh ($(date '+%Y-%m-%d %H:%M'))" || echo "(nothing changed)"
 published=false
 for attempt in 1 2 3; do
-  if git push -q origin main; then
+  # Publish the verified commit from this checkout. This works from the normal
+  # main checkout and from an isolated release worktree without accidentally
+  # pushing a stale local main branch.
+  if git push -q origin HEAD:main; then
     published=true
     break
   fi
@@ -233,6 +245,11 @@ if [ "${GRABIT_ONLY:-0}" = "1" ]; then
   curl -fsSIL --retry 8 --retry-all-errors --retry-delay 5 \
     "https://github.com/jasonzacmusic/labs-downloads/releases/download/downloads/GrabIt-mac.dmg" >/dev/null \
     || echo "WARN GrabIt-mac.dmg not yet visible on the download CDN (propagation lag)"
+fi
+if [ "${NSM_STAGE_BRIDGE_ONLY:-0}" = "1" ]; then
+  curl -fsSIL --retry 8 --retry-all-errors --retry-delay 5 \
+    "https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/NSM-Stage-Bridge-mac.dmg" >/dev/null \
+    || echo "WARN NSM-Stage-Bridge-mac.dmg not yet visible on the download CDN (propagation lag)"
 fi
 echo ""
 echo "Live at: https://jasonzacmusic.github.io/labs-downloads/"

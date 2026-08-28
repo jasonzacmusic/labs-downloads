@@ -145,6 +145,21 @@
    ]
   },
   {
+   "name": "NSM Stage Bridge",
+   "category": "Music",
+   "access": "public",
+   "repo": "jasonzacmusic/NSMStageBridge",
+   "native": [
+    {
+     "platform": "mac",
+     "asset": "NSM-Stage-Bridge-mac.dmg",
+     "label": "Apple Silicon"
+    }
+   ],
+   "site": "https://labs.nathanielschool.com/products/nsm-stage-bridge",
+   "blurb": "One stage-safe MIDI bridge for 12 Step2, AirTurn, Korg nanoKONTROL Studio and GeoShred, with one dependable virtual source for MainStage and REAPER."
+  },
+  {
    "name": "NSM Social Command Centre",
    "category": "Team",
    "access": "team",
