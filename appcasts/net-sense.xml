@@ -6,6 +6,26 @@
         <description>Studio network monitoring for Mac, by Nathaniel Labs.</description>
         <language>en</language>
         <item>
+            <title>1.5.1</title>
+            <pubDate>Sat, 29 Aug 2026 10:01:00 +0530</pubDate>
+            <sparkle:version>202608291001</sparkle:version>
+            <sparkle:shortVersionString>1.5.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>11.0</sparkle:minimumSystemVersion>
+            <description sparkle:format="markdown"><![CDATA[# Net Sense 1.5.1
+
+The installer now opens on Intel Macs and on macOS 11 Big Sur and newer, not only Apple Silicon Ventura.
+
+- The app and the engine are universal Intel + Apple Silicon binaries.
+- The minimum system version is macOS 11.0, which is the oldest macOS that can host this WebKit app.
+- Signed with Jason Zac's Developer ID and accepted and stapled by Apple's notarization service.]]></description>
+            <enclosure
+                url="https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/Net-Sense-mac.dmg"
+                sparkle:version="202608291001"
+                sparkle:shortVersionString="1.5.1"
+                length="20243425"
+                type="application/octet-stream" />
+        </item>
+        <item>
             <title>1.5.0</title>
             <pubDate>Wed, 26 Aug 2026 19:04:00 +0530</pubDate>
             <sparkle:version>202608261902</sparkle:version>
