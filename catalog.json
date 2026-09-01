@@ -371,6 +371,12 @@
    "category": "Productivity",
    "access": "public",
    "repo": "jasonzacmusic/ossia",
+   "native": [
+    {
+     "platform": "mac",
+     "asset": "Ossia-mac.dmg"
+    }
+   ],
    "web": "https://ossia.nathanielschool.com",
    "ios": "soon"
   },
