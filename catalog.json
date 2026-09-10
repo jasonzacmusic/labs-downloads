@@ -26,15 +26,17 @@
   {
    "name": "NSM Cut Studio",
    "category": "Production",
-   "access": "team",
+   "access": "public",
    "repo": "jasonzacmusic/nsm-cut-studio",
    "native": [
     {
      "platform": "mac",
-     "asset": "NSM-Cut-Studio-mac.zip"
+     "asset": "NSM-Cut-Studio-mac.dmg",
+     "label": "Apple Silicon + Intel"
     }
    ],
-   "blurb": "Cuts a promo by cutting the words. Syncs camera to recorder, writes out every word you said, and removes the repeats, fillers and throat clears before you even open it. Delete a word, lose it from the video. Native Mac app."
+   "blurb": "Native transcript editing, continuous music, precise fades and colour controls. Clean ProRes and MCP handoffs for Codex or Claude. Universal Mac app; guided first-time setup.",
+   "site": "https://labs.nathanielschool.com/products/nsm-cut-studio"
   },
   {
    "name": "NSM Flow",
