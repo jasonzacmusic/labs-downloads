@@ -62,7 +62,7 @@ NSM_FLOW_ROWS=(
 LOCALS=(
   "$NET_SENSE_ROW"
   "$SHRUTI_ROW"
-  "ghrel:jasonzacmusic/sangam@v1.2.0-rc.16:Sangam-1.2.0-rc.16.dmg|Sangam-mac.dmg"
+  "ghrel:jasonzacmusic/sangam@v1.2.1:Sangam-1.2.1.dmg|Sangam-mac.dmg"
   "file:${CHORALE_DMG_SRC}|Chorale-mac.dmg"
   "$GRABIT_ROW"
   "file:${SANGAT_DMG_SRC}|Sangat-mac.dmg"

@@ -93,7 +93,7 @@
   {
    "name": "Sangam",
    "category": "Audio",
-   "access": "team",
+   "access": "public",
    "repo": "jasonzacmusic/sangam",
    "native": [
     {
@@ -101,7 +101,8 @@
      "asset": "Sangam-mac.dmg"
     }
    ],
-   "blurb": "Per-app audio routing engine for the studio — latency-locked sends into REAPER. Internal release candidate."
+   "blurb": "Sangam 1.2.1 — shared audio routing for OBS and local recording, with separate microphone processing and 24-bit WAV masters.",
+   "site": "https://labs.nathanielschool.com/products/sangam"
   },
   {
    "name": "Chorale",

@@ -127,6 +127,9 @@
 "ios": false,
 "pushed": "2026-08-21T12:51:51Z"
 },
+"jasonzacmusic/On-the-Move": {
+"ios": false
+},
 "jasonzacmusic/Piano-Course-Creative": {
 "ios": false
 },
@@ -240,16 +243,28 @@
 "ios": true,
 "pushed": "2026-08-11T14:11:46Z"
 },
+"jasonzacmusic/class-director": {
+"ios": false
+},
 "jasonzacmusic/claude-clone-kit": {
 "ios": false
 },
+"jasonzacmusic/cwa": {
+"ios": false
+},
 "jasonzacmusic/cwa-community": {
+"ios": false
+},
+"jasonzacmusic/dolly-songbook": {
 "ios": false
 },
 "jasonzacmusic/dominant-7th-lesson": {
 "ios": false
 },
 "jasonzacmusic/efl-video-courses": {
+"ios": false
+},
+"jasonzacmusic/fantastic-posters-nsm": {
 "ios": false
 },
 "jasonzacmusic/grabit": {
@@ -268,6 +283,9 @@
 "pushed": "2026-08-16T05:52:49Z"
 },
 "jasonzacmusic/handwritten-trumpet": {
+"ios": false
+},
+"jasonzacmusic/here-you-come-again-lesson": {
 "ios": false
 },
 "jasonzacmusic/hexatonic": {
@@ -311,12 +329,18 @@
 "jasonzacmusic/lipi": {
 "ios": false
 },
+"jasonzacmusic/long-chord-progression-lab": {
+"ios": false
+},
 "jasonzacmusic/maatu": {
 "commit": "Protect learner pauses in voice endpointing",
 "ios": false,
 "pushed": "2026-07-31T04:20:07Z"
 },
 "jasonzacmusic/manch": {
+"ios": false
+},
+"jasonzacmusic/mane": {
 "ios": false
 },
 "jasonzacmusic/master-key": {
@@ -371,6 +395,9 @@
 "commit": "Rebuild after fixing the inverted Ignored Build Step rul",
 "ios": false,
 "pushed": "2026-08-07T14:31:50Z"
+},
+"jasonzacmusic/nathaniel-processors": {
+"ios": false
 },
 "jasonzacmusic/nathaniel-production-house": {
 "ios": false
@@ -470,6 +497,9 @@
 "jasonzacmusic/nsm-orphan-apps": {
 "ios": false
 },
+"jasonzacmusic/nsm-parts-sourcing": {
+"ios": false
+},
 "jasonzacmusic/nsm-pedal-cycle": {
 "ios": false
 },
@@ -486,6 +516,9 @@
 "commit": "Handoff note: YouTube token fix, integrations check, cal",
 "ios": false,
 "pushed": "2026-08-18T08:29:30Z"
+},
+"jasonzacmusic/nsm-spend-audit": {
+"ios": false
 },
 "jasonzacmusic/nsm-staff-hub-desktop": {
 "ios": false
@@ -526,6 +559,9 @@
 "jasonzacmusic/nsm-xr18-studio": {
 "ios": false
 },
+"jasonzacmusic/nsm-youtube-audit": {
+"ios": false
+},
 "jasonzacmusic/nsm-youtube-command-center": {
 "ios": false
 },
@@ -536,6 +572,9 @@
 "commit": "A clash between two devices no longer eats a library",
 "ios": true,
 "pushed": "2026-09-01T10:45:47Z"
+},
+"jasonzacmusic/paath": {
+"ios": false
 },
 "jasonzacmusic/paper-trash-cleaner": {
 "ios": false
@@ -549,6 +588,9 @@
 "ios": false
 },
 "jasonzacmusic/piano3d-viewer": {
+"ios": false
+},
+"jasonzacmusic/piece-lab": {
 "ios": false
 },
 "jasonzacmusic/pocket-piano-broll-studio": {
@@ -588,10 +630,13 @@
 "ios": false,
 "pushed": "2026-08-03T07:16:23Z"
 },
+"jasonzacmusic/sadhana": {
+"ios": false
+},
 "jasonzacmusic/sangam": {
-"commit": "Honest routing labels; exclusive routing measured and re",
+"commit": "Approve exact OBS recording release and document audio q",
 "ios": false,
-"pushed": "2026-08-17T03:53:32Z"
+"pushed": "2026-09-14T12:45:44Z"
 },
 "jasonzacmusic/sangat": {
 "commit": "1.9.0: the Player \u2014 the riff archive finally gets its ow",
@@ -628,7 +673,13 @@
 "jasonzacmusic/smriti": {
 "ios": false
 },
+"jasonzacmusic/solfa-studio": {
+"ios": false
+},
 "jasonzacmusic/span": {
+"ios": false
+},
+"jasonzacmusic/streamdeck-setup": {
 "ios": false
 },
 "jasonzacmusic/studio-command": {
@@ -653,6 +704,9 @@
 "commit": "Open the microphone the Zoom-safe way (tuner + recording",
 "ios": true,
 "pushed": "2026-08-16T12:32:08Z"
+},
+"jasonzacmusic/xl3-monitor": {
+"ios": false
 },
 "jasonzacmusic/yt-carousel-remotion": {
 "ios": false
