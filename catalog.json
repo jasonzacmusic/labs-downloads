@@ -88,7 +88,7 @@
     }
    ],
    "site": "https://labs.nathanielschool.com/products/sangat",
-   "blurb": "The musician who listens. Always on in the menu bar: it tells you the honest tempo, the key and the raga of whatever you play or sing, remembers every idea, charts it, clicks along with you and hands the night to REAPER."
+   "blurb": "Sangat 1.46.0: review riffs with keep/discard marks, tap a practice tempo, and send a four-beat count-in to REAPER. Audio-first folders and separate MIDI Takes."
   },
   {
    "name": "Sangam",
