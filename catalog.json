@@ -242,7 +242,7 @@
    "category": "Practice",
    "access": "public",
    "repo": "jasonzacmusic/master-key",
-   "web": "https://master-key-nsm.vercel.app",
+   "web": "https://masterkey.nathanielschool.com",
    "blurb": "The diminished-seventh laboratory — hear how one dim7 chord unlocks every key on the Key Ring."
   },
   {
@@ -250,7 +250,7 @@
    "category": "Practice",
    "access": "public",
    "repo": "jasonzacmusic/rhythm-arithmetic",
-   "web": "https://rhythm-arithmetic.vercel.app",
+   "web": "https://binary-arithmetic.nathanielschool.com",
    "blurb": "Binary-rhythm practice — build bars from note-value arithmetic and clap them back."
   },
   {
@@ -266,7 +266,7 @@
    "category": "Practice",
    "access": "public",
    "repo": "jasonzacmusic/runway",
-   "web": "https://runway-sand.vercel.app",
+   "web": "https://runway.nathanielschool.com",
    "blurb": "Improvisation trainer — practice runs, fills and licks that land, over seven playback feels."
   },
   {
@@ -274,7 +274,7 @@
    "category": "Practice",
    "access": "public",
    "repo": "jasonzacmusic/sightread",
-   "web": "https://sightread-ten.vercel.app",
+   "web": "https://sight-read.nathanielschool.com",
    "blurb": "Sight-reading companion built on Bach's Well-Tempered Clavier — a fresh passage every session."
   },
   {
@@ -402,21 +402,21 @@
    "category": "Practice",
    "access": "public",
    "repo": "jasonzacmusic/cantus",
-   "web": "https://cantus-lyart.vercel.app"
+   "web": "https://cantus.nathanielschool.com"
   },
   {
    "name": "Pendulum",
    "category": "Practice",
    "access": "public",
    "repo": "jasonzacmusic/pendulum",
-   "web": "https://pendulum-kohl.vercel.app"
+   "web": "https://pendulum.nathanielschool.com"
   },
   {
    "name": "Bass Alchemy",
    "category": "Practice",
    "access": "public",
    "repo": "jasonzacmusic/bass-alchemy",
-   "web": "https://bass-alchemy.vercel.app"
+   "web": "https://bassalchemy.nathanielschool.com"
   },
   {
    "name": "Groove Metronome",
