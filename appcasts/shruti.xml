@@ -4,52 +4,25 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>Shruti</title>
         <item>
-            <title>1.4.21</title>
-            <pubDate>Wed, 23 Sep 2026 14:38:56 +0530</pubDate>
-            <sparkle:version>54</sparkle:version>
-            <sparkle:shortVersionString>1.4.21</sparkle:shortVersionString>
+            <title>1.4.22</title>
+            <pubDate>Thu, 24 Sep 2026 19:26:06 +0530</pubDate>
+            <sparkle:version>55</sparkle:version>
+            <sparkle:shortVersionString>1.4.22</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.2</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.21 — the beta build
+            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.22 — beta polish
 
-Everything in 1.4.19 and 1.4.20 (Bluetooth reliability, stable output switching), plus:
+- Shruti now opens on a Mac with no internet connection the first time, not only after it has been online once: the app inside the installer carries its own Apple approval.
+- App names in the mixer are no longer cut short by the LIVE label; a small green waveform shows an app is making sound.
+- The output device name is shown in full ("Zen Studio Playback", "MacBook Pro Speakers").
+- Audio Devices opens on the device that is playing now.
+- The Bypass All shortcut is written as Shift-Command-Esc in Settings.
 
-## Scenes that really restore your setup
-- A Scene now remembers your output device, its level and your microphone as well as every app's volume, mute, boost, effects and output. Loading "Class" puts the class back.
-- Loading a Scene no longer rewrites your licence, trial, removed apps, theme, login item or Bypass All state. Apps first heard after a Scene was saved keep their current level.
-- If a Scene's device isn't connected, Shruti says so by name and keeps the sound where it is.
-- Load a Scene straight from the footer's Scenes menu. Saving over an existing Scene asks first.
-
-## Smart features you can teach
-- Mic Auto-Follow learns from you: the mic you pick in Input becomes its first choice, and it no longer switches your choice straight back. Switching it on keeps the mic you are using. Loopback and app-made inputs are never picked automatically.
-- Leave Alone: apps Follow-Me and Auto-Duck never lower. Instruments and DAWs (Pianoteq, REAPER, Logic, MainStage, Ableton…) are protected by default; add any app from the Smart panel or by right-clicking it in the mixer.
-- Follow-Me never silences an app that is on a call.
-- Auto-Duck depth is adjustable (3–30 dB).
-
-## Bypass All
-- Every app is released at the same moment instead of one after another.
-- A live Auto-Duck rule can no longer put Shruti back in the audio path while bypassed.
-- Loading a Scene can no longer change whether Bypass All is on at the next launch.
-- Shift-Command-Escape now works when Shruti's own window is in front. A fast double press means on then off.
-
-## Window
-- New Full Screen button (Control-Command-F): Shruti fills the screen with the mixer centred at a readable width; press again to return exactly where it was.
-- The menu-bar resize handle now looks like a resize handle, not a full-screen button.
-- Shruti's windows always open fully on screen, even if they were last used on a larger display.
-
-## Settings and devices
-- Keyboard Shortcuts section, and Send Beta Feedback in Settings.
-- Removed "Force software volume", which did nothing. The Max volume ceiling now also holds on outputs without their own volume control (HDMI, many interfaces).
-- Start at Login shows the real login-item state.
-- The "Shruti icon" menu-bar style is now its own waveform icon.
-- Audio Devices folds devices created by other apps (Zoom, Camo, loopback tools) into their own section.
-- `shruti smart` command for support: shows and sets the Smart switches.
-
-Validation: 781 optimized checks, zero failures; runtime isolation pass. Scenes (mix, output device, level, missing device), Bypass All (on, off, fast double press), Full Screen, pop-out/collapse and Mic Auto-Follow learning were exercised on the studio Mac mini with the installed Developer ID build.
+Stress-tested on the studio Mac mini before release: about 1,000 rapid volume, mute, Bypass All and Scene changes (including four at once) with zero failures; a 10-minute endurance run; a force-killed audio helper came back in 1 second and a force-killed audio service in 1 second, with no leftover processes. 781 automated checks pass.
 ]]></description>
-            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.21.dmg" length="10861665" type="application/octet-stream" sparkle:edSignature="++4NiWhjTEJqNHAmWwWh7J6H/XuiFGJUm6TnRbPmvOoJhvPEDoiJDALwKwr0W55L/QqEjn0TEZQokzjkSQ2PDg=="></enclosure>
+            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.22.dmg" length="10867164" type="application/octet-stream" sparkle:edSignature="qCiaEiH5tM7DUR/BbNo/KU9GYUwOpjhiNh+6l/Lsl1JqZUpBHdHWPp8Ory950T1Ng4zsK16lkY/10+47EXl5BQ=="></enclosure>
         </item>
     </channel>
 </rss><!-- sparkle-signatures:
-edSignature: uBMpkzByCCgrCd4W3mRIEsquLqq1Zh1vFStkQiKA/Hqo4WfAoDdZvXRcEE/KW47WZ/Ees2R30/dbYn/lY813AA==
-length: 3986
+edSignature: BGPXEHUpu4N8xxgxhjfPY3OzhsuAL08UzkjJxqGpSNewGvzF/udhs2xRRQRA7QkG3Lzumki0aXqZucGQ1RLKAw==
+length: 1987
 -->
