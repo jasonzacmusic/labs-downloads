@@ -4,25 +4,22 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>Shruti</title>
         <item>
-            <title>1.4.22</title>
-            <pubDate>Thu, 24 Sep 2026 19:26:06 +0530</pubDate>
-            <sparkle:version>55</sparkle:version>
-            <sparkle:shortVersionString>1.4.22</sparkle:shortVersionString>
+            <title>1.4.23</title>
+            <pubDate>Sat, 26 Sep 2026 18:54:46 +0530</pubDate>
+            <sparkle:version>56</sparkle:version>
+            <sparkle:shortVersionString>1.4.23</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.2</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.22 — beta polish
+            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.23 — clearer live audio activity
 
-- Shruti now opens on a Mac with no internet connection the first time, not only after it has been online once: the app inside the installer carries its own Apple approval.
-- App names in the mixer are no longer cut short by the LIVE label; a small green waveform shows an app is making sound.
-- The output device name is shown in full ("Zen Studio Playback", "MacBook Pro Speakers").
-- Audio Devices opens on the device that is playing now.
-- The Bypass All shortcut is written as Shift-Command-Esc in Settings.
-
-Stress-tested on the studio Mac mini before release: about 1,000 rapid volume, mute, Bypass All and Scene changes (including four at once) with zero failures; a 10-minute endurance run; a force-killed audio helper came back in 1 second and a force-killed audio service in 1 second, with no leftover processes. 781 automated checks pass.
+- Live Now separates apps playing output from apps recording input. A recorder such as NSM Screen Studio appears as recording without a misleading playback label.
+- Apps that used audio output in the past hour remain easy to find under Recent Audio, with the latest activity first. Each entry opens its saved control in My Order.
+- My Order and the playing-app arrangement keep their saved positions; recent activity does not silently rearrange the mix.
+- Audio activity is attributed to the app that owns the process. Chrome helper processes owned by another app are shown under that app.
 ]]></description>
-            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.22.dmg" length="10867164" type="application/octet-stream" sparkle:edSignature="qCiaEiH5tM7DUR/BbNo/KU9GYUwOpjhiNh+6l/Lsl1JqZUpBHdHWPp8Ory950T1Ng4zsK16lkY/10+47EXl5BQ=="></enclosure>
+            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.23.dmg" length="10901817" type="application/octet-stream" sparkle:edSignature="WnADTR2EEV7vmbIUCIl0vjALSoyk9oszK/HFrVOQwJbi9s09k6L2PmQLnXsvkX6MhbWCW2x0abGRXjvilXn7Dg=="></enclosure>
         </item>
     </channel>
 </rss><!-- sparkle-signatures:
-edSignature: BGPXEHUpu4N8xxgxhjfPY3OzhsuAL08UzkjJxqGpSNewGvzF/udhs2xRRQRA7QkG3Lzumki0aXqZucGQ1RLKAw==
-length: 1987
+edSignature: ATGfi3ZzohUkOKRtITYWcF/pExvLkHL5jIa9iU79r34SewbdO3rzaoVa3NbNnFZu1ntRJZS7JMFGGWpS6urPDA==
+length: 1742
 -->
