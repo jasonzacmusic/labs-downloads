@@ -4,22 +4,23 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>Shruti</title>
         <item>
-            <title>1.4.23</title>
-            <pubDate>Sat, 26 Sep 2026 18:54:46 +0530</pubDate>
-            <sparkle:version>56</sparkle:version>
-            <sparkle:shortVersionString>1.4.23</sparkle:shortVersionString>
+            <title>1.4.24</title>
+            <pubDate>Sun, 27 Sep 2026 08:23:40 +0530</pubDate>
+            <sparkle:version>57</sparkle:version>
+            <sparkle:shortVersionString>1.4.24</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.2</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.23 — clearer live audio activity
+            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.24 — reliable startup requests
 
-- Live Now separates apps playing output from apps recording input. A recorder such as NSM Screen Studio appears as recording without a misleading playback label.
-- Apps that used audio output in the past hour remain easy to find under Recent Audio, with the latest activity first. Each entry opens its saved control in My Order.
-- My Order and the playing-app arrangement keep their saved positions; recent activity does not silently rearrange the mix.
-- Audio activity is attributed to the app that owns the process. Chrome helper processes owned by another app are shown under that app.
+- The Scenes menu now reads saved scene names from local storage as the panel opens, so an audio-service warm-up cannot raise a false unavailable banner.
+- Safe background lookups retry when Core Audio temporarily occupies the service. A failed lookup no longer marks the live audio connection offline.
+- Startup pings now honor their fractional-second socket timeout, avoiding an unbounded wait during service recovery.
+- Dragging the three-line handle on an app row now reorders it directly in Live Now or My Order. Clicking the handle still opens the precise Arrange controls.
+- The chosen order stays in place through live status refreshes and fast consecutive moves; Shruti confirms the saved order on disk before reporting success.
 ]]></description>
-            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.23.dmg" length="10901817" type="application/octet-stream" sparkle:edSignature="WnADTR2EEV7vmbIUCIl0vjALSoyk9oszK/HFrVOQwJbi9s09k6L2PmQLnXsvkX6MhbWCW2x0abGRXjvilXn7Dg=="></enclosure>
+            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.24.dmg" length="10927945" type="application/octet-stream" sparkle:edSignature="rNkqBm/Am7prkj778jKhehHAQ7MACq2XrdUoVxP2fBD8QeEKKRYRbjr72+JhF5C1dNMNmn8DT+H9e+tjYG8ZAg=="></enclosure>
         </item>
     </channel>
 </rss><!-- sparkle-signatures:
-edSignature: ATGfi3ZzohUkOKRtITYWcF/pExvLkHL5jIa9iU79r34SewbdO3rzaoVa3NbNnFZu1ntRJZS7JMFGGWpS6urPDA==
-length: 1742
+edSignature: BmyLNRVYVPjTstDNxesrxNf6cD785d4/j38tDDLnlA7apzVRUeHQwDO03mJ2zZwlydi1dY49151yzWON/MS6Bw==
+length: 1888
 -->

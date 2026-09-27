@@ -653,9 +653,9 @@
 "ios": false
 },
 "jasonzacmusic/shruti": {
-"commit": "Shruti 1.4.23: distinguish playback, recording and recen",
+"commit": "fix: keep Shruti order and startup requests reliable",
 "ios": false,
-"pushed": "2026-09-26T13:28:19Z"
+"pushed": "2026-09-27T02:56:20Z"
 },
 "jasonzacmusic/sight-singing-studio": {
 "commit": "Every exercise in the library, sung by a human, marked f",
