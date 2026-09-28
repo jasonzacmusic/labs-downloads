@@ -4,23 +4,20 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>Shruti</title>
         <item>
-            <title>1.4.24</title>
-            <pubDate>Sun, 27 Sep 2026 08:23:40 +0530</pubDate>
-            <sparkle:version>57</sparkle:version>
-            <sparkle:shortVersionString>1.4.24</sparkle:shortVersionString>
+            <title>1.4.25</title>
+            <pubDate>Mon, 28 Sep 2026 16:25:16 +0530</pubDate>
+            <sparkle:version>58</sparkle:version>
+            <sparkle:shortVersionString>1.4.25</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.2</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.24 — reliable startup requests
+            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.25 — your level from the first sound
 
-- The Scenes menu now reads saved scene names from local storage as the panel opens, so an audio-service warm-up cannot raise a false unavailable banner.
-- Safe background lookups retry when Core Audio temporarily occupies the service. A failed lookup no longer marks the live audio connection offline.
-- Startup pings now honor their fractional-second socket timeout, avoiding an unbounded wait during service recovery.
-- Dragging the three-line handle on an app row now reorders it directly in Live Now or My Order. Clicking the handle still opens the precise Arrange controls.
-- The chosen order stays in place through live status refreshes and fast consecutive moves; Shruti confirms the saved order on disk before reporting success.
+- An app you have set to a lower level (or muted, or given an effect) now plays at that level from its very first sound. Before, it started at full volume and dropped to your setting a second later, which sounded like Shruti ducking it.
+- Apps at their untouched default are unchanged: still the zero-cost direct path.
 ]]></description>
-            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.24.dmg" length="10927945" type="application/octet-stream" sparkle:edSignature="rNkqBm/Am7prkj778jKhehHAQ7MACq2XrdUoVxP2fBD8QeEKKRYRbjr72+JhF5C1dNMNmn8DT+H9e+tjYG8ZAg=="></enclosure>
+            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.25.dmg" length="10930446" type="application/octet-stream" sparkle:edSignature="BkZXIKnGWi/q5mY5ungCveJyOOk7N511rZT/znD84H3MS/Gez7fV/U8ISbmWr4vTYU5m+SEdSOIGFz1IsEMEDg=="></enclosure>
         </item>
     </channel>
 </rss><!-- sparkle-signatures:
-edSignature: BmyLNRVYVPjTstDNxesrxNf6cD785d4/j38tDDLnlA7apzVRUeHQwDO03mJ2zZwlydi1dY49151yzWON/MS6Bw==
-length: 1888
+edSignature: MW7J3gbAnbJtEduh9iWsQlTRGyYzwRRFi1XeyVOlUz/YZDMDy7lL1Jn2sRpebskWghK3a9DfP+4vD0CKaalxAw==
+length: 1475
 -->
