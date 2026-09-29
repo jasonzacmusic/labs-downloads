@@ -148,6 +148,10 @@
 "jasonzacmusic/PianoPrograms": {
 "ios": false
 },
+"jasonzacmusic/Prism": {
+"commit": "Prepare Prism 1.0.1 build 5 for student beta",
+"pushed": "2026-09-29T14:52:39Z"
+},
 "jasonzacmusic/Pro-Sketchpad": {
 "ios": false
 },

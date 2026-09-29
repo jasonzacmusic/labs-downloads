@@ -446,6 +446,21 @@
    "access": "public",
    "repo": "jasonzacmusic/nsm-melody-rhythm-playground",
    "web": "https://gemini-nsm.vercel.app"
+  },
+  {
+   "name": "Prism",
+   "category": "Music",
+   "access": "public",
+   "repo": "jasonzacmusic/Prism",
+   "native": [
+    {
+     "platform": "mac",
+     "asset": "Prism-mac.dmg",
+     "label": "1.0.1 · Apple silicon · macOS 15+"
+    }
+   ],
+   "site": "https://labs.nathanielschool.com/products/prism",
+   "blurb": "Free beta for NSM students and the internal team: video, audio, photos, PDFs and MIDI, with practice loops and a clean teaching view."
   }
  ]
 }
