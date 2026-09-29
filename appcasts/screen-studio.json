@@ -1,0 +1,15 @@
+{
+  "app": "nsm-screen-studio",
+  "channel": "public-beta",
+  "version": "0.5.9",
+  "build": "63",
+  "date": "2026-09-29T08:16:17Z",
+  "minimumMacOS": "15.0",
+  "architecture": "arm64",
+  "sourceRepo": "jasonzacmusic/nsm-screen-studio",
+  "sourceTag": "v0.5.9",
+  "sha256": "970e8bab40f1aeb508bf6085024bf3b2ebd303b427b1a91de68e5b2a3d378afb",
+  "size": 5586238,
+  "url": "https://github.com/jasonzacmusic/labs-downloads/releases/download/downloads/NSM-Screen-Studio-mac.dmg",
+  "notes": "First public beta: combined Record confidence picture, separate screen/camera/iPad/audio lanes, reversible editing, branded callouts and local exports."
+}

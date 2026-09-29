@@ -509,6 +509,10 @@
 "jasonzacmusic/nsm-reaper-course": {
 "ios": false
 },
+"jasonzacmusic/nsm-screen-studio": {
+"commit": "Prepare Screen Studio 0.5.9 public beta",
+"pushed": "2026-09-29T08:17:32Z"
+},
 "jasonzacmusic/nsm-sight-reading": {
 "ios": false
 },

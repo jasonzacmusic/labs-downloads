@@ -46,6 +46,8 @@ if [ -n "$MIDI_VISUALIZER_DMG_SRC" ]; then
 fi
 NSM_STAGE_BRIDGE_DMG_SRC="${NSM_STAGE_BRIDGE_DMG:-}"
 NSM_STAGE_BRIDGE_ROW="file:${NSM_STAGE_BRIDGE_DMG_SRC}|NSM-Stage-Bridge-mac.dmg"
+SCREEN_STUDIO_DMG_SRC="${SCREEN_STUDIO_DMG:-}"
+SCREEN_STUDIO_ROW="file:${SCREEN_STUDIO_DMG_SRC}|NSM-Screen-Studio-mac.dmg"
 # Chorale: always ship the NEWEST notarized DMG on the Desktop (the notarize
 # script writes ~/Desktop/Chorale-<version>.dmg on every release).
 CHORALE_DMG_SRC="$(ls -t "$HOME"/Desktop/Chorale-*.dmg 2>/dev/null | head -1 || true)"
@@ -80,6 +82,9 @@ LOCALS=(
   # signing certificate, so they carry no staple and skip the notarize gate.
   "${NSM_FLOW_ROWS[@]}"
 )
+if [ -n "$SCREEN_STUDIO_DMG_SRC" ]; then
+  LOCALS+=("$SCREEN_STUDIO_ROW")
+fi
 if [ "${NET_SENSE_ONLY:-0}" = "1" ]; then
   LOCALS=("$NET_SENSE_ROW")
 elif [ "${SHRUTI_ONLY:-0}" = "1" ]; then
@@ -90,6 +95,9 @@ elif [ "${NSM_FLOW_ONLY:-0}" = "1" ]; then
   LOCALS=("${NSM_FLOW_ROWS[@]}")
 elif [ "${NSM_STAGE_BRIDGE_ONLY:-0}" = "1" ]; then
   LOCALS=("$NSM_STAGE_BRIDGE_ROW")
+elif [ "${SCREEN_STUDIO_ONLY:-0}" = "1" ]; then
+  [ -n "$SCREEN_STUDIO_DMG_SRC" ] || { echo "ERROR set SCREEN_STUDIO_DMG to the exact notarized installer" >&2; exit 1; }
+  LOCALS=("$SCREEN_STUDIO_ROW")
 fi
 
 gh release view "$TAG" --repo "$REPO" >/dev/null 2>&1 \
@@ -121,7 +129,8 @@ done
 if { [ "${NET_SENSE_ONLY:-0}" = "1" ] || [ "${SHRUTI_ONLY:-0}" = "1" ] \
      || [ "${GRABIT_ONLY:-0}" = "1" ] \
      || [ "${NSM_FLOW_ONLY:-0}" = "1" ] \
-     || [ "${NSM_STAGE_BRIDGE_ONLY:-0}" = "1" ]; } \
+     || [ "${NSM_STAGE_BRIDGE_ONLY:-0}" = "1" ] \
+     || [ "${SCREEN_STUDIO_ONLY:-0}" = "1" ]; } \
     && [ ${#ASSETS[@]} -eq 0 ]; then
   # A product-specific release that could not stage its installer must fail loudly:
   # otherwise the appcast advances while the hub keeps serving the previous DMG.
@@ -172,7 +181,8 @@ done < <(gh release view "$TAG" --repo "$REPO" --json assets --jq '.assets[].nam
 # site. Never publish an unsigned scaffold: Shruti requires both archive and feed signing.
 if [ "${NET_SENSE_ONLY:-0}" != "1" ] && [ "${NSM_FLOW_ONLY:-0}" != "1" ] \
     && [ "${GRABIT_ONLY:-0}" != "1" ] \
-    && [ "${NSM_STAGE_BRIDGE_ONLY:-0}" != "1" ]; then
+    && [ "${NSM_STAGE_BRIDGE_ONLY:-0}" != "1" ] \
+    && [ "${SCREEN_STUDIO_ONLY:-0}" != "1" ]; then
   SHRUTI_APPCAST="${SHRUTI_APPCAST_SRC:-$HOME/Documents/New project/shruti/appcasts/shruti.xml}"
   if [ -f "$SHRUTI_APPCAST" ] \
       && grep -q 'sparkle:edSignature=' "$SHRUTI_APPCAST" \
@@ -200,6 +210,9 @@ elif [ "${GRABIT_ONLY:-0}" = "1" ]; then
 elif [ "${NSM_STAGE_BRIDGE_ONLY:-0}" = "1" ]; then
   HUB_CURATED_ONLY=1 HUB_REFRESH_REPO=jasonzacmusic/NSMStageBridge python3 gen.py
   git add catalog.json index.html state.json
+elif [ "${SCREEN_STUDIO_ONLY:-0}" = "1" ]; then
+  HUB_CURATED_ONLY=1 HUB_REFRESH_REPO=jasonzacmusic/nsm-screen-studio python3 gen.py
+  git add catalog.json publish.sh appcasts/screen-studio.json index.html state.json
 else
   python3 gen.py
   git add -A
@@ -224,9 +237,11 @@ done
 # BEFORE the edge-availability checks below: the asset upload and git push already
 # succeeded (both verified above), so the catalog must refresh even if GitHub's download
 # CDN is briefly lagging.
-gh api repos/jasonzacmusic/nathaniel-labs-site/dispatches --method POST \
-  -H "Accept: application/vnd.github+json" -f event_type=release-published || \
-  echo "WARN catalog dispatch failed; run the Labs site refresh locally before closing the release"
+if [ "${HUB_DEFER_SITE_DISPATCH:-0}" != "1" ]; then
+  gh api repos/jasonzacmusic/nathaniel-labs-site/dispatches --method POST \
+    -H "Accept: application/vnd.github+json" -f event_type=release-published || \
+    echo "WARN catalog dispatch failed; run the Labs site refresh locally before closing the release"
+fi
 
 # Best-effort edge check: GitHub's release-download CDN can lag 10-30 s after a --clobber,
 # so give it real time but never fail the publish over propagation (the bytes are up).
@@ -250,6 +265,11 @@ if [ "${NSM_STAGE_BRIDGE_ONLY:-0}" = "1" ]; then
   curl -fsSIL --retry 8 --retry-all-errors --retry-delay 5 \
     "https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/NSM-Stage-Bridge-mac.dmg" >/dev/null \
     || echo "WARN NSM-Stage-Bridge-mac.dmg not yet visible on the download CDN (propagation lag)"
+fi
+if [ "${SCREEN_STUDIO_ONLY:-0}" = "1" ]; then
+  curl -fsSIL --retry 8 --retry-all-errors --retry-delay 5 \
+    "https://github.com/jasonzacmusic/labs-downloads/releases/download/downloads/NSM-Screen-Studio-mac.dmg" >/dev/null \
+    || echo "WARN NSM-Screen-Studio-mac.dmg not yet visible on the download CDN (propagation lag)"
 fi
 echo ""
 echo "Live at: https://jasonzacmusic.github.io/labs-downloads/"

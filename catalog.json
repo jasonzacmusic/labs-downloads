@@ -39,6 +39,21 @@
    "site": "https://labs.nathanielschool.com/products/nsm-cut-studio"
   },
   {
+   "name": "NSM Screen Studio",
+   "category": "Production",
+   "access": "public",
+   "repo": "jasonzacmusic/nsm-screen-studio",
+   "native": [
+    {
+     "platform": "mac",
+     "asset": "NSM-Screen-Studio-mac.dmg",
+     "label": "Apple Silicon · macOS 15+"
+    }
+   ],
+   "site": "https://labs.nathanielschool.com/products/nsm-screen-studio",
+   "blurb": "Free public beta for screen, camera, iPad and interface recording with a live confidence picture, separate edit lanes and local video exports."
+  },
+  {
    "name": "NSM Flow",
    "category": "Productivity",
    "access": "public",
