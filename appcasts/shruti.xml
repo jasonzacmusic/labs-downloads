@@ -4,20 +4,27 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>Shruti</title>
         <item>
-            <title>1.4.25</title>
-            <pubDate>Mon, 28 Sep 2026 16:25:16 +0530</pubDate>
-            <sparkle:version>58</sparkle:version>
-            <sparkle:shortVersionString>1.4.25</sparkle:shortVersionString>
+            <title>1.4.30</title>
+            <pubDate>Sat, 03 Oct 2026 08:58:54 +0530</pubDate>
+            <sparkle:version>64</sparkle:version>
+            <sparkle:shortVersionString>1.4.30</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.2</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.25 — your level from the first sound
+            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.30
 
-- An app you have set to a lower level (or muted, or given an effect) now plays at that level from its very first sound. Before, it started at full volume and dropped to your setting a second later, which sounded like Shruti ducking it.
-- Apps at their untouched default are unchanged: still the zero-cost direct path.
+- Mixer controls send the latest fader position without building up obsolete commands. Faders show decibels, retain the existing saved volume curve, and support Shift for fine adjustment.
+- Clear all solos with one control or Command–Shift–S. Option-click Solo to hear only that app.
+- Remove apps immediately and restore them from Add App → Removed, retaining their saved mix. Removed apps stay out of Solo, Smart processing and routing until restored.
+- Recent sound activity is easier to find in either list order. App identities and activity labels no longer wrap into narrow vertical text.
+- Global EQ now has a clearly named control. Use the built-in eight-band EQ and up to two installed Audio Unit effects, searchable by plugin or manufacturer. VST3-only effects require their Audio Unit version.
+- Rapid Smart and Global EQ changes preserve command order and discard obsolete unsent settings. Smart switches no longer wait for synchronous device discovery.
+- Removing a plugin while it loads no longer allows an obsolete load to reappear.
+
+Requires macOS 14.2 or later; Apple silicon and Intel. Existing settings are preserved. Follow Me, Auto Duck, Loudness Guard and Mic Follow have automated DSP/policy coverage; live microphone transitions and speaker/TV/headset listening have not been certified across hardware. Loudness Guard is a per-app sample-peak limiter, not an intersample true-peak or post-mix hardware limiter.
 ]]></description>
-            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.25.dmg" length="10930446" type="application/octet-stream" sparkle:edSignature="BkZXIKnGWi/q5mY5ungCveJyOOk7N511rZT/znD84H3MS/Gez7fV/U8ISbmWr4vTYU5m+SEdSOIGFz1IsEMEDg=="></enclosure>
+            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.30.dmg" length="11645974" type="application/octet-stream" sparkle:edSignature="ITA0dEBnCIvYdTBr8MU8iYtWvRpcX6kdZfVFReQ11q0A3GXaZ4AganS8xuXxrSl8AhF5rCf66WIDqK7x2uQZDA=="></enclosure>
         </item>
     </channel>
 </rss><!-- sparkle-signatures:
-edSignature: MW7J3gbAnbJtEduh9iWsQlTRGyYzwRRFi1XeyVOlUz/YZDMDy7lL1Jn2sRpebskWghK3a9DfP+4vD0CKaalxAw==
-length: 1475
+edSignature: +ut01f/UqQEHyspDSkv3t+WzyHtPqIdD6lGh4lL82AM/vRfGy2C645acTrpJxqrdgKoiZ8u9bx561nFr5t1KDA==
+length: 2561
 -->
