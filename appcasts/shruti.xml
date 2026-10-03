@@ -4,27 +4,26 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>Shruti</title>
         <item>
-            <title>1.4.30</title>
-            <pubDate>Sat, 03 Oct 2026 08:58:54 +0530</pubDate>
-            <sparkle:version>64</sparkle:version>
-            <sparkle:shortVersionString>1.4.30</sparkle:shortVersionString>
+            <title>1.4.31</title>
+            <pubDate>Sat, 03 Oct 2026 10:24:10 +0530</pubDate>
+            <sparkle:version>66</sparkle:version>
+            <sparkle:shortVersionString>1.4.31</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.2</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.30
+            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.31
 
-- Mixer controls send the latest fader position without building up obsolete commands. Faders show decibels, retain the existing saved volume curve, and support Shift for fine adjustment.
-- Clear all solos with one control or Command–Shift–S. Option-click Solo to hear only that app.
-- Remove apps immediately and restore them from Add App → Removed, retaining their saved mix. Removed apps stay out of Solo, Smart processing and routing until restored.
-- Recent sound activity is easier to find in either list order. App identities and activity labels no longer wrap into narrow vertical text.
-- Global EQ now has a clearly named control. Use the built-in eight-band EQ and up to two installed Audio Unit effects, searchable by plugin or manufacturer. VST3-only effects require their Audio Unit version.
-- Rapid Smart and Global EQ changes preserve command order and discard obsolete unsent settings. Smart switches no longer wait for synchronous device discovery.
-- Removing a plugin while it loads no longer allows an obsolete load to reappear.
+- Resize either mixer panel with its visible corner grip. Pointer movement stays stable as the window grows; double-click the grip to fit the current audio apps to the screen. Window sizing is saved when resizing ends.
+- Installed app categories no longer add silent, unused apps to the mixer. Real audio activity and retained user controls determine membership. Existing arrangements stay in order, and new activity does not automatically scroll away from the app you are using.
+- Remove an app directly with its row’s × button, including in Arrange. Undo and Add App → Removed restore its saved mix and order.
+- Eiosis AirEQ’s original editor now receives the initialization it requires. Plugin construction, saved-state restoration and parameter-state capture run away from the UI thread. Loading has a deadline and Retry; closed or removed editors cannot reappear from obsolete callbacks.
+- Native Audio Unit editors are preferred. A plugin without a usable native view has a clearly explained published-control recovery view.
+- Includes the 1.4.30 responsive faders, dB readouts, Shift fine adjustment, Clear Solo, ordered Smart controls and Global EQ improvements.
 
-Requires macOS 14.2 or later; Apple silicon and Intel. Existing settings are preserved. Follow Me, Auto Duck, Loudness Guard and Mic Follow have automated DSP/policy coverage; live microphone transitions and speaker/TV/headset listening have not been certified across hardware. Loudness Guard is a per-app sample-peak limiter, not an intersample true-peak or post-mix hardware limiter.
+Requires macOS 14.2 or later; Apple silicon and Intel. Settings are preserved. Native editor checks covered installed Eiosis AirEQ Premium, Apple AUParametricEQ, Sonnox Oxford EQ and Slate Inf EQ. This does not certify every plugin or hardware route. No synthetic sound was played during verification.
 ]]></description>
-            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.30.dmg" length="11645974" type="application/octet-stream" sparkle:edSignature="ITA0dEBnCIvYdTBr8MU8iYtWvRpcX6kdZfVFReQ11q0A3GXaZ4AganS8xuXxrSl8AhF5rCf66WIDqK7x2uQZDA=="></enclosure>
+            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.31.dmg" length="11725014" type="application/octet-stream" sparkle:edSignature="/jXOYDhnEVB8k43Vy0RTHuL9fQd65Czf5rSd7r4Yg5P6D0QoykIlkzN5IPkHm7bhwhEAGY3y0jQ5TYcJ99TuBg=="></enclosure>
         </item>
     </channel>
 </rss><!-- sparkle-signatures:
-edSignature: +ut01f/UqQEHyspDSkv3t+WzyHtPqIdD6lGh4lL82AM/vRfGy2C645acTrpJxqrdgKoiZ8u9bx561nFr5t1KDA==
-length: 2561
+edSignature: 5+lU1lLiXeDMJwlx5vytO63Skm6BcQ5933Qz3i55rW+4P4hHYPEqC+jX/3WTILgvf7sNvzBUdm5KpEtmqB5mDg==
+length: 2601
 -->
