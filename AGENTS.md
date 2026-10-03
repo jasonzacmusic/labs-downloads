@@ -1,0 +1,8 @@
+<!-- BEGIN NATHANIEL LABS DELIVERY RULE -->
+## Standing installation and delivery instruction — Jason, 3 October 2026
+
+Every implementation task includes delivery: make the focused change, run applicable checks, build/package/sign as required, install and verify the latest compatible app on Jason's current computer, and publish/deploy the final update through the established Nathaniel Labs channel for all eligible existing users, beta testers, administrators and paid customers. Do not stop at a source push, prepared installer or offer to install. Routine installation/publication is already authorized; do not ask “Shall I publish?” again. Later explicit holds or narrower task instructions take precedence.
+
+Read the canonical [Nathaniel Labs agent release policy](https://github.com/jasonzacmusic/product-registry/blob/main/AGENT_RELEASE_POLICY.md) and apply it alongside this repository's engineering instructions. It supersedes older separate routine publication-approval defaults. Keep private/internal and stable/beta channels, entitlements, user data and rollback intact. Do not silently install on other users' devices or interrupt live recording/playback. Never force-quit sessions, weaken security/signature checks, create credentials, incur new spending or accept legal terms as a release side effect. Resolve ordinary delivery blockers; report genuine unresolved gates honestly instead of claiming completion. Verify live version/feed/store/site delivery as applicable; a developer-device install is not customer distribution. Questions and documentation-only changes do not rebuild unrelated apps.
+<!-- END NATHANIEL LABS DELIVERY RULE -->
+
