@@ -1,18 +1,18 @@
 {
-  "version": "1.0.1",
-  "build": 5,
+  "version": "1.0.3",
+  "build": 8,
   "bundle_id": "com.jasonzac.prism",
   "architecture": [
     "arm64"
   ],
   "minimum_macos": "15.0",
   "channel": "student-and-internal-beta",
-  "sha256": "cfcedd43642150972376ea855158b60a26f568362e176b3ae94838e711cb9b4b",
-  "bytes": 49734041,
-  "cdhash": "7bbba1ae0a1627c15c8c6d640f44e37e1ae49150",
+  "sha256": "22aa4c10be10f65e5ed6cb9c9adc5841a51e61ccf3a15052c0826068cdf41656",
+  "bytes": 50011963,
+  "cdhash": "159e1eda7d0e46c47a1adb0a96fc3d7617806b75",
   "signing_team": "R3UNCZH45H",
   "notarized": true,
   "stable_download": "https://github.com/jasonzacmusic/labs-downloads/releases/download/downloads/Prism-mac.dmg",
-  "versioned_download": "https://github.com/jasonzacmusic/labs-downloads/releases/download/prism-v1.0.1/Prism-mac.dmg",
+  "versioned_download": "https://github.com/jasonzacmusic/labs-downloads/releases/download/prism-v1.0.3/Prism-mac.dmg",
   "updates": "manual"
 }

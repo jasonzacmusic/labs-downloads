@@ -22,7 +22,7 @@ Prism itself is proprietary software. It does not modify any of the components b
 
 ## Written offer for source code
 
-For the GPL- and LGPL-licensed components above, you can get the complete corresponding source code for the exact component versions shipped in Prism 1.0.0 and 1.0.1 from the links in the table. If a link is ever unavailable, email **music@nathanielschool.com** and Nathaniel Labs will send you the source, at no more than the cost of providing it, for at least three years after you received Prism.
+For the GPL- and LGPL-licensed components above, you can get the complete corresponding source code for the exact component versions shipped in Prism 1.0.0 through 1.0.3 from the links in the table. If a link is ever unavailable, email **music@nathanielschool.com** and Nathaniel Labs will send you the source, at no more than the cost of providing it, for at least three years after you received Prism.
 
 ## Your rights
 
@@ -32,4 +32,4 @@ You may replace, rebuild or study the GPL/LGPL components under the terms of the
 
 Prism plays YouTube and Instagram links through those services' own players or, when GrabIt is installed, through GrabIt's engine. Those services have their own terms; you are responsible for having the right to play what you open.
 
-_Prism 1.0.1 (build 5) · 29 September 2026_
+_Prism 1.0.3 (build 8) · 3 October 2026_
