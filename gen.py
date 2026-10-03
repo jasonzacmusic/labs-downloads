@@ -172,7 +172,7 @@ def build():
         for n in a.get("native", []):
             if n["asset"] in assets:
                 rec["downloads"].append((n["platform"],
-                    f"https://github.com/{REPO}/releases/latest/download/{n['asset']}",
+                    f"https://github.com/{REPO}/releases/download/{TAG}/{n['asset']}",
                     n.get("label", "")))
 
     # 2. Auto-discover native / iOS apps anywhere in the org (future-proof).
