@@ -272,9 +272,9 @@
 "ios": false
 },
 "jasonzacmusic/grabit": {
-"commit": "Merge GrabIt 1.20.0 public release.",
+"commit": "Merge pull request #10 from jasonzacmusic/codex/grabit-y",
 "ios": false,
-"pushed": "2026-09-05T18:00:02Z"
+"pushed": "2026-10-03T04:23:48Z"
 },
 "jasonzacmusic/gradus": {
 "commit": "Open all five species and add source-linked composition ",
