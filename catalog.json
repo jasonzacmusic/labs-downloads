@@ -140,8 +140,8 @@
       "native": [
         {
           "platform": "mac",
-          "asset": "GrabIt-1.22.2-build34.dmg",
-          "label": "v1.22.2"
+          "asset": "GrabIt-1.22.3-build35.dmg",
+          "label": "v1.22.3"
         }
       ],
       "blurb": "Native Mac video downloader \u2014 paste a link, get the file."
