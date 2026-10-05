@@ -62,16 +62,19 @@
         {
           "platform": "mac",
           "asset": "NSM-Flow-mac-Apple-Silicon.dmg",
-          "label": "Apple Silicon"
+          "label": "Apple Silicon",
+          "tag": "nsm-flow-v0.3.0-alpha.3"
         },
         {
           "platform": "mac",
           "asset": "NSM-Flow-mac-Intel.dmg",
-          "label": "Intel"
+          "label": "Intel",
+          "tag": "nsm-flow-v0.3.0-alpha.3"
         },
         {
           "platform": "win",
-          "asset": "NSM-Flow-windows-x64-setup.exe"
+          "asset": "NSM-Flow-windows-x64-setup.exe",
+          "tag": "nsm-flow-v0.3.0-alpha.3"
         }
       ],
       "site": "https://labs.nathanielschool.com/products/nsm-flow",
