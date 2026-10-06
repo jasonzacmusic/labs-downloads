@@ -65,8 +65,8 @@ def cget(repo, key, default=None):
 
 
 # ---------- GitHub facts ----------
-def hub_assets():
-    d = api(f"/repos/{REPO}/releases/tags/{TAG}") or {}
+def hub_assets(tag=TAG):
+    d = api(f"/repos/{REPO}/releases/tags/{tag}") or {}
     return {a["name"] for a in d.get("assets", [])}
 
 
@@ -144,7 +144,7 @@ def rel_time(iso):
 
 def build():
     cat = json.load(open(os.path.join(HERE, "catalog.json")))["apps"]
-    assets = hub_assets()
+    assets_by_tag = {TAG: hub_assets()}
     apps = {}   # key -> record
 
     def add(key, name, category, repo=None):
@@ -170,9 +170,14 @@ def build():
         if a.get("ios") == "live" or a.get("ios") == "soon":
             rec["ios"] = True
         for n in a.get("native", []):
-            if n["asset"] in assets:
+            # Versioned apps retain immutable bytes; legacy products keep the
+            # existing shared downloads tag unless their metadata opts in.
+            release_tag = n.get("tag", TAG)
+            if release_tag not in assets_by_tag:
+                assets_by_tag[release_tag] = hub_assets(release_tag)
+            if n["asset"] in assets_by_tag[release_tag]:
                 rec["downloads"].append((n["platform"],
-                    f"https://github.com/{REPO}/releases/latest/download/{n['asset']}",
+                    f"https://github.com/{REPO}/releases/download/{release_tag}/{n['asset']}",
                     n.get("label", "")))
 
     # 2. Auto-discover native / iOS apps anywhere in the org (future-proof).

@@ -1,19 +1,19 @@
 {
-  "version": "0.3.0-alpha.1",
-  "notes": "Signed and notarized installers; Local dictation, no account needed; Musician-grade typing",
-  "pub_date": "2026-08-04T05:07:18Z",
+  "version": "0.3.0-alpha.3",
+  "notes": "# NSM Flow 0.3.0-alpha.3\n\n## Review before updating\n\nAvailable updates show their version and full release notes before you choose **Update and restart**. Cancel keeps your current app running. Background discovery never installs an update.\n\n## Protect live dictation\n\nAn update can start only after recording and transcription finish. Dictation stays paused while an approved installation runs. If a download fails, you can continue dictating and retry the update.\n\nThis release retains the classroom notation fixes, secure optional API-key storage, transcript retention controls and resumable model downloads introduced in 0.3.0-alpha.2. Mac packages are signed and notarized; Windows installers remain an unsigned alpha.",
+  "pub_date": "2026-10-05T06:32:20Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSOXo2YUl2MDhSODIrUng0aUV2OE9NZEJWMEU2bys0d3lDVituUjNmK1BoVnNicWY5MkwrcGVtcjlyTkhKWnZxN1JldENzcnlsUkZ3b01rMDNlL21SMHpXNmorVkwySkFrPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1ODIwMDMxCWZpbGU6TlNNLUZsb3ctbWFjLUFwcGxlLVNpbGljb24uYXBwLnRhci5negpOUmxuL0pmcSs0WUZDcW1VZERSdE1yVDFiYVA5Uys3bkNNcXhlcFNWdU1mdnBlUCtER3hrK0R4YlRFVFR4VW1VNXczSjlZZHhCbGYzZFZGVzNSTEdEZz09Cg==",
-      "url": "https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/NSM-Flow-mac-Apple-Silicon.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSOXo2YUl2MDhSODBxNUE4UnVBaVc0Z1RTc3ZBNEJSOXN1SVV4YU5lN1pQeUo3M0tkU21zazdKK1NLQXNIS0s5NWt6TmpzYStZSHJTWlB0cjRRME1ZQXN0MFI4UWszSEFzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkxMTgxOTM0CWZpbGU6TlNNLUZsb3ctbWFjLUFwcGxlLVNpbGljb24uYXBwLnRhci5negpRZUlSTlRGMWJUZitPRVVYSWlORVdTMEEwTnpycnlza3VVOWliZlJrNGROaHFiK2Y5TXN4a2lnbkNMK0d0UWZBdEdyWk9GZ3hIUlkwQ2xMWjRJM2lEUT09Cg==",
+      "url": "https://github.com/jasonzacmusic/labs-downloads/releases/download/nsm-flow-v0.3.0-alpha.3/NSM-Flow-mac-Apple-Silicon.app.tar.gz"
     },
     "darwin-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSOXo2YUl2MDhSOHlNZG9XU2xzbjlvek1nek5PR2xwb3pSM0Fsc2VSR1FvMEh2WnBlY01zclJVcDExRktkUTM2aFhsUUQyckFQaXBHV2szRHd2MGVRSlN5T3NGSFlhU1FjPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1ODIwMDM4CWZpbGU6TlNNLUZsb3ctbWFjLUludGVsLmFwcC50YXIuZ3oKRkJzRDJTUVJFYzllQjRndEZUOXkwV3FKci9lRkx5VU1qVUpyYWwwN1dDdXBLaktvWGMxQ09FVkQ2OUlyZlVES0lWbm0wRk44V0dTRXQ0Y25IbkdEQ3c9PQo=",
-      "url": "https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/NSM-Flow-mac-Intel.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSOXo2YUl2MDhSOC9EcjlrUkZ6Q2ZZU0VjL3RlOWNRN0wyUmN4a05YZGV1clU0aUhFMGZ0eHZIejRiL1Nib0F5T0ZOSW1TNngzdHVFVnhPR1VaL2hFdHZxRENENzRnQ0FzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkxMTgxOTM5CWZpbGU6TlNNLUZsb3ctbWFjLUludGVsLmFwcC50YXIuZ3oKM1YxSTc5Ukd6ZGcwNTU0TG1INmtiQjl1a3c0dnVrbC84djhRanZ0eGRQNGlqVlgwTTZ3ZUQwR0Y5cmM0c3JhT0RLaTl3U0ZQQzNOYVNhOTEzd1VzQXc9PQo=",
+      "url": "https://github.com/jasonzacmusic/labs-downloads/releases/download/nsm-flow-v0.3.0-alpha.3/NSM-Flow-mac-Intel.app.tar.gz"
     },
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSOXo2YUl2MDhSODFHZVhScTFSN3MxTVZnOWFJbmRHdDR0NnBSUzYvQ09md3hybDlPZjVrSXRqWjI4TEw5MkNZTk5ESVI5RXU5SS9qZjYyNXhXQUhQaUtBUVI3eWxud1FjPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzg1ODIwMDM4CWZpbGU6TlNNLUZsb3ctd2luZG93cy14NjQtc2V0dXAuZXhlClF6cFM5RzRwSGtBU2RLVHYrRmJRaUxkYVpFSlE3anpTRVQ2ZU1ka0dVekZBWDc4b3VKUUVmUmtmZ0k3K0xqbzBxWDl3ZzJrQjV4R1BCR016eG5TT0R3PT0K",
-      "url": "https://github.com/jasonzacmusic/labs-downloads/releases/latest/download/NSM-Flow-windows-x64-setup.exe"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSOXo2YUl2MDhSODZCRlR6UWxjQmNNSTN2MDh4N3EyWU56dlRLVWRFV2dRbld3ZUwyS1dCMlg0T1JxdnNOVjhreXNkY2FDZElwd3U1Z2NjWW44QWZ3VFBva2ZXaTdLMGdFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkxMTgxOTQwCWZpbGU6TlNNLUZsb3ctd2luZG93cy14NjQtc2V0dXAuZXhlCno4YlhvQzFrZEpQYVFJMkZtbFluUkUrSmFGZWFuRjRWVHdIRDdac0FVT0N3VzBPNFA5UlVQcHgyUFhjYUFjWVdKWTVYWmpJMjdNaVUxRFlWdml1V0JRPT0K",
+      "url": "https://github.com/jasonzacmusic/labs-downloads/releases/download/nsm-flow-v0.3.0-alpha.3/NSM-Flow-windows-x64-setup.exe"
     }
   }
 }
