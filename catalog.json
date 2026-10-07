@@ -143,11 +143,12 @@
       "native": [
         {
           "platform": "mac",
-          "asset": "GrabIt-1.22.3-build35.dmg",
-          "label": "v1.22.3"
+          "asset": "GrabIt-1.22.4-build36.dmg",
+          "label": "v1.22.4"
         }
       ],
-      "blurb": "Native Mac video downloader \u2014 paste a link, get the file."
+      "blurb": "Capture a permitted lesson; keep stills, clips, audio and practice copies.",
+      "site": "https://grabit.nathanielschool.com"
     },
     {
       "name": "MIDI Piano Visualizer",
