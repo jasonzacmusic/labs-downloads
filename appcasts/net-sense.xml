@@ -6,6 +6,27 @@
         <description>Studio network monitoring for Mac, by Nathaniel Labs.</description>
         <language>en</language>
         <item>
+            <title>1.8.2</title>
+            <pubDate>Wed, 14 Oct 2026 16:08:09 +0530</pubDate>
+            <sparkle:version>202610141605</sparkle:version>
+            <sparkle:shortVersionString>1.8.2</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>11.0</sparkle:minimumSystemVersion>
+            <netsense:sha256>8304acea1d9ad6ec972436089809e71473ae467453552a310590db74924ff5be</netsense:sha256>
+            <description sparkle:format="markdown"><![CDATA[# Net Sense 1.8.2
+
+Connect new laptops to school Wi-Fi first, then optionally open Net Sense.
+
+- Windows, Mac, Chromebook and Linux Wi-Fi computers can use the school network name and password without an existing internet connection.
+- Connect a device now shows laptop Wi-Fi details and the phone Wi-Fi QR before dashboard access.
+- Copy invitation creates a fresh read-only link using the numeric LAN address, with no short-name discovery or code typing required.]]></description>
+            <enclosure
+                url="https://github.com/jasonzacmusic/labs-downloads/releases/download/downloads/Net-Sense-1.8.2-mac.dmg"
+                sparkle:version="202610141605"
+                sparkle:shortVersionString="1.8.2"
+                length="20389252"
+                type="application/octet-stream" />
+        </item>
+        <item>
             <title>1.8.1</title>
             <pubDate>Wed, 14 Oct 2026 15:23:35 +0530</pubDate>
             <sparkle:version>202610141520</sparkle:version>
