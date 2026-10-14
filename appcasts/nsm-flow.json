@@ -1,19 +1,19 @@
 {
-  "version": "0.3.0-alpha.3",
-  "notes": "# NSM Flow 0.3.0-alpha.3\n\n## Review before updating\n\nAvailable updates show their version and full release notes before you choose **Update and restart**. Cancel keeps your current app running. Background discovery never installs an update.\n\n## Protect live dictation\n\nAn update can start only after recording and transcription finish. Dictation stays paused while an approved installation runs. If a download fails, you can continue dictating and retry the update.\n\nThis release retains the classroom notation fixes, secure optional API-key storage, transcript retention controls and resumable model downloads introduced in 0.3.0-alpha.2. Mac packages are signed and notarized; Windows installers remain an unsigned alpha.",
-  "pub_date": "2026-10-05T06:32:20Z",
+  "version": "0.3.0-alpha.4",
+  "notes": "# NSM Flow 0.3.0-alpha.4\n\n## Public source and downloads\n\nNSM Flow is now a public MIT-licensed repository with installation instructions,\nprivacy and model-license guides, and a cross-platform test matrix. Product and\ndownload links inside the app open the public GitHub pages.\n\n## NSM Flow identity\n\nAll tray themes and activity states now use NSM Flow's waveform mark with distinct status markers. The original Handy\napplication foundation remains credited; its hand logo is no longer displayed.\n\n## Linux alpha\n\nLinux x64 DEB, RPM and AppImage packaging includes speech runtime libraries and\nthird-party license texts. The initial build target is Ubuntu 22.04/glibc; X11\nis recommended. The X11/KDE window backend avoids a GPL-only Hyprland dependency.\nWayland, other distributions and physical microphone/paste behavior need device\ntesting. Linux updates are manual in this alpha.\n\nMac installers remain Developer ID signed and Apple notarized. Windows x64\ninstallers remain unsigned and may show SmartScreen warnings. Downloaded speech\nmodels and optional AI providers retain their own licenses and terms. Indian\nvocabulary support is included; universal accent accuracy is not claimed.",
+  "pub_date": "2026-10-14T08:45:25Z",
   "platforms": {
     "darwin-aarch64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSOXo2YUl2MDhSODBxNUE4UnVBaVc0Z1RTc3ZBNEJSOXN1SVV4YU5lN1pQeUo3M0tkU21zazdKK1NLQXNIS0s5NWt6TmpzYStZSHJTWlB0cjRRME1ZQXN0MFI4UWszSEFzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkxMTgxOTM0CWZpbGU6TlNNLUZsb3ctbWFjLUFwcGxlLVNpbGljb24uYXBwLnRhci5negpRZUlSTlRGMWJUZitPRVVYSWlORVdTMEEwTnpycnlza3VVOWliZlJrNGROaHFiK2Y5TXN4a2lnbkNMK0d0UWZBdEdyWk9GZ3hIUlkwQ2xMWjRJM2lEUT09Cg==",
-      "url": "https://github.com/jasonzacmusic/labs-downloads/releases/download/nsm-flow-v0.3.0-alpha.3/NSM-Flow-mac-Apple-Silicon.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSOXo2YUl2MDhSODA3Y3pvSndtT1FoMitreVlNQkZqWE9IbXRRVXAwc2twL0Z1bTRSSzNXMXNDUHVkdmcwbENPaFg4cW1yZ1dDZGRzaUtyWWlSQlN0N3RqWFcxYjFqMlFzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkxOTY3NTE5CWZpbGU6TlNNLUZsb3ctbWFjLUFwcGxlLVNpbGljb24uYXBwLnRhci5negpGNFNPaVZhQzJsb0xnSVg0YjlWL29BcU5CcXhINHludnArQ0JzTlZIQ09UMU43RGhCS3AwSFFTcit6TkU0WkpOU3BGVFVwYk45TzdZcG9QOEVPblFCUT09Cg==",
+      "url": "https://github.com/jasonzacmusic/labs-downloads/releases/download/nsm-flow-v0.3.0-alpha.4/NSM-Flow-mac-Apple-Silicon.app.tar.gz"
     },
     "darwin-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSOXo2YUl2MDhSOC9EcjlrUkZ6Q2ZZU0VjL3RlOWNRN0wyUmN4a05YZGV1clU0aUhFMGZ0eHZIejRiL1Nib0F5T0ZOSW1TNngzdHVFVnhPR1VaL2hFdHZxRENENzRnQ0FzPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkxMTgxOTM5CWZpbGU6TlNNLUZsb3ctbWFjLUludGVsLmFwcC50YXIuZ3oKM1YxSTc5Ukd6ZGcwNTU0TG1INmtiQjl1a3c0dnVrbC84djhRanZ0eGRQNGlqVlgwTTZ3ZUQwR0Y5cmM0c3JhT0RLaTl3U0ZQQzNOYVNhOTEzd1VzQXc9PQo=",
-      "url": "https://github.com/jasonzacmusic/labs-downloads/releases/download/nsm-flow-v0.3.0-alpha.3/NSM-Flow-mac-Intel.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSOXo2YUl2MDhSOCtzV3FkRW82dXhwc1haRHVTRHZ6Q1FxaFhCdzg2Ukk1S0EraktVYWdManYvR2pCMldYVjRVcVh2bnBiKzk4Z3A0Q2wrMC9IZytCWEtzTU90aGFrdWdNPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkxOTY3NTI1CWZpbGU6TlNNLUZsb3ctbWFjLUludGVsLmFwcC50YXIuZ3oKT1h2TXIzbzlFaDZPNzJXNDhoYUVjR2ZEMXgwaFVBUjFGcGl0WEg4TGZVNWdCajlLMTBOSDFla3laUW5WRkVNYW1SZmlsbTJ6M2Z6aXNIRTUwNHdtQ2c9PQo=",
+      "url": "https://github.com/jasonzacmusic/labs-downloads/releases/download/nsm-flow-v0.3.0-alpha.4/NSM-Flow-mac-Intel.app.tar.gz"
     },
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSOXo2YUl2MDhSODZCRlR6UWxjQmNNSTN2MDh4N3EyWU56dlRLVWRFV2dRbld3ZUwyS1dCMlg0T1JxdnNOVjhreXNkY2FDZElwd3U1Z2NjWW44QWZ3VFBva2ZXaTdLMGdFPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkxMTgxOTQwCWZpbGU6TlNNLUZsb3ctd2luZG93cy14NjQtc2V0dXAuZXhlCno4YlhvQzFrZEpQYVFJMkZtbFluUkUrSmFGZWFuRjRWVHdIRDdac0FVT0N3VzBPNFA5UlVQcHgyUFhjYUFjWVdKWTVYWmpJMjdNaVUxRFlWdml1V0JRPT0K",
-      "url": "https://github.com/jasonzacmusic/labs-downloads/releases/download/nsm-flow-v0.3.0-alpha.3/NSM-Flow-windows-x64-setup.exe"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVSOXo2YUl2MDhSOCtHVHpDVHBoOFFWY3hXMVdCWTgwSzl4ell0cmJnQ1dUdnF3RFBuVXR6YW04LzdLSXlmUDd2VHZrbVFVYmhWQ3Boak11cy9UdUF4aS8weU13enFsQWcwPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzkxOTY3NTI1CWZpbGU6TlNNLUZsb3ctd2luZG93cy14NjQtc2V0dXAuZXhlCmNLM3A1MDI0TnFJL3FiSXM5SXVuTU0xQURsWDhBZHhWZFhrT1pKak83K0tNYWJtdCtnQm5aamo1THUvcFBCUEFVNnJQcWtBN3pmb0ZobnVWQzI2Z0NnPT0K",
+      "url": "https://github.com/jasonzacmusic/labs-downloads/releases/download/nsm-flow-v0.3.0-alpha.4/NSM-Flow-windows-x64-setup.exe"
     }
   }
 }
