@@ -6,6 +6,27 @@
         <description>Studio network monitoring for Mac, by Nathaniel Labs.</description>
         <language>en</language>
         <item>
+            <title>1.8.1</title>
+            <pubDate>Wed, 14 Oct 2026 15:23:35 +0530</pubDate>
+            <sparkle:version>202610141520</sparkle:version>
+            <sparkle:shortVersionString>1.8.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>11.0</sparkle:minimumSystemVersion>
+            <netsense:sha256>dabef0219e61dceb4d5670adab6544b8857f1638f228655b02a46757a19dd1fd</netsense:sha256>
+            <description sparkle:format="markdown"><![CDATA[# Net Sense 1.8.1
+
+Recognise your devices and open the master Net Sense on a laptop more easily.
+
+- Devices now show the available model and operating system beside the person; confirmed device names are remembered by the master.
+- Share Net Sense puts the laptop link, real Mac clipboard copy and AirDrop sharing in one place.
+- Enrol a laptop once to keep access when its private Wi-Fi address changes; no separate router login is needed.]]></description>
+            <enclosure
+                url="https://github.com/jasonzacmusic/labs-downloads/releases/download/downloads/Net-Sense-1.8.1-mac.dmg"
+                sparkle:version="202610141520"
+                sparkle:shortVersionString="1.8.1"
+                length="20299484"
+                type="application/octet-stream" />
+        </item>
+        <item>
             <title>1.8.0</title>
             <pubDate>Wed, 14 Oct 2026 12:49:07 +0530</pubDate>
             <sparkle:version>202610141246</sparkle:version>
