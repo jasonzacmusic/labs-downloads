@@ -21,10 +21,10 @@
         }
       ],
       "web": "https://net-sense-tau.vercel.app",
-      "blurb": "One master Mac watches the studio internet and Wi-Fi. Recognise devices by model or remembered name; share the live dashboard with school laptops and phones.",
+      "blurb": "One master Mac watches the studio internet and Wi-Fi. Connect new phones and laptops to school Wi-Fi first; then share optional read-only dashboard access using a numeric-address invitation.",
       "release": {
-        "version": "1.8.1",
-        "build": "202610141520",
+        "version": "1.8.2",
+        "build": "202610141605",
         "record": "net-sense/release.json"
       }
     },

@@ -1,9 +1,9 @@
 {
-  "version": "1.8.1",
-  "build": "202610141520",
-  "sourceCommit": "53830b8",
-  "installerBytes": 20299484,
-  "installerSha256": "dabef0219e61dceb4d5670adab6544b8857f1638f228655b02a46757a19dd1fd",
+  "version": "1.8.2",
+  "build": "202610141605",
+  "sourceCommit": "c9ff9d8ddb3161537dbf641fa5c9fa55ea93c2df",
+  "installerBytes": 20389252,
+  "installerSha256": "8304acea1d9ad6ec972436089809e71473ae467453552a310590db74924ff5be",
   "bundleId": "school.nathaniel.net-sense",
   "architectures": [
     "x86_64",
@@ -11,29 +11,33 @@
   ],
   "minimumDeclaredMacOS": "11.0",
   "testedMacOS": "15.6.1",
-  "appNotarization": "922b0de7-ee6e-4b2c-8138-2ec76c8ae700",
-  "installerNotarization": "cca3b14b-33cb-4b64-8bc1-a2de8e99b04f",
+  "appNotarization": "868d5bb2-0f32-4ae2-b62b-33dc24b80ad6",
+  "installerNotarization": "6d6e3df6-bbf4-46a5-b4fe-ae972dcba067",
   "feed": "https://jasonzacmusic.github.io/labs-downloads/appcasts/net-sense.xml",
-  "installer": "https://github.com/jasonzacmusic/labs-downloads/releases/download/downloads/Net-Sense-1.8.1-mac.dmg",
+  "installer": "https://github.com/jasonzacmusic/labs-downloads/releases/download/downloads/Net-Sense-1.8.2-mac.dmg",
   "updateAcceptance": {
-    "from": "1.8.0",
-    "to": "1.8.1",
+    "from": "1.8.1",
+    "to": "1.8.2",
     "device": "Studio Mac mini",
     "method": "Native Check for Updates, verified package swap, normal relaunch",
     "preservedConfig": true
   },
   "tests": {
     "typescript": 62,
-    "python": 191,
-    "nativeClipboardBridge": true
+    "python": 193,
+    "nativeClipboardBridge": true,
+    "nativePasswordRevealCopy": true,
+    "wifiCredentialsMatchPhoneQr": true,
+    "browserInvitationJoinAndReload": true
   },
   "limitations": [
-    "MacBook Pro native installation and actual browser joining remain unobserved without device access."
+    "Intern Windows first-time Wi-Fi joining and real internet access remain unobserved without access to that laptop.",
+    "MacBook Pro native installation and real update acceptance remain unobserved without device control."
   ],
   "access": "team",
   "changelog": [
-    "Shows the controller-reported device model and OS alongside the person.",
-    "Remembers confirmed device names on the master without changing trust.",
-    "Share Net Sense provides laptop-link copy, native sharing and viewer invitations."
+    "Connect a device separates first-time school Wi-Fi joining from optional dashboard access.",
+    "Laptops and desktops with Wi-Fi can use the school network name and reveal/copy password while offline; phones retain their Wi-Fi QR.",
+    "Copy invitation creates a fresh read-only numeric-address link; the recipient joins without typing a code."
   ]
 }
