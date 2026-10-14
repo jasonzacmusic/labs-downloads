@@ -1,10 +1,30 @@
 <?xml version="1.0" standalone="yes"?>
-<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+<rss xmlns:netsense="https://nathanielschool.com/net-sense" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
     <channel>
         <title>Net Sense</title>
         <link>https://jasonzacmusic.github.io/labs-downloads/appcasts/net-sense.xml</link>
         <description>Studio network monitoring for Mac, by Nathaniel Labs.</description>
         <language>en</language>
+        <item>
+            <title>1.8.0</title>
+            <pubDate>Wed, 14 Oct 2026 12:49:07 +0530</pubDate>
+            <sparkle:version>202610141246</sparkle:version>
+            <sparkle:shortVersionString>1.8.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>11.0</sparkle:minimumSystemVersion>
+            <netsense:sha256>31bfbfdc9968a27fca03a5cb0b707fcf4ee32fa00dd8b49b6a9dcc2c6dade87d</netsense:sha256>
+            <description sparkle:format="markdown"><![CDATA[# Net Sense 1.8.0
+
+Laptops can now join Net Sense, and Net Sense now keeps itself up to date.
+
+- On a laptop, type netsense.local:8796 and the code from Add device.
+- Every Mac running Net Sense installs new versions by itself within 30 minutes.]]></description>
+            <enclosure
+                url="https://github.com/jasonzacmusic/labs-downloads/releases/download/downloads/Net-Sense-1.8.0-mac.dmg"
+                sparkle:version="202610141246"
+                sparkle:shortVersionString="1.8.0"
+                length="20382293"
+                type="application/octet-stream" />
+        </item>
         <item>
             <title>1.7.4</title>
             <pubDate>Sat, 29 Aug 2026 11:22:00 +0530</pubDate>
