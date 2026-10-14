@@ -21,7 +21,12 @@
         }
       ],
       "web": "https://net-sense-tau.vercel.app",
-      "blurb": "Watches every internet line and access point in the studio, proves which provider is at fault, and reads the Wi-Fi around you. Native Mac app."
+      "blurb": "One master Mac watches the studio internet and Wi-Fi. Recognise devices by model or remembered name; share the live dashboard with school laptops and phones.",
+      "release": {
+        "version": "1.8.1",
+        "build": "202610141520",
+        "record": "net-sense/release.json"
+      }
     },
     {
       "name": "NSM Cut Studio",

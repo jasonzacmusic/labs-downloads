@@ -1,0 +1,39 @@
+{
+  "version": "1.8.1",
+  "build": "202610141520",
+  "sourceCommit": "53830b8",
+  "installerBytes": 20299484,
+  "installerSha256": "dabef0219e61dceb4d5670adab6544b8857f1638f228655b02a46757a19dd1fd",
+  "bundleId": "school.nathaniel.net-sense",
+  "architectures": [
+    "x86_64",
+    "arm64"
+  ],
+  "minimumDeclaredMacOS": "11.0",
+  "testedMacOS": "15.6.1",
+  "appNotarization": "922b0de7-ee6e-4b2c-8138-2ec76c8ae700",
+  "installerNotarization": "cca3b14b-33cb-4b64-8bc1-a2de8e99b04f",
+  "feed": "https://jasonzacmusic.github.io/labs-downloads/appcasts/net-sense.xml",
+  "installer": "https://github.com/jasonzacmusic/labs-downloads/releases/download/downloads/Net-Sense-1.8.1-mac.dmg",
+  "updateAcceptance": {
+    "from": "1.8.0",
+    "to": "1.8.1",
+    "device": "Studio Mac mini",
+    "method": "Native Check for Updates, verified package swap, normal relaunch",
+    "preservedConfig": true
+  },
+  "tests": {
+    "typescript": 62,
+    "python": 191,
+    "nativeClipboardBridge": true
+  },
+  "limitations": [
+    "MacBook Pro native installation and actual browser joining remain unobserved without device access."
+  ],
+  "access": "team",
+  "changelog": [
+    "Shows the controller-reported device model and OS alongside the person.",
+    "Remembers confirmed device names on the master without changing trust.",
+    "Share Net Sense provides laptop-link copy, native sharing and viewer invitations."
+  ]
+}

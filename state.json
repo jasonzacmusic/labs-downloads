@@ -410,9 +410,9 @@
     "ios": false
   },
   "jasonzacmusic/net-sense": {
-    "commit": "Make the certificate test tell the truth off a Mac",
+    "commit": "Record verified Net Sense 1.8.1 package and real update ",
     "ios": false,
-    "pushed": "2026-09-08T06:18:52Z"
+    "pushed": "2026-10-14T09:58:47Z"
   },
   "jasonzacmusic/nph-reaper-suite": {
     "ios": false
