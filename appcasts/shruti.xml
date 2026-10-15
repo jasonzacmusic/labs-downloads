@@ -4,26 +4,28 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>Shruti</title>
         <item>
-            <title>1.4.31</title>
-            <pubDate>Sat, 03 Oct 2026 10:24:10 +0530</pubDate>
-            <sparkle:version>66</sparkle:version>
-            <sparkle:shortVersionString>1.4.31</sparkle:shortVersionString>
+            <title>1.4.34</title>
+            <pubDate>Thu, 15 Oct 2026 20:34:59 +0530</pubDate>
+            <sparkle:minimumAutoupdateVersion>68</sparkle:minimumAutoupdateVersion>
+            <sparkle:version>69</sparkle:version>
+            <sparkle:shortVersionString>1.4.34</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.2</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.31
+            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.34
 
-- Resize either mixer panel with its visible corner grip. Pointer movement stays stable as the window grows; double-click the grip to fit the current audio apps to the screen. Window sizing is saved when resizing ends.
-- Installed app categories no longer add silent, unused apps to the mixer. Real audio activity and retained user controls determine membership. Existing arrangements stay in order, and new activity does not automatically scroll away from the app you are using.
-- Remove an app directly with its row’s × button, including in Arrange. Undo and Add App → Removed restore its saved mix and order.
-- Eiosis AirEQ’s original editor now receives the initialization it requires. Plugin construction, saved-state restoration and parameter-state capture run away from the UI thread. Loading has a deadline and Retry; closed or removed editors cannot reappear from obsolete callbacks.
-- Native Audio Unit editors are preferred. A plugin without a usable native view has a clearly explained published-control recovery view.
-- Includes the 1.4.30 responsive faders, dB readouts, Shift fine adjustment, Clear Solo, ordered Smart controls and Global EQ improvements.
+- A damaged settings file can no longer cost you your licence or restart your 14-day trial. Shruti keeps a copy of the last good settings, rebuilds from it (or from whatever can still be read), keeps the damaged file aside, and tells you what happened.
+- MIDI controllers: when two controls move at the same moment, every message is now read correctly. Changing MIDI mappings while a controller is moving can no longer cause a crash. Bypass All and Scene buttons fire once per press instead of repeating while a knob or fader is held high.
+- Cleaner audio path: the live audio callback no longer allocates memory, and removing or swapping an Audio Unit plug-in no longer makes the audio wait while the plug-in shuts down.
+- The app and the audio service can no longer overwrite each other's saved settings.
+- The control socket refuses to start, instead of overflowing, if a home folder path is unusually long.
+- Importing from SoundSource, and `shruti output volume`, no longer crash on a malformed number.
+- The command-line installer and the audio-driver scripts now refuse to run while REAPER, Logic, MainStage, Zoom or OBS is open, so a class or recording is never cut.
 
-Requires macOS 14.2 or later; Apple silicon and Intel. Settings are preserved. Native editor checks covered installed Eiosis AirEQ Premium, Apple AUParametricEQ, Sonnox Oxford EQ and Slate Inf EQ. This does not certify every plugin or hardware route. No synthetic sound was played during verification.
+Requires macOS 14.2 or later; Apple silicon and Intel. Existing settings, app arrangements and window preferences are retained.
 ]]></description>
-            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.31.dmg" length="11725014" type="application/octet-stream" sparkle:edSignature="/jXOYDhnEVB8k43Vy0RTHuL9fQd65Czf5rSd7r4Yg5P6D0QoykIlkzN5IPkHm7bhwhEAGY3y0jQ5TYcJ99TuBg=="></enclosure>
+            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.34.dmg" length="11893171" type="application/octet-stream" sparkle:edSignature="5KaWFclzf24yKNwpHEqcbwMjaYcxk5jZAxnPD7poaYnCqMEAdiPEIbf+wA8AExH8UxHW75i8T3fmAnWOfMWxAg=="></enclosure>
         </item>
     </channel>
 </rss><!-- sparkle-signatures:
-edSignature: 5+lU1lLiXeDMJwlx5vytO63Skm6BcQ5933Qz3i55rW+4P4hHYPEqC+jX/3WTILgvf7sNvzBUdm5KpEtmqB5mDg==
-length: 2601
+edSignature: 6zv7KGRiwXRBYoVqdvsR5lyzTiW3paT8luqGdJbN71Wm6zSyHgwXue8GhMMrXtsfsRlLbGCk/6ueUQhQvBBACQ==
+length: 2508
 -->
