@@ -4,28 +4,24 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>Shruti</title>
         <item>
-            <title>1.4.34</title>
-            <pubDate>Thu, 15 Oct 2026 20:34:59 +0530</pubDate>
+            <title>1.4.35</title>
+            <pubDate>Fri, 16 Oct 2026 09:34:17 +0530</pubDate>
             <sparkle:minimumAutoupdateVersion>68</sparkle:minimumAutoupdateVersion>
-            <sparkle:version>69</sparkle:version>
-            <sparkle:shortVersionString>1.4.34</sparkle:shortVersionString>
+            <sparkle:version>70</sparkle:version>
+            <sparkle:shortVersionString>1.4.35</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.2</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.34
+            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.35
 
-- A damaged settings file can no longer cost you your licence or restart your 14-day trial. Shruti keeps a copy of the last good settings, rebuilds from it (or from whatever can still be read), keeps the damaged file aside, and tells you what happened.
-- MIDI controllers: when two controls move at the same moment, every message is now read correctly. Changing MIDI mappings while a controller is moving can no longer cause a crash. Bypass All and Scene buttons fire once per press instead of repeating while a knob or fader is held high.
-- Cleaner audio path: the live audio callback no longer allocates memory, and removing or swapping an Audio Unit plug-in no longer makes the audio wait while the plug-in shuts down.
-- The app and the audio service can no longer overwrite each other's saved settings.
-- The control socket refuses to start, instead of overflowing, if a home folder path is unusually long.
-- Importing from SoundSource, and `shruti output volume`, no longer crash on a malformed number.
-- The command-line installer and the audio-driver scripts now refuse to run while REAPER, Logic, MainStage, Zoom or OBS is open, so a class or recording is never cut.
+- A new version is easy to spot: "Update available — <version>" appears at the top of the Shruti panel, and the menu-bar icon gets an orange dot. Click it to choose Install or Later. Nothing installs on its own, and an update still waits while audio or recording is active.
+- Check for Updates… is in the panel's ··· menu (with the version you have beside it) and in Settings.
+- Shruti checks when it opens and then every hour (was every six hours). A scheduled check no longer opens an update window behind your other apps; the button and the dot do the asking.
 
 Requires macOS 14.2 or later; Apple silicon and Intel. Existing settings, app arrangements and window preferences are retained.
 ]]></description>
-            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.34.dmg" length="11893171" type="application/octet-stream" sparkle:edSignature="5KaWFclzf24yKNwpHEqcbwMjaYcxk5jZAxnPD7poaYnCqMEAdiPEIbf+wA8AExH8UxHW75i8T3fmAnWOfMWxAg=="></enclosure>
+            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.35.dmg" length="11923732" type="application/octet-stream" sparkle:edSignature="ogsifmubn4DZ1rRrXhzuPdZ//xDQJ6HvKzvFNmXPhqFuukJeUB6e7Dsz5KcApxIJDqQ7LuLQXAKzUrISRGQfCQ=="></enclosure>
         </item>
     </channel>
 </rss><!-- sparkle-signatures:
-edSignature: 6zv7KGRiwXRBYoVqdvsR5lyzTiW3paT8luqGdJbN71Wm6zSyHgwXue8GhMMrXtsfsRlLbGCk/6ueUQhQvBBACQ==
-length: 2508
+edSignature: CkduH9nXomYLkfs8Q/Y8r+dU6Tn10T9QTviEIyJLkRa5qMve2Pfp4ekEnbQcots6eKXMGKjQELjt4yZ2OUewDw==
+length: 1903
 -->
