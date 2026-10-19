@@ -4,25 +4,25 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>Shruti</title>
         <item>
-            <title>1.4.38</title>
-            <pubDate>Mon, 19 Oct 2026 12:10:08 +0530</pubDate>
+            <title>1.4.40</title>
+            <pubDate>Mon, 19 Oct 2026 13:46:38 +0530</pubDate>
             <sparkle:minimumAutoupdateVersion>68</sparkle:minimumAutoupdateVersion>
-            <sparkle:version>73</sparkle:version>
-            <sparkle:shortVersionString>1.4.38</sparkle:shortVersionString>
+            <sparkle:version>75</sparkle:version>
+            <sparkle:shortVersionString>1.4.40</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.2</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.38
+            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.40
 
-- Shruti now stays quiet in the background. With its mixer closed it uses almost no processor time, so your Mac stays cool and other apps keep the power they need.
-- Leaving another window open, such as the update window or Settings, no longer keeps a hidden mixer redrawing four times a second. Before, this could keep one processor core fully busy for hours.
-- The menu-bar icon still changes the moment something changes: mute, Bypass All, an app starting to play, or the volume.
-- The mixer shows the latest levels the instant you open it.
+- Updates no longer wait forever because a saved volume, mute or effect control is attached to a silent app.
+- A browser keeping its audio stream open does not block an update when Shruti’s healthy audio tap confirms it is silent. This uses the signal before Shruti’s mute and volume controls, so muted playback remains protected.
+- Active recording, real playback, missing activity information and stale audio measurements still hold the update. After 10 seconds of confirmed quiet, an update you already chose can continue.
+- If an update is waiting, Shruti names the app holding it or says it is waiting for the quiet interval.
 
 Requires macOS 14.2 or later; Apple silicon and Intel. Existing settings, app arrangements and window preferences are retained.
 ]]></description>
-            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.38.dmg" length="11878485" type="application/octet-stream" sparkle:edSignature="8xL6SWEfo+lQrk2RY0Y0diU27zMEYTSC4PYTuUiK1dBWmjzrW+4EaCIOm8YP+UwmIKainyuRbZRzfX6Ar0GqDQ=="></enclosure>
+            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.40.dmg" length="11939155" type="application/octet-stream" sparkle:edSignature="Nl+YJh+3Ei+kJf05YVwUKR8KXFrCfw8HtSwaD/eqIBVrmoCBLV9REdQII5toQ0vx6I1Kqj5hWvc8pGrxwlrYBA=="></enclosure>
         </item>
     </channel>
 </rss><!-- sparkle-signatures:
-edSignature: PwJIHVm1EeFzZYal7Jah951DFSugwFlVwwtKDzDy5a4E0Mp7gqw+3m+VcEd9QK0pMgZWC7tCq6IuA+2pnrMdAw==
-length: 1877
+edSignature: 1gGDSmnY0mEkTWp7Z/Ow2qFYZJZCJMudgEpH1ocIapm/9Wz6zg1wzh8Giqk9e4pYcZ9wYi0Z2Gw695FMvHHUBw==
+length: 1968
 -->

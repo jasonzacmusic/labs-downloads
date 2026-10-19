@@ -661,9 +661,9 @@
 "ios": false
 },
 "jasonzacmusic/shruti": {
-"commit": "release: publish Shruti 1.4.38 assets",
+"commit": "Merge pull request #31 from jasonzacmusic/codex/shruti-i",
 "ios": false,
-"pushed": "2026-10-19T06:41:24Z"
+"pushed": "2026-10-19T08:17:48Z"
 },
 "jasonzacmusic/sight-singing-studio": {
 "commit": "Every exercise in the library, sung by a human, marked f",
