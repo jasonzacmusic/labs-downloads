@@ -4,23 +4,25 @@ IMPORTANT: This file was signed by Sparkle. Any modifications to this file requi
     <channel>
         <title>Shruti</title>
         <item>
-            <title>1.4.37</title>
-            <pubDate>Fri, 16 Oct 2026 17:31:56 +0530</pubDate>
+            <title>1.4.38</title>
+            <pubDate>Mon, 19 Oct 2026 12:10:08 +0530</pubDate>
             <sparkle:minimumAutoupdateVersion>68</sparkle:minimumAutoupdateVersion>
-            <sparkle:version>72</sparkle:version>
-            <sparkle:shortVersionString>1.4.37</sparkle:shortVersionString>
+            <sparkle:version>73</sparkle:version>
+            <sparkle:shortVersionString>1.4.38</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.2</sparkle:minimumSystemVersion>
-            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.37
+            <description sparkle:format="markdown"><![CDATA[# Shruti 1.4.38
 
-- Clicking "Update available" now brings the Install / Later window straight to the front. Before, it could open hidden behind the Shruti panel and pop up later, as if by itself.
-- Shruti still never interrupts you with an update window: a new version shows only as the orange strip at the top of the panel and a dot on the menu-bar icon, until you click one of them.
+- Shruti now stays quiet in the background. With its mixer closed it uses almost no processor time, so your Mac stays cool and other apps keep the power they need.
+- Leaving another window open, such as the update window or Settings, no longer keeps a hidden mixer redrawing four times a second. Before, this could keep one processor core fully busy for hours.
+- The menu-bar icon still changes the moment something changes: mute, Bypass All, an app starting to play, or the volume.
+- The mixer shows the latest levels the instant you open it.
 
 Requires macOS 14.2 or later; Apple silicon and Intel. Existing settings, app arrangements and window preferences are retained.
 ]]></description>
-            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.37.dmg" length="11931655" type="application/octet-stream" sparkle:edSignature="c6/cuP+Zi5PUYTjAoMByWyiXq/Eh5CcdtLL+jt4wjTdfZX5P3WX/ch8ZCjBufREgQX9cAOqMAwcFFP2TPe/VAw=="></enclosure>
+            <enclosure url="https://shruti.nathanielschool.com/downloads/Shruti-1.4.38.dmg" length="11878485" type="application/octet-stream" sparkle:edSignature="8xL6SWEfo+lQrk2RY0Y0diU27zMEYTSC4PYTuUiK1dBWmjzrW+4EaCIOm8YP+UwmIKainyuRbZRzfX6Ar0GqDQ=="></enclosure>
         </item>
     </channel>
 </rss><!-- sparkle-signatures:
-edSignature: qZK4/C1wENPy1+L3DrXTr0bHW3QNidTZZeGBVs8q6p0F4DkhEBLiiC5E6tIgX1La064juSsLwtnX+vIDCiD9Ag==
-length: 1701
+edSignature: PwJIHVm1EeFzZYal7Jah951DFSugwFlVwwtKDzDy5a4E0Mp7gqw+3m+VcEd9QK0pMgZWC7tCq6IuA+2pnrMdAw==
+length: 1877
 -->
