@@ -6,6 +6,28 @@
         <description>Studio network monitoring for Mac, by Nathaniel Labs.</description>
         <language>en</language>
         <item>
+            <title>1.8.4</title>
+            <pubDate>Fri, 23 Oct 2026 21:11:04 +0530</pubDate>
+            <sparkle:version>202610232108</sparkle:version>
+            <sparkle:shortVersionString>1.8.4</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>11.0</sparkle:minimumSystemVersion>
+            <netsense:sha256>f1f1b54af207be79a28b8e46cb00fc67954099d4f3bc71b3e5e915298df72ad4</netsense:sha256>
+            <description sparkle:format="markdown"><![CDATA[# Net Sense 1.8.4
+
+The whole network can be put on one line, and Net Sense now counts how much data each line and device uses.
+
+- One switch sends everything out by Jio or ACT, with the other line kept as automatic backup.
+- Devices pinned on the Devices page still win over that switch.
+- Data used this month now shows on the Lines page, against each plan's monthly allowance.
+- Warns at 50%, 80% and 95% of a plan's data limit, instead of after it runs out.]]></description>
+            <enclosure
+                url="https://github.com/jasonzacmusic/labs-downloads/releases/download/downloads/Net-Sense-1.8.4-mac.dmg"
+                sparkle:version="202610232108"
+                sparkle:shortVersionString="1.8.4"
+                length="20427099"
+                type="application/octet-stream" />
+        </item>
+        <item>
             <title>1.8.3</title>
             <pubDate>Fri, 23 Oct 2026 19:39:40 +0530</pubDate>
             <sparkle:version>202610231936</sparkle:version>
