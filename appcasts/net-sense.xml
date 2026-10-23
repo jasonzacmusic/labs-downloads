@@ -6,6 +6,29 @@
         <description>Studio network monitoring for Mac, by Nathaniel Labs.</description>
         <language>en</language>
         <item>
+            <title>1.8.3</title>
+            <pubDate>Fri, 23 Oct 2026 19:39:40 +0530</pubDate>
+            <sparkle:version>202610231936</sparkle:version>
+            <sparkle:shortVersionString>1.8.3</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>11.0</sparkle:minimumSystemVersion>
+            <netsense:sha256>ca8e54beeaad3314b6125cc49fcf72fa8a22f617a5c622032e89b09da81c0465</netsense:sha256>
+            <description sparkle:format="markdown"><![CDATA[# Net Sense 1.8.3
+
+Net Sense now moves this Mac off an internet line that stops being usable, instead of waiting for it to go dead.
+
+- A line is judged on whether a lesson would survive it, not on the router's up/down flag: 4% packet loss, 150 ms latency or 80 ms of timing swing is enough to call it unusable.
+- When the line a device is pinned to goes bad and the other line is healthy, Net Sense moves the device itself within one probe cycle and says why.
+- It moves back to your chosen line only after that line has been steady for about ten minutes, refuses to move onto a line that is also bad, and stops moving if both lines are flapping.
+- The routing panel shows each line's live verdict, the last move made, and an on/off switch.
+- A routing rule is now named after the line it actually uses.]]></description>
+            <enclosure
+                url="https://github.com/jasonzacmusic/labs-downloads/releases/download/downloads/Net-Sense-1.8.3-mac.dmg"
+                sparkle:version="202610231936"
+                sparkle:shortVersionString="1.8.3"
+                length="20407973"
+                type="application/octet-stream" />
+        </item>
+        <item>
             <title>1.8.2</title>
             <pubDate>Wed, 14 Oct 2026 16:08:09 +0530</pubDate>
             <sparkle:version>202610141605</sparkle:version>
