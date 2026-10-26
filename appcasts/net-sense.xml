@@ -6,6 +6,27 @@
         <description>Studio network monitoring for Mac, by Nathaniel Labs.</description>
         <language>en</language>
         <item>
+            <title>1.8.7</title>
+            <pubDate>Mon, 26 Oct 2026 21:27:02 +0530</pubDate>
+            <sparkle:version>202610262124</sparkle:version>
+            <sparkle:shortVersionString>1.8.7</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>11.0</sparkle:minimumSystemVersion>
+            <netsense:sha256>cfef2a5957759aff84787f083c106418fd2ecda241a41395f689e6f3d69a4e0d</netsense:sha256>
+            <description sparkle:format="markdown"><![CDATA[# Net Sense 1.8.7
+
+Both lines now carry Jio's real 3,300 GB limit, and a line is rated on the days it was actually watched.
+
+- Jio's own postpaid tariff document, clause 6, sets a commercial usage threshold of 3,300 GB a billing cycle and stops the data past it. That limit is now on record for Jio, with the document it came from.
+- A line's rate is taken over the days it was actually counted, not the whole billing month. Jio read 98 GB a day while it was moving over 400.
+- When a line's limit falls inside the billing month, the panel names the day it runs out.]]></description>
+            <enclosure
+                url="https://github.com/jasonzacmusic/labs-downloads/releases/download/downloads/Net-Sense-1.8.7-mac.dmg"
+                sparkle:version="202610262124"
+                sparkle:shortVersionString="1.8.7"
+                length="20431928"
+                type="application/octet-stream" />
+        </item>
+        <item>
             <title>1.8.6</title>
             <pubDate>Mon, 26 Oct 2026 20:37:24 +0530</pubDate>
             <sparkle:version>202610262034</sparkle:version>
