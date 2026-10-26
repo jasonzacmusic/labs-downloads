@@ -6,6 +6,28 @@
         <description>Studio network monitoring for Mac, by Nathaniel Labs.</description>
         <language>en</language>
         <item>
+            <title>1.8.5</title>
+            <pubDate>Mon, 26 Oct 2026 20:26:32 +0530</pubDate>
+            <sparkle:version>202610262023</sparkle:version>
+            <sparkle:shortVersionString>1.8.5</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>11.0</sparkle:minimumSystemVersion>
+            <netsense:sha256>69a8318e318c9f023ec263f9c07dd422d03140871a1b7d892fe790df1eda2ab2</netsense:sha256>
+            <description sparkle:format="markdown"><![CDATA[# Net Sense 1.8.5
+
+Each line now carries its real plan, and data is counted against that plan's own billing month.
+
+- Jio bills from the 11th to the 10th. Usage is measured over that window now, not the calendar month.
+- A line's monthly allowance, reset day, speed, price and the bill each came from are kept with the line.
+- Where there is no limit on record the panel says so, instead of showing nothing.
+- A line can be anchored to the provider's own usage figure so the total matches the bill.]]></description>
+            <enclosure
+                url="https://github.com/jasonzacmusic/labs-downloads/releases/download/downloads/Net-Sense-1.8.5-mac.dmg"
+                sparkle:version="202610262023"
+                sparkle:shortVersionString="1.8.5"
+                length="20347239"
+                type="application/octet-stream" />
+        </item>
+        <item>
             <title>1.8.4</title>
             <pubDate>Fri, 23 Oct 2026 21:11:04 +0530</pubDate>
             <sparkle:version>202610232108</sparkle:version>
