@@ -6,6 +6,25 @@
         <description>Studio network monitoring for Mac, by Nathaniel Labs.</description>
         <language>en</language>
         <item>
+            <title>1.8.6</title>
+            <pubDate>Mon, 26 Oct 2026 20:37:24 +0530</pubDate>
+            <sparkle:version>202610262034</sparkle:version>
+            <sparkle:shortVersionString>1.8.6</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>11.0</sparkle:minimumSystemVersion>
+            <netsense:sha256>e5e910de8a61dbce0475b32e21666b3f32c757e449edc396bc20e530fee88d94</netsense:sha256>
+            <description sparkle:format="markdown"><![CDATA[# Net Sense 1.8.6
+
+Fixes the new plan settings, which could not be saved in 1.8.5.
+
+- A line's data limit, reset day and the bill it came from now save properly.]]></description>
+            <enclosure
+                url="https://github.com/jasonzacmusic/labs-downloads/releases/download/downloads/Net-Sense-1.8.6-mac.dmg"
+                sparkle:version="202610262034"
+                sparkle:shortVersionString="1.8.6"
+                length="20428752"
+                type="application/octet-stream" />
+        </item>
+        <item>
             <title>1.8.5</title>
             <pubDate>Mon, 26 Oct 2026 20:26:32 +0530</pubDate>
             <sparkle:version>202610262023</sparkle:version>
