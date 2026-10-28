@@ -6,6 +6,28 @@
         <description>Studio network monitoring for Mac, by Nathaniel Labs.</description>
         <language>en</language>
         <item>
+            <title>1.8.8</title>
+            <pubDate>Wed, 28 Oct 2026 14:06:35 +0530</pubDate>
+            <sparkle:version>202610281403</sparkle:version>
+            <sparkle:shortVersionString>1.8.8</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>11.0</sparkle:minimumSystemVersion>
+            <netsense:sha256>b3cb02acee835a67ae1366a4e867f758524e769f97565667a13e9a4291b70275</netsense:sha256>
+            <description sparkle:format="markdown"><![CDATA[# Net Sense 1.8.8
+
+Any app can now be given its own internet line.
+
+- Each line is offered as a local door. Point an app at the ACT door and only that app leaves by ACT, while everything else stays on Jio. Proved with Codex: twelve requests to chatgpt.com, all out via ACT.
+- A line's lane is refused rather than silently offered when this Mac does not hold that line's address, so an app is never pointed at a door that goes nowhere.
+- Going back to the usual line now names the line that recovered, instead of the one being left.
+- Falling back to a line that has already spent its month's data now says so.]]></description>
+            <enclosure
+                url="https://github.com/jasonzacmusic/labs-downloads/releases/download/downloads/Net-Sense-1.8.8-mac.dmg"
+                sparkle:version="202610281403"
+                sparkle:shortVersionString="1.8.8"
+                length="20439541"
+                type="application/octet-stream" />
+        </item>
+        <item>
             <title>1.8.7</title>
             <pubDate>Mon, 26 Oct 2026 21:27:02 +0530</pubDate>
             <sparkle:version>202610262124</sparkle:version>
