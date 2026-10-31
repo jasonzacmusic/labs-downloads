@@ -6,6 +6,29 @@
         <description>Studio network monitoring for Mac, by Nathaniel Labs.</description>
         <language>en</language>
         <item>
+            <title>1.8.9</title>
+            <pubDate>Sat, 31 Oct 2026 10:22:59 +0530</pubDate>
+            <sparkle:version>202610311020</sparkle:version>
+            <sparkle:shortVersionString>1.8.9</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>11.0</sparkle:minimumSystemVersion>
+            <netsense:sha256>c48f31808a07c709d3b06039b030f80a75510edf3d40ab75e90007a43b02daf4</netsense:sha256>
+            <description sparkle:format="markdown"><![CDATA[# Net Sense 1.8.9
+
+A new Usage screen shows what each line is carrying right now, data used today and this week, data left including refills, and puts a YouTube upload, a download or ChatGPT on a chosen line.
+
+- Live speed per line and the devices using it this moment
+- GB per day for the last week, coloured by line
+- Data left this month, counting refills bought on top of the plan
+- Who used the data: school devices and apps on the studio Mac
+- Start a YouTube upload window, a download window or ChatGPT on the line you pick]]></description>
+            <enclosure
+                url="https://github.com/jasonzacmusic/labs-downloads/releases/download/downloads/Net-Sense-1.8.9-mac.dmg"
+                sparkle:version="202610311020"
+                sparkle:shortVersionString="1.8.9"
+                length="20210960"
+                type="application/octet-stream" />
+        </item>
+        <item>
             <title>1.8.8</title>
             <pubDate>Wed, 28 Oct 2026 14:06:35 +0530</pubDate>
             <sparkle:version>202610281403</sparkle:version>
