@@ -6,6 +6,25 @@
         <description>Studio network monitoring for Mac, by Nathaniel Labs.</description>
         <language>en</language>
         <item>
+            <title>1.9.1</title>
+            <pubDate>Mon, 02 Nov 2026 15:51:59 +0530</pubDate>
+            <sparkle:version>202611021549</sparkle:version>
+            <sparkle:shortVersionString>1.9.1</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>11.0</sparkle:minimumSystemVersion>
+            <netsense:sha256>01893f2c81b7ca9391c3dc271e855ac643a3df80c38dbe898bfb44d3b7af2c97</netsense:sha256>
+            <description sparkle:format="markdown"><![CDATA[# Net Sense 1.9.1
+
+A school computer can now be given Operator control with a code.
+
+- Enter an Operator code from the Lines screen]]></description>
+            <enclosure
+                url="https://github.com/jasonzacmusic/labs-downloads/releases/download/downloads/Net-Sense-1.9.1-mac.dmg"
+                sparkle:version="202611021549"
+                sparkle:shortVersionString="1.9.1"
+                length="20246603"
+                type="application/octet-stream" />
+        </item>
+        <item>
             <title>1.9.0</title>
             <pubDate>Mon, 02 Nov 2026 15:40:32 +0530</pubDate>
             <sparkle:version>202611021537</sparkle:version>
