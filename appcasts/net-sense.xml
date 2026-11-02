@@ -6,6 +6,29 @@
         <description>Studio network monitoring for Mac, by Nathaniel Labs.</description>
         <language>en</language>
         <item>
+            <title>1.9.0</title>
+            <pubDate>Mon, 02 Nov 2026 15:40:32 +0530</pubDate>
+            <sparkle:version>202611021537</sparkle:version>
+            <sparkle:shortVersionString>1.9.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>11.0</sparkle:minimumSystemVersion>
+            <netsense:sha256>426443e2dd10241456923cdf0799ccfde8ef8d8dfc50cc171ffb66afcc9771a0</netsense:sha256>
+            <description sparkle:format="markdown"><![CDATA[# Net Sense 1.9.0
+
+Control every internet line from any Mac: the whole school, each system, and each app.
+
+- New Lines screen: Fastest, ACT, Jio or Both for the school
+- One click to move any system to ACT or Jio, or back to following the school
+- Open Chrome or ChatGPT on the line you choose
+- Connect a second Mac to the studio Mac mini and control lines from it
+- Confirmation boxes now appear inside the app]]></description>
+            <enclosure
+                url="https://github.com/jasonzacmusic/labs-downloads/releases/download/downloads/Net-Sense-1.9.0-mac.dmg"
+                sparkle:version="202611021537"
+                sparkle:shortVersionString="1.9.0"
+                length="20244959"
+                type="application/octet-stream" />
+        </item>
+        <item>
             <title>1.8.10</title>
             <pubDate>Sat, 31 Oct 2026 10:27:49 +0530</pubDate>
             <sparkle:version>202610311025</sparkle:version>
