@@ -270,8 +270,22 @@ def section(recs, want):
     return cards or '      <p class="empty">Nothing here yet.</p>'
 
 
+def is_public_listing(rec):
+    """True when this app is shown on the downloads page.
+
+    access "internal" stays in the catalog (so auto-discover does not publish a
+    second card) but is left off the page. "team" stays on the page with its chip.
+    """
+    return rec.get("access") != "internal"
+
+
+def listed_apps(apps):
+    return [a for a in apps if is_public_listing(a)]
+
+
 def main():
-    apps = build()
+    # Filter after build(), so an internal app is still claimed before anything is drawn.
+    apps = listed_apps(build())
     mac = [a for a in apps if a["section"] in ("mac", "win")]
     ios = [a for a in apps if a["section"] == "ios"]
     web = [a for a in apps if a["section"] == "web"]

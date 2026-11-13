@@ -1,5 +1,5 @@
 {
-  "_comment": "Nathaniel Labs hub catalog. Fields per app: repo (drives last-updated date), native[] (hub asset per platform; optional label distinguishes two builds of the same platform), web (live app url, always clickable), ios ('soon'|'live'), ios_url (TestFlight/App Store when live), site (sales/landing page when one exists), access ('public' = anyone may use/share it, 'team' = internal only, never share), blurb (one-line description). Downloadable apps are shown first; iOS apps are labeled + colored distinctly. Two apps may share one repo (e.g. Shruti + Sangam) \u2014 each still gets its own card.",
+  "_comment": "Nathaniel Labs hub catalog. Fields per app: repo (drives last-updated date), native[] (hub asset per platform; optional label distinguishes two builds of the same platform), web (live app url, always clickable), ios ('soon'|'live'), ios_url (TestFlight/App Store when live), site (sales/landing page when one exists), access ('public' = anyone may use/share it, 'team' = shown and marked Team only, 'internal' = kept in this catalog so it is not offered again, and not shown on the page), blurb (one-line description). Downloadable apps are shown first; iOS apps are labeled + colored distinctly. Two apps may share one repo (e.g. Shruti + Sangam) \u2014 each still gets its own card.",
   "apps": [
     {
       "name": "Baithak",
@@ -46,7 +46,7 @@
     {
       "name": "NSM Screen Studio",
       "category": "Production",
-      "access": "public",
+      "access": "internal",
       "repo": "jasonzacmusic/nsm-screen-studio",
       "native": [
         {
